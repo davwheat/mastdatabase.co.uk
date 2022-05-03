@@ -7,7 +7,7 @@ import Section from '@components/Design/Section'
 
 import Colors from '@data/colors.json'
 
-import { makeStyles } from '@material-ui/core'
+import { makeStyles, NoSsr } from '@material-ui/core'
 import { MapContainer, Marker, Popup, TileLayer, useMap } from 'react-leaflet'
 
 import 'leaflet/dist/leaflet.css'
@@ -72,9 +72,7 @@ export default function FreshwaveMap({ location }) {
         }),
       )
 
-      setTimeout(() => {
-        setSites(mapped)
-      })
+      setSites(mapped)
     }
 
     loadData()
@@ -106,44 +104,46 @@ export default function FreshwaveMap({ location }) {
       </Section>
 
       <Section width="full" className={classes.mapSection}>
-        <MapContainer
-          style={{
-            height: '60vh',
-          }}
-          center={[51.692, 5.155]}
-          zoom={5}
-          attributionControl={false}
-        >
-          <TileLayer
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-          />
+        <NoSsr>
+          <MapContainer
+            style={{
+              height: '60vh',
+            }}
+            center={[51.692, 5.155]}
+            zoom={5}
+            attributionControl={false}
+          >
+            <TileLayer
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            />
 
-          <MarkerClusterGroup>
-            {sites
-              ? sites.map(({ locationId, lat, lng, name, desc }) => {
-                  return (
-                    <Marker key={locationId} position={[lat, lng]}>
-                      <Popup>
-                        <dl>
-                          <dt>Location ID</dt>
-                          <dd>{locationId}</dd>
-                          <dt>Name</dt>
-                          <dd>{name}</dd>
-                          {desc.trim() !== '' && (
-                            <>
-                              <dt>Description</dt>
-                              <dd>{desc}</dd>
-                            </>
-                          )}
-                        </dl>
-                      </Popup>
-                    </Marker>
-                  )
-                })
-              : undefined}
-          </MarkerClusterGroup>
-        </MapContainer>
+            <MarkerClusterGroup>
+              {sites
+                ? sites.map(({ locationId, lat, lng, name, desc }) => {
+                    return (
+                      <Marker key={locationId} position={[lat, lng]}>
+                        <Popup>
+                          <dl>
+                            <dt>Location ID</dt>
+                            <dd>{locationId}</dd>
+                            <dt>Name</dt>
+                            <dd>{name}</dd>
+                            {desc.trim() !== '' && (
+                              <>
+                                <dt>Description</dt>
+                                <dd>{desc}</dd>
+                              </>
+                            )}
+                          </dl>
+                        </Popup>
+                      </Marker>
+                    )
+                  })
+                : undefined}
+            </MarkerClusterGroup>
+          </MapContainer>
+        </NoSsr>
       </Section>
     </Layout>
   )
