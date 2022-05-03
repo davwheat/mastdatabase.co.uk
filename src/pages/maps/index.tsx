@@ -32,29 +32,37 @@ const useStyles = makeStyles({
   },
 })
 
-export default function IndexPage({ location }) {
+export default function MapsPage({ location }) {
   const classes = useStyles()
 
   return (
-    <Layout location={location} title="Home">
-      <Hero firstElement size="huge" color={Colors.primaryBlue}>
-        <h1 className="text-shout">Mast Database</h1>
+    <Layout location={location} title="Maps">
+      <Hero firstElement size="huge" color={Colors.primaryRed}>
+        <h1 className="text-shout">Maps</h1>
         <p role="doc-subtitle" className="text-loud">
-          A collection of mobile networking tools and resources for the&nbsp;UK.
+          Useful mobile-networking maps, such as maps of upcoming works and registered&nbsp;sites.
         </p>
       </Hero>
 
-      <Breadcrumbs data={[{ t: 'Home', url: '/' }]} />
+      <Breadcrumbs
+        data={[
+          { t: 'Home', url: '/' },
+          { t: 'Maps', url: '/maps' },
+        ]}
+      />
 
       <Section>
-        <h2 className="text-louder">Welcome</h2>
-        <p className="text-speak">
-          Mastdatabase.co.uk aims to provide a vast array of mobile networking tools and resources for the UK and rest of the&nbsp;world.
-        </p>
-        <p className="text-speak">Choose a section below to get&nbsp;started.</p>
-
         <div className={classes.linkList}>
-          <CardLink title="Maps" description="Useful mobile-networking maps, such as maps of upcoming works and registered sites." url="/maps" />
+          <CardLink
+            title="Streetworks map"
+            description="See upcoming and current streetworks registered with councils, along with descriptions of the works."
+            url="/maps/streetworks"
+          />
+          <CardLink
+            title="Freshwave site map"
+            description="See all registered site locations with Freshwave. This does not correspond to active sites, just possible locations."
+            url="/maps/freshwave"
+          />
         </div>
       </Section>
     </Layout>

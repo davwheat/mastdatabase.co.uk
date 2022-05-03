@@ -3272,6 +3272,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@react-leaflet/core@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "@react-leaflet/core@npm:2.0.0"
+  peerDependencies:
+    leaflet: ^1.8.0
+    react: ^18.0.0
+    react-dom: ^18.0.0
+  checksum: 8528b05bb3f2218dc783d508fad571ed34986bb9a15e8296f3ca6e090934ee4b9858172cab25bc2ae3255c880660d648477bb609c496bee70d1c0e3fb99f0533
+  languageName: node
+  linkType: hard
+
 "@sideway/address@npm:^4.1.3":
   version: 4.1.4
   resolution: "@sideway/address@npm:4.1.4"
@@ -3529,6 +3540,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/geojson@npm:*":
+  version: 7946.0.8
+  resolution: "@types/geojson@npm:7946.0.8"
+  checksum: 6049a39b025cfe323d5cf87333d87c133ec963cdbd349c49295bee779827ee4b46a3041fd8bd2e7a4b02d6d1e26f3002968875928941bbed08477bfd5f6f9284
+  languageName: node
+  linkType: hard
+
 "@types/get-port@npm:^3.2.0":
   version: 3.2.0
   resolution: "@types/get-port@npm:3.2.0"
@@ -3608,6 +3626,24 @@ __metadata:
   dependencies:
     "@types/node": "*"
   checksum: e009a2bfb50e90ca9b7c6e8f648f8464067271fd99116f881073fa6fa76dc8d0133181dd65e6614d5fb1220d671d67b0124aef7d97dc02d7e342ab143a47779d
+  languageName: node
+  linkType: hard
+
+"@types/leaflet.markercluster@npm:^1.4.6":
+  version: 1.4.6
+  resolution: "@types/leaflet.markercluster@npm:1.4.6"
+  dependencies:
+    "@types/leaflet": "*"
+  checksum: 6fc590a3f3ef0938120dcb7992d1e514c81a25ace4a6a1796e1b7cac2a7408e3ad12c82548e57f71b981614a174df9ee9df666b2a2dbc5960f06a624219d7ff8
+  languageName: node
+  linkType: hard
+
+"@types/leaflet@npm:*, @types/leaflet@npm:^1.7.9":
+  version: 1.7.9
+  resolution: "@types/leaflet@npm:1.7.9"
+  dependencies:
+    "@types/geojson": "*"
+  checksum: 1a8c18b50d1b7726e99d86f9087733216b830c545a97ea95a83ff45e51e555bbef8f4eab654de603f539b9a297d352f8c443895f75cc5c52a7b488eaed664c04
   languageName: node
   linkType: hard
 
@@ -11506,6 +11542,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"leaflet.markercluster@npm:^1.5.3":
+  version: 1.5.3
+  resolution: "leaflet.markercluster@npm:1.5.3"
+  peerDependencies:
+    leaflet: ^1.3.1
+  checksum: abf0d0befbc78b7f178a330791554f0e4fd7170dbe2e6d59f387b627d914f4633b0541a9028fe5d11cf842c09c8dbb56ae6bd9d1d08c5ce35e32541c8f1eacd1
+  languageName: node
+  linkType: hard
+
+"leaflet@npm:^1.8.0":
+  version: 1.8.0
+  resolution: "leaflet@npm:1.8.0"
+  checksum: 4a27895d4253844f2f13f94cbc52a2030b10833cdf553085d931b834745236a8d2a38844a01eb968cc109eb43268bfadb97aad85b51deffb17b6ccd106542e00
+  languageName: node
+  linkType: hard
+
 "less-loader@npm:^6.2.0":
   version: 6.2.0
   resolution: "less-loader@npm:6.2.0"
@@ -12150,6 +12202,83 @@ __metadata:
   checksum: 292e8c956ae833c2ccb0a55cd8d87980cd657ab11cd9ff63c3fcc4d3a518d3b3882ba07410b8f477ba9e30b3f70658677e4e8acf61816dd6cfdd1f6293130664
   languageName: node
   linkType: hard
+
+"mastdatabase-co-uk@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "mastdatabase-co-uk@workspace:."
+  dependencies:
+    "@matejmazur/react-katex": ^3.1.3
+    "@material-ui/core": ^4.12.4
+    "@material-ui/styles": ^4.11.5
+    "@mdx-js/mdx": ^1.6.22
+    "@mdx-js/react": ^1.6.22
+    "@reach/tabs": ^0.16.4
+    "@slixites/gatsby-plugin-google-fonts": ^1.1.1
+    "@ssfbank/gatsby-plugin-search-fusejs": ^1.0.6
+    "@types/color": ^3.0.3
+    "@types/leaflet": ^1.7.9
+    "@types/leaflet.markercluster": ^1.4.6
+    "@types/material-ui": ^0.21.12
+    "@types/mdx-js__react": ^1.5.5
+    "@types/react": ^17.0.44
+    babel-plugin-transform-remove-console: ^6.9.4
+    case-sensitive-paths-webpack-plugin: ^2.4.0
+    clsx: ^1.1.1
+    cross-env: ^7.0.3
+    dayjs: ^1.11.1
+    fuse.js: ^6.5.3
+    gatsby: ^4.13.1
+    gatsby-image: ^3.11.0
+    gatsby-plugin-canonical-urls: ^4.13.0
+    gatsby-plugin-catch-links: ^4.13.0
+    gatsby-plugin-csp: ^1.1.3
+    gatsby-plugin-image: ^2.13.0
+    gatsby-plugin-less: ^6.13.0
+    gatsby-plugin-manifest: ^4.13.0
+    gatsby-plugin-material-ui: ^3.0.1
+    gatsby-plugin-mdx: ^3.13.0
+    gatsby-plugin-meta-redirect: ^1.1.1
+    gatsby-plugin-perf-budgets: ^0.0.18
+    gatsby-plugin-preact: ^6.13.0
+    gatsby-plugin-react-head: "https://github.com/davwheat/gatsby-plugin-react-head"
+    gatsby-plugin-react-svg: ^3.1.0
+    gatsby-plugin-remove-console: ^0.0.2
+    gatsby-plugin-sharp: ^4.13.0
+    gatsby-plugin-sitemap: ^5.13.0
+    gatsby-plugin-webpack-bundle-analyser-v2: ^1.1.27
+    gatsby-plugin-webpack-size: ^2.0.1
+    gatsby-react-router-scroll: ^5.13.0
+    gatsby-remark-autolink-headers: ^5.13.0
+    gatsby-remark-copy-linked-files: ^5.13.0
+    gatsby-remark-images: ^6.13.0
+    gatsby-remark-static-images: ^1.2.1
+    gatsby-source-filesystem: ^4.13.0
+    gatsby-source-local-git: ^1.3.0
+    gatsby-transformer-sharp: ^4.13.0
+    get-best-contrast-color: ^0.3.1
+    gh-pages: ^3.2.3
+    hk-grotesk: ^1.0.2
+    katex: ^0.15.3
+    leaflet: ^1.8.0
+    leaflet.markercluster: ^1.5.3
+    mdi-react: ^8.3.1
+    nanoid: ^3.3.3
+    preact: ^10.7.1
+    preact-render-to-string: ^5.2.0
+    prettier: ^2.6.2
+    prop-types: ^15.8.1
+    react: ^17.0.2
+    react-dom: ^17.0.2
+    react-head: ^3.4.0
+    react-hooks-visible: ^1.1.1
+    react-leaflet: ^4.0.0
+    react-uuid: ^1.0.2
+    remark-math: ^3.0.1
+    remark-twemoji: ^0.1.1
+    twemoji: ^14.0.2
+    typescript: ^4.6.4
+  languageName: unknown
+  linkType: soft
 
 "md5-file@npm:^5.0.0":
   version: 5.0.0
@@ -13848,78 +13977,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"personal-portfolio@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "personal-portfolio@workspace:."
-  dependencies:
-    "@matejmazur/react-katex": ^3.1.3
-    "@material-ui/core": ^4.12.4
-    "@material-ui/styles": ^4.11.5
-    "@mdx-js/mdx": ^1.6.22
-    "@mdx-js/react": ^1.6.22
-    "@reach/tabs": ^0.16.4
-    "@slixites/gatsby-plugin-google-fonts": ^1.1.1
-    "@ssfbank/gatsby-plugin-search-fusejs": ^1.0.6
-    "@types/color": ^3.0.3
-    "@types/material-ui": ^0.21.12
-    "@types/mdx-js__react": ^1.5.5
-    "@types/react": ^17.0.44
-    babel-plugin-transform-remove-console: ^6.9.4
-    case-sensitive-paths-webpack-plugin: ^2.4.0
-    clsx: ^1.1.1
-    cross-env: ^7.0.3
-    dayjs: ^1.11.1
-    fuse.js: ^6.5.3
-    gatsby: ^4.13.1
-    gatsby-image: ^3.11.0
-    gatsby-plugin-canonical-urls: ^4.13.0
-    gatsby-plugin-catch-links: ^4.13.0
-    gatsby-plugin-csp: ^1.1.3
-    gatsby-plugin-image: ^2.13.0
-    gatsby-plugin-less: ^6.13.0
-    gatsby-plugin-manifest: ^4.13.0
-    gatsby-plugin-material-ui: ^3.0.1
-    gatsby-plugin-mdx: ^3.13.0
-    gatsby-plugin-meta-redirect: ^1.1.1
-    gatsby-plugin-perf-budgets: ^0.0.18
-    gatsby-plugin-preact: ^6.13.0
-    gatsby-plugin-react-head: "https://github.com/davwheat/gatsby-plugin-react-head"
-    gatsby-plugin-react-svg: ^3.1.0
-    gatsby-plugin-remove-console: ^0.0.2
-    gatsby-plugin-sharp: ^4.13.0
-    gatsby-plugin-sitemap: ^5.13.0
-    gatsby-plugin-webpack-bundle-analyser-v2: ^1.1.27
-    gatsby-plugin-webpack-size: ^2.0.1
-    gatsby-react-router-scroll: ^5.13.0
-    gatsby-remark-autolink-headers: ^5.13.0
-    gatsby-remark-copy-linked-files: ^5.13.0
-    gatsby-remark-images: ^6.13.0
-    gatsby-remark-static-images: ^1.2.1
-    gatsby-source-filesystem: ^4.13.0
-    gatsby-source-local-git: ^1.3.0
-    gatsby-transformer-sharp: ^4.13.0
-    get-best-contrast-color: ^0.3.1
-    gh-pages: ^3.2.3
-    hk-grotesk: ^1.0.2
-    katex: ^0.15.3
-    mdi-react: ^8.3.1
-    nanoid: ^3.3.3
-    preact: ^10.7.1
-    preact-render-to-string: ^5.2.0
-    prettier: ^2.6.2
-    prop-types: ^15.8.1
-    react: ^17.0.2
-    react-dom: ^17.0.2
-    react-head: ^3.4.0
-    react-hooks-visible: ^1.1.1
-    react-uuid: ^1.0.2
-    remark-math: ^3.0.1
-    remark-twemoji: ^0.1.1
-    twemoji: ^14.0.2
-    typescript: ^4.6.4
-  languageName: unknown
-  linkType: soft
-
 "phin@npm:^2.9.1":
   version: 2.9.3
   resolution: "phin@npm:2.9.3"
@@ -14887,6 +14944,19 @@ __metadata:
   version: 17.0.2
   resolution: "react-is@npm:17.0.2"
   checksum: 9d6d111d8990dc98bc5402c1266a808b0459b5d54830bbea24c12d908b536df7883f268a7868cfaedde3dd9d4e0d574db456f84d2e6df9c4526f99bb4b5344d8
+  languageName: node
+  linkType: hard
+
+"react-leaflet@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "react-leaflet@npm:4.0.0"
+  dependencies:
+    "@react-leaflet/core": ^2.0.0
+  peerDependencies:
+    leaflet: ^1.8.0
+    react: ^18.0.0
+    react-dom: ^18.0.0
+  checksum: 0da0445c1a5f7c47483b1e629c83f477181e987235022235d97808f3b16eebee5d479963e20c64033f17a4f4cbd7bcf310dd5db5af2b8576be1a09b44f8a3ffd
   languageName: node
   linkType: hard
 

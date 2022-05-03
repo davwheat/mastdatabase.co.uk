@@ -73,12 +73,12 @@ export interface ISectionProps extends React.HTMLAttributes<HTMLDivElement> {
   component?: any
 }
 
-function Section({ children, usePadding, width = 'normal', darker = false, component = 'section', ...props }: ISectionProps) {
+function Section({ children, usePadding, width = 'normal', darker = false, component = 'section', className, ...props }: ISectionProps) {
   const classes = useStyles()
 
   return React.createElement(component, {
     ...props,
-    className: clsx(classes.pageSection, [
+    className: clsx(className, classes.pageSection, [
       usePadding && classes.pad,
       width === 'full' && classes.fullWidth,
       width === 'wider' && classes.wider,

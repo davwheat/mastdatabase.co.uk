@@ -243,7 +243,7 @@ const Header: React.FC = () => {
     <header className={classes.header}>
       <div className={classes.headerInnerContainer}>
         <Link href="/" className={classes.name}>
-          David Wheatley
+          Mast Database
         </Link>
 
         <div aria-hidden className={classes.spacer} />
@@ -265,9 +265,9 @@ const Header: React.FC = () => {
 
         <nav ref={navbarRef} id="navbar" style={{ animationName: 'none' }} className={classes.nav}>
           <Link href="/">Home</Link>
-          <Link href="/my-projects">My projects</Link>
+          {/* <Link href="/my-projects">My projects</Link>
           <Link href="/mobile-networking">Networking</Link>
-          <Link href="/blog">Blog</Link>
+          <Link href="/blog">Blog</Link> */}
         </nav>
       </div>
     </header>

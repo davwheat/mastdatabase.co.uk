@@ -33,7 +33,7 @@ const SEO: React.FC<Props> = ({ description, meta, title }) => {
 
   return (
     <>
-      <Title>{title ? `${title} | ${site.siteMetadata.title}` : site.siteMetadata.title}</Title>
+      <Title>{title ? `${title} | mastdatabase.co.uk` : 'mastdatabase.co.uk'}</Title>
       <Meta name="description" content={metaDescription} />
 
       <Meta name="og:title" content={title} />

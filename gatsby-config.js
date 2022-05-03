@@ -23,7 +23,7 @@ module.exports = {
   },
   siteMetadata: {
     title: `Mast Database`,
-    description: `Mast Database is a collection of mobile networking tools and resources for the UK.`,
+    description: `A collection of mobile networking tools and resources for the UK.`,
     author: `@davwheat`,
     siteUrl: `https://mastdatabase.co.uk`,
   },

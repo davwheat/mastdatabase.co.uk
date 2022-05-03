@@ -93,7 +93,7 @@ export default function Breadcrumbs({ data }: IBreadcrumbsProps) {
             '@type': 'ListItem',
             position: i,
             item: {
-              '@id': 'https://davwheat.dev' + crumb.url,
+              '@id': 'https://mastdatabase.co.uk' + crumb.url,
               name: crumb.t,
             },
           })),

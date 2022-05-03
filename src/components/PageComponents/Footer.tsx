@@ -102,7 +102,7 @@ export default function Footer() {
           <div className={classes.about}>
             <p className="text-speak-up">&copy; {new Date().getFullYear()} David Wheatley</p>
             <p className="text-whisper">
-              <a href="https://github.com/davwheat/personal-portfolio" rel="noopener noreferrer">
+              <a href="https://github.com/davwheat/mastdatabase.co.uk" rel="noopener noreferrer">
                 View this site on GitHub
               </a>
               <BulletSeparator />
@@ -113,7 +113,7 @@ export default function Footer() {
             </p>
             <p className="text-whisper">
               Last updated {siteBuildMetadata.buildTime} (
-              <a href={`https://github.com/davwheat/personal-portfolio/commit/${gitCommit.hash}`} rel="noopener noreferrer">
+              <a href={`https://github.com/davwheat/mastdatabase.co.uk/commit/${gitCommit.hash}`} rel="noopener noreferrer">
                 <code className="code">{gitCommit.hash.substring(0, 6)}</code>
               </a>
               ).
@@ -125,12 +125,7 @@ export default function Footer() {
 
         <nav className={classes.nav}>
           <Link href="/">Home</Link>
-          <Link href="/blog">Blog</Link>
-          <Link href="/my-projects">My projects</Link>
-          <Link href="/mobile-networking">Networking</Link>
-          <a href="https://github.com/davwheat" rel="noopener noreferrer">
-            My GitHub
-          </a>
+          <Link href="https://davwheat.dev/">David Wheatley</Link>
         </nav>
       </main>
     </footer>
