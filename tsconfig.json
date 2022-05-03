@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "target": "ESNext" /* or at least ES2015 */,
+    "module": "ESNext" /* or at least ES2015 */,
+    "lib": ["dom", "ES2020"] /* <-- required! */,
+    "jsx": "react" /* <-- required! */,
+    "moduleResolution": "node" /* <-- required! */,
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "outDir": "./dist", // not actually used
+    "resolveJsonModule": true,
+    "baseUrl": "src",
+    "paths": {
+      "@components/*": ["components/*"],
+      "@data/*": ["data/*"],
+      "@assets/*": ["assets/*"],
+      "@functions/*": ["functions/*"],
+      "@types/*": ["../@types/*", "../node_modules/@types/*"],
+      "@css/*": ["css/*"],
+      "@templates/*": ["templates/*"],
+      "@blog/*": ["components/BlogComponents/MdxComponents/*"],
+      "@hooks/*": ["hooks/*"]
+    }
+  },
+  "exclude": ["node_modules", "build", "scripts", "acceptance-tests", "webpack", "jest", "src/setupTests.ts"]
+}

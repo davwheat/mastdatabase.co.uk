@@ -1,0 +1,58 @@
+@import (reference) './typography.less';
+
+// Only apply to tables which are not using
+// custom styles
+table:not(.custom) {
+  @main-color: #000;
+  @row-separator-color: rgba(128, 128, 128, 0.2);
+  @row-hover-color: rgba(128, 128, 128, 0.08);
+
+  border: 2px solid @main-color;
+  border-spacing: 0;
+
+  margin: auto;
+
+  td,
+  th {
+    padding: 8px 12px;
+  }
+
+  thead {
+    background: @main-color;
+    color: #fff;
+    font-weight: bold;
+
+    tr {
+      &:last-child th {
+        border-bottom: 2px @main-color solid;
+      }
+
+      th {
+        text-align: left;
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      &:not(:last-child) td {
+        border-bottom: 1px @row-separator-color solid;
+      }
+
+      &:hover,
+      &:focus-within {
+        background: @row-hover-color;
+      }
+    }
+  }
+
+  tfoot {
+    .text-whisper();
+
+    tr {
+      &:first-child td {
+        border-top: 1px @main-color solid;
+      }
+    }
+  }
+}

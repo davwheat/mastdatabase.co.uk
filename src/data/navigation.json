@@ -1,0 +1,12 @@
+{
+  "footer": [
+    {
+      "text": "Home",
+      "link": "/"
+    },
+    {
+      "text": "About me",
+      "link": "/about-me"
+    }
+  ]
+}

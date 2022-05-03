@@ -1,0 +1,153 @@
+#blog-article {
+  hr {
+    padding: 0;
+    height: 2px;
+    background: #000;
+    border: none;
+    margin: 32px 16px;
+  }
+
+  &-content {
+    ul {
+      list-style-type: square;
+      list-style-position: outside;
+    }
+
+    ol {
+      list-style: decimal outside;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    ul:not(ul > li > ul):not(ol > li > ul),
+    ol:not(ul > li > ol):not(ol > li > ol) {
+      margin-bottom: 0.75em;
+    }
+
+    p,
+    li {
+      strong {
+        font-weight: bold;
+      }
+    }
+
+    th {
+      text-align: center;
+    }
+
+    img {
+      &:not(.gatsby-resp-image-image) {
+        display: block;
+        width: 500px;
+        max-width: 100%;
+        margin: auto;
+      }
+
+      object-fit: contain;
+      margin-top: 1.5em;
+      margin-bottom: 1.5em;
+    }
+
+    .katex .katex-html {
+      > .newline {
+        margin-top: 16px;
+      }
+    }
+
+    .math-inline {
+      .katex {
+        font-size: 1.1em;
+      }
+    }
+
+    table {
+      table-layout: fixed;
+      min-width: max-content;
+      margin-bottom: 16px;
+    }
+
+    :not(.narrow) > table {
+      width: 100%;
+    }
+
+    .narrow {
+      margin: auto;
+    }
+
+    .wider {
+      margin: 1em 0;
+
+      max-width: 100vw;
+      max-width: ~'min(1280px, 100vw)';
+      width: max-content;
+
+      padding: 0 16px;
+
+      margin-left: 50%;
+      transform: translateX(-50%);
+
+      overflow-x: auto;
+    }
+
+    .a-bit-wider {
+      margin: 1em 0;
+
+      max-width: 100vw;
+      max-width: ~'min(900px, 100vw)';
+      width: max-content;
+
+      padding: 0 16px;
+
+      margin-left: 50%;
+      transform: translateX(-50%);
+
+      overflow-x: auto;
+    }
+
+    blockquote {
+      background-color: #efefef;
+      border-left: 4px solid #666;
+
+      padding: 16px;
+      margin-bottom: 1.25em;
+
+      :last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    img.emoji {
+      display: inline-block;
+      height: 1.15em;
+      width: auto;
+      vertical-align: -0.1em;
+    }
+
+    code {
+      font-family: 'Consolas', 'Courier New', Courier, monospace;
+    }
+
+    figure > p + figcaption {
+      text-align: center;
+      display: block;
+      padding: 0 32px;
+
+      // .text-whisper-up
+      font-size: 15px;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      line-height: 20px;
+    }
+  }
+}
+
+#table-of-contents {
+  ol {
+    margin-bottom: 0 !important;
+  }
+}
