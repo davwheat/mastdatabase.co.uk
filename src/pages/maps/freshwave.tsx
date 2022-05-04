@@ -74,7 +74,8 @@ export default function FreshwaveMapPage({ location }) {
         <h2 className="text-loud">About</h2>
         <p className="text-speak">
           This map details the locations of all Freshwave-registered sites where operators can choose to deploy sites. It's very likely that most
-          of these locations have no mobile networking equipment present at all as no operator has chosen to rent access through Freshwave yet.
+          of these locations have no mobile networking equipment present at all as no operator has chosen to rent access through
+          Freshwave&nbsp;yet.
         </p>
       </Section>
 
