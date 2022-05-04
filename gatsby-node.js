@@ -17,6 +17,19 @@ exports.onCreateWebpackConfig = ({ stage, rules, loaders, plugins, actions }) =>
     })
   }
 
+  if (stage === 'build-html' || stage === 'develop-html') {
+    actions.setWebpackConfig({
+      module: {
+        rules: [
+          {
+            test: [/node_modules\/leaflet/, /node_modules\\leaflet/],
+            use: loaders.null(),
+          },
+        ],
+      },
+    })
+  }
+
   actions.setWebpackConfig({
     module: {
       rules: [
@@ -27,10 +40,6 @@ exports.onCreateWebpackConfig = ({ stage, rules, loaders, plugins, actions }) =>
               loader: `jsonc-loader`,
             },
           ],
-        },
-        {
-          test: [/node_modules\/leaflet/, /node_modules\\leaflet/],
-          use: loaders.null(),
         },
       ],
     },
