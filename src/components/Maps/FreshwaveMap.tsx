@@ -18,7 +18,7 @@ export interface IFreshwaveSitePoint {
 }
 
 export interface IFreshwaveMapProps {
-  sites: IFreshwaveSitePoint[]
+  sites: React.ReactNode
 }
 
 export default function FreshwaveMap({ sites }: IFreshwaveMapProps) {
@@ -48,30 +48,7 @@ export default function FreshwaveMap({ sites }: IFreshwaveMapProps) {
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
       />
 
-      <MarkerClusterGroup>
-        {sites
-          ? sites.map(({ locationId, lat, lng, name, desc }) => {
-              return (
-                <Marker key={locationId} position={[lat, lng]}>
-                  <Popup>
-                    <dl>
-                      <dt>Location ID</dt>
-                      <dd>{locationId}</dd>
-                      <dt>Name</dt>
-                      <dd>{name}</dd>
-                      {desc.trim() !== '' && (
-                        <>
-                          <dt>Description</dt>
-                          <dd>{desc}</dd>
-                        </>
-                      )}
-                    </dl>
-                  </Popup>
-                </Marker>
-              )
-            })
-          : undefined}
-      </MarkerClusterGroup>
+      <MarkerClusterGroup>{sites}</MarkerClusterGroup>
     </MapContainer>
   )
 }
