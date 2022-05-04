@@ -54,7 +54,7 @@ export default function FreshwaveMapPage({ location }) {
   })
 
   return (
-    <Layout location={location} title="Freshwave sites map">
+    <Layout location={location} title="Freshwave sites map" description="See all Freshwave-registered sites across the UK and Europe.">
       <Hero firstElement size="huge" color={Colors.primaryRed}>
         <h1 className="text-shout">Freshwave sites map</h1>
         <p role="doc-subtitle" className="text-loud">
