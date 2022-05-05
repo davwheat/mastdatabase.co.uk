@@ -1,5 +1,3 @@
-import * as L from 'leaflet'
-
 const DISABLED_PROMOTERS_LS_KEY = 'streetworksMapDisabledPromoters'
 
 export interface IOneNetworkStreetworksPromoter {
@@ -212,6 +210,12 @@ function createPromoterIcon(
   iconText: IOneNetworkStreetworksPromoter['icon']['text'],
   type: IOneNetworkStreetworksPromoter['icon']['type'],
 ): L.DivIcon {
+  // Mess is to fix Gatsby SSR issues, as this function is called
+  // during the build process
+  if (typeof window === 'undefined') return
+
+  const L = window.L as typeof import('leaflet')
+
   return L.divIcon({
     html: `<b>${iconText.toUpperCase()}</b><span></span>`,
     className: `network-icon network-icon__${type}`,

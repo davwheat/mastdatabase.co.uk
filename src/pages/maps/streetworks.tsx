@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
 import Layout from '@components/Layout'
 import Hero from '@components/Design/Hero'
@@ -9,7 +9,6 @@ import Colors from '@data/colors.json'
 
 import { makeStyles, NoSsr } from '@material-ui/core'
 
-import FreshwaveMap, { IFreshwaveSitePoint } from '@components/Maps/FreshwaveMap'
 import StreetworksMap from '@components/Maps/StreetworksMap'
 
 const useStyles = makeStyles({
@@ -29,7 +28,7 @@ const useStyles = makeStyles({
 export default function StreetworksMapPage({ location }) {
   const classes = useStyles()
 
-  const [sites, setSites] = useState<null | IFreshwaveSitePoint[]>(null)
+  const [sites, setSites] = useState<null>(null)
 
   return (
     <Layout
