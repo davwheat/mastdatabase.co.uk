@@ -4,7 +4,7 @@ import Layout from '@components/Layout'
 import Hero from '@components/Design/Hero'
 import Breadcrumbs from '@components/Design/Breadcrumbs'
 import Section from '@components/Design/Section'
-import FreshwaveMap, { IFreshwaveSitePoint } from '@components/Maps/FreshwaveMap'
+import FreshwaveMap from '@components/Maps/FreshwaveMap'
 
 import Colors from '@data/colors.json'
 
