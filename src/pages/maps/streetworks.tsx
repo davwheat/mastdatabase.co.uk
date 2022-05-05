@@ -10,6 +10,7 @@ import Colors from '@data/colors.json'
 import { makeStyles, NoSsr } from '@material-ui/core'
 
 import FreshwaveMap, { IFreshwaveSitePoint } from '@components/Maps/FreshwaveMap'
+import StreetworksMap from '@components/Maps/StreetworksMap'
 
 const useStyles = makeStyles({
   mapSection: {
@@ -60,11 +61,11 @@ export default function StreetworksMapPage({ location }) {
         <p className="text-speak-up">This page is a work-in-progress.</p>
       </Section>
 
-      {/* <Section width="full" className={classes.mapSection}>
+      <Section width="full" className={classes.mapSection}>
         <NoSsr>
-          <FreshwaveMap sites={sites} />
+          <StreetworksMap />
         </NoSsr>
-      </Section> */}
+      </Section>
     </Layout>
   )
 }

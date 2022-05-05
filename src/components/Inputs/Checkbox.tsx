@@ -1,8 +1,12 @@
-import React, { useMemo, useState } from 'react'
+import React, { useMemo } from 'react'
+
+import { makeStyles } from '@material-ui/core'
 
 import { nanoid } from 'nanoid'
-import { makeStyles } from '@material-ui/core'
+import clsx from 'clsx'
+
 import generateTransitions from '../../functions/generateTransitions'
+import Colors from '@data/colors.json'
 
 interface Props {
   label: string
@@ -15,49 +19,27 @@ interface Props {
   className?: string
 }
 
-const SIZE = 24
-const BORDER_SIZE = 2
-const INNER_PADDING = 4
-const TICK_WEIGHT = 4
-
 const useStyles = makeStyles({
+  root: {
+    '--size': '24px',
+    '--border-size': '2px',
+  },
   checkbox: {
     verticalAlign: 'middle',
-    position: 'relative',
+    position: 'absolute',
     cursor: 'pointer',
     zIndex: 2,
-    visibility: 'hidden',
-    height: SIZE,
-    width: SIZE,
+    opacity: 0,
+    height: 'var(--size)',
+    width: 'var(--size)',
     marginRight: 8,
-    '&::before, &::after': {
-      visibility: 'visible',
-    },
-    '&::before': {
-      content: '""',
-      display: 'inline-block',
-      border: `${BORDER_SIZE}px solid currentColor`,
-      height: SIZE,
-      width: SIZE,
-      background: '#fff',
-    },
-    '&::after': {
-      content: '""',
-      display: 'inline-block',
-      position: 'absolute',
-      left: '50%',
-      top: '50%',
-      transform: 'translate(-50%, calc(-50% - 1px)) rotate(45deg)',
-      transformOrigin: 'center',
-      width: (SIZE - BORDER_SIZE - INNER_PADDING - TICK_WEIGHT) * (3 / 5),
-      height: SIZE - BORDER_SIZE - INNER_PADDING - TICK_WEIGHT,
-      borderRight: `${TICK_WEIGHT}px solid currentColor`,
-      borderBottom: `${TICK_WEIGHT}px solid currentColor`,
-      opacity: 0,
-      ...generateTransitions('opacity', 'short'),
-    },
-    '&:checked::after': {
+
+    '&:checked + $label::after': {
       opacity: 1,
+    },
+
+    '&:focus-visible + $label::before': {
+      outline: `2px solid ${Colors.primaryRed}`,
     },
 
     '&[disabled]': {
@@ -67,19 +49,57 @@ const useStyles = makeStyles({
     },
   },
   label: {
+    '--left-pad': 'calc(1em + 16px)',
+
+    display: 'block',
+    position: 'relative',
     WebkitUserSelect: 'none',
     userSelect: 'none',
     cursor: 'pointer',
     verticalAlign: 'middle',
+    paddingLeft: 'var(--left-pad)',
+
+    '&::before, &::after': {
+      content: '""',
+      display: 'block',
+      position: 'absolute',
+      top: '50%',
+      transform: 'translateY(-50%)',
+    },
+    '&::before': {
+      border: `var(--border-size) solid currentColor`,
+      height: 'var(--size)',
+      width: 'var(--size)',
+      background: '#fff',
+      left: 0,
+    },
+    '&::after': {
+      '--tick-thickness': '4px',
+      '--pad': '4px',
+      '--tick-size': 'calc((var(--size) - var(--border-size) - var(--tick-thickness) - var(--pad)))',
+      '--x-pad': 'calc((var(--tick-size) * 2 / 5) / 2)',
+
+      left: 'calc(var(--size) / 2)',
+      top: '50%',
+
+      transform: 'translate(-50%, calc(-50% - var(--size) * 0.07)) rotate(45deg)',
+      transformOrigin: 'center',
+      width: 'calc(var(--tick-size) * 3 / 5)',
+      height: 'var(--tick-size)',
+      borderRight: `var(--tick-thickness) solid currentColor`,
+      borderBottom: `var(--tick-thickness) solid currentColor`,
+      opacity: 0,
+      ...generateTransitions('opacity', 'short'),
+    },
   },
 })
 
 function Checkbox({ label, onChange, checked, disabled, className }: Props) {
-  const id = useMemo(() => nanoid(), [])
+  const id = useMemo(nanoid, [])
   const classes = useStyles()
 
   return (
-    <div className={className}>
+    <div className={clsx(classes.root, className)}>
       <input
         disabled={disabled}
         className={classes.checkbox}
