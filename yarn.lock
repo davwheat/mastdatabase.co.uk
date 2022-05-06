@@ -3109,58 +3109,58 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@reach/auto-id@npm:0.16.0":
-  version: 0.16.0
-  resolution: "@reach/auto-id@npm:0.16.0"
+"@reach/auto-id@npm:0.17.0":
+  version: 0.17.0
+  resolution: "@reach/auto-id@npm:0.17.0"
   dependencies:
-    "@reach/utils": 0.16.0
+    "@reach/utils": 0.17.0
     tslib: ^2.3.0
   peerDependencies:
     react: ^16.8.0 || 17.x
     react-dom: ^16.8.0 || 17.x
-  checksum: 80211f7db1c0e3b107e2c1d3fe8055e7e41d7399b51ff0da5f0c9df43d90b77aa4a31a896545c699f9629b3fbc3c762ee0518de70faf8112098886c6759d3f15
+  checksum: 30bb0e591fbf0a2a6124ea6b07e6cec254ec0483c326492e824a19df8d2e2fcb3a5708cc47e1221fb64b9e63e4497966deb37732916d330a0693c541d9d1b35d
   languageName: node
   linkType: hard
 
-"@reach/descendants@npm:0.16.1":
-  version: 0.16.1
-  resolution: "@reach/descendants@npm:0.16.1"
+"@reach/descendants@npm:0.17.0":
+  version: 0.17.0
+  resolution: "@reach/descendants@npm:0.17.0"
   dependencies:
-    "@reach/utils": 0.16.0
+    "@reach/utils": 0.17.0
     tslib: ^2.3.0
   peerDependencies:
     react: ^16.8.0 || 17.x
     react-dom: ^16.8.0 || 17.x
-  checksum: 0d2a5d322e3564683e65651367af47157f7782ce6be3cadcc861334638a02bf2a672b8e0fcbeeea4284c329f0218a119b2f2e0724d0faefe833ef772bab09d05
+  checksum: 99d11558050729467943ef323c7156b89e84b702f790f6b320dd9817dac9347e035946ed4d09e85dd18f15da42e2f3ae425d6c309ee574f345dc62ce34a155df
   languageName: node
   linkType: hard
 
-"@reach/tabs@npm:^0.16.4":
-  version: 0.16.4
-  resolution: "@reach/tabs@npm:0.16.4"
+"@reach/tabs@npm:^0.17.0":
+  version: 0.17.0
+  resolution: "@reach/tabs@npm:0.17.0"
   dependencies:
-    "@reach/auto-id": 0.16.0
-    "@reach/descendants": 0.16.1
-    "@reach/utils": 0.16.0
+    "@reach/auto-id": 0.17.0
+    "@reach/descendants": 0.17.0
+    "@reach/utils": 0.17.0
     prop-types: ^15.7.2
     tslib: ^2.3.0
   peerDependencies:
     react: ^16.8.0 || 17.x
     react-dom: ^16.8.0 || 17.x
-  checksum: 8a17938501c1554c3c7df427e5f966f895b925cace689dd090e7fcb69336655962260d240ae2504e9da475c086a516272338113e6bd44ac03141a9c504a6f926
+  checksum: 7e82a18fbb3bf1e25fe02a29742dbd89f2aa286b6b17db3a1109ba76bf5c53c413392a21e03586396ea49966a968d9d2276daa762e55b634b56faf7d5409470b
   languageName: node
   linkType: hard
 
-"@reach/utils@npm:0.16.0":
-  version: 0.16.0
-  resolution: "@reach/utils@npm:0.16.0"
+"@reach/utils@npm:0.17.0":
+  version: 0.17.0
+  resolution: "@reach/utils@npm:0.17.0"
   dependencies:
     tiny-warning: ^1.0.3
     tslib: ^2.3.0
   peerDependencies:
     react: ^16.8.0 || 17.x
     react-dom: ^16.8.0 || 17.x
-  checksum: 36bc0eb41a71798eb6186b23de265ba709e51dae5bf214fb8505c66bb3f2e6a41bb2401457350436ba89ca9e3a50f93a04fe7c33d15648ce11e568a85622d770
+  checksum: b9ee31b5d07e7f204f3605be3fa45448c9817937a3364d894054c57de9113d417014019d21ad895aebf848a43c20988924d069ba926c0cb20d6f2e8654d7a11e
   languageName: node
   linkType: hard
 
@@ -6185,10 +6185,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dayjs@npm:^1.11.1":
-  version: 1.11.1
-  resolution: "dayjs@npm:1.11.1"
-  checksum: d5fefd79935f64a3c262e67af7ebeca180bc402b3e99be4e12d20b6d438af3f86d507ba1cbaff95dc0b4e67f1067cea3eaf37b6b74f5494fdd4a6a2909514cd1
+"dayjs@npm:^1.11.2":
+  version: 1.11.2
+  resolution: "dayjs@npm:1.11.2"
+  checksum: 78f8bd04a9e5f5554aa06eacda65a7d59e162d39f621a46fd34fb3b51367c3662426d86b4e2f4ac535f81e0c4d5af3e8a83b37e672412eb556267d726c61f8f3
   languageName: node
   linkType: hard
 
@@ -9318,13 +9318,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"hk-grotesk@npm:^1.0.2":
-  version: 1.0.2
-  resolution: "hk-grotesk@npm:1.0.2"
-  checksum: 81e50854abd0e2a41eafab6e4aa0ab9e2f504de2093064322590b09e6f5ad0da3e85ee1469be90b5da74b80db2ee2d8f4a43c13e4fef0b400354218873bc8712
-  languageName: node
-  linkType: hard
-
 "hoist-non-react-statics@npm:^3.3.2":
   version: 3.3.2
   resolution: "hoist-non-react-statics@npm:3.3.2"
@@ -11228,7 +11221,7 @@ __metadata:
   dependencies:
     "@material-ui/core": ^4.12.4
     "@material-ui/styles": ^4.11.5
-    "@reach/tabs": ^0.16.4
+    "@reach/tabs": ^0.17.0
     "@slixites/gatsby-plugin-google-fonts": ^1.1.1
     "@types/color": ^3.0.3
     "@types/leaflet": ^1.7.9
@@ -11239,7 +11232,7 @@ __metadata:
     case-sensitive-paths-webpack-plugin: ^2.4.0
     clsx: ^1.1.1
     cross-env: ^7.0.3
-    dayjs: ^1.11.1
+    dayjs: ^1.11.2
     gatsby: ^4.13.1
     gatsby-image: ^3.11.0
     gatsby-plugin-canonical-urls: ^4.13.0
@@ -11264,7 +11257,6 @@ __metadata:
     gatsby-transformer-sharp: ^4.13.0
     get-best-contrast-color: ^0.3.1
     gh-pages: ^3.2.3
-    hk-grotesk: ^1.0.2
     leaflet: ^1.8.0
     leaflet.markercluster: ^1.5.3
     mdi-react: ^8.3.1
