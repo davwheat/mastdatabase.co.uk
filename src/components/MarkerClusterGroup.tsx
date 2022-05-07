@@ -1,10 +1,12 @@
-import type { LeafletEventHandlerFn, MarkerClusterGroupOptions } from 'leaflet'
-import { useMap } from 'react-leaflet'
 import { createPathComponent } from '@react-leaflet/core'
 
-const MarkerClusterGroup = createPathComponent(({ children: _c, ...props }: MarkerClusterGroupOptions & { children: React.ReactNode }, ctx) => {
-  const map = useMap()
+import 'leaflet.markercluster'
+import 'leaflet.markercluster/dist/MarkerCluster.css'
+import 'leaflet.markercluster/dist/MarkerCluster.Default.css'
 
+import type { LeafletEventHandlerFn, MarkerClusterGroupOptions } from 'leaflet'
+
+const MarkerClusterGroup = createPathComponent(({ children: _c, ...props }: MarkerClusterGroupOptions & { children: React.ReactNode }, ctx) => {
   const clusterProps = {}
   const clusterEvents = {}
 

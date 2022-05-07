@@ -9,7 +9,7 @@ import Colors from '@data/colors.json'
 
 import { makeStyles, NoSsr } from '@material-ui/core'
 
-import StreetworksMap from '@components/Maps/StreetworksMap'
+import StreetworksMap from '@components/Maps/StreetworksMap/StreetworksMap'
 
 const useStyles = makeStyles({
   mapSection: {

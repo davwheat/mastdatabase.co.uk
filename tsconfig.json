@@ -19,7 +19,8 @@
       "@css/*": ["css/*"],
       "@templates/*": ["templates/*"],
       "@blog/*": ["components/BlogComponents/MdxComponents/*"],
-      "@hooks/*": ["hooks/*"]
+      "@hooks/*": ["hooks/*"],
+      "@leaflet/*": ["leaflet/*"]
     }
   },
   "exclude": ["node_modules", "build", "scripts", "acceptance-tests", "webpack", "jest", "src/setupTests.ts"]

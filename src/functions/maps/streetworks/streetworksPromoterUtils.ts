@@ -26,7 +26,7 @@ export interface IOneNetworkStreetworksPromoter {
   }
 }
 
-export const promoters: IOneNetworkStreetworksPromoter[] = [
+export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   // Mobile networks
   {
     id: 'o2',
@@ -189,19 +189,19 @@ export const promoters: IOneNetworkStreetworksPromoter[] = [
   },
 ]
 
-export const promoterIds: string[] = promoters.map(x => x.id)
+export const promoterIds: string[] = AllStreetworksPromoters.map(x => x.id)
 
-export const promoterAliases: Record<string, string[]> = promoters.reduce((acc, promoter) => {
+export const promoterAliases: Record<string, string[]> = AllStreetworksPromoters.reduce((acc, promoter) => {
   acc[promoter.id] = promoter.aliases
   return acc
 }, {})
 
-export const promoterIcons: Record<string, L.DivIcon> = promoters.reduce((acc, promoter) => {
+export const promoterIcons: Record<string, L.DivIcon> = AllStreetworksPromoters.reduce((acc, promoter) => {
   acc[promoter.id] = createPromoterIcon(promoter.icon.text, promoter.icon.type)
   return acc
 }, {})
 
-export const promoterNames: Record<string, string> = promoters.reduce((acc, promoter) => {
+export const promoterNames: Record<string, string> = AllStreetworksPromoters.reduce((acc, promoter) => {
   acc[promoter.id] = promoter.name
   return acc
 }, {})
@@ -255,7 +255,7 @@ export function isPromoterDataPoint(dataPoint) {
 export function getPromoterStates(): Record<string, boolean> {
   const promoterIdsByCategory: Record<string, string[]> = {}
 
-  promoters.forEach(promoter => {
+  AllStreetworksPromoters.forEach(promoter => {
     promoterIdsByCategory[promoter.category] ||= []
     promoterIdsByCategory[promoter.category].push(promoter.id)
   })
