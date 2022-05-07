@@ -14,7 +14,7 @@ import dayjs_utc from 'dayjs/plugin/utc'
 dayjs.extend(dayjs_tz)
 dayjs.extend(dayjs_utc)
 
-import type { LayerGroup as LayerGroupType, Map } from 'leaflet'
+import type { LayerGroup as LayerGroupType, Map as MapType } from 'leaflet'
 import getStreetworksDataPoints, { StreetworksDataPoint } from '@functions/maps/streetworks/getStreetworksDataPoints'
 
 const MapStatusMessages = {
@@ -76,7 +76,11 @@ export function StreetworksMarkers() {
   )
 }
 
-async function loadPoints(map: Map, setStatusMessages: React.Dispatch<React.SetStateAction<StatusMessages>>, markerGroup: LayerGroupType<any>) {
+async function loadPoints(
+  map: MapType,
+  setStatusMessages: React.Dispatch<React.SetStateAction<StatusMessages>>,
+  markerGroup: LayerGroupType<any>,
+) {
   setStatusMessages(s => ({ ...s, loading: true }))
 
   const bounds = map.getBounds()
@@ -99,17 +103,16 @@ async function loadPoints(map: Map, setStatusMessages: React.Dispatch<React.SetS
   const dataPoints = rawData.filter(isPromoterDataPoint)
 
   const oldMarkers = (markerGroup?.getLayers() as DataMarker<StreetworksDataPoint>[]) || []
+  const oldMarkersMap = new Map(oldMarkers.map(m => [m.data.u_se_id, m]))
   const newPoints: StreetworksDataPoint[] = []
 
   dataPoints.forEach(point => {
-    const matchingOldMarker = oldMarkers.findIndex(marker => marker.data.se_id === point.se_id)
-
-    // Remove matching marker
-    if (matchingOldMarker !== -1) oldMarkers.splice(matchingOldMarker, 1)
+    // Remove matching markers from 'to be removed' list
+    if (oldMarkersMap.has(point.u_se_id)) oldMarkersMap.delete(point.u_se_id)
     else newPoints.push(point)
   })
 
-  oldMarkers.forEach(marker => markerGroup.removeLayer(marker))
+  oldMarkersMap.forEach(marker => markerGroup.removeLayer(marker))
 
   newPoints.map(point => {
     const name = getPromoterName(point)
