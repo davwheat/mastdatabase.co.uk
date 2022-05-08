@@ -18,7 +18,7 @@ export interface IOneNetworkStreetworksPromoter {
   /**
    * Promoter category (what infrastructure they are responsible for)
    */
-  category: 'Mobile network' | 'Fixed broadband'
+  category: 'Mobile network' | 'Fixed broadband' | 'Business broadband' | 'Street furniture'
   /**
    * Information for map marker icons
    */
@@ -98,7 +98,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
     aliases: ['Virgin', 'Virgin Media'],
     category: 'Fixed broadband',
     icon: {
-      text: 'VM',
+      text: 'VMED',
       type: 'vm',
     },
   },
@@ -108,7 +108,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
     aliases: ['CityFibre', 'City Fibre'],
     category: 'Fixed broadband',
     icon: {
-      text: 'CF',
+      text: 'CTYF',
       type: 'cityfibre',
     },
   },
@@ -118,7 +118,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
     aliases: ['Trooli'],
     category: 'Fixed broadband',
     icon: {
-      text: 'TR',
+      text: 'TROO',
       type: 'trooli',
     },
   },
@@ -128,7 +128,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
     aliases: ['Grain'],
     category: 'Fixed broadband',
     icon: {
-      text: 'GR',
+      text: 'GRAI',
       type: 'grain',
     },
   },
@@ -175,7 +175,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
     aliases: ['Netomnia'],
     category: 'Fixed broadband',
     icon: {
-      text: 'NO',
+      text: 'NOMN',
       type: 'netomnia',
     },
   },
@@ -187,6 +187,130 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
     icon: {
       text: 'FIB',
       type: 'fibrus',
+    },
+  },
+  {
+    id: 'hyperoptic',
+    name: 'Hyperoptic',
+    aliases: ['hyperoptic ltd'],
+    category: 'Fixed broadband',
+    icon: {
+      text: 'HYPO',
+      type: 'hyperoptic',
+    },
+  },
+  {
+    id: 'g-network',
+    name: 'G. Network',
+    aliases: ['g. network communications ltd'],
+    category: 'Fixed broadband',
+    icon: {
+      text: 'G.N',
+      type: 'gdotnetwork',
+    },
+  },
+  {
+    id: 'community-fibre',
+    name: 'Community Fibre',
+    aliases: ['community fibre limited'],
+    category: 'Fixed broadband',
+    icon: {
+      text: 'ComF',
+      type: 'comm-fibre',
+    },
+  },
+  {
+    id: 'fibre-and-wireless',
+    name: 'Fibre & Wireless',
+    aliases: ['f & w networks ltd'],
+    category: 'Fixed broadband',
+    icon: {
+      text: 'F&W',
+      type: 'fibre-and-wireless',
+    },
+  },
+  {
+    id: 'swish',
+    name: 'Swish Fibre',
+    aliases: ['swish fibre ltd'],
+    category: 'Fixed broadband',
+    icon: {
+      text: 'SWSH',
+      type: 'swish',
+    },
+  },
+  {
+    id: 'giganet',
+    name: 'Giganet',
+    aliases: ['giganet'],
+    category: 'Fixed broadband',
+    icon: {
+      text: 'GIGA',
+      type: 'giganet',
+    },
+  },
+  {
+    id: 'box',
+    name: 'Box Broadband',
+    aliases: ['Box Broadband Ltd'],
+    category: 'Fixed broadband',
+    icon: {
+      text: 'BOX',
+      type: 'box',
+    },
+  },
+
+  // Business broadband solutions
+  {
+    id: 'vorboss',
+    name: 'Vorboss',
+    aliases: ['vorboss ltd'],
+    category: 'Business broadband',
+    icon: {
+      text: 'VORB',
+      type: 'vorboss',
+    },
+  },
+  {
+    id: 'colt',
+    name: 'CoL Telecomms',
+    aliases: ['city of london telecomms'],
+    category: 'Business broadband',
+    icon: {
+      text: 'COLT',
+      type: 'colt',
+    },
+  },
+  {
+    id: 'neos',
+    name: 'Neos Networks',
+    aliases: ['neoscorp ltd'],
+    category: 'Business broadband',
+    icon: {
+      text: 'NEOS',
+      type: 'neos',
+    },
+  },
+  {
+    id: 'zayo',
+    name: 'Zayo/Abovenet',
+    aliases: ['abovenet communications uk ltd'],
+    category: 'Business broadband',
+    icon: {
+      text: 'ZAYO',
+      type: 'zayo',
+    },
+  },
+
+  // Street furniture
+  {
+    id: 'new-world-payphones',
+    name: 'New World Payphones',
+    aliases: ['new world payphones ltd'],
+    category: 'Street furniture',
+    icon: {
+      text: 'NWP',
+      type: 'newworldpayphones',
     },
   },
 ]

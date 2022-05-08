@@ -55,7 +55,7 @@ export function PromoterSettingsDialog({ open, onClose }: { open: boolean; onClo
 
                 {promoters.map(promoter => (
                   <Checkbox
-                    label={promoter.name}
+                    label={`${promoter.name} (${promoter.icon.text.toUpperCase()})`}
                     onChange={() => {
                       setPromoterState(promoter.id, !promoterStates[promoter.id])
                       refreshPromoterStates()
