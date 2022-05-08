@@ -64,6 +64,7 @@
     "@types/material-ui": "^0.21.12",
     "@types/react": "^17.0.45",
     "@types/throttle-debounce": "^5.0.0",
+    "@welldone-software/why-did-you-render": "^7.0.1",
     "babel-plugin-transform-remove-console": "^6.9.4",
     "cross-env": "^7.0.3",
     "gatsby-plugin-perf-budgets": "^0.0.18",
