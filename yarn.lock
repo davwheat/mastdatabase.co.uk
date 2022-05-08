@@ -3109,58 +3109,58 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@reach/auto-id@npm:0.16.0":
-  version: 0.16.0
-  resolution: "@reach/auto-id@npm:0.16.0"
+"@reach/auto-id@npm:0.17.0":
+  version: 0.17.0
+  resolution: "@reach/auto-id@npm:0.17.0"
   dependencies:
-    "@reach/utils": 0.16.0
+    "@reach/utils": 0.17.0
     tslib: ^2.3.0
   peerDependencies:
     react: ^16.8.0 || 17.x
     react-dom: ^16.8.0 || 17.x
-  checksum: 80211f7db1c0e3b107e2c1d3fe8055e7e41d7399b51ff0da5f0c9df43d90b77aa4a31a896545c699f9629b3fbc3c762ee0518de70faf8112098886c6759d3f15
+  checksum: 30bb0e591fbf0a2a6124ea6b07e6cec254ec0483c326492e824a19df8d2e2fcb3a5708cc47e1221fb64b9e63e4497966deb37732916d330a0693c541d9d1b35d
   languageName: node
   linkType: hard
 
-"@reach/descendants@npm:0.16.1":
-  version: 0.16.1
-  resolution: "@reach/descendants@npm:0.16.1"
+"@reach/descendants@npm:0.17.0":
+  version: 0.17.0
+  resolution: "@reach/descendants@npm:0.17.0"
   dependencies:
-    "@reach/utils": 0.16.0
+    "@reach/utils": 0.17.0
     tslib: ^2.3.0
   peerDependencies:
     react: ^16.8.0 || 17.x
     react-dom: ^16.8.0 || 17.x
-  checksum: 0d2a5d322e3564683e65651367af47157f7782ce6be3cadcc861334638a02bf2a672b8e0fcbeeea4284c329f0218a119b2f2e0724d0faefe833ef772bab09d05
+  checksum: 99d11558050729467943ef323c7156b89e84b702f790f6b320dd9817dac9347e035946ed4d09e85dd18f15da42e2f3ae425d6c309ee574f345dc62ce34a155df
   languageName: node
   linkType: hard
 
-"@reach/tabs@npm:^0.16.4":
-  version: 0.16.4
-  resolution: "@reach/tabs@npm:0.16.4"
+"@reach/tabs@npm:^0.17.0":
+  version: 0.17.0
+  resolution: "@reach/tabs@npm:0.17.0"
   dependencies:
-    "@reach/auto-id": 0.16.0
-    "@reach/descendants": 0.16.1
-    "@reach/utils": 0.16.0
+    "@reach/auto-id": 0.17.0
+    "@reach/descendants": 0.17.0
+    "@reach/utils": 0.17.0
     prop-types: ^15.7.2
     tslib: ^2.3.0
   peerDependencies:
     react: ^16.8.0 || 17.x
     react-dom: ^16.8.0 || 17.x
-  checksum: 8a17938501c1554c3c7df427e5f966f895b925cace689dd090e7fcb69336655962260d240ae2504e9da475c086a516272338113e6bd44ac03141a9c504a6f926
+  checksum: 7e82a18fbb3bf1e25fe02a29742dbd89f2aa286b6b17db3a1109ba76bf5c53c413392a21e03586396ea49966a968d9d2276daa762e55b634b56faf7d5409470b
   languageName: node
   linkType: hard
 
-"@reach/utils@npm:0.16.0":
-  version: 0.16.0
-  resolution: "@reach/utils@npm:0.16.0"
+"@reach/utils@npm:0.17.0":
+  version: 0.17.0
+  resolution: "@reach/utils@npm:0.17.0"
   dependencies:
     tiny-warning: ^1.0.3
     tslib: ^2.3.0
   peerDependencies:
     react: ^16.8.0 || 17.x
     react-dom: ^16.8.0 || 17.x
-  checksum: 36bc0eb41a71798eb6186b23de265ba709e51dae5bf214fb8505c66bb3f2e6a41bb2401457350436ba89ca9e3a50f93a04fe7c33d15648ce11e568a85622d770
+  checksum: b9ee31b5d07e7f204f3605be3fa45448c9817937a3364d894054c57de9113d417014019d21ad895aebf848a43c20988924d069ba926c0cb20d6f2e8654d7a11e
   languageName: node
   linkType: hard
 
@@ -3501,6 +3501,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/leaflet.fullscreen@npm:^1.6.1":
+  version: 1.6.1
+  resolution: "@types/leaflet.fullscreen@npm:1.6.1"
+  dependencies:
+    "@types/leaflet": "*"
+  checksum: e3a914f4ddfdec3d46d8e5245074e742ea5bad277af301036eb606ead444e27fbc7a5b340d65c962a1ebeecedd4d07b214ab77fdc0d81789f482e4cc24dc4809
+  languageName: node
+  linkType: hard
+
 "@types/leaflet.markercluster@npm:^1.4.6":
   version: 1.4.6
   resolution: "@types/leaflet.markercluster@npm:1.4.6"
@@ -3642,14 +3651,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:^17.0.44":
-  version: 17.0.44
-  resolution: "@types/react@npm:17.0.44"
+"@types/react@npm:^17.0.45":
+  version: 17.0.45
+  resolution: "@types/react@npm:17.0.45"
   dependencies:
     "@types/prop-types": "*"
     "@types/scheduler": "*"
     csstype: ^3.0.2
-  checksum: ebee02778ca08f954c316dc907802264e0121c87b8fa2e7e0156ab0ef2a1b0a09d968c016a3600ec4c9a17dc09b4274f292d9b15a1a5369bb7e4072def82808f
+  checksum: 3cc13a02824c13f6fa4807a83abd065ac1d9943359e76bd995cc7cd2b4148c1176ebd54a30a9f4eb8a0f141ff359d712876f256c4fee707e4290607ef8410b3e
   languageName: node
   linkType: hard
 
@@ -3694,6 +3703,13 @@ __metadata:
   dependencies:
     "@types/node": "*"
   checksum: dc6b332c309e1eb62e98b62f92829c4b06c3adb474c1ee8b504eb95e6d43be8804b8d541874d0769160595fdf46f7a7a0fe544a3659482ad0a19ac700944f3a4
+  languageName: node
+  linkType: hard
+
+"@types/throttle-debounce@npm:^5.0.0":
+  version: 5.0.0
+  resolution: "@types/throttle-debounce@npm:5.0.0"
+  checksum: f0b1f626816154466a6c7699fa9a87614f2b65c649654d02456e3603c38c29457b40d26c2ac820c2c44574e92f210c21b0cdce747b578d27566d5faa1daaae7e
   languageName: node
   linkType: hard
 
@@ -3975,6 +3991,17 @@ __metadata:
     "@webassemblyjs/ast": 1.11.1
     "@xtuc/long": 4.2.2
   checksum: f15ae4c2441b979a3b4fce78f3d83472fb22350c6dc3fd34bfe7c3da108e0b2360718734d961bba20e7716cb8578e964b870da55b035e209e50ec9db0378a3f7
+  languageName: node
+  linkType: hard
+
+"@welldone-software/why-did-you-render@npm:^7.0.1":
+  version: 7.0.1
+  resolution: "@welldone-software/why-did-you-render@npm:7.0.1"
+  dependencies:
+    lodash: ^4
+  peerDependencies:
+    react: ^16 || ^17 || ^18
+  checksum: 0bfc59f1f8613e7dc5fbf189305e88b01c50ee278df2c9b69082ed6abcf8d71758eb468d027235916c6126934a755d6547e9704883007236544763fffad6f48c
   languageName: node
   linkType: hard
 
@@ -6185,10 +6212,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dayjs@npm:^1.11.1":
-  version: 1.11.1
-  resolution: "dayjs@npm:1.11.1"
-  checksum: d5fefd79935f64a3c262e67af7ebeca180bc402b3e99be4e12d20b6d438af3f86d507ba1cbaff95dc0b4e67f1067cea3eaf37b6b74f5494fdd4a6a2909514cd1
+"dayjs@npm:^1.11.2":
+  version: 1.11.2
+  resolution: "dayjs@npm:1.11.2"
+  checksum: 78f8bd04a9e5f5554aa06eacda65a7d59e162d39f621a46fd34fb3b51367c3662426d86b4e2f4ac535f81e0c4d5af3e8a83b37e672412eb556267d726c61f8f3
   languageName: node
   linkType: hard
 
@@ -9318,13 +9345,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"hk-grotesk@npm:^1.0.2":
-  version: 1.0.2
-  resolution: "hk-grotesk@npm:1.0.2"
-  checksum: 81e50854abd0e2a41eafab6e4aa0ab9e2f504de2093064322590b09e6f5ad0da3e85ee1469be90b5da74b80db2ee2d8f4a43c13e4fef0b400354218873bc8712
-  languageName: node
-  linkType: hard
-
 "hoist-non-react-statics@npm:^3.3.2":
   version: 3.3.2
   resolution: "hoist-non-react-statics@npm:3.3.2"
@@ -10654,6 +10674,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"leaflet.fullscreen@npm:^2.3.0":
+  version: 2.3.0
+  resolution: "leaflet.fullscreen@npm:2.3.0"
+  checksum: f88f984ebce27db81ff0574970d198f98f37dbe029237108367f8768f6ece8635b865725d4d097c16533537b91e8b8f6feb9bebdfbf5795e4a20c907cb513159
+  languageName: node
+  linkType: hard
+
 "leaflet.markercluster@npm:^1.5.3":
   version: 1.5.3
   resolution: "leaflet.markercluster@npm:1.5.3"
@@ -11061,7 +11088,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash@npm:4.17.21, lodash@npm:^4.0.0, lodash@npm:^4.17.10, lodash@npm:^4.17.14, lodash@npm:^4.17.15, lodash@npm:^4.17.19, lodash@npm:^4.17.20, lodash@npm:^4.17.21, lodash@npm:^4.17.4":
+"lodash@npm:4.17.21, lodash@npm:^4, lodash@npm:^4.0.0, lodash@npm:^4.17.10, lodash@npm:^4.17.14, lodash@npm:^4.17.15, lodash@npm:^4.17.19, lodash@npm:^4.17.20, lodash@npm:^4.17.21, lodash@npm:^4.17.4":
   version: 4.17.21
   resolution: "lodash@npm:4.17.21"
   checksum: eb835a2e51d381e561e508ce932ea50a8e5a68f4ebdd771ea240d3048244a8d13658acbd502cd4829768c56f2e16bdd4340b9ea141297d472517b83868e677f7
@@ -11228,18 +11255,21 @@ __metadata:
   dependencies:
     "@material-ui/core": ^4.12.4
     "@material-ui/styles": ^4.11.5
-    "@reach/tabs": ^0.16.4
+    "@reach/tabs": ^0.17.0
     "@slixites/gatsby-plugin-google-fonts": ^1.1.1
     "@types/color": ^3.0.3
     "@types/leaflet": ^1.7.9
+    "@types/leaflet.fullscreen": ^1.6.1
     "@types/leaflet.markercluster": ^1.4.6
     "@types/material-ui": ^0.21.12
-    "@types/react": ^17.0.44
+    "@types/react": ^17.0.45
+    "@types/throttle-debounce": ^5.0.0
+    "@welldone-software/why-did-you-render": ^7.0.1
     babel-plugin-transform-remove-console: ^6.9.4
     case-sensitive-paths-webpack-plugin: ^2.4.0
     clsx: ^1.1.1
     cross-env: ^7.0.3
-    dayjs: ^1.11.1
+    dayjs: ^1.11.2
     gatsby: ^4.13.1
     gatsby-image: ^3.11.0
     gatsby-plugin-canonical-urls: ^4.13.0
@@ -11264,12 +11294,12 @@ __metadata:
     gatsby-transformer-sharp: ^4.13.0
     get-best-contrast-color: ^0.3.1
     gh-pages: ^3.2.3
-    hk-grotesk: ^1.0.2
     leaflet: ^1.8.0
+    leaflet.fullscreen: ^2.3.0
     leaflet.markercluster: ^1.5.3
     mdi-react: ^8.3.1
     nanoid: ^3.3.4
-    preact: ^10.7.1
+    preact: ^10.7.2
     preact-render-to-string: ^5.2.0
     prettier: ^2.6.2
     prop-types: ^15.8.1
@@ -11281,6 +11311,7 @@ __metadata:
     react-uuid: ^1.0.2
     remark-math: ^3.0.1
     remark-twemoji: ^0.1.1
+    throttle-debounce: ^5.0.0
     twemoji: ^14.0.2
     typescript: ^4.6.4
   languageName: unknown
@@ -13276,10 +13307,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"preact@npm:^10.7.1":
-  version: 10.7.1
-  resolution: "preact@npm:10.7.1"
-  checksum: e99d08bd38372e78ce1c84e68685cad66adf076bd95069bc8bcd32c9903a4df09c01d5b04aad849527362b67cc2c09446b647f72de4e67d0578fdea0f904f28f
+"preact@npm:^10.7.2":
+  version: 10.7.2
+  resolution: "preact@npm:10.7.2"
+  checksum: 2f0655e0430f1c6927b40cb4abffb2c0ee4fe63e3201d44e37d0992c0ab534346f206cf23c0405572b70908e3eba2f7f60ab8e4531f409ebcbc35af06920cd60
   languageName: node
   linkType: hard
 
@@ -15401,6 +15432,13 @@ __metadata:
   version: 0.2.0
   resolution: "text-table@npm:0.2.0"
   checksum: b6937a38c80c7f84d9c11dd75e49d5c44f71d95e810a3250bd1f1797fc7117c57698204adf676b71497acc205d769d65c16ae8fa10afad832ae1322630aef10a
+  languageName: node
+  linkType: hard
+
+"throttle-debounce@npm:^5.0.0":
+  version: 5.0.0
+  resolution: "throttle-debounce@npm:5.0.0"
+  checksum: aa8bf25828b4f8645ce863589de05d6807ea3debc147ce7d89624638ff8a16792d6d0baa0f8a32a260f0b163444d74020c6087b713ae561fde594b97b6e51f28
   languageName: node
   linkType: hard
 

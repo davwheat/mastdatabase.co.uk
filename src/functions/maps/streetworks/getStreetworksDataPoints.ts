@@ -5,9 +5,44 @@ import dayjs_utc from 'dayjs/plugin/utc'
 dayjs.extend(dayjs_tz)
 dayjs.extend(dayjs_utc)
 
-export type GetStreetworksDataPointsErrors = 'too many points' | 'fetch error'
+export type GetStreetworksDataPointsErrors = 'too many points' | 'fetch error' | 'aborted'
 
-export interface RawStreetworksDataPoint {}
+export interface StreetworksDataPoint {
+  end_date: string
+  end_date_tz: string
+  geojson_wgs84: string
+  geom_type: number
+  gsymbol_id: number
+  impact: number
+  is_covid19: 1 | 0
+  is_emergency: 1 | 0
+  latitude: number
+  lha_id: number
+  longitude: number
+  org_name_disp: string
+  organisation_id: number
+  originator_ref: string
+  permit_ref: string
+  phase_id: number
+  promoter: string
+  promoter_org_ref: number
+  promoter_organisation_id: number
+  promoter_works_ref: string
+  publisher_organisation_id: number
+  publisher_orgref: number
+  se_id: number
+  source: string
+  start_date: string
+  start_date_tz: string
+  swa_org_ref: number
+  swtype: string
+  tm_cat: string
+  tooltip: string
+  u_se_id: string
+  works_desc: string
+  works_state: number
+}
+
 /**
  * @param boundingBoxString
  * @param durationDays Number of days ahead to fetch works for.
@@ -15,10 +50,9 @@ export interface RawStreetworksDataPoint {}
  */
 export default async function getStreetworksDataPoints(
   boundingBoxString: string,
+  aborter: AbortController,
   durationDays: number = 180,
-): Promise<any[] | GetStreetworksDataPointsErrors> {
-  const ab = new AbortController()
-
+): Promise<StreetworksDataPoint[] | GetStreetworksDataPointsErrors> {
   const url = new URL(`https://portal-gb.one.network/prd-portal-one-network/data/`)
   const params = url.searchParams
 
@@ -40,8 +74,10 @@ export default async function getStreetworksDataPoints(
 
   let response: Response
   try {
-    response = await fetch(url.toString(), { signal: ab.signal })
-  } catch {
+    response = await fetch(url.toString(), { signal: aborter.signal })
+  } catch (e) {
+    if (aborter.signal.aborted) return 'aborted'
+
     return 'fetch error'
   }
 
@@ -56,10 +92,10 @@ export default async function getStreetworksDataPoints(
   const data = json.query.data
   const count = json.query.recordcount
 
-  const dataPoints = []
+  const dataPoints: StreetworksDataPoint[] = []
 
   for (let i = 0; i < count; i++) {
-    const point = {}
+    const point = {} as StreetworksDataPoint
 
     columns.forEach(col => {
       point[col] = data[col][i]

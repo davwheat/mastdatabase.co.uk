@@ -9,7 +9,7 @@ import Colors from '@data/colors.json'
 
 import { makeStyles, NoSsr } from '@material-ui/core'
 
-import StreetworksMap from '@components/Maps/StreetworksMap'
+import StreetworksMap from '@components/Maps/StreetworksMap/StreetworksMap'
 
 const useStyles = makeStyles({
   mapSection: {
@@ -57,7 +57,9 @@ export default function StreetworksMapPage({ location }) {
           View a map of active and future (approx. next 3 months) streetworks relating to telecoms in the UK, including mobile networking, fibre
           deployments, and&nbsp;more.
         </p>
-        <p className="text-speak-up">This page is a work-in-progress.</p>
+        <p>
+          You can customise which promoters (companies) to display works for by clicking the settings icon in the bottom-right of the&nbsp;map.
+        </p>
       </Section>
 
       <Section width="full" className={classes.mapSection}>

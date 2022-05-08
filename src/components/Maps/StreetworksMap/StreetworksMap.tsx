@@ -1,29 +1,27 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useMemo, useState } from 'react'
 
 import useFixLeafletAssets from '@hooks/useFixLeafletAssets'
 import { useUserLocation } from '@hooks/useUserLocation'
 import useForceRender from '@hooks/useForceRerender'
 
-import Checkbox from '@components/Inputs/Checkbox'
-import { ModalDialog, ModalDialogContent, ModalDialogHeaderAndTitle } from '@components/ModalDialog'
-
-import { AttributionControl, MapContainer, Marker, ScaleControl, TileLayer, useMap, useMapEvent } from 'react-leaflet'
+import { MapContainer, ScaleControl, useMap, useMapEvent } from 'react-leaflet'
 import { makeStyles } from '@material-ui/core'
 
-import {
-  getPromoterStates,
-  IOneNetworkStreetworksPromoter,
-  promoters,
-  setPromoterState,
-} from '@functions/maps/streetworks/streetworksPromoterUtils'
-
 import clsx from 'clsx'
+import dayjs from 'dayjs'
+import dayjs_tz from 'dayjs/plugin/timezone'
+import dayjs_utc from 'dayjs/plugin/utc'
+
+dayjs.extend(dayjs_tz)
+dayjs.extend(dayjs_utc)
 
 import 'leaflet/dist/leaflet.css'
+import './StreetworksMap.less'
 
-import 'leaflet.markercluster'
-import 'leaflet.markercluster/dist/MarkerCluster.css'
-import 'leaflet.markercluster/dist/MarkerCluster.Default.css'
+import { GeolocationMarker } from './GeolocationMarker'
+import { PromoterSettingsDialog } from './PromoterSettingsDialog'
+import { BaseMapSetup } from './BaseMapSetup'
+import { StreetworksMarkers } from './StreetworksMarkers'
 
 export interface IStreetworksSitePoint {
   locationId: number
@@ -52,26 +50,11 @@ export default function StreetworksMap() {
       <GeolocationMarker />
       <CustomControlButtons />
 
-      <MapSetup />
+      <BaseMapSetup />
       <ScaleControl imperial metric />
+
+      <StreetworksMarkers />
     </MapContainer>
-  )
-}
-
-function MapSetup() {
-  const map = useMap()
-
-  // Attribute to one.network
-  useEffect(() => {
-    map.attributionControl?.addAttribution(`&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors`)
-    map.attributionControl?.addAttribution(`&copy; Data from <a href="https://one.network">one.network</a>`)
-  })
-
-  return (
-    <>
-      <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" maxZoom={19} />
-      <AttributionControl position="bottomright" prefix={null} />
-    </>
   )
 }
 
@@ -175,85 +158,5 @@ function CustomControlButtons() {
 
       <PromoterSettingsDialog open={settingsDialogOpen} onClose={() => setSettingsDialogOpen(false)} />
     </>
-  )
-}
-
-function GeolocationMarker() {
-  const L = window.L as typeof import('leaflet')
-
-  const geolocation = useUserLocation()
-  if (!geolocation) return null
-
-  const location: [number, number] = [geolocation.latitude, geolocation.longitude]
-
-  return (
-    <Marker
-      position={location}
-      icon={L.icon({
-        iconUrl: require('@assets/icons/geolocation.svg').default,
-        iconSize: [18, 18],
-      })}
-    />
-  )
-}
-
-const useDialogStyles = makeStyles({
-  categoryHeader: {
-    marginBottom: 8,
-    paddingTop: 12,
-    display: 'table',
-  },
-  checkbox: {
-    '& + $checkbox': {
-      marginTop: 4,
-    },
-  },
-})
-
-function PromoterSettingsDialog({ open, onClose }: { open: boolean; onClose: () => void }) {
-  const classes = useDialogStyles()
-
-  const [promoterStates, setPromoterStates] = useState(getPromoterStates())
-
-  const promotersByCategory = promoters.reduce((acc, promoter) => {
-    acc[promoter.category] ||= []
-    acc[promoter.category].push(promoter)
-    return acc
-  }, {} as Record<string, IOneNetworkStreetworksPromoter[]>)
-
-  function refreshPromoterStates() {
-    setPromoterStates(getPromoterStates())
-  }
-
-  return (
-    <ModalDialog open={open} onClose={() => onClose()}>
-      <ModalDialogHeaderAndTitle title="Promoter settings" />
-      <ModalDialogContent>
-        <p className="text-speak">These options are saved in your browser for next time you visit this site.</p>
-
-        <form onSubmit={e => e.preventDefault()}>
-          {Object.entries(promotersByCategory).map(([category, promoters]) => {
-            return (
-              <fieldset>
-                <legend className={clsx('text-speak-up', classes.categoryHeader)}>{category}</legend>
-
-                {promoters.map(promoter => (
-                  <Checkbox
-                    label={promoter.name}
-                    onChange={() => {
-                      setPromoterState(promoter.id, !promoterStates[promoter.id])
-                      refreshPromoterStates()
-                    }}
-                    key={promoter.id}
-                    checked={promoterStates[promoter.id]}
-                    className={classes.checkbox}
-                  />
-                ))}
-              </fieldset>
-            )
-          })}
-        </form>
-      </ModalDialogContent>
-    </ModalDialog>
   )
 }

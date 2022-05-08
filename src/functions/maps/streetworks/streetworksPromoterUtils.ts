@@ -1,3 +1,5 @@
+import { StreetworksDataPoint } from './getStreetworksDataPoints'
+
 const DISABLED_PROMOTERS_LS_KEY = 'streetworksMapDisabledPromoters'
 
 export interface IOneNetworkStreetworksPromoter {
@@ -16,7 +18,7 @@ export interface IOneNetworkStreetworksPromoter {
   /**
    * Promoter category (what infrastructure they are responsible for)
    */
-  category: 'Mobile network' | 'Fixed broadband'
+  category: 'Mobile network' | 'Fixed broadband' | 'Business broadband' | 'Street furniture'
   /**
    * Information for map marker icons
    */
@@ -26,7 +28,7 @@ export interface IOneNetworkStreetworksPromoter {
   }
 }
 
-export const promoters: IOneNetworkStreetworksPromoter[] = [
+export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   // Mobile networks
   {
     id: 'o2',
@@ -96,7 +98,7 @@ export const promoters: IOneNetworkStreetworksPromoter[] = [
     aliases: ['Virgin', 'Virgin Media'],
     category: 'Fixed broadband',
     icon: {
-      text: 'VM',
+      text: 'VMED',
       type: 'vm',
     },
   },
@@ -106,7 +108,7 @@ export const promoters: IOneNetworkStreetworksPromoter[] = [
     aliases: ['CityFibre', 'City Fibre'],
     category: 'Fixed broadband',
     icon: {
-      text: 'CF',
+      text: 'CTYF',
       type: 'cityfibre',
     },
   },
@@ -116,7 +118,7 @@ export const promoters: IOneNetworkStreetworksPromoter[] = [
     aliases: ['Trooli'],
     category: 'Fixed broadband',
     icon: {
-      text: 'TR',
+      text: 'TROO',
       type: 'trooli',
     },
   },
@@ -126,7 +128,7 @@ export const promoters: IOneNetworkStreetworksPromoter[] = [
     aliases: ['Grain'],
     category: 'Fixed broadband',
     icon: {
-      text: 'GR',
+      text: 'GRAI',
       type: 'grain',
     },
   },
@@ -173,7 +175,7 @@ export const promoters: IOneNetworkStreetworksPromoter[] = [
     aliases: ['Netomnia'],
     category: 'Fixed broadband',
     icon: {
-      text: 'NO',
+      text: 'NOMN',
       type: 'netomnia',
     },
   },
@@ -187,21 +189,145 @@ export const promoters: IOneNetworkStreetworksPromoter[] = [
       type: 'fibrus',
     },
   },
+  {
+    id: 'hyperoptic',
+    name: 'Hyperoptic',
+    aliases: ['hyperoptic ltd'],
+    category: 'Fixed broadband',
+    icon: {
+      text: 'HYPO',
+      type: 'hyperoptic',
+    },
+  },
+  {
+    id: 'g-network',
+    name: 'G. Network',
+    aliases: ['g. network communications ltd'],
+    category: 'Fixed broadband',
+    icon: {
+      text: 'G.N',
+      type: 'gdotnetwork',
+    },
+  },
+  {
+    id: 'community-fibre',
+    name: 'Community Fibre',
+    aliases: ['community fibre limited'],
+    category: 'Fixed broadband',
+    icon: {
+      text: 'ComF',
+      type: 'comm-fibre',
+    },
+  },
+  {
+    id: 'fibre-and-wireless',
+    name: 'Fibre & Wireless',
+    aliases: ['f & w networks ltd'],
+    category: 'Fixed broadband',
+    icon: {
+      text: 'F&W',
+      type: 'fibre-and-wireless',
+    },
+  },
+  {
+    id: 'swish',
+    name: 'Swish Fibre',
+    aliases: ['swish fibre ltd'],
+    category: 'Fixed broadband',
+    icon: {
+      text: 'SWSH',
+      type: 'swish',
+    },
+  },
+  {
+    id: 'giganet',
+    name: 'Giganet',
+    aliases: ['giganet'],
+    category: 'Fixed broadband',
+    icon: {
+      text: 'GIGA',
+      type: 'giganet',
+    },
+  },
+  {
+    id: 'box',
+    name: 'Box Broadband',
+    aliases: ['Box Broadband Ltd'],
+    category: 'Fixed broadband',
+    icon: {
+      text: 'BOX',
+      type: 'box',
+    },
+  },
+
+  // Business broadband solutions
+  {
+    id: 'vorboss',
+    name: 'Vorboss',
+    aliases: ['vorboss ltd'],
+    category: 'Business broadband',
+    icon: {
+      text: 'VORB',
+      type: 'vorboss',
+    },
+  },
+  {
+    id: 'colt',
+    name: 'CoL Telecomms',
+    aliases: ['city of london telecomms'],
+    category: 'Business broadband',
+    icon: {
+      text: 'COLT',
+      type: 'colt',
+    },
+  },
+  {
+    id: 'neos',
+    name: 'Neos Networks',
+    aliases: ['neoscorp ltd'],
+    category: 'Business broadband',
+    icon: {
+      text: 'NEOS',
+      type: 'neos',
+    },
+  },
+  {
+    id: 'zayo',
+    name: 'Zayo/Abovenet',
+    aliases: ['abovenet communications uk ltd'],
+    category: 'Business broadband',
+    icon: {
+      text: 'ZAYO',
+      type: 'zayo',
+    },
+  },
+
+  // Street furniture
+  {
+    id: 'new-world-payphones',
+    name: 'New World Payphones',
+    aliases: ['new world payphones ltd'],
+    category: 'Street furniture',
+    icon: {
+      text: 'NWP',
+      type: 'newworldpayphones',
+    },
+  },
 ]
 
-export const promoterIds: string[] = promoters.map(x => x.id)
+export const promoterIds: string[] = AllStreetworksPromoters.map(x => x.id)
 
-export const promoterAliases: Record<string, string[]> = promoters.reduce((acc, promoter) => {
+export const promoterAliases: Record<string, string[]> = AllStreetworksPromoters.reduce((acc, promoter) => {
   acc[promoter.id] = promoter.aliases
   return acc
 }, {})
 
-export const promoterIcons: Record<string, L.DivIcon> = promoters.reduce((acc, promoter) => {
+export const promoterIcons: Record<string, L.DivIcon> = AllStreetworksPromoters.reduce((acc, promoter) => {
   acc[promoter.id] = createPromoterIcon(promoter.icon.text, promoter.icon.type)
   return acc
 }, {})
 
-export const promoterNames: Record<string, string> = promoters.reduce((acc, promoter) => {
+export const promoterNames: Record<string, string> = AllStreetworksPromoters.reduce((acc, promoter) => {
   acc[promoter.id] = promoter.name
   return acc
 }, {})
@@ -224,7 +350,7 @@ function createPromoterIcon(
   })
 }
 
-function getPromoterId(dataPoint): string | undefined {
+function getPromoterId(dataPoint: StreetworksDataPoint): string | undefined {
   const name = dataPoint.promoter.toLowerCase()
 
   return Object.keys(promoterAliases).find(key => {
@@ -233,15 +359,15 @@ function getPromoterId(dataPoint): string | undefined {
   })
 }
 
-export function getPromoterIcon(dataPoint) {
+export function getPromoterIcon(dataPoint: StreetworksDataPoint) {
   return promoterIcons[getPromoterId(dataPoint)]
 }
 
-export function getPromoterName(dataPoint) {
+export function getPromoterName(dataPoint: StreetworksDataPoint) {
   return promoterNames[getPromoterId(dataPoint)]
 }
 
-export function isPromoterDataPoint(dataPoint) {
+export function isPromoterDataPoint(dataPoint: StreetworksDataPoint) {
   const id = getPromoterId(dataPoint)
 
   if (!id) return false
@@ -255,7 +381,7 @@ export function isPromoterDataPoint(dataPoint) {
 export function getPromoterStates(): Record<string, boolean> {
   const promoterIdsByCategory: Record<string, string[]> = {}
 
-  promoters.forEach(promoter => {
+  AllStreetworksPromoters.forEach(promoter => {
     promoterIdsByCategory[promoter.category] ||= []
     promoterIdsByCategory[promoter.category].push(promoter.id)
   })

@@ -1,0 +1,185 @@
+.network-icon {
+  font-weight: bold;
+
+  --icon-bg: #fff;
+  --icon-color: #000;
+
+  &__mobile {
+    --icon-bg: rgb(201, 238, 243);
+  }
+
+  &__bt {
+    --icon-bg: rgb(184, 151, 211);
+  }
+
+  &__vm {
+    --icon-bg: rgb(255, 157, 157);
+  }
+
+  &__cityfibre {
+    --icon-bg: rgb(208, 253, 194);
+  }
+
+  &__trooli {
+    --icon-bg: rgb(255, 245, 172);
+  }
+
+  &__grain {
+    --icon-bg: rgb(71, 76, 150);
+    --icon-color: #fff;
+  }
+
+  &__ofnl {
+    --icon-bg: #d981ff;
+  }
+
+  &__toob {
+    --icon-bg: #81c9c6;
+  }
+
+  &__zzoomm {
+    --icon-bg: #eb87be;
+  }
+
+  &__netomnia {
+    --icon-bg: #c9729a;
+  }
+
+  &__fibrus {
+    --icon-bg: #76c288;
+  }
+
+  &__hyperoptic {
+    --icon-bg: #1ba4cd;
+  }
+
+  &__newworldpayphones {
+    --icon-bg: #000;
+    --icon-color: #fff;
+  }
+
+  &__gdotnetwork {
+    --icon-bg: #5ac8ff;
+  }
+
+  &__comm-fibre {
+    --icon-bg: #370050;
+    --icon-color: #fff;
+  }
+
+  &__vorboss {
+    --icon-bg: #d5966a;
+  }
+
+  &__colt {
+    --icon-bg: #00d7bd;
+  }
+
+  &__neos {
+    --icon-bg: #3ab1a5;
+  }
+
+  &__zayo {
+    --icon-bg: #ff8002;
+  }
+
+  &__fibre-and-wireless {
+    --icon-bg: #333333;
+    --icon-color: #fff;
+  }
+
+  &__swish {
+    --icon-bg: #7169e0;
+    --icon-color: #fff;
+  }
+
+  &__giganet {
+    --icon-bg: #f9d648;
+  }
+
+  &__box {
+    --icon-bg: #beebd8;
+  }
+
+  display: flex;
+  flex-direction: column;
+
+  width: 50px !important;
+  height: 28px !important;
+
+  filter: drop-shadow(0 0 1px black);
+
+  text-align: center;
+  font-size: 16px;
+
+  line-height: 20px;
+
+  position: relative;
+
+  align-items: center;
+  justify-content: center;
+
+  b {
+    display: block;
+    background: var(--icon-bg);
+    align-self: stretch;
+    color: var(--icon-color);
+  }
+
+  span {
+    display: block;
+
+    width: 0;
+    height: 0;
+
+    border-top: 8px solid var(--icon-bg);
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+  }
+}
+
+.leaflet-popup {
+  border-radius: 12px;
+  overflow: hidden;
+
+  .leaflet-container a.leaflet-popup-close-button {
+    right: 16px;
+  }
+
+  &-content {
+    margin: 0;
+    padding: 16px;
+
+    &-wrapper {
+      max-height: calc(90vh - 16px);
+      max-width: calc(90vw - 16px);
+      overflow: auto;
+    }
+  }
+
+  h1 {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  h2 {
+    font-size: 14px;
+    margin: 8px 0;
+    margin-bottom: -6px;
+    font-weight: bold;
+  }
+
+  p {
+    font-size: 14px;
+    margin: 8px 0;
+  }
+
+  :first-child {
+    margin-top: 0;
+  }
+
+  :last-child {
+    margin-bottom: 0;
+  }
+}
