@@ -1,3 +1,5 @@
+import { StreetworksDataPoint } from './getStreetworksDataPoints'
+
 const DISABLED_PROMOTERS_LS_KEY = 'streetworksMapDisabledPromoters'
 
 export interface IOneNetworkStreetworksPromoter {
@@ -224,7 +226,7 @@ function createPromoterIcon(
   })
 }
 
-function getPromoterId(dataPoint): string | undefined {
+function getPromoterId(dataPoint: StreetworksDataPoint): string | undefined {
   const name = dataPoint.promoter.toLowerCase()
 
   return Object.keys(promoterAliases).find(key => {
@@ -233,15 +235,15 @@ function getPromoterId(dataPoint): string | undefined {
   })
 }
 
-export function getPromoterIcon(dataPoint) {
+export function getPromoterIcon(dataPoint: StreetworksDataPoint) {
   return promoterIcons[getPromoterId(dataPoint)]
 }
 
-export function getPromoterName(dataPoint) {
+export function getPromoterName(dataPoint: StreetworksDataPoint) {
   return promoterNames[getPromoterId(dataPoint)]
 }
 
-export function isPromoterDataPoint(dataPoint) {
+export function isPromoterDataPoint(dataPoint: StreetworksDataPoint) {
   const id = getPromoterId(dataPoint)
 
   if (!id) return false

@@ -1,10 +1,21 @@
-import React, { useMemo, useRef, useState } from 'react'
+import React, { useCallback, useMemo, useRef, useState } from 'react'
 import { LayerGroup, useMap, useMapEvent } from 'react-leaflet'
 
-import { debounce } from 'throttle-debounce'
+import { debounce, throttle } from 'throttle-debounce'
 
-import { getPromoterIcon, getPromoterName, isPromoterDataPoint } from '@functions/maps/streetworks/streetworksPromoterUtils'
+import {
+  AllStreetworksPromoters,
+  getPromoterIcon,
+  getPromoterName,
+  isPromoterDataPoint,
+  promoterAliases,
+  promoterIcons,
+  promoterIds,
+  promoterNames,
+} from '@functions/maps/streetworks/streetworksPromoterUtils'
 import getStreetworksDataPointDetails from '@functions/maps/streetworks/getStreetworksDataPointDetails'
+import getStreetworksDataPoints, { StreetworksDataPoint } from '@functions/maps/streetworks/getStreetworksDataPoints'
+import { MapStatusMessages, StatusMessages } from './MapStatusMessages'
 import DataMarker from '@leaflet/DataMarker'
 
 import dayjs from 'dayjs'
@@ -15,81 +26,131 @@ dayjs.extend(dayjs_tz)
 dayjs.extend(dayjs_utc)
 
 import type { LayerGroup as LayerGroupType, Map as MapType } from 'leaflet'
-import getStreetworksDataPoints, { StreetworksDataPoint } from '@functions/maps/streetworks/getStreetworksDataPoints'
-
-const MapStatusMessages = {
-  loading: 'Loading streetworks data...',
-  fetchFail: 'Failed to load streetworks. Check your internet connection.',
-  tooManyPoints: 'Too many streetworks in this area. Please zoom in.',
-} as const
-
-type StatusMessages = Record<keyof typeof MapStatusMessages, boolean>
 
 export function StreetworksMarkers() {
   const map = useMap()
-  const [statusMessages, setStatusMessages] = useState<StatusMessages>({
+  const [statusMessages, _setStatusMessages] = useState<StatusMessages>({
     loading: false,
     fetchFail: false,
     tooManyPoints: false,
   })
   const markerGroup = useRef<LayerGroupType<any> | null>(null)
+  const [aborter, setAborter] = useState<AbortController>(new AbortController())
+  const oldAborter = useRef(aborter)
 
-  const _loadPoints = useMemo(() => {
-    return () => {
-      return loadPoints(map, setStatusMessages, markerGroup.current)
-    }
-  }, [map, setStatusMessages, markerGroup])
+  /**
+   * Set the status messages for the map, bailing out of the state change
+   * if the status messages are the same as the current state.
+   */
+  const setStatusMessages = useCallback<React.Dispatch<React.SetStateAction<StatusMessages>>>(
+    inp => {
+      _setStatusMessages(curr => {
+        const newVal = typeof inp === 'function' ? inp(curr) : inp
 
-  const debouncedLoadPoints = debounce(1000, _loadPoints)
+        // Bail if state is same
+        if (Object.entries(newVal).every(([k, v]) => v === curr[k])) return curr
 
-  const showLoadingMessage = debounce(
-    100,
-    useMemo(
-      () => () => {
-        if (!statusMessages.loading)
-          setStatusMessages({
-            loading: true,
-            fetchFail: false,
-            tooManyPoints: false,
-          })
-      },
-      [setStatusMessages, statusMessages],
-    ),
+        return newVal
+      })
+    },
+    [_setStatusMessages],
   )
 
-  useMapEvent('move', () => {
-    showLoadingMessage()
+  const debouncedLoadPoints = useCallback(
+    debounce(1000, () => loadPoints(map, setStatusMessages, markerGroup.current, aborter)),
+    [map, setStatusMessages, markerGroup, aborter],
+  )
+
+  /**
+   * Debounced, memoised callback to replace the current AbortController
+   * with a new one.
+   */
+  const _resetAborter = useCallback(
+    debounce(200, () => {
+      setAborter(new AbortController())
+    }),
+    [setAborter],
+  )
+
+  // We need to trigger a final load after the map has stopped moving,
+  // and the AbortController has been reset one final time.
+  if (oldAborter.current !== aborter) {
+    oldAborter.current = aborter
     debouncedLoadPoints()
-  })
+  }
 
-  return (
-    <>
-      <LayerGroup ref={markerGroup} />
-      <div role="status" aria-live="polite">
-        {Object.entries(MapStatusMessages).map(([messageKey, message]) => {
-          if (!statusMessages[messageKey]) return null
+  /**
+   * Triggers the showing of the loading message at the top of the map
+   * and cancels any in-progress streetworks data fetching.
+   */
+  const _showLoadingMessage = () => {
+    aborter.abort()
+    _resetAborter()
 
-          return <p key={messageKey}>{message}</p>
-        })}
-      </div>
-    </>
+    if (!statusMessages.loading) {
+      setStatusMessages({
+        loading: true,
+        fetchFail: false,
+        tooManyPoints: false,
+      })
+    }
+  }
+
+  /**
+   * **Throttled**
+   *
+   * Triggers the showing of the loading message at the top of the map
+   * and cancels any in-progress streetworks data fetching.
+   */
+  const showLoadingMessage = useCallback(throttle(100, _showLoadingMessage, { noTrailing: true }), [
+    statusMessages,
+    setStatusMessages,
+    aborter,
+    _resetAborter,
+  ])
+
+  useMapEvent(
+    'move',
+    useCallback(() => {
+      showLoadingMessage()
+      debouncedLoadPoints()
+    }, [showLoadingMessage, debouncedLoadPoints]),
+  )
+
+  // Memoise to prevent DOM redraws whenever position changes
+  return useMemo(
+    () => (
+      <>
+        <LayerGroup ref={markerGroup} />
+
+        <MapStatusMessages messages={statusMessages} />
+      </>
+    ),
+    [markerGroup, statusMessages],
   )
 }
+
+StreetworksMarkers.whyDidYouRender = true
 
 async function loadPoints(
   map: MapType,
   setStatusMessages: React.Dispatch<React.SetStateAction<StatusMessages>>,
   markerGroup: LayerGroupType<any>,
+  aborter: AbortController,
 ) {
   setStatusMessages(s => ({ ...s, loading: true }))
 
   const bounds = map.getBounds()
 
   const bbString = bounds.toBBoxString()
-  const rawData = await getStreetworksDataPoints(bbString)
+  const rawData = await getStreetworksDataPoints(bbString, aborter)
 
   if (typeof rawData === 'string') {
     switch (rawData) {
+      case 'aborted':
+        setStatusMessages({ loading: true, fetchFail: false, tooManyPoints: false })
+        return
+
       case 'fetch error':
         setStatusMessages({ loading: false, fetchFail: true, tooManyPoints: false })
         return
@@ -172,5 +233,11 @@ async function loadPoints(
           })
         })
       })
+  })
+
+  setStatusMessages({
+    loading: false,
+    fetchFail: false,
+    tooManyPoints: false,
   })
 }
