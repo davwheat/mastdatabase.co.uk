@@ -5,7 +5,7 @@ import dayjs_utc from 'dayjs/plugin/utc'
 dayjs.extend(dayjs_tz)
 dayjs.extend(dayjs_utc)
 
-export type GetStreetworksDataPointsErrors = 'too many points' | 'fetch error'
+export type GetStreetworksDataPointsErrors = 'too many points' | 'fetch error' | 'aborted'
 
 export interface StreetworksDataPoint {
   end_date: string
@@ -50,10 +50,9 @@ export interface StreetworksDataPoint {
  */
 export default async function getStreetworksDataPoints(
   boundingBoxString: string,
+  aborter: AbortController,
   durationDays: number = 180,
 ): Promise<StreetworksDataPoint[] | GetStreetworksDataPointsErrors> {
-  const ab = new AbortController()
-
   const url = new URL(`https://portal-gb.one.network/prd-portal-one-network/data/`)
   const params = url.searchParams
 
@@ -75,8 +74,10 @@ export default async function getStreetworksDataPoints(
 
   let response: Response
   try {
-    response = await fetch(url.toString(), { signal: ab.signal })
-  } catch {
+    response = await fetch(url.toString(), { signal: aborter.signal })
+  } catch (e) {
+    if (aborter.signal.aborted) return 'aborted'
+
     return 'fetch error'
   }
 
