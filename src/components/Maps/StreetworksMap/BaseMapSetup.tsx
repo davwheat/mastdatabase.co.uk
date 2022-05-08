@@ -17,17 +17,15 @@ export function BaseMapSetup() {
   })
 
   useEffect(() => {
-    L.control
-      .fullscreen({
-        position: 'topleft',
-        title: 'Enter fullscreen mode',
-        titleCancel: 'Exit fullscreen mode',
-        forceSeparateButton: true,
-      })
-      .addTo(map)
-
-    return () => {
-      map.removeControl((map as any).fullscreenControl)
+    if (!(map as any).fullscreenControl) {
+      L.control
+        .fullscreen({
+          position: 'topleft',
+          title: 'Enter fullscreen mode',
+          titleCancel: 'Exit fullscreen mode',
+          forceSeparateButton: true,
+        })
+        .addTo(map)
     }
   })
 
