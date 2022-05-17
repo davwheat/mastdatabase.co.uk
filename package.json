@@ -50,6 +50,7 @@
     "react-head": "^3.4.0",
     "react-hooks-visible": "^1.1.1",
     "react-leaflet": "^4.0.0",
+    "react-use-error-boundary": "^1.0.2",
     "react-uuid": "^1.0.2",
     "remark-math": "^3.0.1",
     "remark-twemoji": "^0.1.1",

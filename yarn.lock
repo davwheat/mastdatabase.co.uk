@@ -11712,6 +11712,7 @@ __metadata:
     react-head: ^3.4.0
     react-hooks-visible: ^1.1.1
     react-leaflet: ^4.0.0
+    react-use-error-boundary: ^1.0.2
     react-uuid: ^1.0.2
     remark-math: ^3.0.1
     remark-twemoji: ^0.1.1
@@ -14118,6 +14119,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-use-error-boundary@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "react-use-error-boundary@npm:1.0.2"
+  peerDependencies:
+    react: ">= 16.8"
+  checksum: 91a8b79c5740b8a88e494f44160e41d4557e9f4fdbe8f0261c8514ad5ec164ce331b3cfd44bc21d976e45176ccd8bdb69ad6d4f5cf438cfab0e0b1adf1b0af5a
+  languageName: node
+  linkType: hard
+
 "react-uuid@npm:^1.0.2":
   version: 1.0.2
   resolution: "react-uuid@npm:1.0.2"
@@ -16145,7 +16155,7 @@ __metadata:
 
 "typescript@patch:typescript@^4.6.4#~builtin<compat/typescript>":
   version: 4.6.4
-  resolution: "typescript@patch:typescript@npm%3A4.6.4#~builtin<compat/typescript>::version=4.6.4&hash=bda367"
+  resolution: "typescript@patch:typescript@npm%3A4.6.4#~builtin<compat/typescript>::version=4.6.4&hash=7ad353"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver

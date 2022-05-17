@@ -3,6 +3,7 @@ import React, { useCallback, useState } from 'react'
 import useFixLeafletAssets from '@hooks/useFixLeafletAssets'
 import { getGeolocationPermissionStatus, useUserLocation } from '@hooks/useUserLocation'
 import useForceRender from '@hooks/useForceRerender'
+import { useErrorBoundary } from 'react-use-error-boundary'
 
 import { MapContainer, ScaleControl, useMap, useMapEvent } from 'react-leaflet'
 import { Fab, makeStyles, Zoom } from '@material-ui/core'
@@ -22,6 +23,8 @@ import { GeolocationMarker } from './GeolocationMarker'
 import { PromoterSettingsDialog } from './PromoterSettingsDialog'
 import { BaseMapSetup } from './BaseMapSetup'
 import { StreetworksMarkers } from './StreetworksMarkers'
+import ButtonLink from '@components/Links/ButtonLink'
+import Section from '@components/Design/Section'
 
 export interface IStreetworksSitePoint {
   locationId: number
@@ -37,6 +40,20 @@ export interface IStreetworksMapProps {
 
 export default function StreetworksMap() {
   useFixLeafletAssets()
+
+  const [error] = useErrorBoundary()
+
+  if (error) {
+    return (
+      <Section darker>
+        <p className="text-speak-up">Uh oh! We ran into an error while trying to display the streetworks map.</p>
+        <p className="text-speak">
+          We hope this was a one-time issue, and that <ButtonLink onClick={() => window.location.reload()}>reloading the page</ButtonLink> should
+          fix this.
+        </p>
+      </Section>
+    )
+  }
 
   return (
     <MapContainer
