@@ -40,9 +40,12 @@ export default function StreetworksMap() {
 
   return (
     <MapContainer
-      style={{
-        height: '60vh',
-      }}
+      style={
+        {
+          '--map-height': '60vh',
+          height: 'var(--map-height)',
+        } as any
+      }
       center={[51.505, -0.09]}
       zoom={13}
       attributionControl={false}
