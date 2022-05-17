@@ -9,7 +9,7 @@ import Colors from '@data/colors.json'
 export const StatusMessagesText = {
   loading: (
     <span style={{ display: 'flex', alignItems: 'center' }}>
-      <LoadingSpinner inline size="1.1em" style={{ marginRight: 12 }} /> Loading streetworks data...
+      <LoadingSpinner inline size="1.1em" style={{ marginRight: 12, flexShrink: 0 }} /> Loading streetworks data...
     </span>
   ),
   fetchFail: 'Failed to load streetworks. Check your internet connection.',
