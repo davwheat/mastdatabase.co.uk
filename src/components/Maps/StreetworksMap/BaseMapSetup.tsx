@@ -2,8 +2,8 @@ import React, { useEffect } from 'react'
 
 import { AttributionControl, TileLayer, useMap } from 'react-leaflet'
 
-import 'leaflet.fullscreen/Control.FullScreen'
-import 'leaflet.fullscreen/Control.FullScreen.css'
+import 'leaflet.fullscreen2'
+import 'leaflet.fullscreen2/leaflet.fullscreen2.css'
 
 export function BaseMapSetup() {
   const L = window.L as typeof import('leaflet')
@@ -17,22 +17,20 @@ export function BaseMapSetup() {
   })
 
   useEffect(() => {
-    if (!(map as any).fullscreenControl) {
-      L.control
-        .fullscreen({
-          position: 'topleft',
-          title: 'Enter fullscreen mode',
-          titleCancel: 'Exit fullscreen mode',
-          forceSeparateButton: true,
-        })
-        .addTo(map)
+    if (!map.fullScreenControl) {
+      L.fullScreen({
+        position: 'topleft',
+        title: 'Enter fullscreen mode',
+        titleCancel: 'Exit fullscreen mode',
+        forceSeparateButton: true,
+      }).addTo(map)
     }
   })
 
   return (
     <>
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" maxZoom={19} />
-      <AttributionControl position="bottomright" prefix={null} />
+      <AttributionControl position="bottomright" prefix={undefined} />
     </>
   )
 }
