@@ -23,10 +23,14 @@ const useStyles = makeStyles({
   root: {
     '--size': '24px',
     '--border-size': '2px',
+    position: 'relative',
   },
   checkbox: {
-    verticalAlign: 'middle',
     position: 'absolute',
+    left: 0,
+    top: '50%',
+    transform: 'translateY(-50%)',
+
     cursor: 'pointer',
     zIndex: 2,
     opacity: 0,
