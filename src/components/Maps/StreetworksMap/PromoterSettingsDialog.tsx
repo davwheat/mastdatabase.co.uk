@@ -6,11 +6,15 @@ import {
   IOneNetworkStreetworksPromoter,
   AllStreetworksPromoters,
   setPromoterState,
+  setAllPromotersState,
 } from '@functions/maps/streetworks/streetworksPromoterUtils'
 
 import { makeStyles } from '@material-ui/core'
 
 import clsx from 'clsx'
+import ButtonLink from '@components/Links/ButtonLink'
+import Breakpoints from '@data/breakpoints'
+import { useCallback } from 'react'
 
 const useStyles = makeStyles({
   categoryHeader: {
@@ -21,6 +25,15 @@ const useStyles = makeStyles({
   checkbox: {
     '& + $checkbox': {
       marginTop: 4,
+    },
+  },
+  enableDisableAllContainer: {
+    display: 'grid',
+    padding: 8,
+    gap: 16,
+
+    [Breakpoints.downTo.bigPhone]: {
+      gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
     },
   },
 })
@@ -40,12 +53,25 @@ export function PromoterSettingsDialog({ open, onClose }: { open: boolean; onClo
     setPromoterStates(getPromoterStates())
   }
 
+  const setAllPromoters = useCallback(
+    (state: boolean) => {
+      setAllPromotersState(state)
+      refreshPromoterStates()
+    },
+    [setAllPromotersState, refreshPromoterStates],
+  )
+
   return (
     <ModalDialog open={open} onClose={() => onClose()}>
       <ModalDialogHeaderAndTitle title="Promoter settings" />
       <ModalDialogContent>
         <p className="text-speak">Choose to show or hide specific promoters from the map.</p>
         <p className="text-whisper">These options are automatically saved in your browser for next time you visit this site.</p>
+
+        <div className={classes.enableDisableAllContainer}>
+          <ButtonLink onClick={() => setAllPromoters(true)}>Enable all</ButtonLink>
+          <ButtonLink onClick={() => setAllPromoters(false)}>Disable all</ButtonLink>
+        </div>
 
         <form onSubmit={e => e.preventDefault()}>
           {Object.entries(promotersByCategory).map(([category, promoters]) => {

@@ -420,3 +420,13 @@ export function setPromoterState(promoterId: string, state: boolean) {
 
   localStorage.setItem(DISABLED_PROMOTERS_LS_KEY, JSON.stringify(disabledIds))
 }
+
+export function setAllPromotersState(state: boolean) {
+  if (state) {
+    // Enable all
+    localStorage.setItem(DISABLED_PROMOTERS_LS_KEY, '[]')
+  } else {
+    // Disable all
+    localStorage.setItem(DISABLED_PROMOTERS_LS_KEY, JSON.stringify(promoterIds))
+  }
+}
