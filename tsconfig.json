@@ -10,6 +10,7 @@
     "outDir": "./dist", // not actually used
     "resolveJsonModule": true,
     "baseUrl": "src",
+    "strict": true,
     "paths": {
       "@components/*": ["components/*"],
       "@data/*": ["data/*"],

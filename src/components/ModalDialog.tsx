@@ -12,6 +12,7 @@ const useDialogStyles = makeStyles({
     justifyContent: 'center',
     maxWidth: '100vw',
     maxHeight: '100vh',
+    zIndex: `${9e10} !important` as any,
   },
   modalRoot: {
     maxWidth: '100vw',

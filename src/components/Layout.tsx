@@ -31,17 +31,19 @@ const Layout: React.FC<Props> = ({ children, title, description, location }) => 
   const classes = useStyles()
 
   return (
-    <ScrollContext location={location}>
-      <ThemeProvider theme={theme}>
-        <SEO title={title} description={description} />
+    <React.StrictMode>
+      <ScrollContext location={location}>
+        <ThemeProvider theme={theme}>
+          <SEO title={title} description={description} />
 
-        <Header />
+          <Header />
 
-        <main className={classes.mainContent}>{children}</main>
+          <main className={classes.mainContent}>{children}</main>
 
-        <Footer />
-      </ThemeProvider>
-    </ScrollContext>
+          <Footer />
+        </ThemeProvider>
+      </ScrollContext>
+    </React.StrictMode>
   )
 }
 

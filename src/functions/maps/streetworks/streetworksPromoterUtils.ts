@@ -320,32 +320,32 @@ export const promoterIds: string[] = AllStreetworksPromoters.map(x => x.id)
 export const promoterAliases: Record<string, string[]> = AllStreetworksPromoters.reduce((acc, promoter) => {
   acc[promoter.id] = promoter.aliases
   return acc
-}, {})
+}, {} as Record<string, string[]>)
 
 export const promoterIcons: Record<string, L.DivIcon> = AllStreetworksPromoters.reduce((acc, promoter) => {
-  acc[promoter.id] = createPromoterIcon(promoter.icon.text, promoter.icon.type)
+  acc[promoter.id] = createPromoterIcon(promoter.icon.text, promoter.icon.type)!
   return acc
-}, {})
+}, {} as Record<string, L.DivIcon>)
 
 export const promoterNames: Record<string, string> = AllStreetworksPromoters.reduce((acc, promoter) => {
   acc[promoter.id] = promoter.name
   return acc
-}, {})
+}, {} as Record<string, string>)
 
 function createPromoterIcon(
   iconText: IOneNetworkStreetworksPromoter['icon']['text'],
   type: IOneNetworkStreetworksPromoter['icon']['type'],
-): L.DivIcon {
+): L.DivIcon | null {
   // Mess is to fix Gatsby SSR issues, as this function is called
   // during the build process
-  if (typeof window === 'undefined') return
+  if (typeof window === 'undefined') return null
 
   const L = window.L as typeof import('leaflet')
 
   return L.divIcon({
     html: `<b>${iconText.toUpperCase()}</b><span></span>`,
     className: `network-icon network-icon__${type}`,
-    iconSize: null,
+    iconSize: undefined,
     iconAnchor: [25, 28],
   })
 }
@@ -360,11 +360,11 @@ function getPromoterId(dataPoint: StreetworksDataPoint): string | undefined {
 }
 
 export function getPromoterIcon(dataPoint: StreetworksDataPoint) {
-  return promoterIcons[getPromoterId(dataPoint)]
+  return promoterIcons[getPromoterId(dataPoint)!]
 }
 
 export function getPromoterName(dataPoint: StreetworksDataPoint) {
-  return promoterNames[getPromoterId(dataPoint)]
+  return promoterNames[getPromoterId(dataPoint)!]
 }
 
 export function isPromoterDataPoint(dataPoint: StreetworksDataPoint) {
@@ -390,7 +390,7 @@ export function getPromoterStates(): Record<string, boolean> {
   let arr: any[]
 
   try {
-    arr = JSON.parse(strSetting)
+    arr = JSON.parse(strSetting ?? 'null')
 
     if (!Array.isArray(arr)) {
       throw new Error('Invalid disabled promoters value. Resetting...')
@@ -403,7 +403,7 @@ export function getPromoterStates(): Record<string, boolean> {
   return promoterIds.reduce((acc, curr) => {
     acc[curr] = !arr.includes(curr)
     return acc
-  }, {})
+  }, {} as Record<string, boolean>)
 }
 
 export function setPromoterState(promoterId: string, state: boolean) {

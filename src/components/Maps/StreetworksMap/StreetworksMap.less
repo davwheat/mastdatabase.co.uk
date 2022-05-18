@@ -151,9 +151,10 @@
     padding: 16px;
 
     &-wrapper {
-      max-height: calc(90vh - 16px);
+      max-height: calc(var(--map-height, 60vh) - 48px);
       max-width: calc(90vw - 16px);
-      overflow: auto;
+      overflow-x: hidden;
+      overflow-y: auto;
     }
   }
 
