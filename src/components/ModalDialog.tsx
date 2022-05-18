@@ -24,6 +24,12 @@ const useDialogStyles = makeStyles({
 
     outline: 'none',
   },
+  backdrop: {
+    paddingTop: `env(safe-area-inset-top)`,
+    paddingLeft: `env(safe-area-inset-left)`,
+    paddingRight: `env(safe-area-inset-right)`,
+    paddingBottom: `env(safe-area-inset-bottom)`,
+  },
 })
 
 interface ModalDialogIds {
@@ -32,14 +38,14 @@ interface ModalDialogIds {
 }
 
 const ModalIdContext = React.createContext<ModalDialogIds | null>(null)
-const ModalStateContext = React.createContext<{ closeModal: () => void }>(null)
+const ModalStateContext = React.createContext<{ closeModal: () => void } | null>(null)
 
 /**
  * React hook which can be used inside the component hierarchy of a modal
  * to close it using the `onClose` prop passed to the Modal.
  */
 export function useCloseModal() {
-  return React.useContext(ModalStateContext).closeModal
+  return React.useContext(ModalStateContext)?.closeModal ?? (() => {})
 }
 
 export function ModalDialog({ children, open, className, ...props }: ModalProps) {
@@ -59,11 +65,12 @@ export function ModalDialog({ children, open, className, ...props }: ModalProps)
       BackdropComponent={Backdrop}
       BackdropProps={{
         timeout: 500,
+        className: classes.backdrop,
       }}
     >
       <Fade in={open}>
         <div role="dialog" aria-modal="true" aria-labelledby={ids.title} aria-describedby={ids.body} className={classes.modalRoot}>
-          <ModalStateContext.Provider value={{ closeModal: () => props.onClose({}, 'backdropClick') }}>
+          <ModalStateContext.Provider value={{ closeModal: () => props.onClose?.({}, 'backdropClick') }}>
             <ModalIdContext.Provider value={ids}>{children}</ModalIdContext.Provider>
           </ModalStateContext.Provider>
         </div>
@@ -84,7 +91,7 @@ const useDialogContentStyles = makeStyles({
 export function ModalDialogContent({ children, className }: { children: React.ReactNode; className?: string }) {
   const classes = useDialogContentStyles()
 
-  const { body: id } = useContext(ModalIdContext)
+  const { body: id } = useContext(ModalIdContext)!
 
   return (
     <main className={clsx(classes.modalContent, className)} id={id}>
@@ -104,7 +111,7 @@ const useDialogHeaderStyles = makeStyles({
 export function ModalDialogHeader({ children, className }: { children: React.ReactNode; className?: string }) {
   const classes = useDialogHeaderStyles()
 
-  const { title: id } = useContext(ModalIdContext)
+  const { title: id } = useContext(ModalIdContext)!
 
   return (
     <header className={clsx(classes.modalHeader, className)} id={id}>
