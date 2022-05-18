@@ -11,6 +11,8 @@ import Colors from '@data/colors.json'
 import { makeStyles, NoSsr } from '@material-ui/core'
 import { Marker, Popup } from 'react-leaflet'
 
+import type { PageProps } from 'gatsby'
+
 const useStyles = makeStyles({
   mapSection: {
     '& .leaflet-popup-content': {
@@ -25,7 +27,7 @@ const useStyles = makeStyles({
   },
 })
 
-export default function FreshwaveMapPage({ location }) {
+export default function FreshwaveMapPage({ location }: PageProps) {
   const classes = useStyles()
 
   const [sites, setSites] = useState<null | React.ReactNode>(null)

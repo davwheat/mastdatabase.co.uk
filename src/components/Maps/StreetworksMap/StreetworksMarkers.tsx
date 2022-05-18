@@ -3,16 +3,7 @@ import { LayerGroup, useMap, useMapEvent } from 'react-leaflet'
 
 import { debounce, throttle } from 'throttle-debounce'
 
-import {
-  AllStreetworksPromoters,
-  getPromoterIcon,
-  getPromoterName,
-  isPromoterDataPoint,
-  promoterAliases,
-  promoterIcons,
-  promoterIds,
-  promoterNames,
-} from '@functions/maps/streetworks/streetworksPromoterUtils'
+import { getPromoterIcon, getPromoterName, isPromoterDataPoint } from '@functions/maps/streetworks/streetworksPromoterUtils'
 import getStreetworksDataPointDetails from '@functions/maps/streetworks/getStreetworksDataPointDetails'
 import getStreetworksDataPoints, { StreetworksDataPoint } from '@functions/maps/streetworks/getStreetworksDataPoints'
 import { MapStatusMessages, StatusMessages } from './MapStatusMessages'
