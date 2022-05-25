@@ -259,6 +259,16 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
       type: 'box',
     },
   },
+  {
+    id: 'lightningfibre',
+    name: 'Lightning Fibre',
+    aliases: ['Lightning Fibre'],
+    category: 'Fixed broadband',
+    icon: {
+      text: 'LTNG',
+      type: 'lightning-fibre',
+    },
+  },
 
   // Business broadband solutions
   {
