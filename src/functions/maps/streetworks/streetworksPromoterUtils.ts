@@ -269,6 +269,16 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
       type: 'lightning-fibre',
     },
   },
+  {
+    id: 'fullfibre',
+    name: 'Full Fibre',
+    aliases: ['Full Fibre Limited'],
+    category: 'Fixed broadband',
+    icon: {
+      text: 'FF',
+      type: 'full-fibre',
+    },
+  },
 
   // Business broadband solutions
   {
