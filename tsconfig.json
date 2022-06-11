@@ -19,7 +19,6 @@
       "@types/*": ["../@types/*", "../node_modules/@types/*"],
       "@css/*": ["css/*"],
       "@templates/*": ["templates/*"],
-      "@blog/*": ["components/BlogComponents/MdxComponents/*"],
       "@hooks/*": ["hooks/*"],
       "@leaflet/*": ["leaflet/*"]
     }

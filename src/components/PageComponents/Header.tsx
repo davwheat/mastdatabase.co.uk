@@ -265,9 +265,6 @@ const Header: React.FC = () => {
 
         <nav ref={navbarRef} id="navbar" style={{ animationName: 'none' }} className={classes.nav}>
           <Link href="/">Home</Link>
-          {/* <Link href="/my-projects">My projects</Link>
-          <Link href="/mobile-networking">Networking</Link>
-          <Link href="/blog">Blog</Link> */}
         </nav>
       </div>
     </header>

@@ -10,6 +10,7 @@ import Colors from '@data/colors.json'
 import Breakpoints from '@data/breakpoints'
 
 import { makeStyles } from '@material-ui/core'
+import { PageProps } from 'gatsby'
 
 const useStyles = makeStyles({
   linkList: {
@@ -32,7 +33,7 @@ const useStyles = makeStyles({
   },
 })
 
-export default function MapsPage({ location }) {
+export default function MapsPage({ location }: PageProps) {
   const classes = useStyles()
 
   return (
@@ -54,7 +55,7 @@ export default function MapsPage({ location }) {
       <Section>
         <div className={classes.linkList}>
           <CardLink
-            title="Streetworks map"
+            title="UK streetworks map"
             description="See upcoming and current streetworks registered with councils, along with descriptions of the works."
             url="/maps/streetworks"
           />
