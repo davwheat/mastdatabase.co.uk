@@ -8372,6 +8372,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"fuse.js@npm:^6.6.2":
+  version: 6.6.2
+  resolution: "fuse.js@npm:6.6.2"
+  checksum: 17ae758ce205276ebd88bd9c9f088a100be0b4896abac9f6b09847151269d1690f41d7f98ff5813d4a58973162dbd99d0072ce807020fee6f9de60170f6b08eb
+  languageName: node
+  linkType: hard
+
 "gatsby-cli@npm:^4.16.0":
   version: 4.16.0
   resolution: "gatsby-cli@npm:4.16.0"
@@ -11512,6 +11519,7 @@ __metadata:
     clsx: ^1.1.1
     cross-env: ^7.0.3
     dayjs: ^1.11.3
+    fuse.js: ^6.6.2
     gatsby: ^4.16.0
     gatsby-image: ^3.11.0
     gatsby-plugin-canonical-urls: ^4.16.0

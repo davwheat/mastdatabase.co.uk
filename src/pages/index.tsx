@@ -10,6 +10,8 @@ import Colors from '@data/colors.json'
 import Breakpoints from '@data/breakpoints'
 
 import { makeStyles } from '@material-ui/core'
+import { PageProps } from 'gatsby'
+import countryCodeToFlag from '@functions/countryCodeToFlag'
 
 const useStyles = makeStyles({
   linkList: {
@@ -32,7 +34,19 @@ const useStyles = makeStyles({
   },
 })
 
-export default function IndexPage({ location }) {
+interface ICountryItem {
+  code: string
+  name: string
+  nativeName: string
+}
+
+const Countries: ICountryItem[] = [
+  { code: 'gb', name: 'United Kingdom', nativeName: 'United Kingdom' },
+  { code: 'dk', name: 'Denmark', nativeName: 'Danmark' },
+  { code: 'de', name: 'Germany', nativeName: 'Deutschland' },
+]
+
+export default function IndexPage({ location }: PageProps) {
   const classes = useStyles()
 
   return (
@@ -54,7 +68,27 @@ export default function IndexPage({ location }) {
         <p className="text-speak">Choose a section below to get&nbsp;started.</p>
 
         <div className={classes.linkList}>
-          <CardLink title="Maps" description="Useful mobile-networking maps, such as maps of upcoming works and registered sites." url="/maps" />
+          <CardLink title="Maps" description="Useful mobile networking maps, such as maps of upcoming works and registered sites." url="/maps" />
+        </div>
+      </Section>
+
+      <Section>
+        <h2 className="text-loud">Country data</h2>
+        <p>Mobile networking info about specific countries, such as spectrum allocation and ARFCN lists.</p>
+
+        <div className={classes.linkList}>
+          {Countries.map(({ code, name, nativeName }) => (
+            <CardLink
+              key={code}
+              title={
+                <>
+                  {countryCodeToFlag(code)} {name}
+                </>
+              }
+              description={nativeName}
+              url={`/${code}`}
+            />
+          ))}
         </div>
       </Section>
     </Layout>
