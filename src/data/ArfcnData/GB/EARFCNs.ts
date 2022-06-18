@@ -11,6 +11,12 @@ function mapListToBand(band: number, list: SimpleArfcnDataItem[]): ArfcnDataItem
 
 const B1: SimpleArfcnDataItem[] = [
   {
+    arfcn: 98,
+    bandwidth: 10,
+    operator: 'Three',
+    description: 'Standard B1 deployment in areas with adjusted low-band priorities',
+  },
+  {
     arfcn: 99,
     bandwidth: 10,
     operator: 'Three',
