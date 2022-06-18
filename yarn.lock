@@ -11548,7 +11548,7 @@ __metadata:
     leaflet.markercluster: ^1.5.3
     mdi-react: ^8.4.0
     nanoid: ^4.0.0
-    preact: ^10.7.3
+    preact: ^10.8.1
     preact-render-to-string: ^5.2.0
     prettier: ^2.6.2
     prop-types: ^15.8.1
@@ -13510,10 +13510,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"preact@npm:^10.7.3":
-  version: 10.7.3
-  resolution: "preact@npm:10.7.3"
-  checksum: a0471da77528b9f9478c02bf60ae41754509655a19b65d9fea274a3c94c9583a7b1700e1329ee726ef6dd5307b73cf391d3f7f1b6a9ace43d71a70cd1be92737
+"preact@npm:^10.8.1":
+  version: 10.8.1
+  resolution: "preact@npm:10.8.1"
+  checksum: 273500b3a763b8582420273f6bddcc74268d3cbd66f1c3cca7c4fbd0eb781740dd948bccf7011acd0b28f35dee116d038aa4d0a2112856939c26567d957d7155
   languageName: node
   linkType: hard
 

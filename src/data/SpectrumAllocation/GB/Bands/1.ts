@@ -25,10 +25,7 @@ const Band1: ISpectrumAllocation[] = [
     },
     earfcns: [99, 98],
     uarfcns: [10588],
-    details: [
-      'UARFCN 10588 is being refarmed for B1 LTE.',
-      'EARFCN 98 is used in areas where low-band priorities have been adjusted'
-    ],
+    details: ['UARFCN 10588 is being refarmed for B1 LTE.', 'EARFCN 98 is used in areas where low-band priorities have been adjusted'],
   },
   {
     owner: 'O2',
