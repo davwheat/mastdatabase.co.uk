@@ -14,7 +14,7 @@ const Band8: ISpectrumAllocation[] = [
       freqStart: ULStart,
       freqEnd: ULStart + 5,
     },
-    arfcns: 'uncommon - 975, 976',
+    arfcns: 'uncommon - ARFCNs 975, 976, ...',
     uarfcns: [2938],
   },
   {
@@ -54,11 +54,12 @@ const Band8: ISpectrumAllocation[] = [
       freqStart: ULStart + 12.4,
       freqEnd: ULStart + 22.4,
     },
+    arfcns: 'uncommon - ARFCNs around 60',
     uarfcns: [3012],
     earfcns: [3610, 3620, 3623, 3624, 3625],
     nrarfcns: [188450],
     details: [
-      '3G is being refarmed into 4G, with 3G moving to the lower 5 MHz block',
+      '2G/3G is being refarmed into 4G, with 3G moving to the lower 5 MHz block and 2G to the 2.4 MHz block',
       'Many different 4G EARFCNs to cover the same spectrum',
       "Also now being used for Vodafone's private 5G SA network",
     ],
