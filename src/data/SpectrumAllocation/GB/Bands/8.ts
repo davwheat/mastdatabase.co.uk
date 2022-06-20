@@ -14,7 +14,7 @@ const Band8: ISpectrumAllocation[] = [
       freqStart: ULStart,
       freqEnd: ULStart + 5,
     },
-    arfcns: 'uncommon',
+    arfcns: 'uncommon - 975, 976',
     uarfcns: [2938],
   },
   {
