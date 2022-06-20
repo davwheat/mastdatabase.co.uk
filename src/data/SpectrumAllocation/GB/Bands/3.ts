@@ -15,7 +15,6 @@ const Band3: ISpectrumAllocation[] = [
       freqEnd: ULStart + 5.8,
     },
     earfcns: [1226, 1228],
-    details: ['Final 0.8 MHz are unused.'],
   },
   {
     owner: 'VF',
@@ -27,9 +26,8 @@ const Band3: ISpectrumAllocation[] = [
       freqStart: ULStart + 5.8,
       freqEnd: ULStart + 11.6,
     },
-    arfcns: 'very uncommon - ARFCNs around 568',
+    arfcns: 'very uncommon - ARFCNs 541 to 569',
     earfcns: [1288],
-    details: ['Final 0.8 MHz are used for GSM in some areas.'],
   },
   {
     owner: 'Three',
