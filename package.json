@@ -84,5 +84,8 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean"
   },
-  "packageManager": "yarn@3.2.1"
+  "packageManager": "yarn@3.2.1",
+  "resolutions": {
+    "mobile-spectrum-data": "portal:/F:/New Git Repos/mobile-spectrum-data"
+  }
 }
