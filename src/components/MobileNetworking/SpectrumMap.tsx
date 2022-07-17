@@ -5,6 +5,7 @@ import Colors from '@data/colors.json'
 import Breakpoints from '@data/breakpoints'
 import { arfcnToFreq } from '@functions/ArfcnConversion'
 import { nanoid } from 'nanoid'
+import { SpectrumBlock } from 'mobile-spectrum-data/@types'
 
 export interface IColorPair {
   back: string
@@ -22,11 +23,11 @@ export interface ISpectrumAllocation {
   /**
    * Start of allocation in MHz.
    */
-  freqStart: number
+  startFreq: number
   /**
    * End of allocation in MHz.
    */
-  freqEnd: number
+  endFreq: number
   type: 'fddUp' | 'fddDown' | 'tdd' | 'sdl' | 'sul' | 'unused' | 'unknown'
   /**
    * The other piece of spectrum which this is paired with.
@@ -35,11 +36,11 @@ export interface ISpectrumAllocation {
     /**
      * Start of allocation in MHz.
      */
-    freqStart: number
+    startFreq: number
     /**
      * End of allocation in MHz.
      */
-    freqEnd: number
+    endFreq: number
     type: 'fddUp' | 'fddDown' | 'tdd' | 'sdl' | 'sul' | 'unused' | 'unknown'
   }
 
@@ -56,27 +57,27 @@ interface IHighlightedSpectrumARFCN {
 }
 
 interface IHighlightedSpectrumFrequency {
-  startFreq: number
-  endFreq: number
+  startFreq: number | null
+  endFreq: number | null
 }
 
 export type HighlightedSpectrum = IHighlightedSpectrumARFCN | IHighlightedSpectrumFrequency
 export interface ISpectrumMapProps {
   caption?: string
   note?: string
-  data: ISpectrumAllocation[]
+  data: SpectrumBlock[]
   spectrumHighlight?: HighlightedSpectrum[]
 }
 
 export interface ISpectrumMapItemProps {
-  allocation: ISpectrumAllocation
+  allocation: SpectrumBlock
   isSelected: boolean
-  onClick: (allocation: ISpectrumAllocation) => void
+  onClick: (allocation: SpectrumBlock) => void
   descId: string
 }
 
 export interface ISpectrumMapDetailsProps {
-  allocation: ISpectrumAllocation
+  allocation: SpectrumBlock
 }
 
 export const OwnerColorMap: Record<string, IColorPair> = {
@@ -278,20 +279,21 @@ const useSpectrumMapDetailsStyles = makeStyles({
 
 export function SpectrumMap({ caption, data, note, spectrumHighlight }: ISpectrumMapProps) {
   const classes = useSpectrumMapStyles()
+
   const {
     current: { descId },
   } = useRef({ descId: nanoid() })
 
-  const minMhz = Math.min(...data.map(a => a.freqStart))
-  const maxMhz = Math.max(...data.map(a => a.freqEnd))
+  const minMhz = Math.min(...data.map(a => a.startFreq))
+  const maxMhz = Math.max(...data.map(a => a.endFreq))
   const gridColumns = Math.floor(((maxMhz - minMhz) * 100_000) / HERTZ_ACCURACY)
 
-  const sortedData = data.sort((a, b) => a.freqStart - b.freqStart)
+  const sortedData = data.sort((a, b) => a.startFreq - b.startFreq)
 
-  const [selectedSpectrumBlock, setSelectedSpectrumBlock] = useState<ISpectrumAllocation>(null)
+  const [selectedSpectrumBlock, setSelectedSpectrumBlock] = useState<SpectrumBlock | null>(null)
 
   const isSpectrumHighlighted = !!spectrumHighlight && Array.isArray(spectrumHighlight)
-  const highlightedFrequencies: IHighlightedSpectrumFrequency[] = !isSpectrumHighlighted
+  const highlightedFrequencies: IHighlightedSpectrumFrequency[] | undefined = !isSpectrumHighlighted
     ? undefined
     : spectrumHighlight.map(r => {
         if ('startFreq' in r && 'endFreq' in r) {
@@ -309,10 +311,14 @@ export function SpectrumMap({ caption, data, note, spectrumHighlight }: ISpectru
       })
 
   const appropriateHighlightedFrequencies = highlightedFrequencies
-    ?.filter(r => r.startFreq <= maxMhz && r.endFreq >= minMhz)
+    ?.filter(r => {
+      if (r.startFreq === null || r.endFreq === null) return false
+
+      return r.startFreq <= maxMhz && r.endFreq >= minMhz
+    })
     .map(r => {
-      r.startFreq = Math.max(r.startFreq, minMhz)
-      r.endFreq = Math.min(r.endFreq, maxMhz)
+      r.startFreq = Math.max(r.startFreq!, minMhz)
+      r.endFreq = Math.min(r.endFreq!, maxMhz)
 
       return r
     })
@@ -325,7 +331,7 @@ export function SpectrumMap({ caption, data, note, spectrumHighlight }: ISpectru
         <div className={classes.map}>
           {sortedData.map(allocation => (
             <SpectrumMapItem
-              key={`${allocation.owner}__${allocation.freqStart}`}
+              key={`${allocation.owner}__${allocation.startFreq}`}
               isSelected={allocation === selectedSpectrumBlock}
               allocation={allocation}
               onClick={() => setSelectedSpectrumBlock(allocation)}
@@ -333,7 +339,9 @@ export function SpectrumMap({ caption, data, note, spectrumHighlight }: ISpectru
             />
           ))}
           {isSpectrumHighlighted &&
-            appropriateHighlightedFrequencies.map((r, i) => {
+            appropriateHighlightedFrequencies!.map((r, i) => {
+              if (r.startFreq === null || r.endFreq === null) return null
+
               const startColumn = Math.floor(((r.startFreq - minMhz) * 100_000) / HERTZ_ACCURACY)
               const columnCount = Math.floor(((r.endFreq - r.startFreq) * 100_000) / HERTZ_ACCURACY)
 
@@ -376,10 +384,10 @@ export function SpectrumMap({ caption, data, note, spectrumHighlight }: ISpectru
 
 function SpectrumMapItem({ allocation, onClick, isSelected, descId }: ISpectrumMapItemProps) {
   const classes = useSpectrumMapItemStyles()
-  const { owner, details, freqStart, freqEnd, type, pairedWith } = allocation
-  const color = allocation.colorOverride || getOwnerColor(owner)
+  const { owner, startFreq, endFreq } = allocation
+  const color = getOwnerColor(owner)
 
-  const bandwidthMhz = freqEnd - freqStart
+  const bandwidthMhz = endFreq - startFreq
   const columnCount = Math.floor((bandwidthMhz * 100_000) / HERTZ_ACCURACY)
 
   return (
@@ -413,9 +421,9 @@ function formatFrequency(freq: number, hideUnits: boolean = false) {
 
 function SpectrumMapDetails({ allocation }: ISpectrumMapDetailsProps) {
   const classes = useSpectrumMapDetailsStyles()
-  const { owner, ownerLongName, details, freqStart, freqEnd, type, pairedWith, arfcns, uarfcns, earfcns, nrarfcns } = allocation
+  const { owner, ownerLongName, details, startFreq, endFreq, type, arfcns, uarfcns, earfcns, nrarfcns } = allocation
 
-  const usageInfo: Record<string, number[] | string> = {}
+  const usageInfo: Record<string, string | (string | number)[]> = {}
   arfcns && (usageInfo['2G GSM'] = arfcns)
   uarfcns && (usageInfo['3G UMTS'] = uarfcns)
   earfcns && (usageInfo['4G LTE'] = earfcns)
@@ -428,16 +436,16 @@ function SpectrumMapDetails({ allocation }: ISpectrumMapDetailsProps) {
 
       <dt>Bandwidth:</dt>
       <dd>
-        {formatFrequency(freqEnd - freqStart)} ({formatFrequency(freqStart, true)} &ndash; {formatFrequency(freqEnd)})
+        {formatFrequency(endFreq - startFreq)} ({formatFrequency(startFreq, true)} &ndash; {formatFrequency(endFreq)})
       </dd>
 
       <dt>Spectrum type:</dt>
       <dd>
         {getSpectrumTypeDescription(type)}
-        {pairedWith && (
+        {type === 'fddDown' && allocation.pairedWith && (
           <>
-            , paired with {formatFrequency(pairedWith.freqStart, true)} &ndash; {formatFrequency(pairedWith.freqEnd)} of{' '}
-            {getSpectrumTypeDescription(pairedWith.type)}
+            , paired with {formatFrequency(allocation.pairedWith.startFreq, true)} &ndash; {formatFrequency(allocation.pairedWith.endFreq)} of{' '}
+            {getSpectrumTypeDescription(allocation.pairedWith.type)}
           </>
         )}
       </dd>

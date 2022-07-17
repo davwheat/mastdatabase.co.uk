@@ -7,7 +7,7 @@ import Breadcrumbs from '@components/Design/Breadcrumbs'
 import AllSpectrumMaps from '@components/MobileNetworking/AllSpectrumMaps'
 
 import Colors from '@data/colors.json'
-import { AllBands } from '@data/SpectrumAllocation/GB/Bands'
+import GBAllBands from 'mobile-spectrum-data/GB'
 import { PageProps } from 'gatsby'
 
 function GBSpectrumAllocationPage({ location }: PageProps) {
@@ -50,7 +50,7 @@ function GBSpectrumAllocationPage({ location }: PageProps) {
         </p>
       </Section>
 
-      <AllSpectrumMaps locationName="UK" bandsData={AllBands} />
+      <AllSpectrumMaps locationName="UK" bandsData={GBAllBands} />
     </Layout>
   )
 }

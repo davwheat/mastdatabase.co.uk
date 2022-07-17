@@ -6,7 +6,7 @@ import Breadcrumbs from '@components/Design/Breadcrumbs'
 import AllSpectrumMaps from '@components/MobileNetworking/AllSpectrumMaps'
 
 import Colors from '@data/colors.json'
-import { AllBands } from '@data/SpectrumAllocation/DE/Bands'
+import DESpectrumData from 'mobile-spectrum-data/DE'
 import { PageProps } from 'gatsby'
 
 function DESpectrumAllocationPage({ location }: PageProps) {
@@ -31,7 +31,7 @@ function DESpectrumAllocationPage({ location }: PageProps) {
         ]}
       />
 
-      <AllSpectrumMaps locationName="German" bandsData={AllBands} />
+      <AllSpectrumMaps locationName="German" bandsData={DESpectrumData} />
     </Layout>
   )
 }

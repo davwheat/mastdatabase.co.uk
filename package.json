@@ -42,6 +42,7 @@
     "leaflet.fullscreen2": "^1.0.0",
     "leaflet.markercluster": "^1.5.3",
     "mdi-react": "^8.6.0",
+    "mobile-spectrum-data": "^0.1.0-beta.9",
     "nanoid": "^4.0.0",
     "preact": "^10.8.2",
     "preact-render-to-string": "^5.2.0",
@@ -84,8 +85,5 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean"
   },
-  "packageManager": "yarn@3.2.1",
-  "resolutions": {
-    "mobile-spectrum-data": "portal:/F:/New Git Repos/mobile-spectrum-data"
-  }
+  "packageManager": "yarn@3.2.1"
 }

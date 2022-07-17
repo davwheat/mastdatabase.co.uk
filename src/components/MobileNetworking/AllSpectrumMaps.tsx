@@ -14,6 +14,7 @@ import { arfcnToBand } from '@functions/ArfcnConversion/arfcnToBand'
 import { arfcnToFreq } from '@functions/ArfcnConversion'
 import useStateWithLocalStorage from '@hooks/useStateWithLocalStorage'
 import Link from '@components/Links/Link'
+import { SpectrumBlock, SpectrumData } from 'mobile-spectrum-data/@types'
 
 const useStyles = makeStyles({
   heading: {
@@ -135,10 +136,7 @@ const useStyles = makeStyles({
 })
 
 interface IAllSpectrumMaps {
-  bandsData: {
-    band: string | number | number[] | string[]
-    data: ISpectrumAllocation[]
-  }[]
+  bandsData: SpectrumData[]
   locationName: string
 }
 
@@ -352,11 +350,11 @@ export default function AllSpectrumMaps({ bandsData, locationName }: IAllSpectru
                       pattern="[0-9]*"
                       inputMode="numeric"
                     />
-                    {band && bandsData.map(b => b.band).includes(`B${band}`) && (
+                    {/* {band && bandsData.map(b => b.band).includes(`B${band}`) && (
                       <Link className="text-whisper-loud" href={`#band-B${band}`}>
                         Scroll to Band {band}
                       </Link>
-                    )}
+                    )} */}
                   </>
                 )
               })()}
@@ -364,19 +362,17 @@ export default function AllSpectrumMaps({ bandsData, locationName }: IAllSpectru
         </div>
       </Section>
 
-      {bandsData.map((bandData, i) => {
+      {bandsData.map(bandData => {
         return (
-          <React.Fragment key={JSON.stringify(bandData.band)}>
-            <h3 id={`band-${bandData.band}`} className={clsx('text-loud', classes.heading)}>
-              {Array.isArray(bandData.band) ? `Bands ${bandData.band.join(', ')}` : `Band ${bandData.band}`}
+          <React.Fragment key={JSON.stringify(bandData.names)}>
+            <h3 id={`band-${bandData.names[0]}`} className={clsx('text-loud', classes.heading)}>
+              {bandData.names.length === 1 ? 'Band' : 'Bands'} {bandData.names.join(', ')}
             </h3>
 
             <SpectrumMap
-              data={bandData.data}
+              data={bandData.spectrumData}
               spectrumHighlight={spectrumHighlight}
-              caption={`${locationName} spectrum deployment for ${
-                Array.isArray(bandData.band) ? `Bands ${bandData.band.join(', ')}` : `Band ${bandData.band} (${bandNumberToName(bandData.band)})`
-              }`}
+              caption={`${locationName} spectrum deployment for ${bandData.names.length === 1 ? 'Band' : 'Bands'} ${bandData.names.join(', ')}`}
             />
           </React.Fragment>
         )
