@@ -5,7 +5,7 @@ import Layout from '@components/Layout'
 import Breadcrumbs from '@components/Design/Breadcrumbs'
 import AllSpectrumMaps from '@components/MobileNetworking/AllSpectrumMaps'
 
-import { AllBands } from '@data/SpectrumAllocation/DK/Bands'
+import DKSpectrumData from 'mobile-spectrum-data/DK'
 import Colors from '@data/colors.json'
 import { PageProps } from 'gatsby'
 
@@ -31,7 +31,7 @@ function DKSpectrumAllocationPage({ location }: PageProps) {
         ]}
       />
 
-      <AllSpectrumMaps locationName="Danish" bandsData={AllBands} />
+      <AllSpectrumMaps locationName="Danish" bandsData={DKSpectrumData} />
     </Layout>
   )
 }
