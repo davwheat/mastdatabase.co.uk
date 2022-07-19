@@ -321,7 +321,8 @@ export default function AllSpectrumMaps({ bandsData, locationName }: IAllSpectru
             )}
             {highlightValueType === 'EARFCN+BW' &&
               (() => {
-                const band = startHighlight.val && arfcnToBandInfo('lte', startHighlight.val!)
+                const band = startHighlight.val === null && arfcnToBandInfo('lte', startHighlight.val!)
+                const bandName = band && bandNumberToHumanName(parseInt(band.band.substring(1)), 'lte')
 
                 return (
                   <>
@@ -360,12 +361,10 @@ export default function AllSpectrumMaps({ bandsData, locationName }: IAllSpectru
                       bandsData
                         .map(b => b.names)
                         .flat()
-                        .includes(band.band)
+                        .includes(band.band) &&
+                      bandName
                     ) && (
-                      <Link
-                        className="text-whisper-loud"
-                        href={`#${generateIdSlug(bandNumberToHumanName(parseInt(band.band.substring(1)), 'lte'))}`}
-                      >
+                      <Link className="text-whisper-loud" href={`#${generateIdSlug(bandName)}`}>
                         Scroll to {band.band}
                       </Link>
                     )}
