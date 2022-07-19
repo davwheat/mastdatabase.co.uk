@@ -137,9 +137,10 @@ const useStyles = makeStyles({
 interface IAllSpectrumMaps {
   bandsData: SpectrumData[]
   locationName: string
+  countryCode: string
 }
 
-export default function AllSpectrumMaps({ bandsData, locationName }: IAllSpectrumMaps) {
+export default function AllSpectrumMaps({ bandsData, locationName, countryCode }: IAllSpectrumMaps) {
   const classes = useStyles()
 
   const [highlightValueType, setHighlightValueType] = useStateWithLocalStorage<'EARFCN' | 'frequency' | 'EARFCN+BW'>(
@@ -389,6 +390,7 @@ export default function AllSpectrumMaps({ bandsData, locationName }: IAllSpectru
               data={bandData.spectrumData}
               spectrumHighlight={spectrumHighlight}
               caption={`${locationName} spectrum deployment for ${bandData.names.length === 1 ? 'Band' : 'Bands'} ${bandData.names.join(', ')}`}
+              countryCode={countryCode}
             />
           </React.Fragment>
         )

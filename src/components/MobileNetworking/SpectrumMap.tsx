@@ -6,6 +6,8 @@ import Breakpoints from '@data/breakpoints'
 import { nanoid } from 'nanoid'
 import { SpectrumBlock } from 'mobile-spectrum-data/@types'
 import { arfcnToFrequency, formatFrequency } from 'mobile-spectrum-data/utils'
+import { getOperatorColor } from 'mobile-spectrum-data/OperatorInfo'
+import fontColorContrast from 'font-color-contrast'
 
 export interface IColorPair {
   back: string
@@ -67,6 +69,7 @@ export interface ISpectrumMapProps {
   note?: string
   data: SpectrumBlock[]
   spectrumHighlight?: HighlightedSpectrum[]
+  countryCode: string
 }
 
 export interface ISpectrumMapItemProps {
@@ -74,61 +77,11 @@ export interface ISpectrumMapItemProps {
   isSelected: boolean
   onClick: (allocation: SpectrumBlock) => void
   descId: string
+  countryCode: string
 }
 
 export interface ISpectrumMapDetailsProps {
   allocation: SpectrumBlock
-}
-
-export const OwnerColorMap: Record<string, IColorPair> = {
-  O2: {
-    back: '#000066',
-    front: '#fff',
-  },
-  Vodafone: {
-    back: '#e60000',
-    front: '#fff',
-  },
-  VF: {
-    back: '#e60000',
-    front: '#fff',
-  },
-  EE: {
-    back: '#007b85',
-    front: '#fff',
-  },
-  Three: {
-    back: '#ff7c69',
-    front: '#000',
-  },
-  '3': {
-    back: '#ff7c69',
-    front: '#000',
-  },
-  '3 DK': {
-    back: '#f37423',
-    front: '#000',
-  },
-  TT: {
-    back: '#663989',
-    front: '#fff',
-  },
-  TDC: {
-    back: '#006cb7',
-    front: '#fff',
-  },
-  Cibicom: {
-    back: '#1abbec',
-    front: '#000',
-  },
-  Telekom: {
-    back: '#e2007a',
-    front: '#fff',
-  },
-  '1&1': {
-    back: '#174195',
-    front: '#fff',
-  },
 }
 
 function getSpectrumTypeDescription(type: ISpectrumAllocation['type']): string {
@@ -137,19 +90,12 @@ function getSpectrumTypeDescription(type: ISpectrumAllocation['type']): string {
     fddDown: 'FDD downlink',
     tdd: 'TDD uplink and downlink',
     unknown: 'Unknown',
+    generic: 'Unknown',
+    genericPaired: 'Unknown',
     unused: 'Unused',
     sdl: 'Supplemental downlink',
     sul: 'Supplemental uplink',
   }[type]
-}
-
-function getOwnerColor(owner: string): IColorPair {
-  return (
-    OwnerColorMap[owner] || {
-      back: '#ddd',
-      front: '#000',
-    }
-  )
 }
 
 /**
@@ -273,7 +219,7 @@ const useSpectrumMapDetailsStyles = makeStyles({
   },
 })
 
-export function SpectrumMap({ caption, data, note, spectrumHighlight }: ISpectrumMapProps) {
+export function SpectrumMap({ caption, data, note, spectrumHighlight, countryCode }: ISpectrumMapProps) {
   const classes = useSpectrumMapStyles()
 
   const {
@@ -282,7 +228,7 @@ export function SpectrumMap({ caption, data, note, spectrumHighlight }: ISpectru
 
   const minMhz = Math.min(...data.map(a => a.startFreq))
   const maxMhz = Math.max(...data.map(a => a.endFreq))
-  const gridColumns = Math.floor(((maxMhz - minMhz) * 100_000) / HERTZ_ACCURACY)
+  const gridColumns = Math.round(((maxMhz - minMhz) * 100_000) / HERTZ_ACCURACY)
 
   const sortedData = data.sort((a, b) => a.startFreq - b.startFreq)
 
@@ -332,6 +278,7 @@ export function SpectrumMap({ caption, data, note, spectrumHighlight }: ISpectru
               allocation={allocation}
               onClick={() => setSelectedSpectrumBlock(allocation)}
               descId={descId}
+              countryCode={countryCode}
             />
           ))}
           {isSpectrumHighlighted &&
@@ -378,13 +325,13 @@ export function SpectrumMap({ caption, data, note, spectrumHighlight }: ISpectru
   )
 }
 
-function SpectrumMapItem({ allocation, onClick, isSelected, descId }: ISpectrumMapItemProps) {
+function SpectrumMapItem({ allocation, onClick, isSelected, descId, countryCode }: ISpectrumMapItemProps) {
   const classes = useSpectrumMapItemStyles()
   const { owner, startFreq, endFreq } = allocation
-  const color = getOwnerColor(owner)
+  const color = getOperatorColor(countryCode, owner)
 
   const bandwidthMhz = endFreq - startFreq
-  const columnCount = Math.floor((bandwidthMhz * 100_000) / HERTZ_ACCURACY)
+  const columnCount = Math.round((bandwidthMhz * 100_000) / HERTZ_ACCURACY)
 
   return (
     <button
@@ -394,8 +341,8 @@ function SpectrumMapItem({ allocation, onClick, isSelected, descId }: ISpectrumM
       className={classes.itemRoot}
       style={
         {
-          '--owner-color': color.back,
-          '--owner-color-front': color.front,
+          '--owner-color': color,
+          '--owner-color-front': fontColorContrast(color, 0.6),
           '--bandwidth': columnCount,
         } as any
       }

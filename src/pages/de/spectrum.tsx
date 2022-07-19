@@ -31,7 +31,7 @@ function DESpectrumAllocationPage({ location }: PageProps) {
         ]}
       />
 
-      <AllSpectrumMaps locationName="German" bandsData={DESpectrumData} />
+      <AllSpectrumMaps locationName="German" countryCode="DE" bandsData={DESpectrumData} />
     </Layout>
   )
 }

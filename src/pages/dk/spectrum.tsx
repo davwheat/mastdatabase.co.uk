@@ -31,7 +31,7 @@ function DKSpectrumAllocationPage({ location }: PageProps) {
         ]}
       />
 
-      <AllSpectrumMaps locationName="Danish" bandsData={DKSpectrumData} />
+      <AllSpectrumMaps locationName="Danish" countryCode="DK" bandsData={DKSpectrumData} />
     </Layout>
   )
 }
