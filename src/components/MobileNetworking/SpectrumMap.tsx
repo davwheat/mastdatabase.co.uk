@@ -132,6 +132,9 @@ const useSpectrumMapStyles = makeStyles({
     },
   },
   scale: {
+    marginTop: 4,
+    gridRow: '3 / span 1',
+    gridColumn: '1 / var(--sections)',
     display: 'flex',
     justifyContent: 'space-between',
   },
@@ -302,11 +305,11 @@ export function SpectrumMap({ caption, data, note, spectrumHighlight, countryCod
                 />
               )
             })}
-        </div>
 
-        <div className={classes.scale}>
-          <span className="text-whisper">{formatFrequency(minMhz)}</span>
-          <span className="text-whisper">{formatFrequency(maxMhz)}</span>
+          <div className={classes.scale}>
+            <span className="text-whisper">{formatFrequency(minMhz)}</span>
+            <span className="text-whisper">{formatFrequency(maxMhz)}</span>
+          </div>
         </div>
 
         <div aria-live="polite" id={descId} className={classes.spectrumInfo}>
