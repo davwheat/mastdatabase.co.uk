@@ -52,6 +52,10 @@ interface IProps extends Omit<React.HTMLAttributes<HTMLInputElement>, 'onInput'>
    * If used to show units, for example, you should set an appropriate `screenReaderLabel` as these adornments are hidden to screenreaders.
    */
   endAdornment?: React.ReactChild
+  /**
+   * RegEx pattern for validation
+   */
+  pattern?: string
 }
 
 const useStyles = makeStyles({
