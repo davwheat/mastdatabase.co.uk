@@ -221,8 +221,6 @@ export default function AllSpectrumMaps({ bandsData, locationName, countryCode }
     ]
   })()
 
-  console.log(spectrumHighlight)
-
   return (
     <Section width="wider">
       <h2 className="text-louder">Frequency deployment</h2>
