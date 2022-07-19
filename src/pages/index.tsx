@@ -44,6 +44,7 @@ const Countries: ICountryItem[] = [
   { code: 'gb', name: 'United Kingdom', nativeName: 'United Kingdom' },
   { code: 'dk', name: 'Denmark', nativeName: 'Danmark' },
   { code: 'de', name: 'Germany', nativeName: 'Deutschland' },
+  { code: 'bg', name: 'Bulgaria', nativeName: 'България' },
 ]
 
 export default function IndexPage({ location }: PageProps) {
