@@ -1,20 +1,19 @@
 import React, { useRef, useState } from 'react'
 
 import Section from '@components/Design/Section'
-import { HighlightedSpectrum, ISpectrumAllocation, SpectrumMap } from '@components/MobileNetworking/SpectrumMap'
+import { HighlightedSpectrum, SpectrumMap } from '@components/MobileNetworking/SpectrumMap'
 import TextBox from '@components/Inputs/TextBox'
 
 import Breakpoints from '@data/breakpoints'
-import bandNumberToName from '@functions/bandNumberToName'
 
 import { makeStyles } from '@material-ui/core'
 import clsx from 'clsx'
 import { nanoid } from 'nanoid'
-import { arfcnToBand } from '@functions/ArfcnConversion/arfcnToBand'
-import { arfcnToFreq } from '@functions/ArfcnConversion'
 import useStateWithLocalStorage from '@hooks/useStateWithLocalStorage'
+import { SpectrumData } from 'mobile-spectrum-data/@types'
+import { arfcnToBandInfo, arfcnToFrequency, bandNumberToHumanName } from 'mobile-spectrum-data/utils'
 import Link from '@components/Links/Link'
-import { SpectrumBlock, SpectrumData } from 'mobile-spectrum-data/@types'
+import generateIdSlug from '@functions/generateIdSlug'
 
 const useStyles = makeStyles({
   heading: {
@@ -158,22 +157,24 @@ export default function AllSpectrumMaps({ bandsData, locationName }: IAllSpectru
   })
 
   const isHighlightPresent = (() => {
+    if (!startHighlight.val) return false
+
     if (['EARFCN', 'frequency'].includes(highlightValueType)) {
-      if (isNaN(startHighlight.val) || isNaN(endHighlight.val)) return false
+      if (!endHighlight.val || isNaN(startHighlight.val) || isNaN(endHighlight.val)) return false
     }
 
     if (highlightValueType === 'EARFCN+BW') {
-      if (isNaN(startHighlight.val) || isNaN(highlightBandwidth.val)) return false
+      if (!highlightBandwidth.val || isNaN(startHighlight.val) || isNaN(highlightBandwidth.val)) return false
     }
 
     if (highlightValueType === 'EARFCN') {
-      if (!arfcnToFreq('lte', startHighlight.val, 'dl')) return false
-      if (!arfcnToFreq('lte', endHighlight.val, 'dl')) return false
+      if (!arfcnToFrequency('lte', startHighlight.val)) return false
+      if (!endHighlight.val || !arfcnToFrequency('lte', endHighlight.val)) return false
     }
 
     if (highlightValueType === 'EARFCN+BW') {
-      if (!arfcnToFreq('lte', startHighlight.val, 'dl')) return false
-      if (isNaN(highlightBandwidth.val)) return false
+      if (!arfcnToFrequency('lte', startHighlight.val)) return false
+      if (!highlightBandwidth.val || isNaN(highlightBandwidth.val)) return false
     }
 
     return true
@@ -185,14 +186,16 @@ export default function AllSpectrumMaps({ bandsData, locationName }: IAllSpectru
     if (highlightValueType === 'EARFCN+BW') {
       const earfcnCtr = startHighlight.val
 
-      if (isNaN(earfcnCtr)) return undefined
+      if (isNaN(earfcnCtr!)) return undefined
 
-      const freqCtr = arfcnToFreq('lte', earfcnCtr, 'dl')
+      const freqCtr = arfcnToFrequency('lte', earfcnCtr!)
+
+      if (freqCtr === null) return undefined
 
       return [
         {
-          startFreq: freqCtr - highlightBandwidth.val / 2,
-          endFreq: freqCtr + highlightBandwidth.val / 2,
+          startFreq: freqCtr - highlightBandwidth.val! / 2,
+          endFreq: freqCtr + highlightBandwidth.val! / 2,
           rat: 'lte',
         } as unknown as HighlightedSpectrum,
       ]
@@ -201,8 +204,8 @@ export default function AllSpectrumMaps({ bandsData, locationName }: IAllSpectru
     if (highlightValueType === 'frequency') {
       return [
         {
-          startFreq: Math.min(startHighlight.val, endHighlight.val),
-          endFreq: Math.max(startHighlight.val, endHighlight.val),
+          startFreq: Math.min(startHighlight.val!, endHighlight.val!),
+          endFreq: Math.max(startHighlight.val!, endHighlight.val!),
           rat: 'lte',
         } as unknown as HighlightedSpectrum,
       ]
@@ -210,12 +213,14 @@ export default function AllSpectrumMaps({ bandsData, locationName }: IAllSpectru
 
     return [
       {
-        startArfcn: Math.min(startHighlight.val, endHighlight.val),
-        endArfcn: Math.max(startHighlight.val, endHighlight.val),
+        startArfcn: Math.min(startHighlight.val!, endHighlight.val!),
+        endArfcn: Math.max(startHighlight.val!, endHighlight.val!),
         rat: 'lte',
       } as unknown as HighlightedSpectrum,
     ]
   })()
+
+  console.log(spectrumHighlight)
 
   return (
     <Section width="wider">
@@ -316,17 +321,17 @@ export default function AllSpectrumMaps({ bandsData, locationName }: IAllSpectru
             )}
             {highlightValueType === 'EARFCN+BW' &&
               (() => {
-                const band = arfcnToBand('lte', startHighlight.val, 'dl')
+                const band = startHighlight.val && arfcnToBandInfo('lte', startHighlight.val!)
 
                 return (
                   <>
                     <TextBox
                       helpText={(() => {
                         if (startHighlight.text === '') return ''
-                        if (isNaN(startHighlight.val)) return 'Invalid EARFCN'
-                        if (band === null) return 'Unrecognised EARFCN'
+                        if (!startHighlight.val || isNaN(startHighlight.val)) return 'Invalid EARFCN'
+                        if (!band) return 'Unrecognised EARFCN'
 
-                        return `LTE Band ${band} (${arfcnToFreq('lte', startHighlight.val, 'dl')} MHz)`
+                        return `LTE Band ${band.band} (${arfcnToFrequency('lte', startHighlight.val)} MHz)`
                       })()}
                       label="EARFCN"
                       defaultValue={startHighlight.text}
@@ -339,8 +344,8 @@ export default function AllSpectrumMaps({ bandsData, locationName }: IAllSpectru
                         if (!isHighlightPresent) return ''
 
                         const earfcnCtr = startHighlight.val
-                        const freqCtr = arfcnToFreq('lte', earfcnCtr, 'dl')
-                        return `${Math.max(0, freqCtr - highlightBandwidth.val / 2)} - ${freqCtr + highlightBandwidth.val / 2} MHz`
+                        const freqCtr = arfcnToFrequency('lte', earfcnCtr!)
+                        return `${Math.max(0, freqCtr! - highlightBandwidth.val! / 2)} - ${freqCtr! + highlightBandwidth.val! / 2} MHz`
                       })()}
                       label="Bandwidth"
                       screenReaderLabel="Bandwidth, in MHz"
@@ -350,11 +355,20 @@ export default function AllSpectrumMaps({ bandsData, locationName }: IAllSpectru
                       pattern="[0-9]*"
                       inputMode="numeric"
                     />
-                    {/* {band && bandsData.map(b => b.band).includes(`B${band}`) && (
-                      <Link className="text-whisper-loud" href={`#band-B${band}`}>
-                        Scroll to Band {band}
+                    {!!(
+                      band &&
+                      bandsData
+                        .map(b => b.names)
+                        .flat()
+                        .includes(band.band)
+                    ) && (
+                      <Link
+                        className="text-whisper-loud"
+                        href={`#${generateIdSlug(bandNumberToHumanName(parseInt(band.band.substring(1)), 'lte'))}`}
+                      >
+                        Scroll to {band.band}
                       </Link>
-                    )} */}
+                    )}
                   </>
                 )
               })()}
@@ -363,9 +377,12 @@ export default function AllSpectrumMaps({ bandsData, locationName }: IAllSpectru
       </Section>
 
       {bandsData.map(bandData => {
+        const bandNum = parseInt(bandData.names[0].substring(1))
+        const bandHumanName = bandNumberToHumanName(bandNum, 'lte') ?? bandNumberToHumanName(bandNum, 'nr')
+
         return (
           <React.Fragment key={JSON.stringify(bandData.names)}>
-            <h3 id={`band-${bandData.names[0]}`} className={clsx('text-loud', classes.heading)}>
+            <h3 id={bandHumanName ? generateIdSlug(bandHumanName) : undefined} className={clsx('text-loud', classes.heading)}>
               {bandData.names.length === 1 ? 'Band' : 'Bands'} {bandData.names.join(', ')}
             </h3>
 
