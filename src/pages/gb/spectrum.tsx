@@ -50,7 +50,7 @@ function GBSpectrumAllocationPage({ location }: PageProps) {
         </p>
       </Section>
 
-      <AllSpectrumMaps locationName="UK" bandsData={GBAllBands} />
+      <AllSpectrumMaps locationName="UK" countryCode="GB" bandsData={GBAllBands} />
     </Layout>
   )
 }
