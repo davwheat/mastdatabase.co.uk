@@ -3,9 +3,9 @@ import { makeStyles } from '@material-ui/styles'
 import clsx from 'clsx'
 import Colors from '@data/colors.json'
 import Breakpoints from '@data/breakpoints'
-import { arfcnToFreq } from '@functions/ArfcnConversion'
 import { nanoid } from 'nanoid'
 import { SpectrumBlock } from 'mobile-spectrum-data/@types'
+import { arfcnToFrequency, formatFrequency } from 'mobile-spectrum-data/utils'
 
 export interface IColorPair {
   back: string
@@ -129,10 +129,6 @@ export const OwnerColorMap: Record<string, IColorPair> = {
     back: '#174195',
     front: '#fff',
   },
-}
-
-function round(num: number): number {
-  return Math.round(num * 100) / 100
 }
 
 function getSpectrumTypeDescription(type: ISpectrumAllocation['type']): string {
@@ -304,8 +300,8 @@ export function SpectrumMap({ caption, data, note, spectrumHighlight }: ISpectru
         } else {
           // Need to convert from ARFCN
           return {
-            startFreq: arfcnToFreq(r.rat, r.startArfcn, 'dl'),
-            endFreq: arfcnToFreq(r.rat, r.endArfcn, 'dl'),
+            startFreq: arfcnToFrequency(r.rat as 'lte', r.startArfcn),
+            endFreq: arfcnToFrequency(r.rat as 'lte', r.endArfcn),
           }
         }
       })
@@ -409,14 +405,6 @@ function SpectrumMapItem({ allocation, onClick, isSelected, descId }: ISpectrumM
       <p className="sr-only">Click for more spectrum info</p>
     </button>
   )
-}
-
-function formatFrequency(freq: number, hideUnits: boolean = false) {
-  if (freq >= 10_000) {
-    return `${round(freq) / 1000}` + (hideUnits ? '' : ' GHz')
-  }
-
-  return `${round(freq)}` + (hideUnits ? '' : ' MHz')
 }
 
 function SpectrumMapDetails({ allocation }: ISpectrumMapDetailsProps) {
