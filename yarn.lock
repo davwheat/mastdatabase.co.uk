@@ -1784,7 +1784,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@gatsbyjs/parcel-namer-relative-to-cwd@npm:^1.4.0":
+"@gatsbyjs/parcel-namer-relative-to-cwd@npm:1.4.0":
   version: 1.4.0
   resolution: "@gatsbyjs/parcel-namer-relative-to-cwd@npm:1.4.0"
   dependencies:
@@ -6712,10 +6712,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dayjs@npm:^1.11.3":
-  version: 1.11.3
-  resolution: "dayjs@npm:1.11.3"
-  checksum: c87e06b562a51ae6568cc5b840c7579d82a0f8af7163128c858fe512d3d71d07bd8e8e464b8cc41b8698a9e26b80ab2c082d14a1cd4c33df5692d77ccdfc5a43
+"dayjs@npm:^1.11.4":
+  version: 1.11.4
+  resolution: "dayjs@npm:1.11.4"
+  checksum: 478c8a2db9e3fc752db9f02ef23f00e12308eebbeb85569913731ea78e8d5616f2335e14f25af48e9f16bbcbd796653092eca4d2f42c0218a948402c31735f59
   languageName: node
   linkType: hard
 
@@ -8618,9 +8618,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-link@npm:^4.19.0":
-  version: 4.19.0
-  resolution: "gatsby-link@npm:4.19.0"
+"gatsby-link@npm:^4.19.1":
+  version: 4.19.1
+  resolution: "gatsby-link@npm:4.19.1"
   dependencies:
     "@types/reach__router": ^1.3.10
     gatsby-page-utils: ^2.19.0
@@ -8629,7 +8629,7 @@ __metadata:
     "@gatsbyjs/reach-router": ^1.3.5
     react: ^16.9.0 || ^17.0.0 || ^18.0.0
     react-dom: ^16.9.0 || ^17.0.0 || ^18.0.0
-  checksum: d6cc66f183917b48ecb6db32421c4c5c29f335152e80e56831d1b24f47087d18f4c65c061711573128c46c250d2276273cb439e550a07c30470108129b7c7f18
+  checksum: 91dd185eb7d5e2c48b16e13d4b11b877c0fa6b3486b693eaad6505c13b5d1cafaa5c7a574af061dab495df2bb32eb27cc581332b975e07e01576780bede122d3
   languageName: node
   linkType: hard
 
@@ -8649,11 +8649,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-parcel-config@npm:^0.10.0":
-  version: 0.10.0
-  resolution: "gatsby-parcel-config@npm:0.10.0"
+"gatsby-parcel-config@npm:0.10.1":
+  version: 0.10.1
+  resolution: "gatsby-parcel-config@npm:0.10.1"
   dependencies:
-    "@gatsbyjs/parcel-namer-relative-to-cwd": ^1.4.0
+    "@gatsbyjs/parcel-namer-relative-to-cwd": 1.4.0
     "@parcel/bundler-default": 2.6.2
     "@parcel/compressor-raw": 2.6.2
     "@parcel/namer-default": 2.6.2
@@ -8671,8 +8671,8 @@ __metadata:
     "@parcel/transformer-raw": 2.6.2
     "@parcel/transformer-react-refresh-wrap": 2.6.2
   peerDependencies:
-    "@parcel/core": 2.6.0
-  checksum: 27a414414c06da5b194ac09caddd4cad0a7180cd2c43c255cae37c038922fbc4f841e340f7482f0f775159218ab28df34ec55e54bf0513bf6e5538e9b5ff1164
+    "@parcel/core": ^2.0.0
+  checksum: 0b01ade71a19044878b247c59297a1173d89c8dba0c1527eeb2283533f6ceb9ca2828c70d2049bc18995c76d009af7179e179b207e6b6c005b4571fb0f0848dd
   languageName: node
   linkType: hard
 
@@ -9092,9 +9092,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby@npm:^4.19.0":
-  version: 4.19.0
-  resolution: "gatsby@npm:4.19.0"
+"gatsby@npm:^4.19.2":
+  version: 4.19.2
+  resolution: "gatsby@npm:4.19.2"
   dependencies:
     "@babel/code-frame": ^7.14.0
     "@babel/core": ^7.15.5
@@ -9177,9 +9177,9 @@ __metadata:
     gatsby-core-utils: ^3.19.0
     gatsby-graphiql-explorer: ^2.19.0
     gatsby-legacy-polyfills: ^2.19.0
-    gatsby-link: ^4.19.0
+    gatsby-link: ^4.19.1
     gatsby-page-utils: ^2.19.0
-    gatsby-parcel-config: ^0.10.0
+    gatsby-parcel-config: 0.10.1
     gatsby-plugin-page-creator: ^4.19.0
     gatsby-plugin-typescript: ^4.19.0
     gatsby-plugin-utils: ^3.13.0
@@ -9265,7 +9265,7 @@ __metadata:
       optional: true
   bin:
     gatsby: ./cli.js
-  checksum: f00ef0b9a5a118747c2b23623201c83f71343ea94e7ee73ce16dff8c9ce6c308aaee72ebfa8e479e69e0f35447a6aa769681e05d7aeae1f3908c4afc0389f467
+  checksum: d1933a5b926a067a313b7f83d8e5048371bbfd70e81c2decb6ff6a2b26e74e2a6afa8040853584481ba87d3a2198c860f2c632d6284c48d1be6e383297a7013f
   languageName: node
   linkType: hard
 
@@ -11626,10 +11626,10 @@ __metadata:
     case-sensitive-paths-webpack-plugin: ^2.4.0
     clsx: ^1.2.1
     cross-env: ^7.0.3
-    dayjs: ^1.11.3
+    dayjs: ^1.11.4
     font-color-contrast: ^11.1.0
     fuse.js: ^6.6.2
-    gatsby: ^4.19.0
+    gatsby: ^4.19.2
     gatsby-image: ^3.11.0
     gatsby-plugin-canonical-urls: ^4.19.0
     gatsby-plugin-csp: ^1.1.3
@@ -11656,7 +11656,7 @@ __metadata:
     leaflet.fullscreen2: ^1.0.0
     leaflet.markercluster: ^1.5.3
     mdi-react: ^8.6.0
-    mobile-spectrum-data: ^0.1.0-beta.19
+    mobile-spectrum-data: 0.1.0-beta.20
     nanoid: ^4.0.0
     preact: ^10.10.0
     preact-render-to-string: ^5.2.1
@@ -12048,9 +12048,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mobile-spectrum-data@portal:/C:/Users/dwhea/Desktop/Git Repos/mobile-spectrum-data/lib::locator=mastdatabase-co-uk%40workspace%3A.":
+"mobile-spectrum-data@link:/C:/Users/dwhea/Desktop/Git Repos/mobile-spectrum-data/lib::locator=mastdatabase-co-uk%40workspace%3A.":
   version: 0.0.0-use.local
-  resolution: "mobile-spectrum-data@portal:/C:/Users/dwhea/Desktop/Git Repos/mobile-spectrum-data/lib::locator=mastdatabase-co-uk%40workspace%3A."
+  resolution: "mobile-spectrum-data@link:/C:/Users/dwhea/Desktop/Git Repos/mobile-spectrum-data/lib::locator=mastdatabase-co-uk%40workspace%3A."
   languageName: node
   linkType: soft
 

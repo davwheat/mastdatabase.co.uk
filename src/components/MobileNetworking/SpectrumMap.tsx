@@ -90,8 +90,8 @@ function getSpectrumTypeDescription(type: ISpectrumAllocation['type']): string {
     fddDown: 'FDD downlink',
     tdd: 'TDD uplink and downlink',
     unknown: 'Unknown',
-    generic: 'Unknown',
-    genericPaired: 'Unknown',
+    generic: 'Generic spectrum',
+    genericPaired: 'Generic spectrum',
     unused: 'Unused',
     sdl: 'Supplemental downlink',
     sul: 'Supplemental uplink',
@@ -380,7 +380,7 @@ function SpectrumMapDetails({ allocation }: ISpectrumMapDetailsProps) {
       <dt>Spectrum type:</dt>
       <dd>
         {getSpectrumTypeDescription(type)}
-        {type === 'fddDown' && allocation.pairedWith && (
+        {allocation.pairedWith && (
           <>
             , paired with {formatFrequency(allocation.pairedWith.startFreq, true)} &ndash; {formatFrequency(allocation.pairedWith.endFreq)} of{' '}
             {getSpectrumTypeDescription(allocation.pairedWith.type)}
