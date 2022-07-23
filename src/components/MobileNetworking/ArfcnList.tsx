@@ -169,7 +169,7 @@ function ArfcnList({ heading, ratData }: IArfcnListProps) {
 
   const dataset = ratData[selectedRat]
 
-  const filteredData = filterAndSortData(dataset, filterQuery, sortByFilterRelevance, sort)
+  const filteredData = dataset && filterAndSortData(dataset, filterQuery, sortByFilterRelevance, sort)
 
   const getSortButton = (col: AvailableSortColumns, type: 'num' | 'alpha') => {
     return _getSortButton(col, type, sort, filterQuery, sortByFilterRelevance, _setSort)
@@ -234,7 +234,7 @@ function ArfcnList({ heading, ratData }: IArfcnListProps) {
             </tr>
           </thead>
           <tbody>
-            {filteredData.map(earfcn => (
+            {filteredData?.map(earfcn => (
               <tr key={earfcn.arfcn}>
                 <td>{earfcn.arfcn}</td>
                 <td>
