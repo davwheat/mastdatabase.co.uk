@@ -97,3 +97,16 @@ jobs:
         with:
           path: ./public
           key: ${{ runner.os }}-gatsby-out-${{ secrets.CACHE_VERSION }}-${{ hashFiles('yarn.lock') }}-${{ github.sha }}
+
+      - name: Upload a compiled website
+        uses: actions/upload-artifact@v2
+        with:
+          name: Compiled website
+          path: public/
+
+      - name: Deploy to GitHub Pages 🚀
+        uses: JamesIves/github-pages-deploy-action@4.1.0
+        with:
+          branch: prod
+          folder: public
+          clean: true
