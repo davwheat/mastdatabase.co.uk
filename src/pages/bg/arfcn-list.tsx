@@ -15,7 +15,11 @@ import { PageProps } from 'gatsby'
 
 function BGArfcnListPage({ location }: PageProps) {
   return (
-    <Layout location={location} title="Bulgarian ARFCN list" description="A mostly complete list of Bulgarian mobile networks' ARFCNs for 4G LTE and 5G NR.">
+    <Layout
+      location={location}
+      title="Bulgarian ARFCN list"
+      description="A mostly complete list of Bulgarian mobile networks' ARFCNs for 4G LTE and 5G NR."
+    >
       <Hero firstElement size="huge" color={Colors.primaryBlue}>
         <h1 className="text-shout">Bulgarian ARFCN list</h1>
         <p role="doc-subtitle" className="text-loud">
