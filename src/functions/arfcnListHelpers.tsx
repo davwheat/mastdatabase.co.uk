@@ -1,7 +1,6 @@
 import React from 'react'
 
 import Colors from '@data/colors.json'
-import { ArfcnDataItem } from '@data/ArfcnData'
 
 import Fuse from 'fuse.js'
 import clsx from 'clsx'
@@ -15,6 +14,7 @@ import AlphaSortIconAsc from 'mdi-react/SortAlphabeticalAscendingVariantIcon'
 import AlphaSortIconDesc from 'mdi-react/SortAlphabeticalDescendingVariantIcon'
 import { makeStyles } from '@material-ui/core'
 import { SupportedArfcnListRats } from '@components/MobileNetworking/ArfcnList'
+import { ArfcnDataItem } from 'mobile-spectrum-data/@types'
 
 export type AvailableSortColumns = 'arfcn' | 'band' | 'operator' | 'bandwidth'
 
@@ -36,7 +36,7 @@ export function getBandPrefix(rat: SupportedArfcnListRats): string | null {
   return null
 }
 
-export function createFuse(dataset: ArfcnDataItem<string>[], sortByFilterRelevance: boolean) {
+export function createFuse(dataset: ArfcnDataItem[], sortByFilterRelevance: boolean) {
   return new Fuse(dataset, {
     shouldSort: sortByFilterRelevance,
     threshold: 0.2,
@@ -60,7 +60,7 @@ export function createFuse(dataset: ArfcnDataItem<string>[], sortByFilterRelevan
   })
 }
 
-export function sortArfcnData(data: ArfcnDataItem<string>[], sort: ISort) {
+export function sortArfcnData(data: ArfcnDataItem[], sort: ISort) {
   const invert = sort.direction === 'desc' ? -1 : 1
 
   // Sort appropriately based on alpha or numeric
@@ -79,7 +79,7 @@ export function sortArfcnData(data: ArfcnDataItem<string>[], sort: ISort) {
   })
 }
 
-export function filterAndSortData(data: ArfcnDataItem<string>[], filterQuery: string, sortByFilterRelevance: boolean, sort: ISort) {
+export function filterAndSortData(data: ArfcnDataItem[], filterQuery: string, sortByFilterRelevance: boolean, sort: ISort) {
   const fuse = createFuse(data, sortByFilterRelevance)
 
   if (filterQuery.trim() !== '') {

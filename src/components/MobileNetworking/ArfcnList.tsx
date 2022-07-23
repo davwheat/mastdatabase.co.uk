@@ -6,15 +6,12 @@ import { makeStyles } from '@material-ui/styles'
 import { debounce } from '@material-ui/core'
 
 import Section from '@components/Design/Section'
-import Hero from '@components/Design/Hero'
-import Layout from '@components/Layout'
 import TextBox from '@components/Inputs/TextBox'
 import Checkbox from '@components/Inputs/Checkbox'
 
 import Breakpoints from '@data/breakpoints'
 
-import EARFCNs from '@data/ArfcnData/DK/EARFCNs'
-import NRARFCNs from '@data/ArfcnData/DK/NRARFCNs'
+import type { ArfcnDataItem } from 'mobile-spectrum-data/@types'
 
 import {
   AvailableSortColumns,
@@ -24,7 +21,6 @@ import {
   getSortButton as _getSortButton,
   ISort,
 } from '@functions/arfcnListHelpers'
-import { ArfcnDataItem } from '@data/ArfcnData'
 
 const useStyles = makeStyles({
   table: {
@@ -156,7 +152,7 @@ export type SupportedArfcnListRats = 'lte' | 'nr'
 
 export interface IArfcnListProps {
   heading: string
-  ratData: Partial<Record<SupportedArfcnListRats, ArfcnDataItem<string>[]>>
+  ratData: Partial<Record<SupportedArfcnListRats, ArfcnDataItem[]>>
 }
 
 function ArfcnList({ heading, ratData }: IArfcnListProps) {
@@ -173,7 +169,7 @@ function ArfcnList({ heading, ratData }: IArfcnListProps) {
 
   const dataset = ratData[selectedRat]
 
-  const filteredData = filterAndSortData(dataset, filterQuery, sortByFilterRelevance, sort)
+  const filteredData = dataset && filterAndSortData(dataset, filterQuery, sortByFilterRelevance, sort)
 
   const getSortButton = (col: AvailableSortColumns, type: 'num' | 'alpha') => {
     return _getSortButton(col, type, sort, filterQuery, sortByFilterRelevance, _setSort)
@@ -238,7 +234,7 @@ function ArfcnList({ heading, ratData }: IArfcnListProps) {
             </tr>
           </thead>
           <tbody>
-            {filteredData.map(earfcn => (
+            {filteredData?.map(earfcn => (
               <tr key={earfcn.arfcn}>
                 <td>{earfcn.arfcn}</td>
                 <td>
