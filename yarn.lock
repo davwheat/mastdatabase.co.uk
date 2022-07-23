@@ -11656,7 +11656,7 @@ __metadata:
     leaflet.fullscreen2: ^1.0.0
     leaflet.markercluster: ^1.5.3
     mdi-react: ^8.6.0
-    mobile-spectrum-data: 0.1.0-beta.20
+    mobile-spectrum-data: ^0.1.0-beta.21
     nanoid: ^4.0.0
     preact: ^10.10.0
     preact-render-to-string: ^5.2.1
@@ -12048,11 +12048,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mobile-spectrum-data@link:/C:/Users/dwhea/Desktop/Git Repos/mobile-spectrum-data/lib::locator=mastdatabase-co-uk%40workspace%3A.":
-  version: 0.0.0-use.local
-  resolution: "mobile-spectrum-data@link:/C:/Users/dwhea/Desktop/Git Repos/mobile-spectrum-data/lib::locator=mastdatabase-co-uk%40workspace%3A."
+"mobile-spectrum-data@npm:^0.1.0-beta.21":
+  version: 0.1.0-beta.21
+  resolution: "mobile-spectrum-data@npm:0.1.0-beta.21"
+  checksum: c6a3bdfaf9cc6b2d9ebc6330d4586ebaca4129f8b478dec0befad076c4685afef811fe671b645fbac8c5d84afc1f42da1507ab7127415014da997dd887013701
   languageName: node
-  linkType: soft
+  linkType: hard
 
 "moment@npm:^2.29.1":
   version: 2.29.3
