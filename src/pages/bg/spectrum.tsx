@@ -7,28 +7,28 @@ import Breadcrumbs from '@components/Design/Breadcrumbs'
 import AllSpectrumMaps from '@components/MobileNetworking/AllSpectrumMaps'
 
 import Colors from '@data/colors.json'
-import GBAllBands from 'mobile-spectrum-data/GB'
+import BGAllBands from 'mobile-spectrum-data/BG'
 import { PageProps } from 'gatsby'
 
-function GBSpectrumAllocationPage({ location }: PageProps) {
+function BGSpectrumAllocationPage({ location }: PageProps) {
   return (
     <Layout
       location={location}
-      title="UK mobile spectrum allocation"
-      description="A visualisation of spectrum allocation across the UK, per operator and radio access technology."
+      title="Bulgarian mobile spectrum allocation"
+      description="A visualisation of spectrum allocation across Bulgaria, per operator and radio access technology."
     >
       <Hero firstElement size="huge" color={Colors.primaryBlue}>
-        <h1 className="text-shout">UK mobile spectrum allocation</h1>
+        <h1 className="text-shout">Bulgarian mobile spectrum allocation</h1>
         <p role="doc-subtitle" className="text-loud">
-          A visualisation of spectrum allocation across the UK, per operator and radio access technology.
+          A visualisation of spectrum allocation across Bulgaria, per operator and radio access technology.
         </p>
       </Hero>
 
       <Breadcrumbs
         data={[
           { t: 'Home', url: '/' },
-          { t: 'United Kingdom', url: '/gb' },
-          { t: 'Mobile spectrum allocation', url: '/gb/spectrum' },
+          { t: 'Bulgaria', url: '/bg' },
+          { t: 'Mobile spectrum allocation', url: '/bg/spectrum' },
         ]}
       />
 
@@ -50,9 +50,9 @@ function GBSpectrumAllocationPage({ location }: PageProps) {
         </p>
       </Section>
 
-      <AllSpectrumMaps locationName="UK" countryCode="GB" bandsData={GBAllBands} />
+      <AllSpectrumMaps locationName="Bulgaria" countryCode="BG" bandsData={BGAllBands} />
     </Layout>
   )
 }
 
-export default GBSpectrumAllocationPage
+export default BGSpectrumAllocationPage
