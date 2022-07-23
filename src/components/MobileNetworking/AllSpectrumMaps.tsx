@@ -224,10 +224,15 @@ export default function AllSpectrumMaps({ bandsData, locationName, countryCode }
   return (
     <Section width="wider">
       <h2 className="text-louder">Frequency deployment</h2>
+      <p className="text-speak">
+        All data below is <Link href="https://github.com/davwheat/mobile-spectrum-data">open source from the mobile-spectrum-data package</Link>,
+        and licensed under <Link href="https://github.com/davwheat/mobile-spectrum-data/blob/main/LICENSE">the LGPL-3.0 license</Link>. If you
+        spot an issue, please report it on <Link href="https://github.com/davwheat/mobile-spectrum-data">the GitHub repository</Link>.
+      </p>
 
       <Section width="full" darker>
         <h3 className="text-loud">Highlight spectrum</h3>
-        <p>
+        <p className="text-speak">
           Highlight a section of spectrum with a pink line on the visualisations below using an EARFCN and bandwidth, start and end EARFCN, or
           start and end frequency.
         </p>
