@@ -387,13 +387,18 @@ export default function AllSpectrumMaps({ bandsData, locationName, countryCode }
         bandInstances[bandNum]++
         const bandHumanName = bandNumberToHumanName(bandNum, 'lte') ?? bandNumberToHumanName(bandNum, 'nr')
 
+        const { shortAddendum: headingAddendum = null, description = null } = bandData.extraInfo || {}
+
         return (
           <React.Fragment key={JSON.stringify(bandData.names) + `__${bandInstances[bandNum]}`}>
             <h3
               id={bandHumanName ? generateIdSlug(bandHumanName, bandInstances[bandNum]) : undefined}
               className={clsx('text-loud', classes.heading)}
             >
+              {bandData.names.length === 1 ? 'Band' : 'Bands'} {bandData.names.join(', ')} {headingAddendum && `(${headingAddendum})`}
             </h3>
+
+            {description && <p className="text-speak">{description}</p>}
 
             <SpectrumMap
               data={bandData.spectrumData}
