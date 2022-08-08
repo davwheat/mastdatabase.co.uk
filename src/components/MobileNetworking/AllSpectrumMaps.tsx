@@ -221,6 +221,8 @@ export default function AllSpectrumMaps({ bandsData, locationName, countryCode }
     ]
   })()
 
+  const bandInstances: Record<string, number> = {}
+
   return (
     <Section width="wider">
       <h2 className="text-louder">Frequency deployment</h2>
@@ -381,12 +383,16 @@ export default function AllSpectrumMaps({ bandsData, locationName, countryCode }
 
       {bandsData.map(bandData => {
         const bandNum = parseInt(bandData.names[0].substring(1))
+        bandInstances[bandNum] ||= 0
+        bandInstances[bandNum]++
         const bandHumanName = bandNumberToHumanName(bandNum, 'lte') ?? bandNumberToHumanName(bandNum, 'nr')
 
         return (
-          <React.Fragment key={JSON.stringify(bandData.names)}>
-            <h3 id={bandHumanName ? generateIdSlug(bandHumanName) : undefined} className={clsx('text-loud', classes.heading)}>
-              {bandData.names.length === 1 ? 'Band' : 'Bands'} {bandData.names.join(', ')}
+          <React.Fragment key={JSON.stringify(bandData.names) + `__${bandInstances[bandNum]}`}>
+            <h3
+              id={bandHumanName ? generateIdSlug(bandHumanName, bandInstances[bandNum]) : undefined}
+              className={clsx('text-loud', classes.heading)}
+            >
             </h3>
 
             <SpectrumMap
