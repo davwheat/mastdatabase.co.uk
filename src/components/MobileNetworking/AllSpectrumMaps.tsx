@@ -325,7 +325,7 @@ export default function AllSpectrumMaps({ bandsData, locationName, countryCode }
             )}
             {highlightValueType === 'EARFCN+BW' &&
               (() => {
-                const band = startHighlight.val === null && arfcnToBandInfo('lte', startHighlight.val!)
+                const band = startHighlight.val !== null && arfcnToBandInfo('lte', startHighlight.val!)
                 const bandName = band && bandNumberToHumanName(parseInt(band.band.substring(1)), 'lte')
 
                 return (
