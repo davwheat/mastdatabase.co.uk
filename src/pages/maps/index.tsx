@@ -64,6 +64,11 @@ export default function MapsPage({ location }: PageProps) {
             description="See all registered site locations with Freshwave. This does not correspond to active sites, just possible locations."
             url="/maps/freshwave"
           />
+          <CardLink
+            title="Danish Mastedatabasen"
+            description="Reimplementation of Denmark's mastedatabasen with new filtering and display options."
+            url="/maps/dk-mastedatabasen"
+          />
         </div>
       </Section>
     </Layout>
