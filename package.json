@@ -92,6 +92,6 @@
   },
   "packageManager": "yarn@3.2.1",
   "resolutions": {
-    "underscore.inflection": "davwheat/underscore.inflection"
+    "underscore.inflection": "davwheat/underscore.inflection#master"
   }
 }
