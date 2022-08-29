@@ -1,6 +1,6 @@
 import type { ISite } from '@components/Maps/MasteDatabasenMap/JsonApi/Models'
 
-import { RatShorthand } from './getSiteLabelText'
+import { predictThreeDkEnb } from './predictThreeDkEnb'
 
 export function getSitePopUpHtml(sites: ISite[]) {
   const popupTextSegments: string[] = []
@@ -17,6 +17,13 @@ export function getSitePopUpHtml(sites: ISite[]) {
     .filter(t => !!t)
     .join(', ')}</dd>
   `)
+
+  if (sites[0].Operator()?.id === '5') {
+    popupTextSegments.push(`
+    <dt>Predicted eNB ID</dt>
+    <dd>${predictThreeDkEnb(sites[0].stationName)}</dd>
+    `)
+  }
 
   popupTextSegments.push(`
   <dt>Station name(s)</dt>
