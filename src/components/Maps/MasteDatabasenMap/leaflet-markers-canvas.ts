@@ -511,4 +511,6 @@ const markersCanvas = {
   },
 }
 
-L.MarkersCanvas = L.Layer.extend(markersCanvas)
+if (L && L.Layer && L.Layer.extend) {
+  L.MarkersCanvas = L.Layer.extend(markersCanvas)
+}
