@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 
 import { IOperator, ITechnology, Operator, Technology } from '@components/Maps/MasteDatabasenMap/JsonApi/Models'
 import SelectDropdown from '@components/Inputs/SelectDropdown'
-import { MasteDatabasenFilterAtom } from './MasteDatabasenFilterAtom'
+import { MasteDatabasenMapOptionsAtom } from './MasteDatabasenMapOptionsAtom'
 
 import { useRecoilState } from 'recoil'
 import { makeStyles } from '@material-ui/core'
@@ -16,7 +16,7 @@ const useStyles = makeStyles({
 
 export default function MasteDatabasenFilterControls() {
   const [loadingModels, setLoadingModels] = useState<boolean | null>(null)
-  const [filterState, setFilterState] = useRecoilState(MasteDatabasenFilterAtom)
+  const [filterState, setFilterState] = useRecoilState(MasteDatabasenMapOptionsAtom)
 
   const classes = useStyles()
 

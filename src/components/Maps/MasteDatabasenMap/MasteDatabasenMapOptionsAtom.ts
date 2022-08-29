@@ -1,12 +1,15 @@
 import { atom } from 'recoil'
 
-export const MasteDatabasenFilterAtom = atom<{
+export const MasteDatabasenMapOptionsAtom = atom<{
   operatorId: string | null
   technologyId: string | null
+  predict3DkEnb: boolean
 }>({
-  key: 'mastedatabasenFilter',
+  key: 'mastedatabasenMapOptions',
   default: {
     operatorId: null,
     technologyId: null,
+
+    predict3DkEnb: false,
   },
 })

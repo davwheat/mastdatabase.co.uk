@@ -1,11 +1,13 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { LayerGroup, useMap, useMapEvent } from 'react-leaflet'
+import { useMap, useMapEvent } from 'react-leaflet'
 
 import { debounce, throttle } from 'throttle-debounce'
 
 import { MapStatusMessages, StatusMessages } from './MapStatusMessages'
 import MarkersCanvas from './MarkersCanvas'
 import DataMarker from '@leaflet/DataMarker'
+import { MasteDatabasenMapOptionsAtom } from './MasteDatabasenMapOptionsAtom'
+import { mergeSites } from '@functions/maps/dk-mastedatabasen/mergeSites'
 
 import dayjs from 'dayjs'
 import dayjs_tz from 'dayjs/plugin/timezone'
@@ -19,11 +21,10 @@ import { ISite, Site } from './JsonApi/Models'
 
 import SiteIcon from '@assets/icons/site-icon.png'
 import { useRecoilValue } from 'recoil'
-import { MasteDatabasenFilterAtom } from './MasteDatabasenFilterAtom'
 
 export function SiteMarkers() {
   const map = useMap()
-  const filterState = useRecoilValue(MasteDatabasenFilterAtom)
+  const filterState = useRecoilValue(MasteDatabasenMapOptionsAtom)
   const lastFilterState = useRef(filterState)
 
   const [statusMessages, _setStatusMessages] = useState<StatusMessages>({
@@ -54,47 +55,9 @@ export function SiteMarkers() {
 
   const addDataMarkersToMap = useCallback(
     function addDataMarkersToMap(sitesData: ISite[]) {
-      const oldMarkers = (markerGroup.current!._markers as DataMarker<{ id: string; sites: ISite[] }>[]) || []
+      const sitesToAdd: { id: string; sites: ISite[] }[] = mergeSites(sitesData)
 
-      const oldMarkersMap = new Map(oldMarkers.map(m => [m.data.id, m]))
-
-      const LatLngOperatorMap: Record<string, Map<string, ISite[]>> = {}
-
-      sitesData.forEach(site => {
-        const op = site.Operator()
-
-        if (!op) return
-
-        LatLngOperatorMap[op.id] ||= new Map<string, ISite[]>()
-
-        const key = `${site.lat},${site.lon}`
-
-        LatLngOperatorMap[op.id].set(key, (LatLngOperatorMap[op.id].get(key) || []).concat(site))
-      })
-
-      const mergedSites: { id: string; sites: ISite[] }[] = Object.values(LatLngOperatorMap)
-        .map(opMap => {
-          const arr = Array.from(opMap.values())
-          return arr.map(sitesArrs => {
-            return {
-              id: sitesArrs.map(s => s.id).join(','),
-              sites: sitesArrs,
-            }
-          })
-        })
-        .flat()
-
-      const sitesToAdd: { id: string; sites: ISite[] }[] = []
-
-      // Performance: don't remove, recreate, and re-add markers that are still in the map.
-      mergedSites.forEach(point => {
-        // Remove matching markers from 'to be removed' list
-        if (oldMarkersMap.has(point.id)) oldMarkersMap.delete(point.id)
-        else sitesToAdd.push(point)
-      })
-
-      // Remove old markers that are not needed for new map position
-      markerGroup.current!.removeMarkers(oldMarkersMap)
+      markerGroup.current!.clear()
 
       const newMarkers: DataMarker<{ id: string; sites: ISite[] }>[] = sitesToAdd.map(point => {
         const sitesByRat: Record<string, ISite[]> = {}
