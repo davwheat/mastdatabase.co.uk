@@ -1,0 +1,33 @@
+.mastedatabasen-dk-popup {
+  font-size: 14px;
+  font-family: 'Jost', sans-serif;
+
+  border-radius: 12px;
+  overflow: hidden;
+
+  .leaflet-popup-content {
+    margin: 0;
+    padding: 16px;
+
+    &-wrapper {
+      max-height: calc(var(--map-height, 60vh) - 48px);
+      max-width: calc(90vw - 16px);
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+  }
+
+  dl {
+    dt {
+      font-weight: bold;
+    }
+
+    dd {
+      margin-bottom: 8px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}

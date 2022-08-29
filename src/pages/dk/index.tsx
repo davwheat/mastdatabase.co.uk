@@ -41,6 +41,17 @@ const Links: ILinkGroup[] = [
       },
     ],
   },
+  {
+    groupName: 'Cellular sites',
+    groupDescription: 'Information about sites across Denmark.',
+    groupLinks: [
+      {
+        title: 'Map of all sites in Denmark',
+        description: 'A map of all sites (mobile, TV, radio, GSM-R, etc.) sites across all of Denmark, using data from mastedatabasen.dk.',
+        url: '/maps/dk-mastedatabasen',
+      },
+    ],
+  },
 ]
 
 const useStyles = makeStyles({
