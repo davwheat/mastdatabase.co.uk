@@ -90,5 +90,8 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean"
   },
-  "packageManager": "yarn@3.2.1"
+  "packageManager": "yarn@3.2.1",
+  "resolutions": {
+    "underscore.inflection": "davwheat/underscore.inflection"
+  }
 }
