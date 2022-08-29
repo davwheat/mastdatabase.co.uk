@@ -11,7 +11,7 @@ export function getSitePopUpHtml(sites: ISite[]) {
   `)
 
   popupTextSegments.push(`
-  <dt>Adress</dt>
+  <dt>Address</dt>
   <dd>${[(sites[0].streetName ?? '') + ' ' + (sites[0].houseNumber ?? ''), sites[0].town, sites[0].postNumber]
     .map(s => s?.trim())
     .filter(t => !!t)
