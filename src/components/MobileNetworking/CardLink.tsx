@@ -38,6 +38,7 @@ const useStyles = makeStyles({
     display: 'flex',
     border: '2px solid black',
     outline: '0px solid black',
+    background: 'white',
 
     '&:hover, &:focus, &:active': {
       outlineWidth: 2,
