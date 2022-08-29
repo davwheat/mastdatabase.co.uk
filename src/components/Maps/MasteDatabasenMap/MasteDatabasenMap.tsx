@@ -114,8 +114,6 @@ function CustomControlButtons() {
   const map = useMap()
   const geolocation = useUserLocation()
 
-  const [settingsDialogOpen, setSettingsDialogOpen] = useState(false)
-
   const location: [number, number] | null = geolocation ? [geolocation.latitude, geolocation.longitude] : null
   const isMapLocationCentred = location ? map.getCenter().equals(location, 0.00001) : false
 
@@ -136,7 +134,6 @@ function CustomControlButtons() {
   return (
     <>
       <div className={classes.customButtonsContainer}>
-
         <Fab
           color={isMapLocationCentred ? 'primary' : 'default'}
           className={clsx(classes.customButton, classes.geolocationButton)}
