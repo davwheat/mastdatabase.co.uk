@@ -88,7 +88,7 @@ export function SiteMarkers() {
 
       markerGroup.current!.addMarkers(newMarkers)
     },
-    [markerGroup, markerGroup.current],
+    [markerGroup, markerGroup.current, filterState],
   )
 
   const debouncedLoadPoints = useCallback(
