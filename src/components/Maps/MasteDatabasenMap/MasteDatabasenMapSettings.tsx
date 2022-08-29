@@ -6,17 +6,22 @@ import { MasteDatabasenMapOptionsAtom } from './MasteDatabasenMapOptionsAtom'
 
 import { useRecoilState } from 'recoil'
 import { makeStyles } from '@material-ui/core'
+import Checkbox from '@components/Inputs/Checkbox'
 
 const useStyles = makeStyles({
-  root: {},
+  root: {
+    '& h2 ~ h2': {
+      marginTop: 32,
+    },
+  },
   input: {
     marginTop: 16,
   },
 })
 
-export default function MasteDatabasenFilterControls() {
+export default function MasteDatabasenMapSettings() {
   const [loadingModels, setLoadingModels] = useState<boolean | null>(null)
-  const [filterState, setFilterState] = useRecoilState(MasteDatabasenMapOptionsAtom)
+  const [mapOptions, setMapOptions] = useRecoilState(MasteDatabasenMapOptionsAtom)
 
   const classes = useStyles()
 
@@ -57,9 +62,9 @@ export default function MasteDatabasenFilterControls() {
       <SelectDropdown
         className={classes.input}
         label="Filter by operator"
-        value={filterState.operatorId || 'all'}
+        value={mapOptions.operatorId || 'all'}
         onChange={value => {
-          setFilterState(f => ({ ...f, operatorId: value === 'all' ? null : value }))
+          setMapOptions(f => ({ ...f, operatorId: value === 'all' ? null : value }))
         }}
         options={[{ label: 'All', value: 'all' }, ...models.current.operators.map(m => ({ label: m.operatorName, value: m.id }))]}
       />
@@ -67,11 +72,21 @@ export default function MasteDatabasenFilterControls() {
       <SelectDropdown
         className={classes.input}
         label="Filter by technology"
-        value={filterState.technologyId || 'all'}
+        value={mapOptions.technologyId || 'all'}
         onChange={value => {
-          setFilterState(f => ({ ...f, technologyId: value === 'all' ? null : value }))
+          setMapOptions(f => ({ ...f, technologyId: value === 'all' ? null : value }))
         }}
         options={[{ label: 'All', value: 'all' }, ...models.current.technologies.map(m => ({ label: m.technologyName, value: m.id }))]}
+      />
+
+      <h2 className="text-loud">Settings</h2>
+
+      <Checkbox
+        label="Show predicted eNBs on labels (3 DK)"
+        checked={mapOptions.showEnbOnLabel}
+        onChange={x => {
+          setMapOptions(f => ({ ...f, showEnbOnLabel: x.currentTarget.checked }))
+        }}
       />
     </div>
   )

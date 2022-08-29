@@ -76,7 +76,7 @@ export function SiteMarkers() {
             iconAnchor: [9, 9],
             popupAnchor: [0, 9],
           }),
-          text: getSiteLabelText(point.sites),
+          text: getSiteLabelText(point.sites, filterState.showEnbOnLabel),
         })
           .bindPopup(getSitePopUpHtml(point.sites), { closeButton: false, className: 'mastedatabasen-dk-popup' })
           .on({
@@ -145,7 +145,8 @@ export function SiteMarkers() {
   )
 
   useEffect(() => {
-    if (lastFilterState.current.operatorId !== filterState.operatorId || lastFilterState.current.technologyId !== filterState.technologyId) {
+    if (JSON.stringify(lastFilterState.current) !== JSON.stringify(filterState)) {
+      showLoadingMessage()
       debouncedLoadPoints()
     }
   }, [filterState, debouncedLoadPoints])

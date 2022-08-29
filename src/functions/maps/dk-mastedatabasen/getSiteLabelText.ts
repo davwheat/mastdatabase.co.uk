@@ -1,4 +1,5 @@
 import type { ISite } from '@components/Maps/MasteDatabasenMap/JsonApi/Models'
+import { predictThreeDkEnb } from './predictThreeDkEnb'
 
 const OperatorIdToAbbr: Record<string, string> = {
   '1': 'Banedanmark',
@@ -17,7 +18,7 @@ export const RatShorthand: Record<string, string> = {
   NR: 'NR',
 }
 
-export function getSiteLabelText(sites: ISite[]): string {
+export function getSiteLabelText(sites: ISite[], showEnb: boolean = false): string {
   const labelSegments: string[] = []
 
   // #region Operator shortname
@@ -25,8 +26,14 @@ export function getSiteLabelText(sites: ISite[]): string {
   // #endregion
 
   // #region Station name(s)
-  const names = Array.from(new Set(sites.map(s => s.stationName)))
-  labelSegments.push(names.length > 1 ? `${names[0]}, (+${names.length - 1} more)` : names[0])
+  if (showEnb && sites[0].Operator()?.id === '5') {
+    const enb = predictThreeDkEnb(sites[0].stationName)
+
+    labelSegments.push(enb ? `eNB ${predictThreeDkEnb(sites[0].stationName)}` : 'Unknown eNB')
+  } else {
+    const names = Array.from(new Set(sites.map(s => s.stationName)))
+    labelSegments.push(names.length > 1 ? `${names[0]}, (+${names.length - 1} more)` : names[0])
+  }
   // #endregion
 
   // #region Frequency list

@@ -6,6 +6,7 @@ import Breadcrumbs from '@components/Design/Breadcrumbs'
 import Section from '@components/Design/Section'
 import MasteDatabasenMap from '@components/Maps/MasteDatabasenMap'
 import Link from '@components/Links/Link'
+import MasteDatabasenMapSettings from '@components/Maps/MasteDatabasenMap/MasteDatabasenMapSettings'
 
 import Colors from '@data/colors.json'
 
@@ -15,7 +16,6 @@ import { makeStyles, NoSsr } from '@material-ui/core'
 import { RecoilRoot } from 'recoil'
 
 import type { PageProps } from 'gatsby'
-import MasteDatabasenFilterControls from '@components/Maps/MasteDatabasenMap/FilterControls'
 
 const useStyles = makeStyles({
   mapSection: {},
@@ -67,7 +67,7 @@ export default function MastedatabasenMapPage({ location }: PageProps) {
           </Section>
 
           <Section>
-            <MasteDatabasenFilterControls />
+            <MasteDatabasenMapSettings />
           </Section>
         </RecoilRoot>
       </ErrorBoundaryContext>
