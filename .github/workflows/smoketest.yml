@@ -9,7 +9,7 @@ env:
   NODE_VERSION: 16.x
   # god this is a shit workaround but needed due to the `resolutions` key, seemingly
   # see https://github.com/yarnpkg/berry/issues/1142
-  YARN_CHECKSUM_BEHAVIOR: update
+  # YARN_CHECKSUM_BEHAVIOR: update
 
 jobs:
   formatting:
