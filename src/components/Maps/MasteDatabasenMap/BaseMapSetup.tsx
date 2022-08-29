@@ -29,7 +29,7 @@ export function BaseMapSetup() {
 
   return (
     <>
-      <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" maxZoom={19} />
+      <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" maxZoom={25} maxNativeZoom={19} />
       <AttributionControl position="bottomright" prefix={undefined} />
     </>
   )

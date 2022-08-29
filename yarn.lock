@@ -4101,6 +4101,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/rbush@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "@types/rbush@npm:3.0.0"
+  checksum: 050eb2af4d7cb59c5b3dddfb9af93e4abfcffb1766d82fdcd4d37e03cff374f7cf761eef3b8cd48f976416ee3dd7ee4991bde938698865ed0c660317f3a020c2
+  languageName: node
+  linkType: hard
+
 "@types/reach__router@npm:^1.3.10":
   version: 1.3.10
   resolution: "@types/reach__router@npm:1.3.10"
@@ -4590,6 +4597,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"active-resource@npm:^1.0.0-beta.7":
+  version: 1.0.0-beta.7
+  resolution: "active-resource@npm:1.0.0-beta.7"
+  dependencies:
+    axios: ^0.16.2
+    es6-promise: ^4.1.1
+    qs: ^6.5.0
+    underscore: 1.8.3
+    underscore.inflection: ^1.3.3
+    underscore.string: latest
+  checksum: ab8cd65a21dd05809c7ea36b87dfc0be23cb1b019aa826ecb605b9daad0756342ec84f4299e6f88d87e7c9223b0734f59aa32adb43292dffdee968b9fad492fc
+  languageName: node
+  linkType: hard
+
 "address@npm:1.1.2":
   version: 1.1.2
   resolution: "address@npm:1.1.2"
@@ -5032,6 +5053,16 @@ __metadata:
   version: 4.4.1
   resolution: "axe-core@npm:4.4.1"
   checksum: ad14c5b71059dc3d24ef2519b8cd96e98b4a572379396201ce449d1c4262181821d6ca9550df65b22371faf06d28bbe94d391fe5675f2a08e6550f7b5da8416d
+  languageName: node
+  linkType: hard
+
+"axios@npm:^0.16.2":
+  version: 0.16.2
+  resolution: "axios@npm:0.16.2"
+  dependencies:
+    follow-redirects: ^1.2.3
+    is-buffer: ^1.1.5
+  checksum: fb6a93d09e486d585de59c9b03b63062c7e9529d3e35e34eb0aedfc78bceed4e78d3d68d3e003b165ae91fde67a02c9a6e772e91ac3edc57d2bc1e6737b66d99
   languageName: node
   linkType: hard
 
@@ -8259,6 +8290,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"follow-redirects@npm:^1.2.3":
+  version: 1.15.1
+  resolution: "follow-redirects@npm:1.15.1"
+  peerDependenciesMeta:
+    debug:
+      optional: true
+  checksum: 6aa4e3e3cdfa3b9314801a1cd192ba756a53479d9d8cca65bf4db3a3e8834e62139245cd2f9566147c8dfe2efff1700d3e6aefd103de4004a7b99985e71dd533
+  languageName: node
+  linkType: hard
+
 "font-color-contrast@npm:^11.1.0":
   version: 11.1.0
   resolution: "font-color-contrast@npm:11.1.0"
@@ -9716,6 +9757,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"hamt_plus@npm:1.0.2":
+  version: 1.0.2
+  resolution: "hamt_plus@npm:1.0.2"
+  checksum: af26ea32db03009019cc83dfa9411521a2fa16079443de1a502c9be46d8b3c975acda8ed93fc5750ef08d3186d35901e2d8cfe717dd54bea67b358601fa74e4c
+  languageName: node
+  linkType: hard
+
 "has-bigints@npm:^1.0.1, has-bigints@npm:^1.0.2":
   version: 1.0.2
   resolution: "has-bigints@npm:1.0.2"
@@ -10235,6 +10283,13 @@ __metadata:
     call-bind: ^1.0.2
     has-tostringtag: ^1.0.0
   checksum: c03b23dbaacadc18940defb12c1c0e3aaece7553ef58b162a0f6bba0c2a7e1551b59f365b91e00d2dbac0522392d576ef322628cb1d036a0fe51eb466db67222
+  languageName: node
+  linkType: hard
+
+"is-buffer@npm:^1.1.5":
+  version: 1.1.6
+  resolution: "is-buffer@npm:1.1.6"
+  checksum: 4a186d995d8bbf9153b4bd9ff9fd04ae75068fe695d29025d25e592d9488911eeece84eefbd8fa41b8ddcc0711058a71d4c466dcf6f1f6e1d83830052d8ca707
   languageName: node
   linkType: hard
 
@@ -11585,9 +11640,11 @@ __metadata:
     "@types/leaflet": ^1.7.11
     "@types/leaflet.markercluster": ^1.5.1
     "@types/material-ui": ^0.21.12
+    "@types/rbush": ^3.0.0
     "@types/react": ^17.0.48
     "@types/throttle-debounce": ^5.0.0
     "@welldone-software/why-did-you-render": ^7.0.1
+    active-resource: ^1.0.0-beta.7
     babel-plugin-transform-remove-console: ^6.9.4
     case-sensitive-paths-webpack-plugin: ^2.4.0
     clsx: ^1.2.1
@@ -11628,18 +11685,20 @@ __metadata:
     preact-render-to-string: ^5.2.2
     prettier: ^2.7.1
     prop-types: ^15.8.1
+    rbush: ^3.0.1
     react: ^17.0.2
     react-dom: ^17.0.2
     react-head: ^3.4.2
     react-hooks-visible: ^1.1.1
     react-leaflet: ^4.0.2
     react-use-error-boundary: ^3.0.0
-    react-uuid: ^1.0.2
+    react-uuid: ^1.0.3
+    recoil: ^0.7.5
     remark-math: ^3.0.1
     remark-twemoji: ^0.1.1
     throttle-debounce: ^5.0.0
     twemoji: ^14.0.2
-    typescript: ^4.7.4
+    typescript: ^4.8.2
   languageName: unknown
   linkType: soft
 
@@ -13830,6 +13889,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"qs@npm:^6.5.0":
+  version: 6.11.0
+  resolution: "qs@npm:6.11.0"
+  dependencies:
+    side-channel: ^1.0.4
+  checksum: 6e1f29dd5385f7488ec74ac7b6c92f4d09a90408882d0c208414a34dd33badc1a621019d4c799a3df15ab9b1d0292f97c1dd71dc7c045e69f81a8064e5af7297
+  languageName: node
+  linkType: hard
+
 "query-string@npm:^6.14.1":
   version: 6.14.1
   resolution: "query-string@npm:6.14.1"
@@ -13860,6 +13928,13 @@ __metadata:
   version: 5.1.1
   resolution: "quick-lru@npm:5.1.1"
   checksum: a516faa25574be7947969883e6068dbe4aa19e8ef8e8e0fd96cddd6d36485e9106d85c0041a27153286b0770b381328f4072aa40d3b18a19f5f7d2b78b94b5ed
+  languageName: node
+  linkType: hard
+
+"quickselect@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "quickselect@npm:2.0.0"
+  checksum: ed2e78431050d223fb75da20ee98011aef1a03f7cb04e1a32ee893402e640be3cfb76d72e9dbe01edf3bb457ff6a62e5c2d85748424d1aa531f6ba50daef098c
   languageName: node
   linkType: hard
 
@@ -13907,6 +13982,15 @@ __metadata:
   peerDependencies:
     webpack: ^4.0.0 || ^5.0.0
   checksum: 51cc1b0d0e8c37c4336b5318f3b2c9c51d6998ad6f56ea09612afcfefc9c1f596341309e934a744ae907177f28efc9f1654eacd62151e82853fcc6d37450e795
+  languageName: node
+  linkType: hard
+
+"rbush@npm:^3.0.1":
+  version: 3.0.1
+  resolution: "rbush@npm:3.0.1"
+  dependencies:
+    quickselect: ^2.0.0
+  checksum: b7def5ba762ca01b6c7c032098ef61b86bd4fef4afb82e4a1d70a07a929b39e779290446c2d4730f577e8a1c8fd0dfd349605b5ea0229258d5f013debdffa65a
   languageName: node
   linkType: hard
 
@@ -14069,10 +14153,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-uuid@npm:^1.0.2":
-  version: 1.0.2
-  resolution: "react-uuid@npm:1.0.2"
-  checksum: f18534f533f98221ec17c1e3c51e6c9c22016fffe3e697a92f4bf343ae9590023c201f94e9f673e46716ec650c0a892f72327892eb3d6ab44dfe15306ce6d1b7
+"react-uuid@npm:^1.0.3":
+  version: 1.0.3
+  resolution: "react-uuid@npm:1.0.3"
+  checksum: 364d23d07908927d0db80a8236752d7e6ee148eeccffa3e8f961410a2a2d4dd1315def0015d594775b56f9c1fbe4f2838ec08e2ae5149f992aad3ec2a3c29a62
   languageName: node
   linkType: hard
 
@@ -14136,6 +14220,22 @@ __metadata:
   dependencies:
     picomatch: ^2.2.1
   checksum: 1ced032e6e45670b6d7352d71d21ce7edf7b9b928494dcaba6f11fba63180d9da6cd7061ebc34175ffda6ff529f481818c962952004d273178acd70f7059b320
+  languageName: node
+  linkType: hard
+
+"recoil@npm:^0.7.5":
+  version: 0.7.5
+  resolution: "recoil@npm:0.7.5"
+  dependencies:
+    hamt_plus: 1.0.2
+  peerDependencies:
+    react: ">=16.13.1"
+  peerDependenciesMeta:
+    react-dom:
+      optional: true
+    react-native:
+      optional: true
+  checksum: 19b410cca6839c8b886b91378112e12de3e0393b547211dafcf7a272c1aa2d7af6c09a9ed39fb3e1997abe5f3d6583e3774dc9f9cdda8c36e4cb0be64a1b17ce
   languageName: node
   linkType: hard
 
@@ -15140,6 +15240,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"sprintf-js@npm:^1.1.1":
+  version: 1.1.2
+  resolution: "sprintf-js@npm:1.1.2"
+  checksum: d4bb46464632b335e5faed381bd331157e0af64915a98ede833452663bc672823db49d7531c32d58798e85236581fb7342fd0270531ffc8f914e186187bf1c90
+  languageName: node
+  linkType: hard
+
 "sprintf-js@npm:~1.0.2":
   version: 1.0.3
   resolution: "sprintf-js@npm:1.0.3"
@@ -16054,23 +16161,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:^4.7.4":
-  version: 4.7.4
-  resolution: "typescript@npm:4.7.4"
+"typescript@npm:^4.8.2":
+  version: 4.8.2
+  resolution: "typescript@npm:4.8.2"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 5750181b1cd7e6482c4195825547e70f944114fb47e58e4aa7553e62f11b3f3173766aef9c281783edfd881f7b8299cf35e3ca8caebe73d8464528c907a164df
+  checksum: 7f5b81d0d558c9067f952c7af52ab7f19c2e70a916817929e4a5b256c93990bf3178eccb1ac8a850bc75df35f6781b6f4cb3370ce20d8b1ded92ed462348f628
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@^4.7.4#~builtin<compat/typescript>":
-  version: 4.7.4
-  resolution: "typescript@patch:typescript@npm%3A4.7.4#~builtin<compat/typescript>::version=4.7.4&hash=7ad353"
+"typescript@patch:typescript@^4.8.2#~builtin<compat/typescript>":
+  version: 4.8.2
+  resolution: "typescript@patch:typescript@npm%3A4.8.2#~builtin<compat/typescript>::version=4.8.2&hash=7ad353"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 9096d8f6c16cb80ef3bf96fcbbd055bf1c4a43bd14f3b7be45a9fbe7ada46ec977f604d5feed3263b4f2aa7d4c7477ce5f9cd87de0d6feedec69a983f3a4f93e
+  checksum: 6f49363af8af2fe480da1d5fa68712644438785208b06690a3cbe5e7365fd652c3a0f1e587bc8684d78fb69de3dde4de185c0bad7bb4f3664ddfc813ce8caad6
   languageName: node
   linkType: hard
 
@@ -16097,6 +16204,30 @@ __metadata:
   version: 0.1.2
   resolution: "unc-path-regex@npm:0.1.2"
   checksum: a05fa2006bf4606051c10fc7968f08ce7b28fa646befafa282813aeb1ac1a56f65cb1b577ca7851af2726198d59475bb49b11776036257b843eaacee2860a4ec
+  languageName: node
+  linkType: hard
+
+"underscore.inflection@npm:^1.3.3":
+  version: 1.3.3
+  resolution: "underscore.inflection@npm:1.3.3"
+  checksum: 3367092444ac988f8ce06f3bddeddd3279e04ae25249971335217cc2324ef64f2952c115c5e0d8de65c7c8cac09a9e5cefa198ac9c749cf07e709cbfe2bcaa7f
+  languageName: node
+  linkType: hard
+
+"underscore.string@npm:latest":
+  version: 3.3.6
+  resolution: "underscore.string@npm:3.3.6"
+  dependencies:
+    sprintf-js: ^1.1.1
+    util-deprecate: ^1.0.2
+  checksum: b7719c30e5d1fdda4ee9379e8d80dca2b0668942420ba365ae3410120e08225fe36707a7981ce0f921812dee6a2290b713cdce1e75e770b98e67a45d8a378d35
+  languageName: node
+  linkType: hard
+
+"underscore@npm:1.8.3":
+  version: 1.8.3
+  resolution: "underscore@npm:1.8.3"
+  checksum: 46d9ea25c8b9f6f21080438f5abc1c8be3063efca5154670bf7ef6e61587660113581b258aea07ccab4045b9ab6e9293ef89103210a3491b64ef03c2d8051a36
   languageName: node
   linkType: hard
 

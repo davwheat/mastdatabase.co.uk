@@ -1,10 +1,10 @@
-import React, { useCallback, useMemo, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { LayerGroup, useMap, useMapEvent } from 'react-leaflet'
 
 import { debounce, throttle } from 'throttle-debounce'
 
-import getMastedatabasenDataPoints, { MastedatabasenDataPoint } from '@functions/maps/mastedatabasen/getMastedatabasenDataPoints'
 import { MapStatusMessages, StatusMessages } from './MapStatusMessages'
+import MarkersCanvas from './MarkersCanvas'
 import DataMarker from '@leaflet/DataMarker'
 
 import dayjs from 'dayjs'
@@ -15,17 +15,24 @@ dayjs.extend(dayjs_tz)
 dayjs.extend(dayjs_utc)
 
 import type { LayerGroup as LayerGroupType, Map as MapType } from 'leaflet'
+import { ISite, Site } from './JsonApi/Models'
+
+import SiteIcon from '@assets/icons/site-icon.png'
+import { useRecoilValue } from 'recoil'
+import { MasteDatabasenFilterAtom } from './MasteDatabasenFilterAtom'
 
 export function SiteMarkers() {
   const map = useMap()
+  const filterState = useRecoilValue(MasteDatabasenFilterAtom)
+  const lastFilterState = useRef(filterState)
+
   const [statusMessages, _setStatusMessages] = useState<StatusMessages>({
     loading: false,
     fetchFail: false,
-    tooManyPoints: false,
+    tooManySites: false,
   })
+
   const markerGroup = useRef<LayerGroupType<any> | null>(null)
-  const [aborter, setAborter] = useState<AbortController>(new AbortController())
-  const oldAborter = useRef(aborter)
 
   /**
    * Set the status messages for the map, bailing out of the state change
@@ -45,45 +52,125 @@ export function SiteMarkers() {
     [_setStatusMessages],
   )
 
-  const debouncedLoadPoints = useCallback(
-    debounce(1000, () => loadPoints(map, setStatusMessages, markerGroup.current!, aborter)),
-    [map, setStatusMessages, markerGroup, aborter],
-  )
+  const addDataMarkersToMap = useCallback(
+    function addDataMarkersToMap(sitesData: ISite[]) {
+      const oldMarkers = (markerGroup.current!._markers as DataMarker<{ id: string; sites: ISite[] }>[]) || []
 
-  /**
-   * Debounced, memoised callback to replace the current AbortController
-   * with a new one.
-   */
-  const _resetAborter = useCallback(
-    debounce(200, () => {
-      setAborter(new AbortController())
-    }),
-    [setAborter],
-  )
+      const oldMarkersMap = new Map(oldMarkers.map(m => [m.data.id, m]))
 
-  // We need to trigger a final load after the map has stopped moving,
-  // and the AbortController has been reset one final time.
-  if (oldAborter.current !== aborter) {
-    oldAborter.current = aborter
-    debouncedLoadPoints()
-  }
+      const LatLngOperatorMap: Record<string, Map<string, ISite[]>> = {}
 
-  /**
-   * Triggers the showing of the loading message at the top of the map
-   * and cancels any in-progress streetworks data fetching.
-   */
-  const _showLoadingMessage = () => {
-    aborter.abort()
-    _resetAborter()
+      sitesData.forEach(site => {
+        const op = site.Operator()
 
-    if (!statusMessages.loading) {
-      setStatusMessages({
-        loading: true,
-        fetchFail: false,
-        tooManyPoints: false,
+        if (!op) return
+
+        LatLngOperatorMap[op.id] ||= new Map<string, ISite[]>()
+
+        const key = `${site.lat},${site.lon}`
+
+        LatLngOperatorMap[op.id].set(key, (LatLngOperatorMap[op.id].get(key) || []).concat(site))
       })
-    }
-  }
+
+      const mergedSites: { id: string; sites: ISite[] }[] = Object.values(LatLngOperatorMap)
+        .map(opMap => {
+          const arr = Array.from(opMap.values())
+          return arr.map(sitesArrs => {
+            return {
+              id: sitesArrs.map(s => s.id).join(','),
+              sites: sitesArrs,
+            }
+          })
+        })
+        .flat()
+
+      const sitesToAdd: { id: string; sites: ISite[] }[] = []
+
+      // Performance: don't remove, recreate, and re-add markers that are still in the map.
+      mergedSites.forEach(point => {
+        // Remove matching markers from 'to be removed' list
+        if (oldMarkersMap.has(point.id)) oldMarkersMap.delete(point.id)
+        else sitesToAdd.push(point)
+      })
+
+      // Remove old markers that are not needed for new map position
+      markerGroup.current!.removeMarkers(oldMarkersMap)
+
+      const newMarkers: DataMarker<{ id: string; sites: ISite[] }>[] = sitesToAdd.map(point => {
+        const sitesByRat: Record<string, ISite[]> = {}
+
+        point.sites.forEach(site => {
+          sitesByRat[site.Technology().id] ||= []
+          sitesByRat[site.Technology().id].push(site)
+        })
+
+        const popupTextSegments: string[] = []
+
+        popupTextSegments.push(`
+        <dt>Operator</dt>
+        <dd>${point.sites[0].Operator()?.operatorName ?? 'Unknown'}</dd>
+        `)
+
+        popupTextSegments.push(`
+        <dt>Adress</dt>
+        <dd>${[(point.sites[0].streetName ?? '') + ' ' + (point.sites[0].houseNumber ?? ''), point.sites[0].town, point.sites[0].postNumber]
+          .map(s => s?.trim())
+          .filter(t => !!t)
+          .join(', ')}</dd>
+        `)
+
+        popupTextSegments.push(`
+        <dt>Station name(s)</dt>
+        <dd>${Array.from(new Set(point.sites.map(s => s.stationName))).join(', ')}</dd>
+        `)
+
+        return new DataMarker<{ id: string; sites: ISite[] }>([point.sites[0].lat, point.sites[0].lon], point, {
+          icon: L.icon({
+            iconUrl: SiteIcon,
+            iconSize: [18, 18],
+            iconAnchor: [9, 9],
+            popupAnchor: [0, 9],
+          }),
+          text: generateLabelSegments(point.sites)
+            .filter(l => !!l)
+            .join('\n'),
+        })
+          .bindPopup(`<dl>${popupTextSegments.join('')}</dl>`, { closeButton: false, className: 'mastedatabasen-dk-popup' })
+          .on({
+            click(e) {
+              this.openPopup()
+            },
+          })
+      })
+
+      markerGroup.current!.addMarkers(newMarkers)
+    },
+    [markerGroup, markerGroup.current],
+  )
+
+  const debouncedLoadPoints = useCallback(
+    debounce(1000, async () => {
+      const mapBounds = map.getBounds()
+
+      const where: Record<string, string> = {}
+
+      where.boundingBox = `${mapBounds.getNorth()},${mapBounds.getEast()},${mapBounds.getSouth()},${mapBounds.getWest()}`
+
+      if (filterState.operatorId) where.operator = filterState.operatorId
+      if (filterState.technologyId) where.technology = filterState.technologyId
+
+      let collection = await Site.where(where).all()
+
+      setStatusMessages({
+        loading: false,
+        fetchFail: false,
+        tooManySites: collection.hasNextPage(),
+      })
+
+      addDataMarkersToMap(collection.all())
+    }),
+    [filterState, map, setStatusMessages, markerGroup],
+  )
 
   /**
    * **Throttled**
@@ -91,12 +178,20 @@ export function SiteMarkers() {
    * Triggers the showing of the loading message at the top of the map
    * and cancels any in-progress streetworks data fetching.
    */
-  const showLoadingMessage = useCallback(throttle(100, _showLoadingMessage, { noTrailing: true }), [
-    statusMessages,
-    setStatusMessages,
-    aborter,
-    _resetAborter,
-  ])
+  const showLoadingMessage = useCallback(
+    throttle(
+      100,
+      () => {
+        setStatusMessages({
+          loading: true,
+          fetchFail: false,
+          tooManySites: false,
+        })
+      },
+      { noTrailing: true },
+    ),
+    [setStatusMessages],
+  )
 
   useMapEvent(
     'move',
@@ -106,11 +201,18 @@ export function SiteMarkers() {
     }, [showLoadingMessage, debouncedLoadPoints]),
   )
 
+  useEffect(() => {
+    if (lastFilterState.current.operatorId !== filterState.operatorId || lastFilterState.current.technologyId !== filterState.technologyId) {
+      debouncedLoadPoints()
+    }
+  }, [filterState, debouncedLoadPoints])
+
   // Memoise to prevent DOM redraws whenever position changes
   return useMemo(
     () => (
       <>
-        <LayerGroup ref={markerGroup} />
+        {/* <LayerGroup ref={markerGroup} /> */}
+        <MarkersCanvas ref={markerGroup} />
 
         <MapStatusMessages messages={statusMessages} />
       </>
@@ -119,86 +221,86 @@ export function SiteMarkers() {
   )
 }
 
-// StreetworksMarkers.whyDidYouRender = true
+const OperatorIdToAbbr: Record<string, string> = {
+  '1': 'Banedanmark',
+  '2': 'TDC',
+  '3': 'Cibicom',
+  '4': 'Telia-Telenor',
+  '5': '3 DK',
+  '6': 'Norlys',
+  '7': 'DR',
+}
 
-async function loadPoints(
-  map: MapType,
-  setStatusMessages: React.Dispatch<React.SetStateAction<StatusMessages>>,
-  markerGroup: LayerGroupType<any>,
-  aborter: AbortController,
-) {
-  setStatusMessages(s => ({ ...s, loading: true }))
+const RatShorthand: Record<string, string> = {
+  GSM: 'G',
+  UMTS: 'U',
+  LTE: 'L',
+  NR: 'NR',
+}
 
-  const bounds = map.getBounds()
+function generateLabelSegments(sites: ISite[]): string[] {
+  const labelSegments: string[] = []
 
-  const bbString = bounds.toBBoxString()
-  const rawData = await getMastedatabasenDataPoints(bbString, aborter)
+  // #region Operator shortname
+  labelSegments.push(OperatorIdToAbbr[sites[0].Operator()?.id] ?? sites[0].Operator()?.operatorName ?? 'UNKNOWN')
+  // #endregion
 
-  console.log(rawData)
+  // #region Station name(s)
+  const names = Array.from(new Set(sites.map(s => s.stationName)))
+  labelSegments.push(names.length > 1 ? `${names[0]}, (+${names.length - 1} more)` : names[0])
+  // #endregion
 
-  // newPoints.map(point => {
-  //   const name = getPromoterName(point)
+  // #region Frequency list
+  const ratFreqList: Record<'GSM' | 'UMTS' | 'LTE' | 'NR' | 'Other', number[]> = {
+    GSM: [],
+    UMTS: [],
+    LTE: [],
+    NR: [],
+    Other: [],
+  }
 
-  //   new DataMarker([point.latitude, point.longitude], point, {
-  //     icon: getPromoterIcon(point),
-  //   })
-  //     .bindPopup(
-  //       `
-  //       <h1>${name} works</h1>
-  //       <p>
-  //         ${dayjs.tz(point.start_date, point.start_date_tz).format("DD MMM 'YY HH:mm")}
-  //         to
-  //         ${dayjs.tz(point.end_date, point.end_date_tz).format("DD MMM 'YY HH:mm")}
-  //       </p>
+  sites.forEach(s => {
+    const rat: string | null = s.Technology()?.technologyName
+    const freq: number | null = s.FrequencyBand()?.frequencyBand
 
-  //       <h2>Work description</h2>
-  //       <p>${point.works_desc || 'None provided'}</p>
+    if (!freq) return null
 
-  //       <h2>Work permit ref</h2>
-  //       <p>${point.permit_ref || 'None provided'}</p>
-
-  //       <h2>Promoter</h2>
-  //       <p>${point.promoter || 'None provided'}</p>
-
-  //       <h2>Current status</h2>
-  //       <p>${
-  //         dayjs.tz(point.start_date, point.start_date_tz).diff(dayjs()) < 0
-  //           ? 'Works in progress'
-  //           : dayjs.tz(point.end_date, point.start_date_tz).diff(dayjs()) < 0
-  //           ? 'Completed'
-  //           : 'Upcoming'
-  //       }</p>
-
-  //       <h2>Permit status</h2>
-  //       <p id="${point.se_id}__permit_status_desc">Loading...</p>
-
-  //       <h2>Works last updated</h2>
-  //       <p id="${point.se_id}__event_lastmod_date_disp">Loading...</p>
-
-  //       <h2>Last updated on one.network</h2>
-  //       <p id="${point.se_id}__last_adapter_update_disp">Loading...</p>
-  //       `,
-  //     )
-  //     .addTo(markerGroup)
-  //     .on('popupopen', function (e) {
-  //       const elementIdPrefix = `${e.target.data.se_id}__`
-
-  //       getStreetworksDataPointDetails(e.target.data.se_id || e.target.data.entity_id, e.target.data.phase_id).then(data => {
-  //         const fields = ['permit_status_desc', 'event_lastmod_date_disp', 'last_adapter_update_disp']
-
-  //         fields.forEach(field => {
-  //           const el = document.getElementById(`${elementIdPrefix}${field}`)
-  //           if (!el) return
-
-  //           el.innerText = data.swdata[field]
-  //         })
-  //       })
-  //     })
-  // })
-
-  setStatusMessages({
-    loading: false,
-    fetchFail: false,
-    tooManyPoints: false,
+    if (rat && ['GSM', 'UMTS', 'LTE', 'NR'].includes(rat)) {
+      ratFreqList[rat as keyof typeof ratFreqList].push(freq)
+    } else {
+      ratFreqList.Other.push(freq)
+    }
   })
+
+  const allFreqs = Array.from(new Set(Object.values(ratFreqList).flat()))
+  allFreqs.sort((a, b) => a - b)
+
+  const ratFreqs = allFreqs.map(freq => {
+    let str = ''
+
+    Object.entries(ratFreqList).forEach(([rat, freqs]) => {
+      if (rat === 'Other') return
+
+      if (freqs.includes(freq)) {
+        str += RatShorthand[rat] + '/'
+      }
+    })
+
+    if (str.length === 0) {
+      // Skip freq rewrite for non-mobile networking sites
+      str += freq.toString()
+    } else {
+      // 800 -> 08, 2100 -> 21, 260000 -> 2600, etc
+      str = str.slice(0, -1)
+      str += freq.toString().slice(0, -2).padStart(2, '0')
+    }
+
+    return str
+  })
+
+  labelSegments.push(ratFreqs.join(', '))
+
+  // #endregion
+
+  return labelSegments
 }

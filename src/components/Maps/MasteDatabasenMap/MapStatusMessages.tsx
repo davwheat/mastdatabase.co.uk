@@ -9,15 +9,15 @@ import Colors from '@data/colors.json'
 export const StatusMessagesText = {
   loading: (
     <span style={{ display: 'flex', alignItems: 'center' }}>
-      <LoadingSpinner inline size="1.1em" style={{ marginRight: 12, flexShrink: 0 }} /> Loading streetworks data...
+      <LoadingSpinner inline size="1.1em" style={{ marginRight: 12, flexShrink: 0 }} /> Loading data...
     </span>
   ),
-  fetchFail: 'Failed to load streetworks. Check your internet connection.',
-  tooManyPoints: 'Too many streetworks in this area. Please zoom in.',
+  fetchFail: 'Failed to load data. Check your internet connection.',
+  tooManySites: 'Only the first 5000 sites are shown.',
 } as const
 
 const InfoStatusKeys: StatusMessageKey[] = ['loading']
-const ErrorStatusKeys: StatusMessageKey[] = ['fetchFail', 'tooManyPoints']
+const ErrorStatusKeys: StatusMessageKey[] = ['fetchFail', 'tooManySites']
 
 type StatusMessageKey = keyof typeof StatusMessagesText
 export type StatusMessages = Record<StatusMessageKey, boolean>
@@ -64,7 +64,7 @@ export function MapStatusMessages({ messages }: IProps) {
   return (
     <div role="status" aria-live="polite" className={classes.root}>
       {Object.entries(StatusMessagesText).map(([messageKey, message]) => {
-        if (!messages[messageKey]) return null
+        if (!messages[messageKey as keyof StatusMessages]) return null
 
         return (
           <p

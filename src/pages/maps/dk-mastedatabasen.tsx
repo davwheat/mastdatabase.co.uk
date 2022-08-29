@@ -4,16 +4,18 @@ import Layout from '@components/Layout'
 import Hero from '@components/Design/Hero'
 import Breadcrumbs from '@components/Design/Breadcrumbs'
 import Section from '@components/Design/Section'
+import MasteDatabasenMap from '@components/Maps/MasteDatabasenMap'
+import Link from '@components/Links/Link'
 
 import Colors from '@data/colors.json'
 
+import { ErrorBoundaryContext } from 'react-use-error-boundary'
 import { makeStyles, NoSsr } from '@material-ui/core'
 
-import MasteDatabasenMap from '@components/Maps/MasteDatabasenMap'
+import { RecoilRoot } from 'recoil'
 
 import type { PageProps } from 'gatsby'
-import { ErrorBoundaryContext } from 'react-use-error-boundary'
-import Link from '@components/Links/Link'
+import MasteDatabasenFilterControls from '@components/Maps/MasteDatabasenMap/FilterControls'
 
 const useStyles = makeStyles({
   mapSection: {},
@@ -57,11 +59,17 @@ export default function MastedatabasenMapPage({ location }: PageProps) {
           </p>
         </Section>
 
-        <Section width="full" className={classes.mapSection}>
-          <NoSsr>
-            <MasteDatabasenMap />
-          </NoSsr>
-        </Section>
+        <RecoilRoot>
+          <Section width="full" className={classes.mapSection}>
+            <NoSsr>
+              <MasteDatabasenMap />
+            </NoSsr>
+          </Section>
+
+          <Section>
+            <MasteDatabasenFilterControls />
+          </Section>
+        </RecoilRoot>
       </ErrorBoundaryContext>
     </Layout>
   )

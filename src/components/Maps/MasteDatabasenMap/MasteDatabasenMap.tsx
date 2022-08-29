@@ -7,6 +7,7 @@ import { useErrorBoundary } from 'react-use-error-boundary'
 
 import { MapContainer, ScaleControl, useMap, useMapEvent } from 'react-leaflet'
 import { Fab, makeStyles, Zoom } from '@material-ui/core'
+import { RecoilRoot } from 'recoil'
 
 import clsx from 'clsx'
 import dayjs from 'dayjs'
@@ -20,7 +21,6 @@ import 'leaflet/dist/leaflet.css'
 import './MasteDatabasenMap.less'
 
 import { GeolocationMarker } from './GeolocationMarker'
-import { PromoterSettingsDialog } from './PromoterSettingsDialog'
 import { BaseMapSetup } from './BaseMapSetup'
 import { SiteMarkers } from './SiteMarkers'
 import ButtonLink from '@components/Links/ButtonLink'
@@ -62,6 +62,7 @@ export default function MasteDatabasenMap() {
       center={[56.2411002, 10.5452023]}
       zoom={7}
       attributionControl={false}
+      preferCanvas
     >
       <GeolocationMarker />
       <CustomControlButtons />
@@ -166,7 +167,7 @@ function CustomControlButtons() {
               return
             }
 
-            map.flyTo(location, 14)
+            map.flyTo(location, 17)
           }, [location, getGeolocationPermissionStatus])}
           data-located={isMapLocationCentred}
         >
@@ -178,8 +179,6 @@ function CustomControlButtons() {
           </svg>
         </Fab>
       </div>
-
-      <PromoterSettingsDialog open={settingsDialogOpen} onClose={() => setSettingsDialogOpen(false)} />
     </>
   )
 }
