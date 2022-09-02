@@ -4,10 +4,11 @@ import clsx from 'clsx'
 import Colors from '@data/colors.json'
 import Breakpoints from '@data/breakpoints'
 import { nanoid } from 'nanoid'
-import { SpectrumBlock } from 'mobile-spectrum-data/@types'
+import type { SpectrumBlock } from 'mobile-spectrum-data/@types'
 import { arfcnToFrequency, formatFrequency } from 'mobile-spectrum-data/utils'
 import { getOperatorColor } from 'mobile-spectrum-data/OperatorInfo'
 import fontColorContrast from 'font-color-contrast'
+import Link from '@components/Links/Link'
 
 export interface IColorPair {
   back: string
@@ -207,6 +208,7 @@ const useSpectrumMapItemStyles = makeStyles({
 
 const useSpectrumMapDetailsStyles = makeStyles({
   detailsRoot: {
+    wordBreak: 'break-word',
     '& dt': {
       fontWeight: 'bold',
     },
@@ -359,7 +361,7 @@ function SpectrumMapItem({ allocation, onClick, isSelected, descId, countryCode 
 
 function SpectrumMapDetails({ allocation }: ISpectrumMapDetailsProps) {
   const classes = useSpectrumMapDetailsStyles()
-  const { owner, ownerLongName, details, startFreq, endFreq, type, arfcns, uarfcns, earfcns, nrarfcns } = allocation
+  const { owner, ownerLongName, details, startFreq, endFreq, type, arfcns, uarfcns, earfcns, nrarfcns, sourceInfo } = allocation
 
   const usageInfo: Record<string, string | (string | number)[]> = {}
   arfcns && (usageInfo['2G GSM'] = arfcns)
@@ -408,6 +410,19 @@ function SpectrumMapDetails({ allocation }: ISpectrumMapDetailsProps) {
                 )}
               </p>
             ))}
+          </dd>
+        </>
+      )}
+
+      {sourceInfo && (
+        <>
+          <dt>Data source:</dt>
+          <dd>
+            {sourceInfo.type === 'url' ? (
+              <Link href={sourceInfo.url}>{sourceInfo.url}</Link>
+            ) : (
+              <p className="text-speak">{sourceInfo.details}</p>
+            )}
           </dd>
         </>
       )}
