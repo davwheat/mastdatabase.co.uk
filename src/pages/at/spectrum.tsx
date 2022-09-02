@@ -44,10 +44,6 @@ function ATSpectrumAllocationPage({ location }: PageProps) {
           These licenses dictate a large variety of info, such as: areas where the license is valid, the maximum transmit power permitted, limits
           on what the spectrum may be used for, terms for license renewal, and much&nbsp;more.
         </p>
-        <p className="text-speak">
-          The UK's spectrum share is rather varied, with many networks being in posession of much larger amounts of spectrum compared to others,
-          which can have a significant impact on their ability to provide consistent experiences to&nbsp;customers.
-        </p>
       </Section>
 
       <AllSpectrumMaps locationName="Austria" countryCode="AT" bandsData={ATAllBands} />
