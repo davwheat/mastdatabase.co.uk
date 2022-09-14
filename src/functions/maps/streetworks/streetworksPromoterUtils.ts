@@ -53,7 +53,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: '3/EE',
     name: 'Three/EE',
-    aliases: ['T-Mobile', 'T Mobile'],
+    aliases: ['T-Mobile', 'T Mobile', 'EE'],
     category: 'Mobile network',
     icon: {
       text: '3/EE',
