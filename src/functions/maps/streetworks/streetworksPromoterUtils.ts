@@ -375,7 +375,7 @@ function getPromoterId(dataPoint: StreetworksDataPoint): string | undefined {
 
   return Object.keys(promoterAliases).find(key => {
     const aliases = promoterAliases[key]
-    return aliases.some((x: string) => name.includes(x.toLowerCase()))
+    return aliases.some((x: string) => name === x.toLowerCase())
   })
 }
 
