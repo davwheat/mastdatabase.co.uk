@@ -43,7 +43,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'vf',
     name: 'Vodafone',
-    aliases: ['Vodafone', 'Vodaphone'],
+    aliases: ['Vodafone'],
     category: 'Mobile network',
     icon: {
       text: 'VF',
@@ -53,7 +53,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: '3/EE',
     name: 'Three/EE',
-    aliases: ['T-Mobile', 'T Mobile', 'EE'],
+    aliases: ['EE'],
     category: 'Mobile network',
     icon: {
       text: '3/EE',
@@ -85,7 +85,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'or',
     name: 'Openreach',
-    aliases: ['Openreach', 'open reach'],
+    aliases: ['Openreach'],
     category: 'Fixed broadband',
     icon: {
       text: 'OR',
