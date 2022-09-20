@@ -58,6 +58,7 @@
     "react-use-error-boundary": "^3.0.0",
     "react-uuid": "^1.0.3",
     "recoil": "^0.7.5",
+    "recoil-persistence": "^0.3.0-beta.1",
     "remark-math": "^3.0.1",
     "remark-twemoji": "^0.1.1",
     "throttle-debounce": "^5.0.0",

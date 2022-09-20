@@ -53,6 +53,7 @@ exports.onCreateWebpackConfig = ({ stage, rules, loaders, plugins, actions }) =>
         '@templates': path.resolve(__dirname, 'src/templates'),
         '@hooks': path.resolve(__dirname, 'src/hooks'),
         '@leaflet': path.resolve(__dirname, 'src/leaflet'),
+        '@atoms': path.resolve(__dirname, 'src/atoms'),
       },
     },
   })

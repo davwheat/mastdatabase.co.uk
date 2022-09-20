@@ -2,12 +2,14 @@ import React, { useCallback, useMemo, useRef, useState } from 'react'
 import { LayerGroup, useMap, useMapEvent } from 'react-leaflet'
 
 import { debounce, throttle } from 'throttle-debounce'
+import { useRecoilValue } from 'recoil'
 
 import { getPromoterIcon, getPromoterName, isPromoterDataPoint } from '@functions/maps/streetworks/streetworksPromoterUtils'
 import getStreetworksDataPointDetails from '@functions/maps/streetworks/getStreetworksDataPointDetails'
 import getStreetworksDataPoints, { StreetworksDataPoint } from '@functions/maps/streetworks/getStreetworksDataPoints'
 import { MapStatusMessages, StatusMessages } from './MapStatusMessages'
 import DataMarker from '@leaflet/DataMarker'
+import { IStreetworksMapSettingsState, StreetworksMapPersistentSettingsAtom, StreetworksMapSettingsAtom } from '@atoms'
 
 import dayjs from 'dayjs'
 import dayjs_tz from 'dayjs/plugin/timezone'
@@ -28,6 +30,8 @@ export function StreetworksMarkers() {
   const markerGroup = useRef<LayerGroupType<any> | null>(null)
   const [aborter, setAborter] = useState<AbortController>(new AbortController())
   const oldAborter = useRef(aborter)
+  const streetmapSettings = useRecoilValue(StreetworksMapSettingsAtom)
+  const streetmapPersistentSettings = useRecoilValue(StreetworksMapPersistentSettingsAtom)
 
   /**
    * Set the status messages for the map, bailing out of the state change
@@ -128,13 +132,14 @@ async function loadPoints(
   setStatusMessages: React.Dispatch<React.SetStateAction<StatusMessages>>,
   markerGroup: LayerGroupType<any>,
   aborter: AbortController,
+  mapSettings: IStreetworksMapSettingsState,
 ) {
   setStatusMessages(s => ({ ...s, loading: true }))
 
   const bounds = map.getBounds()
 
   const bbString = bounds.toBBoxString()
-  const rawData = await getStreetworksDataPoints(bbString, aborter)
+  const rawData = await getStreetworksDataPoints(bbString, aborter, mapSettings.streetworksStartDate, mapSettings.streetworksEndDate)
 
   if (typeof rawData === 'string') {
     switch (rawData) {

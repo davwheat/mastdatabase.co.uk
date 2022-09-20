@@ -44,24 +44,23 @@ export interface StreetworksDataPoint {
 }
 
 /**
- * @param boundingBoxString
- * @param durationDays Number of days ahead to fetch works for.
  * @returns An array of data point objects, if the request was successful.
  */
 export default async function getStreetworksDataPoints(
   boundingBoxString: string,
   aborter: AbortController,
-  durationDays: number = 180,
+  startDate: Date,
+  endDate: Date,
 ): Promise<StreetworksDataPoint[] | GetStreetworksDataPointsErrors> {
   const url = new URL(`https://portal-gb.one.network/prd-portal-one-network/data/`)
   const params = url.searchParams
 
-  const today = dayjs().subtract(12, 'hours').format('DD/MM/YYYY HH:mm')
-  const end = dayjs().add(durationDays, 'days').format('DD/MM/YYYY HH:mm')
+  const start = dayjs(startDate).format('DD/MM/YYYY HH:mm')
+  const end = dayjs(endDate).format('DD/MM/YYYY HH:mm')
 
   params.append('get', 'Points')
   params.append('b', boundingBoxString)
-  params.append('filterstartdate', today)
+  params.append('filterstartdate', start)
   params.append('filterenddate', end)
   params.append('filterimpact', '1,2,3,4')
   params.append('organisation_id', '1')

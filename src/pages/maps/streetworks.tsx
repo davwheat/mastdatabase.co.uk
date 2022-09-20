@@ -13,6 +13,7 @@ import StreetworksMap from '@components/Maps/StreetworksMap/StreetworksMap'
 
 import type { PageProps } from 'gatsby'
 import { ErrorBoundaryContext } from 'react-use-error-boundary'
+import { StreetworksMapSettings } from '@components/Maps/StreetworksMap/StreetworksMapSettings'
 
 const useStyles = makeStyles({
   mapSection: {
@@ -63,6 +64,8 @@ export default function StreetworksMapPage({ location }: PageProps) {
             You can customise which promoters (companies) to display works for by clicking the settings icon in the bottom-right of the&nbsp;map.
           </p>
         </Section>
+
+        <StreetworksMapSettings />
 
         <Section width="full" className={classes.mapSection}>
           <NoSsr>

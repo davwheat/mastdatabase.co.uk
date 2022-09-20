@@ -9,6 +9,7 @@ import theme from '../theme'
 
 import type { LocationContext } from '@gatsbyjs/reach-router'
 import { ScrollContext } from 'gatsby-react-router-scroll'
+import { RecoilRoot } from 'recoil'
 
 const useStyles = makeStyles({
   mainContent: {
@@ -32,17 +33,19 @@ const Layout: React.FC<Props> = ({ children, title, description, location }) => 
 
   return (
     <React.StrictMode>
-      <ScrollContext location={location}>
-        <ThemeProvider theme={theme}>
-          <SEO title={title} description={description} />
+      <RecoilRoot>
+        <ScrollContext location={location}>
+          <ThemeProvider theme={theme}>
+            <SEO title={title} description={description} />
 
-          <Header />
+            <Header />
 
-          <main className={classes.mainContent}>{children}</main>
+            <main className={classes.mainContent}>{children}</main>
 
-          <Footer />
-        </ThemeProvider>
-      </ScrollContext>
+            <Footer />
+          </ThemeProvider>
+        </ScrollContext>
+      </RecoilRoot>
     </React.StrictMode>
   )
 }
