@@ -57,7 +57,7 @@ const useStyles = makeStyles({
     width: '100%',
     font: 'inherit',
     cursor: 'pointer',
-    padding: '8px 12px',
+    padding: '7px 12px',
     border: '2px solid black',
     borderRadius: 0,
     paddingRight: 48,
