@@ -6,31 +6,37 @@ import { makeStyles } from '@material-ui/core'
 import clsx from 'clsx'
 
 export interface IMinorAlertProps {
+  className?: string
   heading?: React.ReactNode
   children: React.ReactNode
-  color: keyof typeof Colors
+  color: keyof typeof Colors['pale']
+  coloredBackground?: boolean
 }
 
 const useStyles = makeStyles({
   root: {
-    backgroundColor: 'white',
+    '--bg-color': 'white',
+    backgroundColor: 'var(--bg-color)',
     padding: '12px 16px',
-    borderTop: `4px solid var(--color)`,
+    borderTop: `6px solid var(--color)`,
 
     '& p:last-child': {
       marginBottom: 0,
     },
   },
   heading: {
-    marginBottom: 8,
+    marginBottom: 6,
   },
 })
 
-export default function MinorAlert({ heading, children, color }: IMinorAlertProps) {
+export default function MinorAlert({ className, heading, children, color, coloredBackground = false }: IMinorAlertProps) {
   const classes = useStyles()
 
   return (
-    <div className={classes.root} style={{ '--color': Colors[color] } as any}>
+    <div
+      className={clsx(classes.root, className)}
+      style={{ '--color': Colors[color], '--bg-color': coloredBackground ? Colors.pale[color] : undefined } as any}
+    >
       {heading && <h3 className={clsx(classes.heading, 'text-speak-up')}>{heading}</h3>}
 
       {children}

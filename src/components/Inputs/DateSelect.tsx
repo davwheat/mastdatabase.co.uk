@@ -14,9 +14,9 @@ interface IProps extends Omit<React.HTMLAttributes<HTMLInputElement>, 'onInput'>
    */
   className?: string
   /**
-   * The default value used to populate the input field.
+   * The value used to populate the input field.
    */
-  defaultValue?: Date
+  value: Date
   /**
    * A textual label to display on-screen.
    */
@@ -112,14 +112,13 @@ export default function DateSelect({
   screenReaderLabel,
   onInput,
   className,
-  defaultValue = '',
+  value,
   placeholder,
   helpText,
   startAdornment: startAppendix,
   endAdornment: endAppendix,
   ...attrs
 }: IProps) {
-  const [value, setValue] = useState<Date>(defaultValue)
   const id = useMemo(() => nanoid(), [])
   const helpTextId = useMemo(() => nanoid(), [])
   const classes = useStyles()
@@ -142,7 +141,6 @@ export default function DateSelect({
           onInput={e => {
             const v = (e.target as HTMLInputElement).value
             const date = dayjs(v).toDate()
-            setValue(date)
             onInput(date)
           }}
           value={dayjs(value).format('YYYY-MM-DD')}

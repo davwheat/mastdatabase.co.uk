@@ -25,6 +25,6 @@ export const StreetworksMapSettingsAtom = atom<IStreetworksMapSettingsState>({
   key: 'streetworksMapSettings',
   default: {
     streetworksStartDate: dayjs().startOf('day').valueOf(),
-    streetworksEndDate: dayjs().add(180, 'days').endOf('day').valueOf(),
+    streetworksEndDate: dayjs().add(180, 'day').endOf('day').valueOf(),
   },
 })

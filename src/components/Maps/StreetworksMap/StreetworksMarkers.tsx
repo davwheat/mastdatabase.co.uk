@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { LayerGroup, useMap, useMapEvent } from 'react-leaflet'
 
 import { debounce, throttle } from 'throttle-debounce'
@@ -30,8 +30,13 @@ export function StreetworksMarkers() {
   const markerGroup = useRef<LayerGroupType<any> | null>(null)
   const [aborter, setAborter] = useState<AbortController>(new AbortController())
   const oldAborter = useRef(aborter)
+
   const streetmapSettings = useRecoilValue(StreetworksMapSettingsAtom)
   const streetmapPersistentSettings = useRecoilValue(StreetworksMapPersistentSettingsAtom)
+
+  const prevStreetmapSettings = useRef({ ...streetmapSettings })
+
+  const loadPointsTimeoutKey = useRef<number | null>(null)
 
   /**
    * Set the status messages for the map, bailing out of the state change
@@ -43,7 +48,7 @@ export function StreetworksMarkers() {
         const newVal = typeof inp === 'function' ? inp(curr) : inp
 
         // Bail if state is same
-        if (Object.entries(newVal).every(([k, v]) => v === curr[k])) return curr
+        if (Object.entries(newVal).every(([k, v]) => v === curr[k as keyof StatusMessages])) return curr
 
         return newVal
       })
@@ -51,10 +56,30 @@ export function StreetworksMarkers() {
     [_setStatusMessages],
   )
 
-  const debouncedLoadPoints = useCallback(
-    debounce(1000, () => loadPoints(map, setStatusMessages, markerGroup.current, aborter)),
-    [map, setStatusMessages, markerGroup, aborter],
-  )
+  const debouncedLoadPoints = () => {
+    if (loadPointsTimeoutKey.current) clearTimeout(loadPointsTimeoutKey.current)
+
+    loadPointsTimeoutKey.current = window.setTimeout(() => {
+      loadPointsTimeoutKey.current = null
+
+      loadPoints(
+        map,
+        setStatusMessages,
+        markerGroup.current!,
+        aborter,
+        streetmapSettings.streetworksStartDate,
+        streetmapSettings.streetworksEndDate,
+      )
+    }, 1000)
+  }
+
+  if (
+    streetmapSettings.streetworksStartDate !== prevStreetmapSettings.current.streetworksStartDate ||
+    streetmapSettings.streetworksEndDate !== prevStreetmapSettings.current.streetworksEndDate
+  ) {
+    prevStreetmapSettings.current = { ...streetmapSettings }
+    debouncedLoadPoints()
+  }
 
   /**
    * Debounced, memoised callback to replace the current AbortController
@@ -64,7 +89,7 @@ export function StreetworksMarkers() {
     debounce(200, () => {
       setAborter(new AbortController())
     }),
-    [setAborter],
+    [],
   )
 
   // We need to trigger a final load after the map has stopped moving,
@@ -78,7 +103,7 @@ export function StreetworksMarkers() {
    * Triggers the showing of the loading message at the top of the map
    * and cancels any in-progress streetworks data fetching.
    */
-  const _showLoadingMessage = () => {
+  function showLoadingMessage() {
     aborter.abort()
     _resetAborter()
 
@@ -90,19 +115,6 @@ export function StreetworksMarkers() {
       })
     }
   }
-
-  /**
-   * **Throttled**
-   *
-   * Triggers the showing of the loading message at the top of the map
-   * and cancels any in-progress streetworks data fetching.
-   */
-  const showLoadingMessage = useCallback(throttle(100, _showLoadingMessage, { noTrailing: true }), [
-    statusMessages,
-    setStatusMessages,
-    aborter,
-    _resetAborter,
-  ])
 
   useMapEvent(
     'move',
@@ -132,14 +144,15 @@ async function loadPoints(
   setStatusMessages: React.Dispatch<React.SetStateAction<StatusMessages>>,
   markerGroup: LayerGroupType<any>,
   aborter: AbortController,
-  mapSettings: IStreetworksMapSettingsState,
+  startTime: number,
+  endTime: number,
 ) {
   setStatusMessages(s => ({ ...s, loading: true }))
 
   const bounds = map.getBounds()
 
   const bbString = bounds.toBBoxString()
-  const rawData = await getStreetworksDataPoints(bbString, aborter, mapSettings.streetworksStartDate, mapSettings.streetworksEndDate)
+  const rawData = await getStreetworksDataPoints(bbString, aborter, new Date(startTime), new Date(endTime))
 
   if (typeof rawData === 'string') {
     switch (rawData) {
