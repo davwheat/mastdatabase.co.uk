@@ -49,6 +49,7 @@ const useStyles = makeStyles({
     padding: 32,
     background: 'white',
     cursor: 'text',
+    whiteSpace: 'break-spaces',
   },
 })
 
