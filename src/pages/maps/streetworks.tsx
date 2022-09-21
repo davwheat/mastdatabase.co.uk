@@ -13,6 +13,7 @@ import StreetworksMap from '@components/Maps/StreetworksMap/StreetworksMap'
 
 import type { PageProps } from 'gatsby'
 import { ErrorBoundaryContext } from 'react-use-error-boundary'
+import { StreetworksMapSettings } from '@components/Maps/StreetworksMap/StreetworksMapSettings'
 
 const useStyles = makeStyles({
   mapSection: {
@@ -56,13 +57,12 @@ export default function StreetworksMapPage({ location }: PageProps) {
         <Section>
           <h2 className="text-loud">About</h2>
           <p className="text-speak">
-            View a map of active and future (approx. next 3 months) streetworks relating to telecoms in the UK, including mobile networking,
-            fibre deployments, and&nbsp;more.
+            View a map of current and future reghistered streetworks relating to telecoms infrastructure in the&nbsp;UK.
           </p>
-          <p>
-            You can customise which promoters (companies) to display works for by clicking the settings icon in the bottom-right of the&nbsp;map.
-          </p>
+          <p>You can customise the time range and whose works to show by clicking the settings icon in the bottom-right of the&nbsp;map.</p>
         </Section>
+
+        <StreetworksMapSettings />
 
         <Section width="full" className={classes.mapSection}>
           <NoSsr>

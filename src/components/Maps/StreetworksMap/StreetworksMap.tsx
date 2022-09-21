@@ -25,6 +25,7 @@ import { BaseMapSetup } from './BaseMapSetup'
 import { StreetworksMarkers } from './StreetworksMarkers'
 import ButtonLink from '@components/Links/ButtonLink'
 import Section from '@components/Design/Section'
+import { MapStatusMessages } from './MapStatusMessages'
 
 export interface IStreetworksSitePoint {
   locationId: number
@@ -44,6 +45,8 @@ export default function StreetworksMap() {
   const [error] = useErrorBoundary()
 
   if (error) {
+    console.error(error)
+
     return (
       <Section darker>
         <p className="text-speak-up">Uh oh! We ran into an error while trying to display the streetworks map.</p>
@@ -74,6 +77,8 @@ export default function StreetworksMap() {
       <ScaleControl imperial metric />
 
       <StreetworksMarkers />
+
+      <MapStatusMessages />
     </MapContainer>
   )
 }

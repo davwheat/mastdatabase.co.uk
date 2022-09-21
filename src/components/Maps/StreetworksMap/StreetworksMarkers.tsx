@@ -1,13 +1,14 @@
-import React, { useCallback, useMemo, useRef, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { LayerGroup, useMap, useMapEvent } from 'react-leaflet'
 
-import { debounce, throttle } from 'throttle-debounce'
+import { useRecoilValue, useSetRecoilState } from 'recoil'
 
 import { getPromoterIcon, getPromoterName, isPromoterDataPoint } from '@functions/maps/streetworks/streetworksPromoterUtils'
 import getStreetworksDataPointDetails from '@functions/maps/streetworks/getStreetworksDataPointDetails'
 import getStreetworksDataPoints, { StreetworksDataPoint } from '@functions/maps/streetworks/getStreetworksDataPoints'
-import { MapStatusMessages, StatusMessages } from './MapStatusMessages'
+import { StatusMessages } from './MapStatusMessages'
 import DataMarker from '@leaflet/DataMarker'
+import { StreetworksMapPersistentSettingsAtom, StreetworksMapSettingsAtom, StreetworksMapStatusMessagesAtom } from '@atoms'
 
 import dayjs from 'dayjs'
 import dayjs_tz from 'dayjs/plugin/timezone'
@@ -20,134 +21,134 @@ import type { LayerGroup as LayerGroupType, Map as MapType } from 'leaflet'
 
 export function StreetworksMarkers() {
   const map = useMap()
-  const [statusMessages, _setStatusMessages] = useState<StatusMessages>({
-    loading: false,
-    fetchFail: false,
-    tooManyPoints: false,
-  })
+
+  const _setStatusMessages = useSetRecoilState(StreetworksMapStatusMessagesAtom)
   const markerGroup = useRef<LayerGroupType<any> | null>(null)
-  const [aborter, setAborter] = useState<AbortController>(new AbortController())
-  const oldAborter = useRef(aborter)
+
+  const aborter = useRef<AbortController>(new AbortController())
+
+  const streetmapSettings = useRecoilValue(StreetworksMapSettingsAtom)
+  const streetmapPersistentSettings = useRecoilValue(StreetworksMapPersistentSettingsAtom)
+
+  const loadPointsTimeoutKey = useRef<number | null>(null)
+
+  function setStatusMessages(newState: StatusMessages) {
+    _setStatusMessages(oldState => {
+      if (JSON.stringify(oldState) !== JSON.stringify(newState)) {
+        return newState
+      }
+
+      return oldState
+    })
+  }
 
   /**
-   * Set the status messages for the map, bailing out of the state change
-   * if the status messages are the same as the current state.
+   * Triggers the showing of the loading message at the top of the map
+   * and cancels any in-progress streetworks data fetching.
    */
-  const setStatusMessages = useCallback<React.Dispatch<React.SetStateAction<StatusMessages>>>(
-    inp => {
-      _setStatusMessages(curr => {
-        const newVal = typeof inp === 'function' ? inp(curr) : inp
+  const showLoadingMessage = () =>
+    setStatusMessages({
+      loading: true,
+      fetchFail: false,
+      upstreamError: false,
+      tooManyPoints: false,
+      settingsError: false,
+    })
 
-        // Bail if state is same
-        if (Object.entries(newVal).every(([k, v]) => v === curr[k])) return curr
+  function validateSettings(): boolean {
+    // If end is before start
+    if (streetmapSettings.streetworksEndDate < streetmapSettings.streetworksStartDate) {
+      return false
+    }
 
-        return newVal
+    return true
+  }
+
+  const debouncedLoadPoints = () => {
+    if (loadPointsTimeoutKey.current) clearTimeout(loadPointsTimeoutKey.current)
+
+    aborter.current = new AbortController()
+    showLoadingMessage()
+
+    loadPointsTimeoutKey.current = window.setTimeout(() => {
+      loadPointsTimeoutKey.current = null
+
+      loadPoints(
+        map,
+        setStatusMessages,
+        markerGroup.current!,
+        aborter.current,
+        streetmapSettings.streetworksStartDate,
+        streetmapSettings.streetworksEndDate,
+      )
+    }, 1000)
+  }
+
+  function loadNewPoints() {
+    aborter.current.abort()
+
+    if (!validateSettings()) {
+      markerGroup.current?.clearLayers()
+
+      setStatusMessages({
+        loading: false,
+        fetchFail: false,
+        upstreamError: false,
+        tooManyPoints: false,
+        settingsError: true,
       })
-    },
-    [_setStatusMessages],
-  )
 
-  const debouncedLoadPoints = useCallback(
-    debounce(1000, () => loadPoints(map, setStatusMessages, markerGroup.current, aborter)),
-    [map, setStatusMessages, markerGroup, aborter],
-  )
+      return
+    }
 
-  /**
-   * Debounced, memoised callback to replace the current AbortController
-   * with a new one.
-   */
-  const _resetAborter = useCallback(
-    debounce(200, () => {
-      setAborter(new AbortController())
-    }),
-    [setAborter],
-  )
-
-  // We need to trigger a final load after the map has stopped moving,
-  // and the AbortController has been reset one final time.
-  if (oldAborter.current !== aborter) {
-    oldAborter.current = aborter
     debouncedLoadPoints()
   }
 
-  /**
-   * Triggers the showing of the loading message at the top of the map
-   * and cancels any in-progress streetworks data fetching.
-   */
-  const _showLoadingMessage = () => {
-    aborter.abort()
-    _resetAborter()
+  useMapEvent('move', loadNewPoints)
 
-    if (!statusMessages.loading) {
-      setStatusMessages({
-        loading: true,
-        fetchFail: false,
-        tooManyPoints: false,
-      })
+  useEffect(() => {
+    loadNewPoints()
+
+    return () => {
+      aborter.current.abort()
+
+      if (loadPointsTimeoutKey.current) clearTimeout(loadPointsTimeoutKey.current)
     }
-  }
+  })
 
-  /**
-   * **Throttled**
-   *
-   * Triggers the showing of the loading message at the top of the map
-   * and cancels any in-progress streetworks data fetching.
-   */
-  const showLoadingMessage = useCallback(throttle(100, _showLoadingMessage, { noTrailing: true }), [
-    statusMessages,
-    setStatusMessages,
-    aborter,
-    _resetAborter,
-  ])
-
-  useMapEvent(
-    'move',
-    useCallback(() => {
-      showLoadingMessage()
-      debouncedLoadPoints()
-    }, [showLoadingMessage, debouncedLoadPoints]),
-  )
-
-  // Memoise to prevent DOM redraws whenever position changes
-  return useMemo(
-    () => (
-      <>
-        <LayerGroup ref={markerGroup} />
-
-        <MapStatusMessages messages={statusMessages} />
-      </>
-    ),
-    [markerGroup, statusMessages],
-  )
+  return <LayerGroup ref={markerGroup} />
 }
 
 StreetworksMarkers.whyDidYouRender = true
 
 async function loadPoints(
   map: MapType,
-  setStatusMessages: React.Dispatch<React.SetStateAction<StatusMessages>>,
+  setStatusMessages: (s: StatusMessages) => void,
   markerGroup: LayerGroupType<any>,
   aborter: AbortController,
+  startTime: number,
+  endTime: number,
 ) {
-  setStatusMessages(s => ({ ...s, loading: true }))
-
   const bounds = map.getBounds()
 
   const bbString = bounds.toBBoxString()
-  const rawData = await getStreetworksDataPoints(bbString, aborter)
+  const rawData = await getStreetworksDataPoints(bbString, aborter, new Date(startTime), new Date(endTime))
 
   if (typeof rawData === 'string') {
     switch (rawData) {
       case 'aborted':
-        setStatusMessages({ loading: true, fetchFail: false, tooManyPoints: false })
         return
 
       case 'fetch error':
-        setStatusMessages({ loading: false, fetchFail: true, tooManyPoints: false })
+        setStatusMessages({ loading: false, fetchFail: true, upstreamError: false, tooManyPoints: false, settingsError: false })
         return
 
       case 'too many points':
-        setStatusMessages({ loading: false, fetchFail: false, tooManyPoints: true })
+        setStatusMessages({ loading: false, fetchFail: false, upstreamError: false, tooManyPoints: true, settingsError: false })
+        return
+
+      case 'upstream error':
+        setStatusMessages({ loading: false, fetchFail: false, upstreamError: true, tooManyPoints: false, settingsError: false })
         return
     }
   }
@@ -229,6 +230,8 @@ async function loadPoints(
   setStatusMessages({
     loading: false,
     fetchFail: false,
+    upstreamError: false,
     tooManyPoints: false,
+    settingsError: false,
   })
 }

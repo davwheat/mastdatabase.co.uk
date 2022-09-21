@@ -1,10 +1,10 @@
 import React from 'react'
 
 import { makeStyles } from '@material-ui/core'
-import clsx from 'clsx'
 
 import LoadingSpinner from '@components/LoadingSpinner'
 import Colors from '@data/colors.json'
+import MinorAlert, { IMinorAlertProps } from '@components/Design/MinorAlert'
 
 export const StatusMessagesText = {
   loading: (
@@ -45,17 +45,6 @@ const useStyles = makeStyles({
 
     textAlign: 'center',
   },
-  message: {
-    backgroundColor: 'white',
-    padding: '8px 16px',
-    borderTop: `4px solid ${Colors.blueDark}`,
-  },
-  messageInfo: {
-    borderTopColor: Colors.primaryBlue,
-  },
-  messageError: {
-    borderTopColor: Colors.primaryRed,
-  },
 })
 
 export function MapStatusMessages({ messages }: IProps) {
@@ -66,16 +55,15 @@ export function MapStatusMessages({ messages }: IProps) {
       {Object.entries(StatusMessagesText).map(([messageKey, message]) => {
         if (!messages[messageKey as keyof StatusMessages]) return null
 
+        let color: IMinorAlertProps['color'] = 'blueDark'
+
+        if (InfoStatusKeys.includes(messageKey as StatusMessageKey)) color = 'primaryBlue'
+        if (ErrorStatusKeys.includes(messageKey as StatusMessageKey)) color = 'primaryRed'
+
         return (
-          <p
-            key={messageKey}
-            className={clsx(classes.message, {
-              [classes.messageInfo]: InfoStatusKeys.includes(messageKey as StatusMessageKey),
-              [classes.messageError]: ErrorStatusKeys.includes(messageKey as StatusMessageKey),
-            })}
-          >
+          <MinorAlert key={messageKey} color={color}>
             {message}
-          </p>
+          </MinorAlert>
         )
       })}
     </div>

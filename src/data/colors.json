@@ -5,5 +5,16 @@
   "neutralGrey": "#c6c4c4",
   "lightGrey": "#f1f1f1",
   "linkColor": "#00528a",
-  "excessiveYellow": "#ffce1a"
+  "excessiveYellow": "#ffce1a",
+  "cautioningAmber": "#fcc31e",
+  "pale": {
+    "primaryRed": "#fde7ea",
+    "primaryBlue": "#e8f7fa",
+    "blueDark": "#dee8ec",
+    "neutralGrey": "#f7f7f7",
+    "lightGrey": "#fdfdfd",
+    "linkColor": "#dde8ef",
+    "excessiveYellow": "#fff8e0",
+    "cautioningAmber": "#fff7e1"
+  }
 }

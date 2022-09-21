@@ -20,7 +20,8 @@
       "@css/*": ["css/*"],
       "@templates/*": ["templates/*"],
       "@hooks/*": ["hooks/*"],
-      "@leaflet/*": ["leaflet/*"]
+      "@leaflet/*": ["leaflet/*"],
+      "@atoms": ["atoms"]
     }
   },
   "exclude": ["node_modules", "build", "scripts", "acceptance-tests", "webpack", "jest", "src/setupTests.ts"]
