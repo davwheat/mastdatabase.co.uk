@@ -54,7 +54,7 @@ const useStyles = makeStyles({
 
 interface IFormState {
   postcode: string
-  endpoint: 'coverage' | 'outage' | 'hbb'
+  endpoint: 'coverage' | 'outages' | 'hbb'
   errorText: string | null
 }
 
@@ -129,7 +129,7 @@ export default function ThreeRanStatusForm() {
             value={formState.endpoint}
             options={[
               { label: 'Coverage', value: 'coverage' },
-              { label: 'Outage', value: 'outage' },
+              { label: 'Outages', value: 'outages' },
               { label: 'Home broadband', value: 'hbb' },
             ]}
             onChange={s => setFormState(f => ({ ...f, endpoint: s }))}
