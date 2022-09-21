@@ -161,7 +161,7 @@ export default function ThreeRanStatusForm() {
           <h2 className="text-louder">Response</h2>
 
           <pre className={classes.monospace}>
-            <code>{JSON.stringify(formResponse, ' ', 2)}</code>
+            <code>{JSON.stringify(formResponse, ' ' as any, 2)}</code>
           </pre>
         </Section>
       )}
