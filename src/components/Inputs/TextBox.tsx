@@ -19,7 +19,7 @@ interface IProps extends Omit<React.HTMLAttributes<HTMLInputElement>, 'onInput'>
   /**
    * The default value used to populate the input field.
    */
-  defaultValue?: string
+  value?: string
   /**
    * A textual label to display on-screen.
    */
@@ -56,6 +56,7 @@ interface IProps extends Omit<React.HTMLAttributes<HTMLInputElement>, 'onInput'>
    * RegEx pattern for validation
    */
   pattern?: string
+  disabled?: boolean
 }
 
 const useStyles = makeStyles({
@@ -116,14 +117,14 @@ export default function TextBox({
   onInput,
   type = 'text',
   className,
-  defaultValue = '',
+  value = '',
   placeholder,
   helpText,
   startAdornment: startAppendix,
   endAdornment: endAppendix,
+  disabled = false,
   ...attrs
 }: IProps) {
-  const [value, setValue] = useState(defaultValue)
   const id = useMemo(() => nanoid(), [])
   const helpTextId = useMemo(() => nanoid(), [])
   const classes = useStyles()
@@ -142,10 +143,10 @@ export default function TextBox({
         <input
           type={type}
           id={id}
+          disabled={disabled}
           className={classes.input}
           onInput={e => {
             const v = (e.target as HTMLInputElement).value
-            setValue(v)
             onInput(v)
           }}
           value={value}

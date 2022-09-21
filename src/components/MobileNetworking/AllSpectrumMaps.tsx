@@ -290,14 +290,14 @@ export default function AllSpectrumMaps({ bandsData, locationName, countryCode }
                 <TextBox
                   label="Start EARFCN"
                   onInput={v => setStartHighlight({ text: v, val: parseFloat(v) })}
-                  defaultValue={startHighlight.text}
+                  value={startHighlight.text}
                   pattern="[0-9]*"
                   inputMode="numeric"
                 />
                 <TextBox
                   label="End EARFCN"
                   onInput={v => setEndHighlight({ text: v, val: parseFloat(v) })}
-                  defaultValue={endHighlight.text}
+                  value={endHighlight.text}
                   pattern="[0-9]*"
                   inputMode="numeric"
                 />
@@ -309,7 +309,7 @@ export default function AllSpectrumMaps({ bandsData, locationName, countryCode }
                   label="Start frequency"
                   screenReaderLabel="Start frequency, in MHz"
                   endAdornment="MHz"
-                  defaultValue={startHighlight.text}
+                  value={startHighlight.text}
                   onInput={v => setStartHighlight({ text: v, val: parseFloat(v) })}
                   pattern="[0-9]*"
                   inputMode="numeric"
@@ -318,7 +318,7 @@ export default function AllSpectrumMaps({ bandsData, locationName, countryCode }
                   label="End frequency"
                   screenReaderLabel="End frequency, in MHz"
                   endAdornment="MHz"
-                  defaultValue={endHighlight.text}
+                  value={endHighlight.text}
                   onInput={v => setEndHighlight({ text: v, val: parseFloat(v) })}
                   pattern="[0-9]*"
                   inputMode="numeric"
@@ -341,7 +341,7 @@ export default function AllSpectrumMaps({ bandsData, locationName, countryCode }
                         return `LTE Band ${band.band} (${arfcnToFrequency('lte', startHighlight.val)} MHz)`
                       })()}
                       label="EARFCN"
-                      defaultValue={startHighlight.text}
+                      value={startHighlight.text}
                       onInput={v => setStartHighlight({ text: v, val: parseInt(v) })}
                       pattern="[0-9]*"
                       inputMode="numeric"
@@ -357,7 +357,7 @@ export default function AllSpectrumMaps({ bandsData, locationName, countryCode }
                       label="Bandwidth"
                       screenReaderLabel="Bandwidth, in MHz"
                       endAdornment="MHz"
-                      defaultValue={highlightBandwidth.text}
+                      value={highlightBandwidth.text}
                       onInput={v => setHighlightBandwidth({ text: v, val: parseFloat(v) })}
                       pattern="[0-9]*"
                       inputMode="numeric"
