@@ -5,6 +5,8 @@ import clsx from 'clsx'
 
 import LoadingSpinner from '@components/LoadingSpinner'
 import Colors from '@data/colors.json'
+import { useRecoilValue } from 'recoil'
+import { StreetworksMapStatusMessagesAtom } from '@atoms'
 
 export const StatusMessagesText = {
   loading: (
@@ -13,18 +15,16 @@ export const StatusMessagesText = {
     </span>
   ),
   fetchFail: 'Failed to load streetworks. Check your internet connection.',
+  upstreamError: 'An error occurred with the one.network API. Please try again later.',
   tooManyPoints: 'Too many streetworks in this area. Please zoom in.',
+  settingsError: 'Invalid settings. Please check the area above for errors.',
 } as const
 
 const InfoStatusKeys: StatusMessageKey[] = ['loading']
-const ErrorStatusKeys: StatusMessageKey[] = ['fetchFail', 'tooManyPoints']
+const ErrorStatusKeys: StatusMessageKey[] = ['fetchFail', 'tooManyPoints', 'settingsError', 'upstreamError']
 
 type StatusMessageKey = keyof typeof StatusMessagesText
 export type StatusMessages = Record<StatusMessageKey, boolean>
-
-interface IProps {
-  messages: StatusMessages
-}
 
 const useStyles = makeStyles({
   root: {
@@ -58,26 +58,27 @@ const useStyles = makeStyles({
   },
 })
 
-export function MapStatusMessages({ messages }: IProps) {
+export function MapStatusMessages() {
   const classes = useStyles()
+  const messages = useRecoilValue(StreetworksMapStatusMessagesAtom)
 
   return (
     <div role="status" aria-live="polite" className={classes.root}>
-      {Object.entries(StatusMessagesText).map(([messageKey, message]) => {
-        if (!messages[messageKey]) return null
-
-        return (
-          <p
-            key={messageKey}
-            className={clsx(classes.message, {
-              [classes.messageInfo]: InfoStatusKeys.includes(messageKey as StatusMessageKey),
-              [classes.messageError]: ErrorStatusKeys.includes(messageKey as StatusMessageKey),
-            })}
-          >
-            {message}
-          </p>
-        )
-      })}
+      {Object.entries(StatusMessagesText)
+        .filter(([messageKey]) => messages[messageKey as StatusMessageKey])
+        .map(([messageKey, message]) => {
+          return (
+            <p
+              key={messageKey}
+              className={clsx(classes.message, {
+                [classes.messageInfo]: InfoStatusKeys.includes(messageKey as StatusMessageKey),
+                [classes.messageError]: ErrorStatusKeys.includes(messageKey as StatusMessageKey),
+              })}
+            >
+              {message}
+            </p>
+          )
+        })}
     </div>
   )
 }

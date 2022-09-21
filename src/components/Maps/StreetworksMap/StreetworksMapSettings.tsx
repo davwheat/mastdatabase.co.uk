@@ -40,7 +40,7 @@ function getStreetworksAlertMessage(
     }
   }
 
-  const includesPast = dayjs(startTime).isBefore(dayjs())
+  const includesPast = dayjs(startTime).isBefore(dayjs().startOf('day'))
 
   if (includesPast) {
     return {

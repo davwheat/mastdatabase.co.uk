@@ -5,7 +5,7 @@ import dayjs_utc from 'dayjs/plugin/utc'
 dayjs.extend(dayjs_tz)
 dayjs.extend(dayjs_utc)
 
-export type GetStreetworksDataPointsErrors = 'too many points' | 'fetch error' | 'aborted'
+export type GetStreetworksDataPointsErrors = 'too many points' | 'fetch error' | 'aborted' | 'upstream error'
 
 export interface StreetworksDataPoint {
   end_date: string
@@ -78,6 +78,10 @@ export default async function getStreetworksDataPoints(
     if (aborter.signal.aborted) return 'aborted'
 
     return 'fetch error'
+  }
+
+  if (!response.ok) {
+    return 'upstream error'
   }
 
   const json = await response.json()
