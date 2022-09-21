@@ -51,12 +51,12 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
     },
   },
   {
-    id: '3/EE',
-    name: 'Three/EE',
-    aliases: ['EE'],
+    id: 'mbnl',
+    name: 'Mobile Broadband Network Limited',
+    aliases: ['EE', 'MBNL'],
     category: 'Mobile network',
     icon: {
-      text: '3/EE',
+      text: 'MBNL',
       type: 'mobile',
     },
   },
