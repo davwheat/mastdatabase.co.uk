@@ -87,6 +87,13 @@ export default function ThreeRanStatusForm() {
     try {
       const response = await fetch(`https://proxies.mastdatabase.co.uk/uk/three/ran-status?${params.toString()}`)
       data = await response.json()
+
+      if (!response.ok) {
+        setFormState(state => ({ ...state, errorText: 'Your API request failed for some reason. Please try again later.' }))
+        setFormResponse(data)
+        setFormLoading(false)
+        return
+      }
     } catch (ex) {
       setFormState(state => ({ ...state, errorText: 'Failed to fetch data from the API. Please try again later.' }))
       setFormLoading(false)
@@ -96,7 +103,7 @@ export default function ThreeRanStatusForm() {
     // Ignore content wrapper
     const apiData = data.data
 
-    if (apiData.errors && apiData.errors.length) {
+    if (apiData && apiData.errors && apiData.errors.length) {
       const errorTexts = (apiData.errors as Record<string, string>[]).map(error => {
         if (!error.description) return 'Unknown error'
 
