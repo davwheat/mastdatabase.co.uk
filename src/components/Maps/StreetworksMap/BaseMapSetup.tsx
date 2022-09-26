@@ -2,9 +2,6 @@ import React, { useEffect } from 'react'
 
 import { AttributionControl, TileLayer, useMap } from 'react-leaflet'
 
-import 'leaflet.fullscreen2'
-import 'leaflet.fullscreen2/leaflet.fullscreen2.css'
-
 export function BaseMapSetup() {
   const L = window.L as typeof import('leaflet')
 

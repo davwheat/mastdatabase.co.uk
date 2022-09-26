@@ -5,9 +5,6 @@ import MarkerClusterGroup from '@components/MarkerClusterGroup'
 
 import 'leaflet/dist/leaflet.css'
 
-import 'leaflet.fullscreen2'
-import 'leaflet.fullscreen2/leaflet.fullscreen2.css'
-
 import useFixLeafletAssets from '@hooks/useFixLeafletAssets'
 
 export interface IFreshwaveSitePoint {

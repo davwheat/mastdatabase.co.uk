@@ -9733,17 +9733,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"leaflet.fullscreen2@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "leaflet.fullscreen2@npm:1.0.0"
-  dependencies:
-    screenfull: ^6.0.1
-  peerDependencies:
-    leaflet: ^1.0.0
-  checksum: 3809503e10edc3cfa6e6a44394d55e3e5a99cab2c9e47f02ea1e2cee36b49a5c71c388cb4227083ec96900b0d5ffb2a1e9be88851e606d93ef3f3795a9064d41
-  languageName: node
-  linkType: hard
-
 "leaflet.markercluster@npm:^1.5.3":
   version: 1.5.3
   resolution: "leaflet.markercluster@npm:1.5.3"
@@ -10273,7 +10262,6 @@ __metadata:
     gatsby-transformer-sharp: ^4.23.1
     get-best-contrast-color: ^0.3.1
     leaflet: ^1.9.1
-    leaflet.fullscreen2: ^1.0.0
     leaflet.markercluster: ^1.5.3
     mdi-react: ^8.6.0
     mobile-spectrum-data: ^1.1.2
@@ -10294,6 +10282,7 @@ __metadata:
     recoil-persistence: ^0.3.0-beta.1
     remark-math: ^3.0.1
     remark-twemoji: ^0.1.1
+    screenfull: ^6.0.2
     throttle-debounce: ^5.0.0
     twemoji: ^14.0.2
     typescript: ^4.8.3
@@ -13111,7 +13100,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"screenfull@npm:^6.0.1":
+"screenfull@npm:^6.0.2":
   version: 6.0.2
   resolution: "screenfull@npm:6.0.2"
   checksum: 56a541da09241ae7c97115cc31245623c09230bcbebb93636871e955b545f26c7dcdb2299795234a0a21bff5d5401b7329b22609becf4c381a9e22347acf87ba

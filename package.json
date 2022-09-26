@@ -41,7 +41,6 @@
     "gatsby-transformer-sharp": "^4.23.1",
     "get-best-contrast-color": "^0.3.1",
     "leaflet": "^1.9.1",
-    "leaflet.fullscreen2": "^1.0.0",
     "leaflet.markercluster": "^1.5.3",
     "mdi-react": "^8.6.0",
     "mobile-spectrum-data": "^1.1.2",
@@ -61,6 +60,7 @@
     "recoil-persistence": "^0.3.0-beta.1",
     "remark-math": "^3.0.1",
     "remark-twemoji": "^0.1.1",
+    "screenfull": "^6.0.2",
     "throttle-debounce": "^5.0.0",
     "twemoji": "^14.0.2"
   },
