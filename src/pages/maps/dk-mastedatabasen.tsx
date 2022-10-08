@@ -57,6 +57,7 @@ export default function MastedatabasenMapPage({ location }: PageProps) {
             The official site is rather lacking, providing limited filtering options, and not showing company data without first clicking on a
             point on the map, hence I have created a reimplementation of the site.
           </p>
+          <p>Please note that this map is not fully accessible to assistive technologies at this time.</p>
         </Section>
 
         <RecoilRoot>
