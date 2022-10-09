@@ -41,6 +41,22 @@ const Links: ILinkGroup[] = [
     ],
   },
   {
+    groupName: 'Maps',
+    groupDescription: 'UK mobile network related maps.',
+    groupLinks: [
+      {
+        title: 'Telecoms streetworks',
+        description: 'See upcoming and current streetworks registered with councils, along with descriptions of the works.',
+        url: '/maps/streetworks',
+      },
+      {
+        title: 'Network coverage',
+        description: 'See official UK mobile network coverage plots for 2G/3G/4G/5G on simple, easy-to-use maps.',
+        url: '/gb/coverage',
+      },
+    ],
+  },
+  {
     groupName: 'Utilities',
     groupDescription: 'UK mobile networking tools and utilities.',
     groupLinks: [
