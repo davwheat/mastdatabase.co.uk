@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 
-import { MapContainer, TileLayer, useMap } from 'react-leaflet'
+import { AttributionControl, MapContainer, TileLayer, useMap } from 'react-leaflet'
 import MarkerClusterGroup from '@components/MarkerClusterGroup'
 
 import 'leaflet/dist/leaflet.css'
@@ -49,6 +49,8 @@ export default function FreshwaveMap({ sites }: IFreshwaveMapProps) {
       </MarkerClusterGroup>
 
       <MapComponents />
+
+      <AttributionControl position="bottomright" prefix={undefined} />
     </MapContainer>
   )
 }
