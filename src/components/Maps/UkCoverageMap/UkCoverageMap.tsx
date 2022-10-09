@@ -37,6 +37,7 @@ export default function UkCoverageMap({ provider, selectedLayerId }: IUkCoverage
       {layer && <TileLayer key={layer.url} opacity={0.5} url={layer.url} attribution={provider.attributionTemplate(layer.label)} />}
 
       {provider.supportsSites && <SitesLayer provider={provider} />}
+
       <MapComponents />
 
       <AttributionControl position="bottomright" prefix={undefined} />

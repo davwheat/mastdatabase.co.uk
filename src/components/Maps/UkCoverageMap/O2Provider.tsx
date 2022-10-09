@@ -5,6 +5,8 @@ export default class O2CoverageMapProvider extends CoverageProvider {
   defaultLayerId: number = 3
   supportsSites: boolean = true
 
+  private fetchSitesAborter: AbortController | null = null
+
   getLayers(): ICoverageLayer[] {
     return [
       {
@@ -83,28 +85,83 @@ export default class O2CoverageMapProvider extends CoverageProvider {
   }
 
   async getSites(centreLat: number, centreLon: number, bbox: L.LatLngBounds): Promise<ISiteItem[]> {
-    const layer = 3
-    const ctype = 80
+    if (this.fetchSitesAborter) this.fetchSitesAborter.abort()
 
-    const response = await fetch(
-      await this.spatialBuzzAuthedUrl(
-        `https://cdn.spatialbuzz.com/api/sites/${this.spatialConfig.apiDate}/near/radius/10/layer/${layer}/ctype/${ctype}/lon/${centreLon}/lat/${centreLat}/customer/${this.spatialConfig.customerEncoded}`,
-        1,
-      ),
-    )
+    this.fetchSitesAborter ||= new AbortController()
+    const ab = this.fetchSitesAborter
 
-    const data: SpatialBuzzResponse.RootObject = await response.json()
+    const response = await fetch(`https://proxies.mastdatabase.co.uk/uk/o2/coverage-map/sites?lon=${centreLon}&lat=${centreLat}`, {
+      signal: ab.signal,
+    })
 
-    const { lon } = data.search_point.point
+    this.fetchSitesAborter = null
+
+    const wrappedResponse: { info: string[]; ok: boolean; data: SpatialBuzzResponse.RootObject } = await response.json()
+
+    const { lon } = wrappedResponse.data.search_point.point
 
     if (lon < -180 || lon > 180) {
       return []
     }
 
-    return data.records.map(r => ({
+    return wrappedResponse.data.records.map(r => ({
       id: r.id,
       lat: r.point.lat,
       long: r.point.lon,
     }))
+  }
+}
+
+declare module SpatialBuzzResponse {
+  export interface RasterValue {
+    layer: number
+    raw: number
+    cat: number
+  }
+
+  export interface Geojson {
+    type: string
+    coordinates: number[]
+  }
+
+  export interface Point {
+    lon: number
+    lat: number
+  }
+
+  export interface PointGrid {
+    x: number
+    y: number
+    srs?: number
+  }
+
+  export interface SearchPoint {
+    geojson: Geojson
+    point: Point
+    point_grid: PointGrid
+  }
+
+  export interface Distance {
+    miles: number
+    km: number
+  }
+
+  export interface Record {
+    counter: number
+    id: string
+    point: Point
+    point_grid: PointGrid
+    distance: Distance
+  }
+
+  export interface RootObject {
+    customer: string
+    raster_values: RasterValue[]
+    total: number
+    avg_distance: number
+    grid_srs: number
+    search_point: SearchPoint
+    search_results: any[]
+    records: Record[]
   }
 }
