@@ -19,6 +19,8 @@ export default function UkCoverageMap({ provider, selectedLayerId }: IUkCoverage
 
   const layer = provider.getLayers()?.[selectedLayerId]
 
+  console.log(layer)
+
   return (
     <MapContainer
       style={{
@@ -32,9 +34,14 @@ export default function UkCoverageMap({ provider, selectedLayerId }: IUkCoverage
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        zIndex={0}
       />
 
-      {layer && <TileLayer key={layer.url} opacity={0.5} url={layer.url} attribution={provider.attributionTemplate(layer.label)} />}
+      {layer && 'url' in layer && (
+        <TileLayer key={layer.url} opacity={0.5} url={layer.url} attribution={provider.attributionTemplate(layer.label)} />
+      )}
+
+      {layer && 'layers' in layer && layer.layers}
 
       {provider.supportsSites && <SitesLayer provider={provider} />}
 

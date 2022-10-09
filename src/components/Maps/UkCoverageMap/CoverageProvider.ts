@@ -1,9 +1,10 @@
-export interface ICoverageLayer {
+import React from 'react'
+
+export type ICoverageLayer = {
   label: string
-  url: string
-  minZoom: number
-  maxZoom: number
-}
+  // minZoom: number
+  // maxZoom: number
+} & ({ url: string } | { layers: React.ReactChild })
 
 export interface ISiteItem {
   lat: number
@@ -17,7 +18,10 @@ export default abstract class CoverageProvider {
   abstract supportsSites: boolean
 
   abstract getLayers(): ICoverageLayer[]
-  abstract getSites(centreLat: number, centreLon: number, bbox: L.LatLngBounds): Promise<ISiteItem[]>
+
+  async getSites(centreLat: number, centreLon: number, bbox: L.LatLngBounds): Promise<ISiteItem[]> {
+    return []
+  }
 
   attributionTemplate(layerLabel: string): string {
     return `© ${layerLabel} coverage info from ${this.providerName}`

@@ -1,6 +1,6 @@
-import React, { useRef } from 'react'
+import React from 'react'
 
-import { useMap, useMapEvent } from 'react-leaflet'
+import { useMap } from 'react-leaflet'
 
 import './leaflet-markers-canvas'
 

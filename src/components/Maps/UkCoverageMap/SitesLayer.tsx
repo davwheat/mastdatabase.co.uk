@@ -8,6 +8,8 @@ interface ISitesLayerProps {
   provider: CoverageProvider
 }
 
+const ZOOM_CUTOFF = 9
+
 export default function SitesLayer({ provider }: ISitesLayerProps) {
   const markerData = useRef<Record<string, ISiteItem>>({})
   const loadSitesTimeoutKey = useRef<number | null>(null)
@@ -19,6 +21,8 @@ export default function SitesLayer({ provider }: ISitesLayerProps) {
 
     loadSitesTimeoutKey.current = window.setTimeout(() => {
       loadSitesTimeoutKey.current = null
+
+      if (map.getZoom() <= ZOOM_CUTOFF) return
 
       const pos = map.getCenter()
 
@@ -38,13 +42,16 @@ export default function SitesLayer({ provider }: ISitesLayerProps) {
 
   return (
     <>
-      {Object.values(markerData.current).map(site => (
-        <Marker key={site.id} position={[site.lat, site.long]}>
-          <Popup>
-            <strong>Site ID:</strong> {site.id}
-          </Popup>
-        </Marker>
-      ))}
+      {map.getZoom() > ZOOM_CUTOFF &&
+        Object.values(markerData.current).map(site => (
+          <Marker key={site.id} position={[site.lat, site.long]}>
+            <Popup>
+              <p className="text-whisper">
+                <strong>Site ID:</strong> {site.id}
+              </p>
+            </Popup>
+          </Marker>
+        ))}
     </>
   )
 }
