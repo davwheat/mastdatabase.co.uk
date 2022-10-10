@@ -1,12 +1,47 @@
 import React from 'react'
 
 import FunctionalTileLayer from '@leaflet/FunctionalTileLayer'
-import CoverageProvider, { ICoverageLayer } from './CoverageProvider'
+import CoverageProvider, { ICoverageLayer, ICoverageLayerKey } from './CoverageProvider'
 
 export default class ThreeUkCoverageMapProvider extends CoverageProvider {
   providerName: string = 'Three UK'
   defaultLayerId: number = 2
   supportsSites: boolean = false
+
+  getLayerKeys(): ICoverageLayerKey[] {
+    return [
+      {
+        key: [
+          { color: '#dc350e', label: 'Good outdoors and indoors' },
+          { color: '#db350e96', label: 'Good outdoors' },
+        ],
+      },
+      {
+        key: [
+          { color: '#dc350e', label: 'Good outdoors and indoors' },
+          { color: '#db350e96', label: 'Good outdoors' },
+        ],
+      },
+      {
+        key: [
+          { color: '#dc350e', label: 'Good outdoors and indoors' },
+          { color: '#db350e96', label: 'Good outdoors' },
+        ],
+      },
+      {
+        key: [
+          { color: '#dc350e', label: 'Good outdoors and indoors' },
+          { color: '#db350e96', label: 'Good outdoors' },
+        ],
+      },
+    ]
+  }
+
+  getPageMessages(): string[] {
+    return [
+      'Three UK implement rate-limiting on their coverage map API. If coloured tiles stop loading, please wait a few minutes, then move the map again. You are less likely to enounter this issue when you are zoomed in closely.',
+    ]
+  }
 
   private readonly bounds: Record<number, [number, number, number, number]> = {
     14: [7765, 8335, 10810, 11718],

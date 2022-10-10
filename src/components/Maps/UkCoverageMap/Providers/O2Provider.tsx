@@ -1,4 +1,4 @@
-import CoverageProvider, { ICoverageLayer, ISiteItem } from './CoverageProvider'
+import CoverageProvider, { ICoverageLayer, ICoverageLayerKey, ISiteItem } from './CoverageProvider'
 
 export default class O2CoverageMapProvider extends CoverageProvider {
   providerName: string = 'O2 UK'
@@ -38,6 +38,64 @@ export default class O2CoverageMapProvider extends CoverageProvider {
         url: 'https://68aa7b45-tiles.spatialbuzz.net/tiles/o2_uk-v184/styles/o2_uk_v184_ltem/{z}/{x}/{y}.png',
       },
     ]
+  }
+
+  getLayerKeys(): ICoverageLayerKey[] {
+    return [
+      {
+        key: [
+          { color: '#0099d8', label: 'Good outdoors and indoors' },
+          { color: '#faa94a', label: 'Good outdoors' },
+          { color: '#0000', label: 'No coverage' },
+        ],
+      },
+      {
+        key: [
+          { color: '#0099d8', label: 'Good outdoors and indoors' },
+          { color: '#faa94a', label: 'Good outdoors' },
+          { color: '#0000', label: 'No coverage' },
+        ],
+      },
+      {
+        key: [
+          { color: '#0099d8', label: 'Good outdoors and indoors' },
+          { color: '#faa94a', label: 'Good outdoors' },
+          { color: '#0000', label: 'No coverage' },
+        ],
+      },
+      {
+        key: [
+          { color: '#0099d8', label: 'Good outdoors and indoors' },
+          { color: '#faa94a', label: 'Good outdoors' },
+          { color: '#0000', label: 'No coverage' },
+        ],
+      },
+      {
+        key: [
+          { color: '#0099d8', label: 'Good outdoors and indoors' },
+          { color: '#faa94a', label: 'Good outdoors' },
+          { color: '#0000', label: 'No coverage' },
+        ],
+      },
+      {
+        key: [
+          { color: '#0099d8', label: 'Good outdoors and indoors' },
+          { color: '#faa94a', label: 'Good outdoors' },
+          { color: '#0000', label: 'No coverage' },
+        ],
+      },
+      {
+        key: [
+          { color: '#0099d8', label: 'Good outdoors and indoors' },
+          { color: '#faa94a', label: 'Good outdoors' },
+          { color: '#0000', label: 'No coverage' },
+        ],
+      },
+    ]
+  }
+
+  getPageMessages(): string[] {
+    return []
   }
 
   async getSites(centreLat: number, centreLon: number, bbox: L.LatLngBounds): Promise<ISiteItem[]> {
