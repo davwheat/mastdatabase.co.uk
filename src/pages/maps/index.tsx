@@ -60,6 +60,11 @@ export default function MapsPage({ location }: PageProps) {
             url="/maps/streetworks"
           />
           <CardLink
+            title="UK network coverage"
+            description="View interactive coverage maps for major UK networks, using their official data."
+            url="/gb/coverage"
+          />
+          <CardLink
             title="Freshwave site map"
             description="See all registered site locations with Freshwave. This does not correspond to active sites, just possible locations."
             url="/maps/freshwave"

@@ -30,6 +30,8 @@ const useStyles = makeStyles({
   },
 
   heading: {
+    display: 'flex',
+    alignItems: 'center',
     flexGrow: 1,
   },
 

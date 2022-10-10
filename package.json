@@ -63,7 +63,8 @@
     "remark-twemoji": "^0.1.1",
     "screenfull": "^6.0.2",
     "throttle-debounce": "^5.0.0",
-    "twemoji": "^14.0.2"
+    "twemoji": "^14.0.2",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@sentry/webpack-plugin": "^1.19.0",
@@ -74,6 +75,7 @@
     "@types/rbush": "^3.0.0",
     "@types/react": "^17.0.50",
     "@types/throttle-debounce": "^5.0.0",
+    "@types/uuid": "^8.3.4",
     "@welldone-software/why-did-you-render": "^7.0.1",
     "babel-plugin-transform-remove-console": "^6.9.4",
     "cross-env": "^7.0.3",
