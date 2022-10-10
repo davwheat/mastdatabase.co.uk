@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import { useMap } from 'react-leaflet'
 
@@ -24,11 +24,7 @@ const FunctionalTileLayer = React.forwardRef<L.TileLayer, IFunctionalTileLayerPr
   const map = useMap()
 
   const layer = L.TileLayer.extend({
-    _tileFunction: null,
-
-    initialize: function (tileFunction: (view: IViewData) => string, options) {
-      this._tileFunction = tileFunction
-
+    initialize: function (options) {
       L.TileLayer.prototype.initialize.call(this, null, options)
     },
 
@@ -56,44 +52,50 @@ const FunctionalTileLayer = React.forwardRef<L.TileLayer, IFunctionalTileLayerPr
         subdomain: this._getSubdomain(tilePoint),
       }
 
-      return this._tileFunction(view)
-    },
-
-    _loadTile: function (tile, tilePoint) {
-      tile._layer = this
-      tile.onload = this._tileOnLoad
-      tile.onerror = this._tileOnError
-
-      this._adjustTilePoint(tilePoint)
-      var tileUrl = this.getTileUrl(tilePoint)
-
-      if (typeof tileUrl === 'string') {
-        tile.src = tileUrl
-        this.fire('tileloadstart', {
-          tile: tile,
-          url: tile.src,
-        })
-      } else if (typeof tileUrl.then === 'function') {
-        // Assume we are dealing with a promise.
-        var self = this
-        tileUrl.then(function (tileUrl) {
-          tile.src = tileUrl
-          self.fire('tileloadstart', {
-            tile: tile,
-            url: tile.src,
-          })
-        })
-      }
+      return tileFunction(view)
     },
 
     getAttribution,
+
+    // _loadTile: function (tile, tilePoint) {
+    //   tile._layer = this
+    //   tile.onload = this._tileOnLoad
+    //   tile.onerror = this._tileOnError
+
+    //   this._adjustTilePoint(tilePoint)
+    //   var tileUrl = this.getTileUrl(tilePoint)
+
+    //   if (typeof tileUrl === 'string') {
+    //     tile.src = tileUrl
+    //     this.fire('tileloadstart', {
+    //       tile: tile,
+    //       url: tile.src,
+    //     })
+    //   } else if (typeof tileUrl.then === 'function') {
+    //     // Assume we are dealing with a promise.
+    //     var self = this
+    //     tileUrl.then(function (tileUrl) {
+    //       tile.src = tileUrl
+    //       self.fire('tileloadstart', {
+    //         tile: tile,
+    //         url: tile.src,
+    //       })
+    //     })
+    //   }
+    // },
   })
 
-  const functionalTileLayer = React.useRef<any>(new layer(tileFunction, props))
-
-  functionalTileLayer.current.addTo(map)
+  const functionalTileLayer = React.useRef<any>(new layer(props))
 
   React.useImperativeHandle(ref, () => functionalTileLayer.current)
+
+  useEffect(() => {
+    functionalTileLayer.current.addTo(map)
+
+    return function removeLayer() {
+      functionalTileLayer.current.removeFrom(map)
+    }
+  }, [map, functionalTileLayer.current])
 
   return null
 })
