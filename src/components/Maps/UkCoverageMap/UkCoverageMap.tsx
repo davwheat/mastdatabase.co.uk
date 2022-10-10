@@ -19,15 +19,13 @@ export default function UkCoverageMap({ provider, selectedLayerId }: IUkCoverage
 
   const layer = provider.getLayers()?.[selectedLayerId]
 
-  console.log(layer)
-
   return (
     <MapContainer
       style={{
         height: '60vh',
       }}
-      center={[51.692, 5.155]}
-      zoom={5}
+      center={[50.82, -0.136]}
+      zoom={13}
       minZoom={1}
       attributionControl={false}
     >
@@ -41,7 +39,7 @@ export default function UkCoverageMap({ provider, selectedLayerId }: IUkCoverage
         <TileLayer key={layer.url} opacity={0.5} url={layer.url} attribution={provider.attributionTemplate(layer.label)} />
       )}
 
-      {layer && 'layers' in layer && layer.layers}
+      {layer && 'layers' in layer && <React.Fragment key={selectedLayerId}>{layer.layers}</React.Fragment>}
 
       {provider.supportsSites && <SitesLayer provider={provider} />}
 
