@@ -5,12 +5,12 @@ import { AttributionControl, MapContainer, TileLayer, useMap } from 'react-leafl
 import 'leaflet/dist/leaflet.css'
 
 import useFixLeafletAssets from '@hooks/useFixLeafletAssets'
-
-import type CoverageProvider from './CoverageProvider'
 import SitesLayer from './SitesLayer'
 import { GeolocationMarker } from '@leaflet/GeolocationMarker'
 import GeolocationButton from '@leaflet/GeolocationButton'
 import MapCustomButtonsContainer from '@leaflet/MapCustomButtonsContainer'
+
+import type CoverageProvider from './Providers/CoverageProvider'
 
 export interface IUkCoverageMapProps {
   provider: CoverageProvider

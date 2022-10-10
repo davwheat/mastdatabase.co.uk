@@ -8,7 +8,7 @@ import UkCoverageMap from '@components/Maps/UkCoverageMap'
 import SelectDropdown from '@components/Inputs/SelectDropdown'
 
 import Colors from '@data/colors.json'
-import ThreeUkCoverageMapProvider from '@components/Maps/UkCoverageMap/3UKProvider'
+import ThreeUkCoverageMapProvider from '@components/Maps/UkCoverageMap/Providers/3UKProvider'
 
 import { makeStyles, NoSsr } from '@material-ui/core'
 import clsx from 'clsx'
