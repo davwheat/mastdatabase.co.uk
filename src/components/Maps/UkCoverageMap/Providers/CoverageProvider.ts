@@ -31,7 +31,7 @@ export default abstract class CoverageProvider {
   }
 
   isLayerHidden(layerId: number): boolean {
-    return !!this.getLayers()[layerId].hidden && (typeof window !== 'undefined' || window.location.search !== '?hidden')
+    return !!this.getLayers()[layerId].hidden && (typeof window === 'undefined' || window.location.search !== '?hidden')
   }
 
   async getSites(centreLat: number, centreLon: number, bbox: L.LatLngBounds): Promise<ISiteItem[]> {
