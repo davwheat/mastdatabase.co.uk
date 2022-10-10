@@ -8,6 +8,9 @@ import useFixLeafletAssets from '@hooks/useFixLeafletAssets'
 
 import type CoverageProvider from './CoverageProvider'
 import SitesLayer from './SitesLayer'
+import { GeolocationMarker } from '@leaflet/GeolocationMarker'
+import GeolocationButton from '@leaflet/GeolocationButton'
+import MapCustomButtonsContainer from '@leaflet/MapCustomButtonsContainer'
 
 export interface IUkCoverageMapProps {
   provider: CoverageProvider
@@ -46,6 +49,12 @@ export default function UkCoverageMap({ provider, selectedLayerId }: IUkCoverage
       <MapComponents />
 
       <AttributionControl position="bottomright" prefix={undefined} />
+
+      <GeolocationMarker />
+
+      <MapCustomButtonsContainer>
+        <GeolocationButton />
+      </MapCustomButtonsContainer>
     </MapContainer>
   )
 }
