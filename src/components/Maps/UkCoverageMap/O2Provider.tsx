@@ -3,7 +3,7 @@ import CoverageProvider, { ICoverageLayer, ISiteItem } from './CoverageProvider'
 export default class O2CoverageMapProvider extends CoverageProvider {
   providerName: string = 'O2 UK'
   defaultLayerId: number = 3
-  supportsSites: boolean = true
+  supportsSites: boolean = false
 
   private fetchSitesAborter: AbortController | null = null
 
