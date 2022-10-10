@@ -42,13 +42,13 @@ const Links: ILinkGroup[] = [
       // {
       //   title: 'Vodafone UK',
       //   icon: ({ className }) => <VodafoneLogo className={className} />,
-      //   url: '/gb/coverage/o2',
+      //   url: '/gb/coverage/vodafone',
       // },
-      // {
-      //   title: 'EE',
-      //   icon: ({ className }) => <EELogo className={className} />,
-      //   url: '/gb/coverage/o2',
-      // },
+      {
+        title: 'EE',
+        icon: ({ className }) => <EELogo className={className} />,
+        url: '/gb/coverage/ee',
+      },
       {
         title: 'Three UK',
         icon: ({ className }) => <ThreeLogo className={className} />,
