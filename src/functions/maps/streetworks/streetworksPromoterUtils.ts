@@ -105,7 +105,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'cf',
     name: 'CityFibre',
-    aliases: ['CityFibre', 'City Fibre'],
+    aliases: ['CityFibre', 'City Fibre', 'CityFibre Metro Networks Limited'],
     category: 'Fixed broadband',
     icon: {
       text: 'CTYF',
