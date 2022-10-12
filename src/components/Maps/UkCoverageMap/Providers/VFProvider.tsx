@@ -40,6 +40,34 @@ export default class VodafoneCoverageMapProvider extends CoverageProvider {
       {
         key: genericKey,
       },
+      {
+        key: [
+          { color: '#00ffff', label: 'Variable service' },
+          { color: '#ffaa00', label: 'Good service' },
+          { color: '#ff0000', label: 'Very good service' },
+        ],
+      },
+      {
+        key: [
+          { color: '#00ffff', label: 'Variable service' },
+          { color: '#ffaa00', label: 'Good service' },
+          { color: '#ff0000', label: 'Very good service' },
+        ],
+      },
+      {
+        key: [
+          { color: '#00ffff', label: 'Variable service' },
+          { color: '#ffaa00', label: 'Good service' },
+          { color: '#ff0000', label: 'Very good service' },
+        ],
+      },
+      {
+        key: [
+          { color: '#00ffff', label: 'Variable service' },
+          { color: '#ffaa00', label: 'Good service' },
+          { color: '#ff0000', label: 'Very good service' },
+        ],
+      },
     ]
   }
 
@@ -80,6 +108,22 @@ export default class VodafoneCoverageMapProvider extends CoverageProvider {
       {
         label: '5G (planned)',
         layers: <DynamicMapLayer opacity={0.5} url="https://mapserver.vodafone.co.uk/arcgis/rest/services/Vodafone_5G_Plan_Service/MapServer" />,
+      },
+      {
+        label: 'Paknet',
+        layers: <DynamicMapLayer opacity={0.5} url="https://mapserver.vodafone.co.uk/arcgis/rest/services/Paknet/MapServer" />,
+      },
+      {
+        label: 'Flex paging',
+        layers: <DynamicMapLayer opacity={0.5} url="https://mapserver.vodafone.co.uk/arcgis/rest/services/Pager_Flex/MapServer" />,
+      },
+      {
+        label: 'Select paging',
+        layers: <DynamicMapLayer opacity={0.5} url="https://mapserver.vodafone.co.uk/arcgis/rest/services/Pager_Select/MapServer" />,
+      },
+      {
+        label: 'Premier paging',
+        layers: <DynamicMapLayer opacity={0.5} url="https://mapserver.vodafone.co.uk/arcgis/rest/services/Pager_Premier/MapServer" />,
       },
     ]
   }
