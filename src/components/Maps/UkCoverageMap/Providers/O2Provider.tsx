@@ -79,7 +79,6 @@ export default class O2CoverageMapProvider extends CoverageProvider {
       },
       {
         key: [
-          { color: '#0099d8', label: 'Good outdoors and indoors' },
           { color: '#faa94a', label: 'Good outdoors' },
           { color: '#0000', label: 'No coverage' },
         ],

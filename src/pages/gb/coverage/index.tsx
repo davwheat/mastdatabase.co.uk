@@ -39,11 +39,11 @@ const Links: ILinkGroup[] = [
         icon: ({ className }) => <O2Logo className={className} />,
         url: '/gb/coverage/o2',
       },
-      // {
-      //   title: 'Vodafone UK',
-      //   icon: ({ className }) => <VodafoneLogo className={className} />,
-      //   url: '/gb/coverage/vodafone',
-      // },
+      {
+        title: 'Vodafone UK',
+        icon: ({ className }) => <VodafoneLogo className={className} />,
+        url: '/gb/coverage/vodafone',
+      },
       {
         title: 'EE',
         icon: ({ className }) => <EELogo className={className} />,
