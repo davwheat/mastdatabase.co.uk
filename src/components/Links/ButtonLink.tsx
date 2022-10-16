@@ -19,12 +19,13 @@ const useStyles = makeStyles({
   },
 })
 
-interface Props {
+interface Props extends React.HTMLAttributes<HTMLButtonElement> {
   className?: string
   onClick: React.MouseEventHandler<HTMLButtonElement>
+  children: React.ReactChild
 }
 
-const ButtonLink: React.FC<Props> = ({ children, className, onClick, ...props }) => {
+export default function ButtonLink({ children, className, onClick, ...props }: Props) {
   const classes = useStyles()
 
   return (
@@ -33,5 +34,3 @@ const ButtonLink: React.FC<Props> = ({ children, className, onClick, ...props })
     </button>
   )
 }
-
-export default ButtonLink

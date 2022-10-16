@@ -30,8 +30,14 @@ const useStyles = makeStyles({
       outline: `4px solid ${Colors.primaryRed}`,
     },
 
-    '&:active': {
+    '&:hover': {
       background: Colors.primaryRed,
+      color: 'white',
+    },
+
+    '&:active': {
+      background: Colors.pale.primaryRed,
+      color: 'black',
     },
 
     '&[disabled]': {
@@ -40,23 +46,52 @@ const useStyles = makeStyles({
       cursor: 'not-allowed',
     },
   },
+  icon: {
+    marginLeft: -4,
+    marginRight: 8,
+    display: 'flex',
+    alignItems: 'center',
+  },
+  danger: {
+    background: Colors.cautioningAmber,
+    color: 'black',
+
+    '&:hover': {
+      background: Colors.excessiveYellow,
+      color: 'black',
+    },
+
+    '&:active': {
+      background: '#ecb204',
+      color: 'black',
+    },
+  },
 })
 
 export interface IButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode
   loading?: boolean
+  icon?: React.ReactNode
+  variant?: 'normal' | 'danger'
 }
 
-export default function Button({ className, children, loading = false, disabled, ...props }: IButtonProps) {
+export default function Button({ className, children, loading = false, disabled, icon, variant, ...props }: IButtonProps) {
   const classes = useStyles()
 
   return (
-    <button disabled={disabled || loading} className={clsx(classes.root, className)} {...props}>
+    <button
+      type="button"
+      disabled={disabled || loading}
+      className={clsx(classes.root, { [classes.danger]: variant === 'danger' }, className)}
+      {...props}
+    >
       {loading && (
         <>
           <LoadingSpinner size={24} style={{ marginRight: 12 }} />{' '}
         </>
       )}
+
+      {!!icon && <span className={clsx('icon', classes.icon)}>{icon}</span>}
 
       {children}
     </button>

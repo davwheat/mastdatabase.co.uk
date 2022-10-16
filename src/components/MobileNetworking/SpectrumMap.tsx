@@ -15,42 +15,11 @@ export interface IColorPair {
   front: string
 }
 
-export interface ISpectrumAllocation {
-  owner: string
-  ownerLongName?: string
+export type ISpectrumAllocation = SpectrumBlock & {
   /**
    * Override the default color provided by the `owner`.
    */
   colorOverride?: IColorPair
-  details?: string | string[]
-  /**
-   * Start of allocation in MHz.
-   */
-  startFreq: number
-  /**
-   * End of allocation in MHz.
-   */
-  endFreq: number
-  type: 'fddUp' | 'fddDown' | 'tdd' | 'sdl' | 'sul' | 'unused' | 'unknown'
-  /**
-   * The other piece of spectrum which this is paired with.
-   */
-  pairedWith?: {
-    /**
-     * Start of allocation in MHz.
-     */
-    startFreq: number
-    /**
-     * End of allocation in MHz.
-     */
-    endFreq: number
-    type: 'fddUp' | 'fddDown' | 'tdd' | 'sdl' | 'sul' | 'unused' | 'unknown'
-  }
-
-  arfcns?: string | number[]
-  uarfcns?: number[]
-  earfcns?: number[]
-  nrarfcns?: number[]
 }
 
 interface IHighlightedSpectrumARFCN {
@@ -70,7 +39,8 @@ export interface ISpectrumMapProps {
   note?: string
   data: SpectrumBlock[]
   spectrumHighlight?: HighlightedSpectrum[]
-  countryCode: string
+  countryCode?: string
+  className?: string
 }
 
 export interface ISpectrumMapItemProps {
@@ -78,14 +48,14 @@ export interface ISpectrumMapItemProps {
   isSelected: boolean
   onClick: (allocation: SpectrumBlock) => void
   descId: string
-  countryCode: string
+  countryCode?: string
 }
 
 export interface ISpectrumMapDetailsProps {
   allocation: SpectrumBlock
 }
 
-function getSpectrumTypeDescription(type: ISpectrumAllocation['type']): string {
+function getSpectrumTypeDescription(type: ISpectrumAllocation['type'] | 'fddUp'): string {
   return {
     fddUp: 'FDD uplink',
     fddDown: 'FDD downlink',
@@ -224,7 +194,7 @@ const useSpectrumMapDetailsStyles = makeStyles({
   },
 })
 
-export function SpectrumMap({ caption, data, note, spectrumHighlight, countryCode }: ISpectrumMapProps) {
+export function SpectrumMap({ caption, data, note, spectrumHighlight, countryCode, className }: ISpectrumMapProps) {
   const classes = useSpectrumMapStyles()
 
   const {
@@ -271,7 +241,7 @@ export function SpectrumMap({ caption, data, note, spectrumHighlight, countryCod
     })
 
   return (
-    <figure className={classes.root} style={{ '--sections': gridColumns } as any}>
+    <figure className={clsx(classes.root, className)} style={{ '--sections': gridColumns } as any}>
       <div className={classes.container}>
         {caption && <figcaption className="text-loud text-center">{caption}</figcaption>}
 
@@ -333,7 +303,7 @@ export function SpectrumMap({ caption, data, note, spectrumHighlight, countryCod
 function SpectrumMapItem({ allocation, onClick, isSelected, descId, countryCode }: ISpectrumMapItemProps) {
   const classes = useSpectrumMapItemStyles()
   const { owner, startFreq, endFreq } = allocation
-  const color = getOperatorColor(countryCode, owner)
+  const color = getOperatorColor(countryCode ?? 'I_DO_NOT_EXIST', owner)
 
   const bandwidthMhz = endFreq - startFreq
   const columnCount = Math.round((bandwidthMhz * 100_000) / HERTZ_ACCURACY)
@@ -382,7 +352,7 @@ function SpectrumMapDetails({ allocation }: ISpectrumMapDetailsProps) {
       <dt>Spectrum type:</dt>
       <dd>
         {getSpectrumTypeDescription(type)}
-        {allocation.pairedWith && (
+        {'pairedWith' in allocation && (
           <>
             , paired with {formatFrequency(allocation.pairedWith.startFreq, true)} &ndash; {formatFrequency(allocation.pairedWith.endFreq)} of{' '}
             {getSpectrumTypeDescription(allocation.pairedWith.type)}

@@ -72,6 +72,11 @@ export default function IndexPage({ location }: PageProps) {
 
         <div className={classes.linkList}>
           <CardLink title="Maps" description="Useful mobile networking maps, such as maps of upcoming works and registered sites." url="/maps" />
+          <CardLink
+            title="Spectrum editor"
+            description="Web GUI for editing spectrum data for this site, and the mobile-spectrum-data package."
+            url="/spectrum-editor"
+          />
         </div>
       </Section>
 
