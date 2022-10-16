@@ -40,14 +40,21 @@ const useStyles = makeStyles({
       cursor: 'not-allowed',
     },
   },
+  icon: {
+    marginLeft: -4,
+    marginRight: 8,
+    display: 'flex',
+    alignItems: 'center',
+  },
 })
 
 export interface IButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode
   loading?: boolean
+  icon?: React.ReactNode
 }
 
-export default function Button({ className, children, loading = false, disabled, ...props }: IButtonProps) {
+export default function Button({ className, children, loading = false, disabled, icon, ...props }: IButtonProps) {
   const classes = useStyles()
 
   return (
@@ -57,6 +64,8 @@ export default function Button({ className, children, loading = false, disabled,
           <LoadingSpinner size={24} style={{ marginRight: 12 }} />{' '}
         </>
       )}
+
+      {!!icon && <span className={clsx('icon', classes.icon)}>{icon}</span>}
 
       {children}
     </button>
