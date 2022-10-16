@@ -16,6 +16,10 @@ interface ISelectDropdownProps {
   onChange: (value: string) => void
   className?: string
   selectClassName?: string
+  /**
+   * Optional helper text which appears under the textbox. Correctly linked via `aria-describedby`.
+   */
+  helpText?: React.ReactChild
 }
 
 const useStyles = makeStyles({
@@ -57,7 +61,7 @@ const useStyles = makeStyles({
     width: '100%',
     font: 'inherit',
     cursor: 'pointer',
-    padding: '7px 12px',
+    padding: '6px 12px',
     border: '2px solid black',
     borderRadius: 0,
     paddingRight: 48,
@@ -67,10 +71,16 @@ const useStyles = makeStyles({
       outline: 'none',
     },
   },
+  helpText: {
+    marginTop: 4,
+    marginBottom: 0,
+  },
 })
 
-export default function SelectDropdown({ label, value, options, onChange, className, selectClassName }: ISelectDropdownProps) {
-  const { current: selectId } = useRef(nanoid())
+export default function SelectDropdown({ label, value, options, onChange, className, selectClassName, helpText }: ISelectDropdownProps) {
+  const {
+    current: { selectId, helpTextId },
+  } = useRef({ selectId: nanoid(), helpTextId: nanoid() })
   const classes = useStyles()
 
   return (
@@ -93,6 +103,12 @@ export default function SelectDropdown({ label, value, options, onChange, classN
           ))}
         </select>
       </div>
+
+      {helpText && (
+        <p id={helpTextId} className={clsx('text-whisper', classes.helpText)}>
+          {helpText}
+        </p>
+      )}
     </label>
   )
 }

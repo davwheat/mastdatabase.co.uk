@@ -19,6 +19,7 @@ export interface ILinkProps extends React.HTMLAttributes<HTMLAnchorElement> {
    * If present, will force as internal/external. Otherwise will auto-detect.
    */
   internal?: boolean
+  target?: '_blank' | '_self' | '_parent' | '_top'
 }
 
 function isExternalLink(url: string): boolean {

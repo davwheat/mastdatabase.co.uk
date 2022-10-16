@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { useMemo, useState } from 'react'
+import { useMemo } from 'react'
 import { nanoid } from 'nanoid'
 import SearchIcon from 'mdi-react/SearchIcon'
 import { makeStyles } from '@material-ui/styles'
@@ -130,21 +130,21 @@ export default function TextBox({
   const classes = useStyles()
 
   return (
-    <label htmlFor={id} className={clsx(classes.inputLabel, className)} aria-label={screenReaderLabel}>
-      <span className="text-speak-up">{label}</span>
+    <label htmlFor={id} className={clsx('textbox', classes.inputLabel, className)} aria-label={screenReaderLabel}>
+      <span className={clsx('textbox-label', 'text-speak-up')}>{label}</span>
 
-      <div className={classes.inputWrapper}>
+      <div className={clsx('textbox-wrapper', classes.inputWrapper)}>
         {startAppendix && (
-          <span aria-hidden="true" className={classes.startAppendix}>
+          <span aria-hidden="true" className={clsx('textbox-startAppendix', classes.startAppendix)}>
             {startAppendix}
           </span>
         )}
-        {type === 'search' && <SearchIcon role="presentation" className={classes.searchIcon} />}
+        {type === 'search' && <SearchIcon role="presentation" className={clsx('textbox-searchIcon', classes.searchIcon)} />}
         <input
           type={type}
           id={id}
           disabled={disabled}
-          className={classes.input}
+          className={clsx('textbox-input', classes.input)}
           onInput={e => {
             const v = (e.target as HTMLInputElement).value
             onInput(v)
@@ -155,14 +155,14 @@ export default function TextBox({
           {...attrs}
         />
         {endAppendix && (
-          <span aria-hidden="true" className={classes.endAppendix}>
+          <span aria-hidden="true" className={clsx('textbox-endAppendix', classes.endAppendix)}>
             {endAppendix}
           </span>
         )}
       </div>
 
       {helpText && (
-        <p id={helpTextId} className={clsx('text-whisper', classes.helpText)}>
+        <p id={helpTextId} className={clsx('textbox-helptext', 'text-whisper', classes.helpText)}>
           {helpText}
         </p>
       )}
