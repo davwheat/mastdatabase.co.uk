@@ -25,7 +25,11 @@ export default function SpectrumEditorPage({ location }: PageProps) {
   const classes = useStyles()
 
   return (
-    <Layout location={location} title="Contributing spectrum data">
+    <Layout
+      location={location}
+      title="Contributing spectrum data"
+      description="Information about how to contribute spectrum data from the GUI editor for this site."
+    >
       <Hero firstElement size="huge" color={Colors.primaryRed}>
         <h1 className="text-shout">Contributing spectrum data</h1>
         <p role="doc-subtitle" className="text-loud">
