@@ -12,8 +12,17 @@ import Breakpoints from '@data/breakpoints'
 import { makeStyles } from '@material-ui/core'
 import { PageProps } from 'gatsby'
 import Link from '@components/Links/Link'
+import BetaTag from '@components/BetaTag'
+import clsx from 'clsx'
+import BetaWarning from '@components/BetaWarning'
 
 const useStyles = makeStyles({
+  heading: { display: 'flex', alignItems: 'center' },
+
+  betaTag: { marginRight: 16 },
+
+  betaWarning: { marginBottom: 24 },
+
   linkList: {
     marginTop: 24,
     display: 'grid',
@@ -40,7 +49,9 @@ export default function SpectrumEditorPage({ location }: PageProps) {
   return (
     <Layout location={location} title="Spectrum editor">
       <Hero firstElement size="huge" color={Colors.primaryRed}>
-        <h1 className="text-shout">Spectrum editor</h1>
+        <h1 className={clsx(classes.heading, 'text-shout')}>
+          <BetaTag className={classes.betaTag} /> Spectrum editor
+        </h1>
         <p role="doc-subtitle" className="text-loud">
           Interactive GUI editor for mobile spectrum data.
         </p>
@@ -54,6 +65,8 @@ export default function SpectrumEditorPage({ location }: PageProps) {
       />
 
       <Section>
+        <BetaWarning className={classes.betaWarning} />
+
         <h2 className="text-loud">Introduction</h2>
 
         <p className="text-speak">
