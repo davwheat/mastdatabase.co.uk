@@ -47,7 +47,7 @@ export default function SpectrumEditorPage({ location }: PageProps) {
   const classes = useStyles()
 
   return (
-    <Layout location={location} title="Spectrum editor">
+    <Layout location={location} title="Spectrum editor" description="Interactive GUI editor and previewer for mobile spectrum data.">
       <Hero firstElement size="huge" color={Colors.primaryRed}>
         <h1 className={clsx(classes.heading, 'text-shout')}>
           <BetaTag className={classes.betaTag} /> Spectrum editor
