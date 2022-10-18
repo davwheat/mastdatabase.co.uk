@@ -146,7 +146,7 @@ exports.createPages = async inp => {
 //   const result = await graphql(
 //     `
 //       {
-//         allMdx(sort: { fields: [frontmatter___created_at], order: DESC }, filter: { frontmatter: { archived: { ne: true } } }) {
+//         allMdx(sort: { frontmatter: { created_at: DESC } }, filter: { frontmatter: { archived: { ne: true } } }) {
 //           nodes {
 //             id
 //           }
