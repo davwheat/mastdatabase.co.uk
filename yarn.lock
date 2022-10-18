@@ -1418,12 +1418,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.0.0, @babel/runtime@npm:^7.10.2, @babel/runtime@npm:^7.11.2, @babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.13.10, @babel/runtime@npm:^7.14.6, @babel/runtime@npm:^7.15.4, @babel/runtime@npm:^7.17.8, @babel/runtime@npm:^7.18.0, @babel/runtime@npm:^7.18.9, @babel/runtime@npm:^7.3.1, @babel/runtime@npm:^7.4.4, @babel/runtime@npm:^7.5.5, @babel/runtime@npm:^7.7.2, @babel/runtime@npm:^7.8.3, @babel/runtime@npm:^7.8.4, @babel/runtime@npm:^7.8.7, @babel/runtime@npm:^7.9.2":
+"@babel/runtime@npm:^7.0.0, @babel/runtime@npm:^7.10.2, @babel/runtime@npm:^7.11.2, @babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.13.10, @babel/runtime@npm:^7.14.6, @babel/runtime@npm:^7.15.4, @babel/runtime@npm:^7.18.0, @babel/runtime@npm:^7.18.9, @babel/runtime@npm:^7.3.1, @babel/runtime@npm:^7.4.4, @babel/runtime@npm:^7.5.5, @babel/runtime@npm:^7.7.2, @babel/runtime@npm:^7.8.3, @babel/runtime@npm:^7.8.4, @babel/runtime@npm:^7.8.7, @babel/runtime@npm:^7.9.2":
   version: 7.18.9
   resolution: "@babel/runtime@npm:7.18.9"
   dependencies:
     regenerator-runtime: ^0.13.4
   checksum: 36dd736baba7164e82b3cc9d43e081f0cb2d05ff867ad39cac515d99546cee75b7f782018b02a3dcf5f2ef3d27f319faa68965fdfec49d4912c60c6002353a2e
+  languageName: node
+  linkType: hard
+
+"@babel/runtime@npm:^7.19.4":
+  version: 7.19.4
+  resolution: "@babel/runtime@npm:7.19.4"
+  dependencies:
+    regenerator-runtime: ^0.13.4
+  checksum: 66b7e3c13e9ee1d2c9397ea89144f29a875edee266a0eb2d9971be51b32fdbafc85808c7a45e011e6681899bb804b4e2ee2aed6dc07108dbbd6b11b6cc2afba6
   languageName: node
   linkType: hard
 
@@ -2633,58 +2642,61 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@reach/auto-id@npm:0.17.0":
-  version: 0.17.0
-  resolution: "@reach/auto-id@npm:0.17.0"
+"@reach/auto-id@npm:0.18.0":
+  version: 0.18.0
+  resolution: "@reach/auto-id@npm:0.18.0"
   dependencies:
-    "@reach/utils": 0.17.0
-    tslib: ^2.3.0
+    "@reach/utils": 0.18.0
   peerDependencies:
     react: ^16.8.0 || 17.x
     react-dom: ^16.8.0 || 17.x
-  checksum: 30bb0e591fbf0a2a6124ea6b07e6cec254ec0483c326492e824a19df8d2e2fcb3a5708cc47e1221fb64b9e63e4497966deb37732916d330a0693c541d9d1b35d
+  checksum: 75a37a0a09c382dfc358d37f3212cffdea2b4c80c2f555b7fee857af59a46e959324234be8dbb51c476fba0874ed93694254079192b478ce3e9abba5ce63fdec
   languageName: node
   linkType: hard
 
-"@reach/descendants@npm:0.17.0":
-  version: 0.17.0
-  resolution: "@reach/descendants@npm:0.17.0"
+"@reach/descendants@npm:0.18.0":
+  version: 0.18.0
+  resolution: "@reach/descendants@npm:0.18.0"
   dependencies:
-    "@reach/utils": 0.17.0
-    tslib: ^2.3.0
+    "@reach/utils": 0.18.0
   peerDependencies:
     react: ^16.8.0 || 17.x
     react-dom: ^16.8.0 || 17.x
-  checksum: 99d11558050729467943ef323c7156b89e84b702f790f6b320dd9817dac9347e035946ed4d09e85dd18f15da42e2f3ae425d6c309ee574f345dc62ce34a155df
+  checksum: 54e1e9302e1db4c924de62d53b6081a1c3c336325119352541c2f3a67ebfb88f282b36e564a87b6defd54ac55556f7237e2c50ab6439d86c8a85daf9877b0fb2
   languageName: node
   linkType: hard
 
-"@reach/tabs@npm:^0.17.0":
-  version: 0.17.0
-  resolution: "@reach/tabs@npm:0.17.0"
-  dependencies:
-    "@reach/auto-id": 0.17.0
-    "@reach/descendants": 0.17.0
-    "@reach/utils": 0.17.0
-    prop-types: ^15.7.2
-    tslib: ^2.3.0
+"@reach/polymorphic@npm:0.18.0":
+  version: 0.18.0
+  resolution: "@reach/polymorphic@npm:0.18.0"
   peerDependencies:
     react: ^16.8.0 || 17.x
-    react-dom: ^16.8.0 || 17.x
-  checksum: 7e82a18fbb3bf1e25fe02a29742dbd89f2aa286b6b17db3a1109ba76bf5c53c413392a21e03586396ea49966a968d9d2276daa762e55b634b56faf7d5409470b
+  checksum: 0d62260a55c71e0dc95f38867f24b3d699e0bb7ea2273c6fa5a1fa3d804269e2deb63a458f1f1eb7b74c32bc0add3ab31a1c2668c1dee6b2837187876d3c4cc2
   languageName: node
   linkType: hard
 
-"@reach/utils@npm:0.17.0":
-  version: 0.17.0
-  resolution: "@reach/utils@npm:0.17.0"
+"@reach/tabs@npm:^0.18.0":
+  version: 0.18.0
+  resolution: "@reach/tabs@npm:0.18.0"
   dependencies:
-    tiny-warning: ^1.0.3
-    tslib: ^2.3.0
+    "@reach/auto-id": 0.18.0
+    "@reach/descendants": 0.18.0
+    "@reach/polymorphic": 0.18.0
+    "@reach/utils": 0.18.0
   peerDependencies:
     react: ^16.8.0 || 17.x
     react-dom: ^16.8.0 || 17.x
-  checksum: b9ee31b5d07e7f204f3605be3fa45448c9817937a3364d894054c57de9113d417014019d21ad895aebf848a43c20988924d069ba926c0cb20d6f2e8654d7a11e
+  checksum: fb61b757ca53277352b086ffe16e489e365e35fc4996577ca2a2b9da7a7a08a6939aeda8ceed9bb69c2c2ef42bced9a0e03038e9efc5a0cd3db420ae8005837a
+  languageName: node
+  linkType: hard
+
+"@reach/utils@npm:0.18.0":
+  version: 0.18.0
+  resolution: "@reach/utils@npm:0.18.0"
+  peerDependencies:
+    react: ^16.8.0 || 17.x
+    react-dom: ^16.8.0 || 17.x
+  checksum: eeda20a74c1db71e95680c622371c6efc46e2c767b28902bc43b580654436a34ec7f8b5f63c51a7c4cc8fd48c94066e3215496ba5a053c96e65c7a9bdcdc2687
   languageName: node
   linkType: hard
 
@@ -2810,12 +2822,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sentry/webpack-plugin@npm:1.19.0, @sentry/webpack-plugin@npm:^1.19.0":
+"@sentry/webpack-plugin@npm:1.19.0":
   version: 1.19.0
   resolution: "@sentry/webpack-plugin@npm:1.19.0"
   dependencies:
     "@sentry/cli": ^1.74.4
   checksum: 08a48378e0177f175337ef41107734aa6c1fcc76a806067d099048e71508184ee1b5b9889cc2ff4b9b2ef49242d1649ba1a47f5073d4173231c9ab60643fdba8
+  languageName: node
+  linkType: hard
+
+"@sentry/webpack-plugin@npm:^1.19.1":
+  version: 1.19.1
+  resolution: "@sentry/webpack-plugin@npm:1.19.1"
+  dependencies:
+    "@sentry/cli": ^1.74.4
+    webpack-sources: ^2.0.0 || ^3.0.0
+  checksum: 16602581dc9457007ca2da17ac666fbf35ff775067fece0804647963758efa62f921fe371932708bd4c5ab2b0ed724c02d8f5113dd5fb74114f1b27b4960a443
   languageName: node
   linkType: hard
 
@@ -7957,15 +7979,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-plugin-webpack-bundle-analyser-v2@npm:^1.1.27":
-  version: 1.1.27
-  resolution: "gatsby-plugin-webpack-bundle-analyser-v2@npm:1.1.27"
+"gatsby-plugin-webpack-bundle-analyser-v2@npm:^1.1.30":
+  version: 1.1.30
+  resolution: "gatsby-plugin-webpack-bundle-analyser-v2@npm:1.1.30"
   dependencies:
-    "@babel/runtime": ^7.17.8
-    webpack-bundle-analyzer: ^4.5.0
+    "@babel/runtime": ^7.19.4
+    webpack-bundle-analyzer: ^4.6.1
   peerDependencies:
     gatsby: ^2.0.0 || ^3.0.0 || ^4.0.0
-  checksum: 99bb315b9a64bddec0af64a7a040ab32391873a9636a209d18f3e923cd1434ea1250f8bc37bdfd156f69414227e2496cc44eeccb392f0da8e3bcc5089b527aee
+  checksum: 0a7d6eba493ea9613fd45daf8859e204a54646bb823fe5f908d5753939fe1ad93844cc97026a53c35cc73773292f2df9b0b879f4707b26c56e0ee54e50625b3c
   languageName: node
   linkType: hard
 
@@ -10388,9 +10410,9 @@ __metadata:
   dependencies:
     "@material-ui/core": ^4.12.4
     "@material-ui/styles": ^4.11.5
-    "@reach/tabs": ^0.17.0
+    "@reach/tabs": ^0.18.0
     "@sentry/gatsby": ^7.15.0
-    "@sentry/webpack-plugin": ^1.19.0
+    "@sentry/webpack-plugin": ^1.19.1
     "@slixites/gatsby-plugin-google-fonts": ^1.1.1
     "@types/color": ^3.0.3
     "@types/esri-leaflet": ^2.1.9
@@ -10429,7 +10451,7 @@ __metadata:
     gatsby-plugin-remove-console: ^0.0.2
     gatsby-plugin-sharp: ^4.24.0
     gatsby-plugin-sitemap: ^5.24.0
-    gatsby-plugin-webpack-bundle-analyser-v2: ^1.1.27
+    gatsby-plugin-webpack-bundle-analyser-v2: ^1.1.30
     gatsby-plugin-webpack-size: ^2.0.1
     gatsby-react-router-scroll: ^5.24.0
     gatsby-source-filesystem: ^4.24.0
@@ -10439,10 +10461,10 @@ __metadata:
     json-stable-stringify-without-jsonify: ^1.0.1
     leaflet: ^1.9.2
     leaflet.markercluster: ^1.5.3
-    mdi-react: ^8.6.0
+    mdi-react: ^9.0.0
     mobile-spectrum-data: ^1.1.2
     nanoid: ^4.0.0
-    preact: ^10.11.1
+    preact: ^10.11.2
     preact-render-to-string: ^5.2.5
     prettier: ^2.7.1
     prop-types: ^15.8.1
@@ -10476,12 +10498,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mdi-react@npm:^8.6.0":
-  version: 8.6.0
-  resolution: "mdi-react@npm:8.6.0"
+"mdi-react@npm:^9.0.0":
+  version: 9.0.0
+  resolution: "mdi-react@npm:9.0.0"
   peerDependencies:
     react: ">=0.14.0"
-  checksum: 6e7065cf9a546dc2e806f3b39d5901dab33b5f7bedb49c7fe7c3b5025a9a7ecc797c5830d0312c0b735d2d172f2fc2360d852512c9622d61b754a9aa933a688e
+  checksum: cd9d4055060d887fcfd9d14b8bbecb75f8279794ff2554a64d78094ac89f21f30f87b0f4a916fbb6e3f0d11c76c4defce55281e325468078015b2ad6c711a8e9
   languageName: node
   linkType: hard
 
@@ -12243,10 +12265,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"preact@npm:^10.11.1":
-  version: 10.11.1
-  resolution: "preact@npm:10.11.1"
-  checksum: 4c4c450d8d8f6ad9ae027bb2baa7ec36b8a97241d7e40258b6f5480ac6cddb43f3e33011c82fd380fe94727622037253e09241cd1b29e0a2be77b58ef75ee425
+"preact@npm:^10.11.2":
+  version: 10.11.2
+  resolution: "preact@npm:10.11.2"
+  checksum: 92b4087a4048595e43fc5c005e9a1f3c890ec83657689de9b40b1894e26f8c2b6b071c63e08941a44044d1612532f8313483b62e3d6e1aa3c39bde27614ed790
   languageName: node
   linkType: hard
 
@@ -14362,7 +14384,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tiny-warning@npm:^1.0.2, tiny-warning@npm:^1.0.3":
+"tiny-warning@npm:^1.0.2":
   version: 1.0.3
   resolution: "tiny-warning@npm:1.0.3"
   checksum: da62c4acac565902f0624b123eed6dd3509bc9a8d30c06e017104bedcf5d35810da8ff72864400ad19c5c7806fc0a8323c68baf3e326af7cb7d969f846100d71
@@ -14506,7 +14528,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tslib@npm:^2.0.3, tslib@npm:^2.1.0, tslib@npm:^2.3.0, tslib@npm:^2.4.0, tslib@npm:~2.4.0":
+"tslib@npm:^2.0.3, tslib@npm:^2.1.0, tslib@npm:^2.4.0, tslib@npm:~2.4.0":
   version: 2.4.0
   resolution: "tslib@npm:2.4.0"
   checksum: 8c4aa6a3c5a754bf76aefc38026134180c053b7bd2f81338cb5e5ebf96fefa0f417bff221592bf801077f5bf990562f6264fecbc42cd3309b33872cb6fc3b113
@@ -15019,7 +15041,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"webpack-bundle-analyzer@npm:^4.5.0":
+"webpack-bundle-analyzer@npm:^4.6.1":
   version: 4.6.1
   resolution: "webpack-bundle-analyzer@npm:4.6.1"
   dependencies:
@@ -15074,7 +15096,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"webpack-sources@npm:^3.2.3":
+"webpack-sources@npm:^2.0.0 || ^3.0.0, webpack-sources@npm:^3.2.3":
   version: 3.2.3
   resolution: "webpack-sources@npm:3.2.3"
   checksum: 989e401b9fe3536529e2a99dac8c1bdc50e3a0a2c8669cbafad31271eadd994bc9405f88a3039cd2e29db5e6d9d0926ceb7a1a4e7409ece021fe79c37d9c4607

@@ -1,7 +1,7 @@
 {
   "name": "mastdatabase-co-uk",
   "private": true,
-  "description": "The personal website, blog, and portfolio of David Wheatley (@davwheat)",
+  "description": "",
   "version": "0.1.0",
   "author": {
     "name": "David Wheatley",
@@ -11,7 +11,7 @@
   "dependencies": {
     "@material-ui/core": "^4.12.4",
     "@material-ui/styles": "^4.11.5",
-    "@reach/tabs": "^0.17.0",
+    "@reach/tabs": "^0.18.0",
     "@sentry/gatsby": "^7.15.0",
     "@slixites/gatsby-plugin-google-fonts": "^1.1.1",
     "active-resource": "^1.0.0-beta.7",
@@ -46,10 +46,10 @@
     "json-stable-stringify-without-jsonify": "^1.0.1",
     "leaflet": "^1.9.2",
     "leaflet.markercluster": "^1.5.3",
-    "mdi-react": "^8.6.0",
+    "mdi-react": "^9.0.0",
     "mobile-spectrum-data": "^1.1.2",
     "nanoid": "^4.0.0",
-    "preact": "^10.11.1",
+    "preact": "^10.11.2",
     "preact-render-to-string": "^5.2.5",
     "prop-types": "^15.8.1",
     "rbush": "^3.0.1",
@@ -71,7 +71,7 @@
     "uuid": "^9.0.0"
   },
   "devDependencies": {
-    "@sentry/webpack-plugin": "^1.19.0",
+    "@sentry/webpack-plugin": "^1.19.1",
     "@types/color": "^3.0.3",
     "@types/esri-leaflet": "^2.1.9",
     "@types/file-saver": "^2.0.5",
@@ -86,7 +86,7 @@
     "babel-plugin-transform-remove-console": "^6.9.4",
     "cross-env": "^7.0.3",
     "gatsby-plugin-perf-budgets": "^0.0.18",
-    "gatsby-plugin-webpack-bundle-analyser-v2": "^1.1.27",
+    "gatsby-plugin-webpack-bundle-analyser-v2": "^1.1.30",
     "prettier": "^2.7.1",
     "typescript": "^4.8.4"
   },
