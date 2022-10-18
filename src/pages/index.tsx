@@ -6,12 +6,13 @@ import Breadcrumbs from '@components/Design/Breadcrumbs'
 import Section from '@components/Design/Section'
 import CardLink from '@components/Links/CardLink'
 
+import countryCodeToFlag from '@functions/countryCodeToFlag'
+
 import Colors from '@data/colors.json'
 import Breakpoints from '@data/breakpoints'
 
 import { makeStyles } from '@material-ui/core'
 import { PageProps } from 'gatsby'
-import countryCodeToFlag from '@functions/countryCodeToFlag'
 
 const useStyles = makeStyles({
   linkList: {

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 import Layout from '@components/Layout'
 import Hero from '@components/Design/Hero'
@@ -46,11 +46,13 @@ export default function UkCoverageMapPage(Provider: { new (): CoverageProvider }
 
     const [selectedLayerId, setSelectedLayerId] = useState(provider.current.defaultLayerId)
 
-    if (provider.current.isLayerHidden(selectedLayerId)) {
-      const firstNonHiddenLayer = provider.current.getLayers().findIndex(layer => !layer.hidden)
+    useEffect(() => {
+      if (provider.current.isLayerHidden(selectedLayerId)) {
+        const firstNonHiddenLayer = provider.current.getLayers().findIndex(layer => !layer.hidden)
 
-      setSelectedLayerId(firstNonHiddenLayer)
-    }
+        setSelectedLayerId(firstNonHiddenLayer)
+      }
+    }, [])
 
     return (
       <Layout

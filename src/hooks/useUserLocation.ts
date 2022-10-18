@@ -65,7 +65,7 @@ export function useUserLocation(options?: PositionOptions): GeolocationCoordinat
     return () => {
       navigator.geolocation.clearWatch(id)
     }
-  })
+  }, [geolocation, options])
 
   return geolocation
 }

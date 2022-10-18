@@ -8,12 +8,14 @@ import Link from '@components/Links/Link'
 
 import Colors from '@data/colors.json'
 
+import type { PageProps } from 'gatsby'
+
 const Links = [
   { text: 'Home', url: '/' },
   { text: 'Networking-related maps', url: '/maps' },
 ]
 
-export default function NotFoundPage({ location }) {
+export default function NotFoundPage({ location }: PageProps) {
   return (
     <Layout location={location} title="Not Found" description="This page couldn't be found.">
       <Hero firstElement color={Colors.primaryBlue}>

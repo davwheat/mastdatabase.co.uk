@@ -10,6 +10,7 @@ import Breakpoints from '@data/breakpoints'
 
 import { makeStyles } from '@material-ui/styles'
 import Breadcrumbs from '@components/Design/Breadcrumbs'
+import { PageProps } from 'gatsby'
 
 interface ILinkGroup {
   groupName: string
@@ -56,7 +57,7 @@ const useStyles = makeStyles({
   },
 })
 
-function MobileNetworkingPage({ location }) {
+function MobileNetworkingPage({ location }: PageProps) {
   const classes = useStyles()
 
   return (

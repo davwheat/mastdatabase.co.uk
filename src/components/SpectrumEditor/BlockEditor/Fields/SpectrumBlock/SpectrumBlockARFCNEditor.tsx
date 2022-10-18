@@ -88,8 +88,6 @@ export default function SpectrumBlockARFCNEditor({ dataIndex, blockIndex, type }
   const isArfcnsVarious = Array.isArray(blockData[type]) && blockData[type]!.length === 0
   const arfcnTypeStr = type.substring(0, type.length - 1).toUpperCase()
 
-  console.log(type)
-
   function handleAddArfcn(val: string) {
     const value = val.trim()
 
