@@ -87,36 +87,10 @@ export default function StreetworksMap() {
   )
 }
 
-const useStyles = makeStyles({
-  customButtonsContainer: {
-    position: 'absolute',
-    zIndex: 10e2,
-    bottom: 32,
-    right: 12,
-    display: 'grid',
-    gridTemplateColumns: '1fr',
-    gap: 16,
-  },
-  customButton: {
-    height: 52,
-    width: 52,
-
-    '& svg': {
-      display: 'block',
-      margin: 'auto',
-    },
-
-    '&:disabled': {
-      cursor: 'not-allowed',
-    },
-  },
-})
-
 function CustomControlButtons() {
   const L = window.L as typeof import('leaflet')
 
   const forceRerender = useForceRender()
-  const classes = useStyles()
   const map = useMap()
   const geolocation = useUserLocation()
 

@@ -14,11 +14,16 @@ const prodPlugins = !__IS_DEV__
       `gatsby-plugin-sitemap`,
       // Fixed hot reload in dev
       `gatsby-plugin-preact`,
-      {
-        resolve: '@sentry/gatsby',
-      },
     ]
   : []
+
+if (__IS_DEV__) {
+  if (process.env.SENTRY_AUTH_TOKEN) {
+    prodPlugins.push({
+      resolve: '@sentry/gatsby',
+    })
+  }
+}
 
 module.exports = {
   flags: {

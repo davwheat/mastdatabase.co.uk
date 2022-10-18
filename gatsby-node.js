@@ -36,7 +36,7 @@ exports.onCreateWebpackConfig = ({ stage, rules, loaders, plugins, actions }) =>
 
   const SentryPlugin = require('@sentry/webpack-plugin')
 
-  if (process.env.NODE_ENV !== 'development') {
+  if (process.env.NODE_ENV !== 'development' && process.env.SENTRY_AUTH_TOKEN) {
     actions.setWebpackConfig({
       plugins: [
         new SentryPlugin({
@@ -87,99 +87,99 @@ exports.createPages = async inp => {
 /**
  * Create blog article pages.
  */
-async function createBlogArticles({ actions, graphql, reporter }) {
-  const { createRedirect } = actions
+// async function createBlogArticles({ actions, graphql, reporter }) {
+//   const { createRedirect } = actions
 
-  const result = await graphql(`
-    {
-      allMdx {
-        nodes {
-          frontmatter {
-            redirect_from
-            path
-          }
+//   const result = await graphql(`
+//     {
+//       allMdx {
+//         nodes {
+//           frontmatter {
+//             redirect_from
+//             path
+//           }
 
-          id
-        }
-      }
-    }
-  `)
+//           id
+//         }
+//       }
+//     }
+//   `)
 
-  if (result.errors) {
-    reporter.panic('failed to create posts ', result.errors)
-  }
-  const pages = result.data.allMdx.nodes
+//   if (result.errors) {
+//     reporter.panic('failed to create posts ', result.errors)
+//   }
+//   const pages = result.data.allMdx.nodes
 
-  pages.forEach((page, i) => {
-    const { frontmatter, id } = page
+//   pages.forEach((page, i) => {
+//     const { frontmatter, id } = page
 
-    // Create all redirects that are defined in frontmatter
-    if (frontmatter.redirect_from) {
-      if (Array.isArray(frontmatter.redirect_from)) {
-        frontmatter.redirect_from.forEach(redirect => {
-          createRedirect({
-            fromPath: `/blog/${redirect}`,
-            toPath: `/blog/${frontmatter.path}`,
-            redirectInBrowser: true,
-            isPermanent: true,
-          })
-        })
-      } else {
-        throw new Error('`redirect_from` in MDX frontmatter must either be an array of paths, or not defined')
-      }
-    }
+//     // Create all redirects that are defined in frontmatter
+//     if (frontmatter.redirect_from) {
+//       if (Array.isArray(frontmatter.redirect_from)) {
+//         frontmatter.redirect_from.forEach(redirect => {
+//           createRedirect({
+//             fromPath: `/blog/${redirect}`,
+//             toPath: `/blog/${frontmatter.path}`,
+//             redirectInBrowser: true,
+//             isPermanent: true,
+//           })
+//         })
+//       } else {
+//         throw new Error('`redirect_from` in MDX frontmatter must either be an array of paths, or not defined')
+//       }
+//     }
 
-    actions.createPage({
-      path: `/blog/${frontmatter.path}`,
-      component: path.resolve(`./src/templates/blog-article/BlogPageTemplate.tsx`),
+//     actions.createPage({
+//       path: `/blog/${frontmatter.path}`,
+//       component: path.resolve(`./src/templates/blog-article/BlogPageTemplate.tsx`),
 
-      context: { id, page: Math.ceil((i + 1) / BlogArticlesPerPage) },
-    })
-  })
-}
+//       context: { id, page: Math.ceil((i + 1) / BlogArticlesPerPage) },
+//     })
+//   })
+// }
 
 /**
  * Create blog listings.
  */
-async function createBlogListing({ actions, graphql, reporter }) {
-  const { createPage, createRedirect } = actions
-  const result = await graphql(
-    `
-      {
-        allMdx(sort: { fields: [frontmatter___created_at], order: DESC }, filter: { frontmatter: { archived: { ne: true } } }) {
-          nodes {
-            id
-          }
-        }
-      }
-    `,
-  )
+// async function createBlogListing({ actions, graphql, reporter }) {
+//   const { createPage, createRedirect } = actions
+//   const result = await graphql(
+//     `
+//       {
+//         allMdx(sort: { fields: [frontmatter___created_at], order: DESC }, filter: { frontmatter: { archived: { ne: true } } }) {
+//           nodes {
+//             id
+//           }
+//         }
+//       }
+//     `,
+//   )
 
-  if (result.errors) {
-    reporter.panicOnBuild(`Error while running GraphQL query.`)
-    return
-  }
+//   if (result.errors) {
+//     reporter.panicOnBuild(`Error while running GraphQL query.`)
+//     return
+//   }
 
-  const posts = result.data.allMdx.nodes
-  const numPages = Math.ceil(posts.length / BlogArticlesPerPage)
+//   const posts = result.data.allMdx.nodes
+//   const numPages = Math.ceil(posts.length / BlogArticlesPerPage)
 
-  Array.from({ length: numPages }).forEach((_, i) => {
-    createPage({
-      path: i === 0 ? `/blog` : `/blog/${i + 1}`,
-      component: path.resolve('./src/templates/blog-article/BlogArticlesList.tsx'),
-      context: {
-        limit: BlogArticlesPerPage,
-        skip: i * BlogArticlesPerPage,
-        numPages,
-        currentPage: i + 1,
-      },
-    })
-  })
+//   Array.from({ length: numPages }).forEach((_, i) => {
+//     createPage({
+//       path: i === 0 ? `/blog` : `/blog/${i + 1}`,
+//       component: path.resolve('./src/templates/blog-article/BlogArticlesList.tsx'),
+//       context: {
+//         limit: BlogArticlesPerPage,
+//         skip: i * BlogArticlesPerPage,
+//         numPages,
+//         currentPage: i + 1,
+//       },
+//     })
+//   })
 
-  createRedirect({
-    fromPath: `/blog/1`,
-    toPath: `/blog`,
-    redirectInBrowser: true,
-    isPermanent: true,
-  })
-}
+//   createRedirect({
+//     fromPath: `/blog/1`,
+//     toPath: `/blog`,
+//     redirectInBrowser: true,
+//     isPermanent: true,
+//   })
+// }

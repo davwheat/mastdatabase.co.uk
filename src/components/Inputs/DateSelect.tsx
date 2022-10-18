@@ -1,11 +1,11 @@
 import React from 'react'
 
-import { useMemo, useState } from 'react'
+import Colors from '@data/colors.json'
+
+import { useMemo } from 'react'
 import { nanoid } from 'nanoid'
-import SearchIcon from 'mdi-react/SearchIcon'
 import { makeStyles } from '@material-ui/styles'
 import clsx from 'clsx'
-import Colors from '@data/colors.json'
 import dayjs from 'dayjs'
 
 interface IProps extends Omit<React.HTMLAttributes<HTMLInputElement>, 'onInput'> {
