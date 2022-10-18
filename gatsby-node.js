@@ -36,7 +36,7 @@ exports.onCreateWebpackConfig = ({ stage, rules, loaders, plugins, actions }) =>
 
   const SentryPlugin = require('@sentry/webpack-plugin')
 
-  if (process.env.NODE_ENV !== 'development') {
+  if (process.env.NODE_ENV !== 'development' && process.env.SENTRY_AUTH_TOKEN) {
     actions.setWebpackConfig({
       plugins: [
         new SentryPlugin({
