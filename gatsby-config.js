@@ -13,7 +13,7 @@ const prodPlugins = !__IS_DEV__
       },
       `gatsby-plugin-sitemap`,
       // Fixed hot reload in dev
-      `gatsby-plugin-preact`,
+      // `gatsby-plugin-preact`,
     ]
   : []
 
@@ -65,7 +65,6 @@ module.exports = {
         },
       },
     },
-    `gatsby-plugin-csp`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
