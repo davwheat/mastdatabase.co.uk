@@ -16,6 +16,7 @@ import clsx from 'clsx'
 import type { PageProps } from 'gatsby'
 import CoverageProvider from './Providers/CoverageProvider'
 import CoverageKey from './CoverageKey'
+import { useMemo } from 'react'
 
 const useStyles = makeStyles({
   mapSection: {
@@ -38,17 +39,17 @@ export default function UkCoverageMapPage(Provider: { new (): CoverageProvider }
   return function CoverageMapPage({ location }: PageProps) {
     const classes = useStyles()
 
-    const provider = useRef(new Provider())
+    const provider = useMemo(() => new Provider(), [Provider])
 
-    provider.current.validate()
+    provider.validate()
 
-    const { providerName } = provider.current
+    const { providerName } = provider
 
-    const [selectedLayerId, setSelectedLayerId] = useState(provider.current.defaultLayerId)
+    const [selectedLayerId, setSelectedLayerId] = useState(provider.defaultLayerId)
 
     useEffect(() => {
-      if (provider.current.isLayerHidden(selectedLayerId)) {
-        const firstNonHiddenLayer = provider.current.getLayers().findIndex(layer => !layer.hidden)
+      if (provider.isLayerHidden(selectedLayerId)) {
+        const firstNonHiddenLayer = provider.getLayers().findIndex(layer => !layer.hidden)
 
         setSelectedLayerId(firstNonHiddenLayer)
       }
@@ -85,28 +86,28 @@ export default function UkCoverageMapPage(Provider: { new (): CoverageProvider }
             onChange={(value: string) => {
               setSelectedLayerId(parseInt(value))
             }}
-            options={provider.current
+            options={provider
               .getLayers()
               .map((layer, index) => ({ label: layer.label, value: index.toString() }))
-              .filter((_, i) => !provider.current.isLayerHidden(i))}
+              .filter((_, i) => !provider.isLayerHidden(i))}
           />
 
-          {provider.current.supportsSites && (
+          {provider.supportsSites && (
             <p className={clsx('text-speak', classes.sitesAvailable)}>
               This coverage map also shows the location of network sites. To see them, you must zoom in.
             </p>
           )}
 
-          {provider.current.getPageMessages().map(msg => (
+          {provider.getPageMessages().map(msg => (
             <p className={clsx('text-speak', classes.sitesAvailable)}>{msg}</p>
           ))}
 
-          <CoverageKey keyData={provider.current.getLayerKeys()[selectedLayerId]} />
+          <CoverageKey keyData={provider.getLayerKeys()[selectedLayerId]} />
         </Section>
 
         <Section width="full" className={classes.mapSection}>
           <NoSsr>
-            <UkCoverageMap provider={provider.current} selectedLayerId={selectedLayerId} />
+            <UkCoverageMap provider={provider} selectedLayerId={selectedLayerId} />
           </NoSsr>
         </Section>
       </Layout>
