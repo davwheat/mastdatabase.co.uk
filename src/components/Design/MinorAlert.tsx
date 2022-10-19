@@ -35,7 +35,7 @@ export default function MinorAlert({ className, heading, children, color, colore
   return (
     <div
       className={clsx(classes.root, className)}
-      style={{ '--color': Colors[color], '--bg-color': coloredBackground ? Colors.pale[color] : undefined } as any}
+      style={{ '--color': Colors[color], ...(!coloredBackground ? {} : { '--bg-color': Colors.pale[color] }) } as any}
     >
       {heading && <h3 className={clsx(classes.heading, 'text-speak-up')}>{heading}</h3>}
 
