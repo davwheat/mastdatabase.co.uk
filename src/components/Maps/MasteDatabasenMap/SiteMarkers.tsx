@@ -101,6 +101,7 @@ export function SiteMarkers() {
 
       if (filterState.operatorId) where.operator = filterState.operatorId
       if (filterState.technologyId) where.technology = filterState.technologyId
+      if (filterState.frequencyBand) where.frequencyBand = filterState.frequencyBand
 
       let collection = await Site.where(where).all()
 
