@@ -209,6 +209,7 @@ async function loadPoints(
         <h2>Last updated on one.network</h2>
         <p id="${point.se_id}__last_adapter_update_disp">Loading...</p>
         `,
+        { closeButton: false, className: 'streetworks-popup' },
       )
       .addTo(markerGroup)
       .on('popupopen', function (e) {

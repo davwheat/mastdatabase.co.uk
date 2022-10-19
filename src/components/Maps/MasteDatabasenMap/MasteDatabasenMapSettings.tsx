@@ -1,12 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react'
 
-import { IOperator, ITechnology, Operator, Technology } from '@components/Maps/MasteDatabasenMap/JsonApi/Models'
+import { FrequencyBand, IFrequencyBand, IOperator, ITechnology, Operator, Technology } from '@components/Maps/MasteDatabasenMap/JsonApi/Models'
 import SelectDropdown from '@components/Inputs/SelectDropdown'
 import { MasteDatabasenMapOptionsAtom } from './MasteDatabasenMapOptionsAtom'
 
 import { useRecoilState } from 'recoil'
 import { makeStyles } from '@material-ui/core'
 import Checkbox from '@components/Inputs/Checkbox'
+import { formatFrequency } from 'mobile-spectrum-data/utils'
 
 const useStyles = makeStyles({
   root: {
@@ -28,9 +29,12 @@ export default function MasteDatabasenMapSettings() {
   const models = useRef({
     operators: [] as IOperator[],
     technologies: [] as ITechnology[],
+    frequencyBands: [] as IFrequencyBand[],
   })
 
   useEffect(() => {
+    const modelCount = 3
+
     if (loadingModels === null) {
       setLoadingModels(true)
 
@@ -40,15 +44,25 @@ export default function MasteDatabasenMapSettings() {
         models.current.operators = operators.toArray()
         finishedCount++
 
-        if (finishedCount === 2) {
+        if (finishedCount === modelCount) {
           setLoadingModels(false)
         }
       })
+
       Technology.all().then(technologies => {
         models.current.technologies = technologies.toArray()
         finishedCount++
 
-        if (finishedCount === 2) {
+        if (finishedCount === modelCount) {
+          setLoadingModels(false)
+        }
+      })
+
+      FrequencyBand.all().then(freq => {
+        models.current.frequencyBands = freq.toArray()
+        finishedCount++
+
+        if (finishedCount === modelCount) {
           setLoadingModels(false)
         }
       })
@@ -77,6 +91,19 @@ export default function MasteDatabasenMapSettings() {
           setMapOptions(f => ({ ...f, technologyId: value === 'all' ? null : value }))
         }}
         options={[{ label: 'All', value: 'all' }, ...models.current.technologies.map(m => ({ label: m.technologyName, value: m.id }))]}
+      />
+
+      <SelectDropdown
+        className={classes.input}
+        label="Filter by frequency"
+        value={mapOptions.frequencyBand || 'all'}
+        onChange={value => {
+          setMapOptions(f => ({ ...f, frequencyBand: value === 'all' ? null : value }))
+        }}
+        options={[
+          { label: 'All', value: 'all' },
+          ...models.current.frequencyBands.map(m => ({ label: formatFrequency(m.frequencyBand), value: m.id })),
+        ]}
       />
 
       <h2 className="text-loud">Settings</h2>

@@ -1,4 +1,5 @@
 import type { ISite } from '@components/Maps/MasteDatabasenMap/JsonApi/Models'
+import dayjs from 'dayjs'
 
 import { predictThreeDkEnb } from './predictThreeDkEnb'
 
@@ -28,6 +29,25 @@ export function getSitePopUpHtml(sites: ISite[]) {
   popupTextSegments.push(`
   <dt>Station name(s)</dt>
   <dd>${Array.from(new Set(sites.map(s => s.stationName))).join(', ')}</dd>
+  `)
+
+  const sitesDate = sites.map(s => (s.startDate ? new Date(s.startDate).getTime() : 0))
+
+  // We add two hours because the dates from Mastedatabasen are always 22:00 or 23:00 to match DK time
+  // Either with or without DST
+
+  popupTextSegments.push(`
+  <dt>Site last modified</dt>
+  <dd>${dayjs(Math.max(...sitesDate))
+    .add(2, 'hours')
+    .format('D MMM YYYY')}</dd>
+  `)
+
+  popupTextSegments.push(`
+  <dt>Site first recorded</dt>
+  <dd>${dayjs(Math.min(...sitesDate))
+    .add(2, 'hours')
+    .format('D MMM YYYY')}</dd>
   `)
 
   {

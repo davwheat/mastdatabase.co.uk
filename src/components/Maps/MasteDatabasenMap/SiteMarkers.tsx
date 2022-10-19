@@ -18,7 +18,7 @@ import dayjs_utc from 'dayjs/plugin/utc'
 dayjs.extend(dayjs_tz)
 dayjs.extend(dayjs_utc)
 
-import type { LayerGroup as LayerGroupType, Map as MapType } from 'leaflet'
+import type { LayerGroup as LayerGroupType } from 'leaflet'
 import { ISite, Site } from './JsonApi/Models'
 
 import SiteIcon from '@assets/icons/site-icon.png'
@@ -65,8 +65,8 @@ export function SiteMarkers() {
         const sitesByRat: Record<string, ISite[]> = {}
 
         point.sites.forEach(site => {
-          sitesByRat[site.Technology().id] ||= []
-          sitesByRat[site.Technology().id].push(site)
+          sitesByRat[site.Technology()!.id] ||= []
+          sitesByRat[site.Technology()!.id].push(site)
         })
 
         return new DataMarker<{ id: string; sites: ISite[] }>([point.sites[0].lat, point.sites[0].lon], point, {
@@ -74,7 +74,7 @@ export function SiteMarkers() {
             iconUrl: SiteIcon,
             iconSize: [18, 18],
             iconAnchor: [9, 9],
-            popupAnchor: [0, 9],
+            popupAnchor: [0, -8],
           }),
           text: getSiteLabelText(point.sites, filterState.showEnbOnLabel),
         })
@@ -101,6 +101,7 @@ export function SiteMarkers() {
 
       if (filterState.operatorId) where.operator = filterState.operatorId
       if (filterState.technologyId) where.technology = filterState.technologyId
+      if (filterState.frequencyBand) where.frequencyBand = filterState.frequencyBand
 
       let collection = await Site.where(where).all()
 
