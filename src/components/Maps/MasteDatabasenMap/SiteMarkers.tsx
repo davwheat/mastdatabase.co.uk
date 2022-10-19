@@ -65,8 +65,8 @@ export function SiteMarkers() {
         const sitesByRat: Record<string, ISite[]> = {}
 
         point.sites.forEach(site => {
-          sitesByRat[site.Technology().id] ||= []
-          sitesByRat[site.Technology().id].push(site)
+          sitesByRat[site.Technology()!.id] ||= []
+          sitesByRat[site.Technology()!.id].push(site)
         })
 
         return new DataMarker<{ id: string; sites: ISite[] }>([point.sites[0].lat, point.sites[0].lon], point, {
