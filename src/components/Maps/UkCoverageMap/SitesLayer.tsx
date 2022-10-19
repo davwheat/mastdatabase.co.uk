@@ -2,7 +2,7 @@ import useForceRender from '@hooks/useForceRerender'
 import React, { useCallback, useEffect, useRef } from 'react'
 import { Marker, Popup, useMap, useMapEvent } from 'react-leaflet'
 
-import type { default as CoverageProvider, ISiteItem } from './CoverageProvider'
+import type { default as CoverageProvider, ISiteItem } from './Providers/CoverageProvider'
 
 interface ISitesLayerProps {
   provider: CoverageProvider
