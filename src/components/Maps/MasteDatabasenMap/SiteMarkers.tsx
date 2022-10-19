@@ -18,7 +18,7 @@ import dayjs_utc from 'dayjs/plugin/utc'
 dayjs.extend(dayjs_tz)
 dayjs.extend(dayjs_utc)
 
-import type { LayerGroup as LayerGroupType, Map as MapType } from 'leaflet'
+import type { LayerGroup as LayerGroupType } from 'leaflet'
 import { ISite, Site } from './JsonApi/Models'
 
 import SiteIcon from '@assets/icons/site-icon.png'
