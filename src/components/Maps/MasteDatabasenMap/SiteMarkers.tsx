@@ -74,7 +74,7 @@ export function SiteMarkers() {
             iconUrl: SiteIcon,
             iconSize: [18, 18],
             iconAnchor: [9, 9],
-            popupAnchor: [0, 9],
+            popupAnchor: [0, -8],
           }),
           text: getSiteLabelText(point.sites, filterState.showEnbOnLabel),
         })
