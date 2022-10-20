@@ -277,7 +277,14 @@ export default function SpectrumBlockEditor({ dataIndex, blockIndex }: ISpectrum
                 if (!isValidFloat(val)) return
 
                 setSpectrumBlockState(blockData => {
-                  return { ...blockData, startFreq: Number(val) }
+                  return {
+                    ...blockData,
+                    pairedWith: {
+                      // @ts-expect-error
+                      ...blockData.pairedWith,
+                      startFreq: Number(val),
+                    },
+                  }
                 })
               }}
             />
@@ -297,7 +304,7 @@ export default function SpectrumBlockEditor({ dataIndex, blockIndex }: ISpectrum
                     pairedWith: {
                       // @ts-expect-error
                       ...blockData.pairedWith,
-                      startFreq: Number(val),
+                      endFreq: Number(val),
                     },
                   }
                 })
