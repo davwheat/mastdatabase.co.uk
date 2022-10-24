@@ -2722,15 +2722,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sentry/browser@npm:7.15.0":
-  version: 7.15.0
-  resolution: "@sentry/browser@npm:7.15.0"
+"@sentry/browser@npm:7.16.0":
+  version: 7.16.0
+  resolution: "@sentry/browser@npm:7.16.0"
   dependencies:
-    "@sentry/core": 7.15.0
-    "@sentry/types": 7.15.0
-    "@sentry/utils": 7.15.0
+    "@sentry/core": 7.16.0
+    "@sentry/types": 7.16.0
+    "@sentry/utils": 7.16.0
     tslib: ^1.9.3
-  checksum: 7adc551a12ab792ebd3a20a82cdbb2751db9ef873fd7a96b4fb5357526b04f4a7b371594163c77fcf096a99c5d537cb7aade0e3df012a96645bcc623077b8912
+  checksum: 7de86fe6821bee8de5bace073dd49f2f621a87b2fee57825f01365538d1533170e0c96f15a99ac82abf01f7cd7f881c97543d3c5ea7cae006e16d045e5edf3b9
   languageName: node
   linkType: hard
 
@@ -2751,74 +2751,74 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sentry/core@npm:7.15.0":
-  version: 7.15.0
-  resolution: "@sentry/core@npm:7.15.0"
+"@sentry/core@npm:7.16.0":
+  version: 7.16.0
+  resolution: "@sentry/core@npm:7.16.0"
   dependencies:
-    "@sentry/types": 7.15.0
-    "@sentry/utils": 7.15.0
+    "@sentry/types": 7.16.0
+    "@sentry/utils": 7.16.0
     tslib: ^1.9.3
-  checksum: 3a0c410a186f062ba026c85729e35ee78d99e8d124036742fb52e8064f95c32a5d9516514bfb0e52fcd3bfd8ff96678eb586f351e2ed270d8c7733c98cc77548
+  checksum: 033c775f9e4411dc4506617cea3d780b0696367ded01052d398e4a2e4752bb29de3ad15731cde07115995ed8c3ded2fea1b65231502eba87703cdfb35699d8b0
   languageName: node
   linkType: hard
 
-"@sentry/gatsby@npm:^7.15.0":
-  version: 7.15.0
-  resolution: "@sentry/gatsby@npm:7.15.0"
+"@sentry/gatsby@npm:^7.16.0":
+  version: 7.16.0
+  resolution: "@sentry/gatsby@npm:7.16.0"
   dependencies:
-    "@sentry/react": 7.15.0
-    "@sentry/tracing": 7.15.0
-    "@sentry/types": 7.15.0
-    "@sentry/utils": 7.15.0
+    "@sentry/react": 7.16.0
+    "@sentry/tracing": 7.16.0
+    "@sentry/types": 7.16.0
+    "@sentry/utils": 7.16.0
     "@sentry/webpack-plugin": 1.19.0
   peerDependencies:
     gatsby: ^2.0.0 || ^3.0.0 || ^4.0.0
     react: 15.x || 16.x || 17.x || 18.x
-  checksum: 58b59b40421b205d4c4c0d6750044408ad781f1a49732b07650f23bc3e3bdd43ff6871bc0945c3aea712eb64860eaa18edbff992fc4264fe4809d3c628a1fe44
+  checksum: 1a54f033a280119281aa93c5541f81a95f3d1c420db518f752e8e849113bad9793ec203a37bf93e8945127408cce92508f9e821f61d28a96d19d06d3eb27757f
   languageName: node
   linkType: hard
 
-"@sentry/react@npm:7.15.0":
-  version: 7.15.0
-  resolution: "@sentry/react@npm:7.15.0"
+"@sentry/react@npm:7.16.0":
+  version: 7.16.0
+  resolution: "@sentry/react@npm:7.16.0"
   dependencies:
-    "@sentry/browser": 7.15.0
-    "@sentry/types": 7.15.0
-    "@sentry/utils": 7.15.0
+    "@sentry/browser": 7.16.0
+    "@sentry/types": 7.16.0
+    "@sentry/utils": 7.16.0
     hoist-non-react-statics: ^3.3.2
     tslib: ^1.9.3
   peerDependencies:
     react: 15.x || 16.x || 17.x || 18.x
-  checksum: 9ae5006664d76bab639f8baaa1396bb6db7acf8a539dc7e26a1b388da9da8d8acab13b322b89a8741bf75287c5dcadaac58051bf416a99f0fcd64ea81f31961f
+  checksum: 5331993f491453eb4f92137c85732377aee47ff2da9c445c4eea6422b21b0acf78c6e05cc799e2197c8d5e3b26eab840e865f2475b8c671207b05b6a14d86b64
   languageName: node
   linkType: hard
 
-"@sentry/tracing@npm:7.15.0":
-  version: 7.15.0
-  resolution: "@sentry/tracing@npm:7.15.0"
+"@sentry/tracing@npm:7.16.0":
+  version: 7.16.0
+  resolution: "@sentry/tracing@npm:7.16.0"
   dependencies:
-    "@sentry/core": 7.15.0
-    "@sentry/types": 7.15.0
-    "@sentry/utils": 7.15.0
+    "@sentry/core": 7.16.0
+    "@sentry/types": 7.16.0
+    "@sentry/utils": 7.16.0
     tslib: ^1.9.3
-  checksum: 6eddab4e20431b37cd6a85d6b41d14155d694df200fee204c285cdc88e2659d02e3c898344ff366dbdd53c7204b0ba300b16e9c1b62db91c815d615670ae4193
+  checksum: 59acb23540e8760129e9b59d553f57dc3f4ff6e6348145fb001fa41da9a0d452c5894a4a50eef910b92fc037f4eef703f000778879fec3f73cef6f61e9c00dc1
   languageName: node
   linkType: hard
 
-"@sentry/types@npm:7.15.0":
-  version: 7.15.0
-  resolution: "@sentry/types@npm:7.15.0"
-  checksum: 114fb1eeacce6a92fc50e9b8ecf35ccef6993cb43c7b428c06394177d8ed0e42ee84ec64e801356c6a0190d4aa71d032cf82ee9e34a976b634dac6a0c284361a
+"@sentry/types@npm:7.16.0":
+  version: 7.16.0
+  resolution: "@sentry/types@npm:7.16.0"
+  checksum: 5474085db149c80c23102ba12063fef27ac873a238963598eb3ca6dfd956672ecd25783f9f38b8a8ba905473e14f9af97e900749778957671861c1ef6d33f81a
   languageName: node
   linkType: hard
 
-"@sentry/utils@npm:7.15.0":
-  version: 7.15.0
-  resolution: "@sentry/utils@npm:7.15.0"
+"@sentry/utils@npm:7.16.0":
+  version: 7.16.0
+  resolution: "@sentry/utils@npm:7.16.0"
   dependencies:
-    "@sentry/types": 7.15.0
+    "@sentry/types": 7.16.0
     tslib: ^1.9.3
-  checksum: 9445a78c23b230a39d05c4ff44fb02f66bbb4dd4638216419b99ab53fa403bf613ea175c642b0bc015038370d229af76046689a08efe5a030d64b5cb0e02cfa1
+  checksum: decff9f82e7b6b431b1d226f6567762bd2189357ceacb304be20413fcb07be62fad17433979f750e717a07e92625b250bf7493591550f6e146d8adc8d06d6721
   languageName: node
   linkType: hard
 
@@ -3224,12 +3224,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/leaflet@npm:^1.8.0":
-  version: 1.8.0
-  resolution: "@types/leaflet@npm:1.8.0"
+"@types/leaflet@npm:^1.9.0":
+  version: 1.9.0
+  resolution: "@types/leaflet@npm:1.9.0"
   dependencies:
     "@types/geojson": "*"
-  checksum: a0190d48dfd49c7526a38c94490d9acdcb09de8b0338ebae8b33374b24f474330be82733007ab1c39008a61c4712b743ccf230909f203f0f35c9986b3a583ab6
+  checksum: f3ee2e2fc8bd3480d77667471c8f774a3726ff7694a7d08d2423c05b40e28f00379c7d469b4cbd3b53a1bc96c75970c92f9da7908fc477cbac0eda2a9d17b6ad
   languageName: node
   linkType: hard
 
@@ -5823,10 +5823,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dayjs@npm:^1.11.5":
-  version: 1.11.5
-  resolution: "dayjs@npm:1.11.5"
-  checksum: e3bbaa7b4883b31be4bf75a181f1447fbb19800c29b332852125aab96baeff3ac232dcba8b88c4ea17d3b636c99dac5fb9d1af4bb6ae26615698bbc4a852dffb
+"dayjs@npm:^1.11.6":
+  version: 1.11.6
+  resolution: "dayjs@npm:1.11.6"
+  checksum: 18bdfd927009b68eab08dca578e421d4a581cefcbe9337f54c5d9e0d941ffb6b221c4b2c1cab15cdd9d419940e768ac4c984531461a90bbe1c158b75fe160580
   languageName: node
   linkType: hard
 
@@ -10411,13 +10411,13 @@ __metadata:
     "@material-ui/core": ^4.12.4
     "@material-ui/styles": ^4.11.5
     "@reach/tabs": ^0.18.0
-    "@sentry/gatsby": ^7.15.0
+    "@sentry/gatsby": ^7.16.0
     "@sentry/webpack-plugin": ^1.19.1
     "@slixites/gatsby-plugin-google-fonts": ^1.1.1
     "@types/color": ^3.0.3
     "@types/esri-leaflet": ^2.1.9
     "@types/file-saver": ^2.0.5
-    "@types/leaflet": ^1.8.0
+    "@types/leaflet": ^1.9.0
     "@types/leaflet.markercluster": ^1.5.1
     "@types/material-ui": ^0.21.12
     "@types/rbush": ^3.0.0
@@ -10430,7 +10430,7 @@ __metadata:
     case-sensitive-paths-webpack-plugin: ^2.4.0
     clsx: ^1.2.1
     cross-env: ^7.0.3
-    dayjs: ^1.11.5
+    dayjs: ^1.11.6
     esri-leaflet: ^3.0.8
     file-saver: ^2.0.5
     font-color-contrast: ^11.1.0
@@ -10465,7 +10465,7 @@ __metadata:
     mobile-spectrum-data: ^1.2.1
     nanoid: ^4.0.0
     preact: ^10.11.2
-    preact-render-to-string: ^5.2.5
+    preact-render-to-string: ^5.2.6
     prettier: ^2.7.1
     prop-types: ^15.8.1
     rbush: ^3.0.1
@@ -12254,14 +12254,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"preact-render-to-string@npm:^5.2.5":
-  version: 5.2.5
-  resolution: "preact-render-to-string@npm:5.2.5"
+"preact-render-to-string@npm:^5.2.6":
+  version: 5.2.6
+  resolution: "preact-render-to-string@npm:5.2.6"
   dependencies:
     pretty-format: ^3.8.0
   peerDependencies:
     preact: ">=10"
-  checksum: 42a735274a190577e3a1fc785ab179a8ec422345d0fd24402146aa2e3c2b216b724c94d569677f744e366c2fbbe5619bc4ab8270cb8036c366d524b54e82fd3f
+  checksum: be8d5d8fb502d422c503e68af7bcccb6facd942f3ae9a4d093ebe3f1d4f0b15c540624bdac434d53a2a8e8fb7afa4606383414e937c40933ca43445470a026ff
   languageName: node
   linkType: hard
 
@@ -14663,11 +14663,11 @@ __metadata:
 
 "typescript@patch:typescript@^4.8.4#~builtin<compat/typescript>":
   version: 4.8.4
-  resolution: "typescript@patch:typescript@npm%3A4.8.4#~builtin<compat/typescript>::version=4.8.4&hash=7ad353"
+  resolution: "typescript@patch:typescript@npm%3A4.8.4#~builtin<compat/typescript>::version=4.8.4&hash=701156"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 563a0ef47abae6df27a9a3ab38f75fc681f633ccf1a3502b1108e252e187787893de689220f4544aaf95a371a4eb3141e4a337deb9895de5ac3c1ca76430e5f0
+  checksum: 301459fc3eb3b1a38fe91bf96d98eb55da88a9cb17b4ef80b4d105d620f4d547ba776cc27b44cc2ef58b66eda23fe0a74142feb5e79a6fb99f54fc018a696afa
   languageName: node
   linkType: hard
 
