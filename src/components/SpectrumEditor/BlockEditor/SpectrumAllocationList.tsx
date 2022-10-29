@@ -33,8 +33,6 @@ export default function SpectrumBlockList() {
   const spectrumEditorState = useParsedSpectrumState()
   const setSpectrumAllocationState = useSetRecoilState(SpectrumEditorAtom)
 
-  console.log(spectrumEditorState)
-
   if (!spectrumEditorState || !Array.isArray(spectrumEditorState)) {
     return (
       <MinorAlert className={classes.error} heading="No spectrum data" color="primaryRed">

@@ -8,6 +8,10 @@ import Button from '@components/Inputs/Button'
 import { useParsedSpectrumState } from './useParsedSpectrumState'
 import { readJsonFromFile, saveJsonToFile } from './InputOutput'
 import { useResetRecoilState } from 'recoil'
+import SelectDropdown from '@components/Inputs/SelectDropdown'
+import * as _AllSpectrumData from 'mobile-spectrum-data'
+import { SpectrumData } from 'mobile-spectrum-data/@types'
+import jsonStableStringify from 'json-stable-stringify-without-jsonify'
 
 const useStyles = makeStyles({
   root: {
@@ -25,7 +29,21 @@ const useStyles = makeStyles({
     flexWrap: 'wrap',
     gap: 16,
   },
+  importDropdown: {
+    marginTop: 24,
+  },
 })
+
+const RegionDisplayNames = new Intl.DisplayNames(['en'], { type: 'region' })
+
+// Filters out non-spectrum data keys (e.g. `utils`)
+const AllSpectrumData = Object.entries(_AllSpectrumData).filter(([key]) => key.length === 2) as [string, { default: SpectrumData[] }][]
+const AllSpectrumDataSelectOptions = AllSpectrumData.map(([countryCode, data]) => ({
+  label: `${RegionDisplayNames.of(countryCode)} (${countryCode})`,
+  value: JSON.stringify(data.default),
+}))
+
+const AllSelectOptions = [{ label: 'Select a region...', value: '' }, ...AllSpectrumDataSelectOptions]
 
 export function SpectrumEditorSettings() {
   const classes = useStyles()
@@ -81,6 +99,23 @@ export function SpectrumEditorSettings() {
           Reset
         </Button>
       </div>
+
+      <SelectDropdown
+        label="Import from existing country data"
+        value=""
+        className={classes.importDropdown}
+        options={AllSelectOptions}
+        onChange={stringifiedData => {
+          if (!stringifiedData) return
+
+          setSpectrumEditorState(s => {
+            return {
+              ...s,
+              rawInput: jsonStableStringify(JSON.parse(stringifiedData), { space: 2 }),
+            }
+          })
+        }}
+      />
     </Section>
   )
 }
