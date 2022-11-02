@@ -51,9 +51,29 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
     },
   },
   {
+    id: 'three',
+    name: 'Three',
+    aliases: ['Three'],
+    category: 'Mobile network',
+    icon: {
+      text: '3',
+      type: 'mobile',
+    },
+  },
+  {
+    id: 'ee',
+    name: 'EE',
+    aliases: ['EE'],
+    category: 'Mobile network',
+    icon: {
+      text: 'EE',
+      type: 'mobile',
+    },
+  },
+  {
     id: 'mbnl',
     name: 'Mobile Broadband Network Limited',
-    aliases: ['EE', 'MBNL'],
+    aliases: ['MBNL'],
     category: 'Mobile network',
     icon: {
       text: 'MBNL',
