@@ -53,7 +53,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'three',
     name: 'Three',
-    aliases: ['Three'],
+    aliases: ['Three', 'Hutchison 3G Ltd'],
     category: 'Mobile network',
     icon: {
       text: '3',
@@ -63,7 +63,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'ee',
     name: 'EE',
-    aliases: ['EE'],
+    aliases: ['EE', 'EE Limited'],
     category: 'Mobile network',
     icon: {
       text: 'EE',
