@@ -18,7 +18,13 @@ export interface IOneNetworkStreetworksPromoter {
   /**
    * Promoter category (what infrastructure they are responsible for)
    */
-  category: 'Mobile network' | 'Fixed broadband' | 'Business broadband' | 'Street furniture'
+  category:
+    | 'Mobile network'
+    | 'Fixed broadband'
+    | 'Fixed wireless access'
+    | 'Business broadband'
+    | 'Street furniture'
+    | 'Telecoms infrastructure'
   /**
    * Information for map marker icons
    */
@@ -28,12 +34,13 @@ export interface IOneNetworkStreetworksPromoter {
   }
 }
 
+// Using data from https://portal-gb.one.network/prd-portal-one-network/json/settings.cfc?method=get&lang=en-GB&siteCode=v7&lang=en-GB
 export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   // Mobile networks
   {
     id: 'o2',
     name: 'O2',
-    aliases: ['O2', '02', 'O 2', 'Telefonica', 'Telefónica'],
+    aliases: ['O2 (UK) Limited'],
     category: 'Mobile network',
     icon: {
       text: 'O2',
@@ -43,7 +50,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'vf',
     name: 'Vodafone',
-    aliases: ['Vodafone'],
+    aliases: ['Vodafone', 'Vodafone Group'],
     category: 'Mobile network',
     icon: {
       text: 'VF',
@@ -53,40 +60,30 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'three',
     name: 'Three',
-    aliases: ['Three', 'Hutchison 3G Ltd'],
+    aliases: ['Hutchison 3G Ltd', 'Hutchinson Microtel'],
     category: 'Mobile network',
     icon: {
       text: '3',
       type: 'mobile',
     },
   },
-  {
-    id: 'ee',
-    name: 'EE',
-    aliases: ['EE', 'EE Limited'],
-    category: 'Mobile network',
-    icon: {
-      text: 'EE',
-      type: 'mobile',
-    },
-  },
+  // {
+  //   id: 'ee',
+  //   name: 'EE',
+  //   aliases: ['EE', 'EE Limited'],
+  //   category: 'Mobile network',
+  //   icon: {
+  //     text: 'EE',
+  //     type: 'mobile',
+  //   },
+  // },
   {
     id: 'mbnl',
     name: 'Mobile Broadband Network Limited',
-    aliases: ['MBNL'],
+    aliases: ['MBNL', 'Orange PCS LTD', 'T-Mobile (UK) Limited'],
     category: 'Mobile network',
     icon: {
       text: 'MBNL',
-      type: 'mobile',
-    },
-  },
-  {
-    id: 'ctil',
-    name: 'Cornerstone Networks',
-    aliases: ['Cornerstone', 'CTIL'],
-    category: 'Mobile network',
-    icon: {
-      text: 'CTIL',
       type: 'mobile',
     },
   },
@@ -115,7 +112,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'virgin',
     name: 'Virgin Media',
-    aliases: ['Virgin', 'Virgin Media'],
+    aliases: ['Virgin Media'],
     category: 'Fixed broadband',
     icon: {
       text: 'VMED',
@@ -125,7 +122,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'cf',
     name: 'CityFibre',
-    aliases: ['CityFibre', 'City Fibre', 'CityFibre Metro Networks Limited'],
+    aliases: ['CityFibre Metro Networks Limited', 'CityFibre Metro Networks Ltd'],
     category: 'Fixed broadband',
     icon: {
       text: 'CTYF',
@@ -155,14 +152,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'ofnl',
     name: 'Open Fibre Networks Limited',
-    aliases: [
-      'Open Fibre Networks Limited',
-      'Open Fibre Networks',
-      'Open Fibre',
-      'Independent Fibre Networks',
-      'Independent Fibre',
-      'Independent Fibre Networks Limited',
-    ],
+    aliases: ['Open Fibre Networks Limited', 'Open Fibre Networks', 'Independent Fibre Networks'],
     category: 'Fixed broadband',
     icon: {
       text: 'OFNL',
@@ -172,7 +162,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'toob',
     name: 'TOOB',
-    aliases: ['Toob'],
+    aliases: ['TOOB Limited'],
     category: 'Fixed broadband',
     icon: {
       text: 'TOOB',
@@ -182,7 +172,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'zzoomm',
     name: 'Zzoomm',
-    aliases: ['Zzoomm'],
+    aliases: ['Zzoomm PLC'],
     category: 'Fixed broadband',
     icon: {
       text: 'ZOOM',
@@ -192,7 +182,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'netomnia',
     name: 'Netomnia',
-    aliases: ['Netomnia'],
+    aliases: ['Netomnia Limited'],
     category: 'Fixed broadband',
     icon: {
       text: 'NOMN',
@@ -202,7 +192,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'fibrus',
     name: 'Fibrus Networks',
-    aliases: ['fibrus networks'],
+    aliases: ['Fibrus Networks Limited'],
     category: 'Fixed broadband',
     icon: {
       text: 'FIB',
@@ -212,7 +202,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'hyperoptic',
     name: 'Hyperoptic',
-    aliases: ['hyperoptic ltd'],
+    aliases: ['Hyperoptic Ltd'],
     category: 'Fixed broadband',
     icon: {
       text: 'HYPO',
@@ -252,7 +242,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'swish',
     name: 'Swish Fibre',
-    aliases: ['swish fibre ltd'],
+    aliases: ['swish fibre ltd', "People's Fibre Limited"],
     category: 'Fixed broadband',
     icon: {
       text: 'SWSH',
@@ -297,6 +287,420 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
     icon: {
       text: 'FF',
       type: 'full-fibre',
+    },
+  },
+  {
+    id: 'midlandcablecomms',
+    name: 'Midland Cable Comms',
+    aliases: ['Midland Cable Comms'],
+    category: 'Fixed broadband',
+    icon: {
+      text: 'MLCC',
+      type: 'mlcc',
+    },
+  },
+  {
+    id: 'vx-fiber',
+    name: 'VX Fiber',
+    aliases: ['VX Fiber Limited'],
+    category: 'Fixed broadband',
+    icon: {
+      text: 'VX',
+      type: 'vx-fiber',
+    },
+  },
+  {
+    id: 'encom-vm',
+    name: 'Encom (Virgin Media)',
+    aliases: ['Encom Cable TV & Comms'],
+    category: 'Fixed broadband',
+    icon: {
+      text: 'ENCM',
+      type: 'vm',
+    },
+  },
+  {
+    id: 'hampstead-fibre',
+    name: 'Hampstead Fibre',
+    aliases: ['Hampstead Fibre Limited'],
+    category: 'Fixed broadband',
+    icon: {
+      text: 'HAMP',
+      type: 'hampstead-fibre',
+    },
+  },
+  {
+    id: 'wightfibre',
+    name: 'WightFibre',
+    aliases: ['WightFibre'],
+    category: 'Fixed broadband',
+    icon: {
+      text: 'WGHT',
+      type: 'wightfibre',
+    },
+  },
+  {
+    id: 'c-w',
+    name: 'Cable & Wireless',
+    aliases: ['Cable and Wireless', 'Cable & Wireless UK', 'Mercury PCN'],
+    category: 'Fixed broadband',
+    icon: {
+      text: 'C&W',
+      type: 'cw',
+    },
+  },
+  {
+    id: 'telewest',
+    name: 'Telewest Communications',
+    aliases: ['Telewest Communications Group'],
+    category: 'Fixed broadband',
+    icon: {
+      text: 'TELW',
+      type: 'vm',
+    },
+  },
+  {
+    id: 'lit',
+    name: 'Lit Fibre',
+    aliases: ['Broadreach Networks Limited', 'Lit Fibre Group Ltd'],
+    category: 'Fixed broadband',
+    icon: {
+      text: 'LIT',
+      type: 'lit',
+    },
+  },
+  {
+    id: 'gofibre',
+    name: 'GoFibre',
+    aliases: ['Borderlink Broadband Limited'],
+    category: 'Fixed broadband',
+    icon: {
+      text: 'GOFB',
+      type: 'gofibre',
+    },
+  },
+  {
+    id: 'cabletel',
+    name: 'Cabletel',
+    aliases: ['Cabletel'],
+    category: 'Fixed broadband',
+    icon: {
+      text: 'CTEL',
+      type: 'vm',
+    },
+  },
+  {
+    id: 'truespeed',
+    name: 'Truespeed',
+    aliases: ['Truespeed Communications Ltd'],
+    category: 'Fixed broadband',
+    icon: {
+      text: 'TRUE',
+      type: 'truespeed',
+    },
+  },
+  {
+    id: 'ntl',
+    name: 'NTL National Networks',
+    aliases: ['Ntl National Networks Ltd'],
+    category: 'Fixed broadband',
+    icon: {
+      text: 'NTL',
+      type: 'vm',
+    },
+  },
+  {
+    id: 'allpoints',
+    name: 'Allpoints Fibre',
+    aliases: ['Allpoints Fibre Limited'],
+    category: 'Fixed broadband',
+    icon: {
+      text: 'ALLP',
+      type: 'allpoints',
+    },
+  },
+  {
+    id: 'fibrespeed',
+    name: 'Fibrespeed',
+    aliases: ['Fibrespeed Ltd'],
+    category: 'Fixed broadband',
+    icon: {
+      text: 'FSPD',
+      type: 'fibrespeed',
+    },
+  },
+  {
+    id: 'tiger',
+    name: 'Tiger Fibre',
+    aliases: ['Tiger Fibre Limited'],
+    category: 'Fixed broadband',
+    icon: {
+      text: 'TIGR',
+      type: 'tiger-fibre',
+    },
+  },
+  {
+    id: 'general-telecoms',
+    name: 'General Telecommunications Ltd',
+    aliases: ['General Telecommunications Ltd'],
+    category: 'Fixed broadband',
+    icon: {
+      text: 'GENT',
+      type: 'general-telecoms',
+    },
+  },
+  {
+    id: 'fibrewave',
+    name: 'Fibrewave Networks',
+    aliases: ['Fibrewave Networks Ltd'],
+    category: 'Fixed broadband',
+    icon: {
+      text: 'FWAV',
+      type: 'fibrewave',
+    },
+  },
+  {
+    id: 'surf',
+    name: 'National Grid Telecoms',
+    aliases: ['Surf Telecoms'],
+    category: 'Fixed broadband',
+    icon: {
+      text: 'NGRD',
+      type: 'national-grid',
+    },
+  },
+  {
+    id: 'kingston-comms',
+    name: 'KCOM',
+    aliases: ['KCOM', 'Kingston Comms (Hull)'],
+    category: 'Fixed broadband',
+    icon: {
+      text: 'KCOM',
+      type: 'kingston-comms',
+    },
+  },
+  {
+    id: 'jurassic',
+    name: 'Jurassic Fibre',
+    aliases: ['Jurassic Fibre Limited'],
+    category: 'Fixed broadband',
+    icon: {
+      text: 'JSSC',
+      type: 'jurassic',
+    },
+  },
+  {
+    id: 'yesfibre',
+    name: 'Yesfibre',
+    aliases: ['Yesfibre Ltd'],
+    category: 'Fixed broadband',
+    icon: {
+      text: 'YES',
+      type: 'yesfibre',
+    },
+  },
+  {
+    id: 'freedom-fibre',
+    name: 'Freedom Fibre',
+    aliases: ['Freedom Fibre Limited'],
+    category: 'Fixed broadband',
+    icon: {
+      text: 'FREE',
+      type: 'freedom-fibre',
+    },
+  },
+  {
+    id: 'gigaclear',
+    name: 'Gigaclear',
+    aliases: ['Gigaclear Limited'],
+    category: 'Fixed broadband',
+    icon: {
+      text: 'GCLR',
+      type: 'gigaclear',
+    },
+  },
+
+  // FWA
+  {
+    id: 'airband',
+    name: 'Airband Community Internet',
+    aliases: ['Airband Community Internet Ltd'],
+    category: 'Fixed wireless access',
+    icon: {
+      text: 'AIRB',
+      type: 'airband',
+    },
+  },
+  {
+    id: 'stix',
+    name: 'Stix Internet',
+    aliases: ['Stix Internet Limited'],
+    category: 'Fixed wireless access',
+    icon: {
+      text: 'STIX',
+      type: 'stix',
+    },
+  },
+
+  // Infrastructure operators
+  {
+    id: 'arqiva',
+    name: 'Arqiva',
+    aliases: ['Arqiva', 'National Transcommunications Ltd'],
+    category: 'Telecoms infrastructure',
+    icon: {
+      text: 'ARQ',
+      type: 'arqiva',
+    },
+  },
+  {
+    id: 'cellnex',
+    name: 'Cellnex',
+    aliases: ['Cellnex (On Tower Uk Ltd)', 'Cellnex', 'Cellnex UK Limited'],
+    category: 'Telecoms infrastructure',
+    icon: {
+      text: 'CLNX',
+      type: 'cellnex',
+    },
+  },
+  {
+    id: 'arquiva-water',
+    name: 'Arqiva - Smart Metering',
+    aliases: ['Arqiva - Smart Metering'],
+    category: 'Telecoms infrastructure',
+    icon: {
+      text: 'ARQW',
+      type: 'arqiva',
+    },
+  },
+  {
+    id: 'eircom',
+    name: 'Eircom (UK)',
+    aliases: ['Eircom (UK) Ltd'],
+    category: 'Telecoms infrastructure',
+    icon: {
+      text: 'EIR',
+      type: 'eircom',
+    },
+  },
+  {
+    id: 'my-fibre',
+    name: 'My Fibre',
+    aliases: ['My Fibre Limited'],
+    category: 'Telecoms infrastructure',
+    icon: {
+      text: 'MY',
+      type: 'my-fibre',
+    },
+  },
+  {
+    id: 'gtt',
+    name: 'GTT Communications',
+    aliases: ['Hibernia Networks'],
+    category: 'Telecoms infrastructure',
+    icon: {
+      text: 'GTT',
+      type: 'gtt',
+    },
+  },
+  {
+    id: 'thales',
+    name: 'Thales Group',
+    aliases: ['Thales Group'],
+    category: 'Telecoms infrastructure',
+    icon: {
+      text: 'THLS',
+      type: 'thales',
+    },
+  },
+  {
+    id: 'openinfra',
+    name: 'Open Infra',
+    aliases: ['Open Infra Ltd'],
+    category: 'Telecoms infrastructure',
+    icon: {
+      text: 'OINF',
+      type: 'openinfra',
+    },
+  },
+  {
+    id: 'telcom',
+    name: 'Telcom Infrastructure',
+    aliases: ['Telcom Infrastructure Limited'],
+    category: 'Telecoms infrastructure',
+    icon: {
+      text: 'TLCM',
+      type: 'telcom',
+    },
+  },
+  {
+    id: 'optical-fibre-infra',
+    name: 'Optical Fibre Infrastructure',
+    aliases: ['Optical Fibre Infrastructure Limited'],
+    category: 'Telecoms infrastructure',
+    icon: {
+      text: 'OFI',
+      type: 'optical-fibre-infra',
+    },
+  },
+  {
+    id: 'eunetworks',
+    name: 'euNetworks',
+    aliases: ['euNetworks'],
+    category: 'Telecoms infrastructure',
+    icon: {
+      text: 'EU',
+      type: 'eunetworks',
+    },
+  },
+  {
+    id: 'fibre-guys',
+    name: 'The Fibre Guys',
+    aliases: ['The Fibre Guys Ltd'],
+    category: 'Telecoms infrastructure',
+    icon: {
+      text: 'FGUY',
+      type: 'fibre-guys',
+    },
+  },
+  {
+    id: 'omne',
+    name: 'Virgin Media (Omne Telecommunications)',
+    aliases: ['Omne Telecommunications Ltd'],
+    category: 'Telecoms infrastructure',
+    icon: {
+      text: 'OMNE',
+      type: 'vm',
+    },
+  },
+  {
+    id: 'spring',
+    name: 'Spring Fibre',
+    aliases: ['Spring Fibre Limited'],
+    category: 'Telecoms infrastructure',
+    icon: {
+      text: 'SPRN',
+      type: 'spring-fibre',
+    },
+  },
+  {
+    id: 'verizon-business',
+    name: 'Verizon',
+    aliases: ['Verizon Business'],
+    category: 'Telecoms infrastructure',
+    icon: {
+      text: 'VRZN',
+      type: 'verizon',
+    },
+  },
+  {
+    id: 'tata',
+    name: 'Tata Communications',
+    aliases: ['VSNL Telecommunications (UK) Ltd', 'Tata Communications (UK) Ltd', 'Tata Communications (UK) Limited'],
+    category: 'Telecoms infrastructure',
+    icon: {
+      text: 'TATA',
+      type: 'tata',
     },
   },
 
