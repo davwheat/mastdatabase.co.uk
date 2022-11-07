@@ -11,7 +11,6 @@ const prodPlugins = !__IS_DEV__
           exclude: ['error', 'warn'],
         },
       },
-      `gatsby-plugin-sitemap`,
       // Fixed hot reload in dev
       `gatsby-plugin-preact`,
     ]
@@ -37,7 +36,12 @@ module.exports = {
   },
   plugins: [
     ...prodPlugins,
-
+    {
+      resolve: `gatsby-plugin-sitemap`,
+      options: {
+        resolveSiteUrl: () => 'https://mastdatabase.co.uk',
+      },
+    },
     {
       resolve: `gatsby-plugin-canonical-urls`,
       options: {
