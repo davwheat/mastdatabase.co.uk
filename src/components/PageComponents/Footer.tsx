@@ -106,7 +106,7 @@ export default function Footer() {
                 View this site on GitHub
               </a>
               <BulletSeparator />
-              This site collects anonymised analytics that does not track individual users.{' '}
+              This site collects anonymised analytics that do not track individual users.{' '}
               <a href="https://blog.cloudflare.com/free-privacy-first-analytics-for-a-better-web" rel="noopener noreferrer">
                 Learn more about Cloudflare analytics
               </a>
