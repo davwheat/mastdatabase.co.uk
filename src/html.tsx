@@ -1,5 +1,4 @@
 import React from 'react'
-import { RecoilRoot } from 'recoil'
 
 const HTML: React.FC<Props> = props => {
   return (
@@ -10,7 +9,7 @@ const HTML: React.FC<Props> = props => {
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
         {/* <!-- Cloudflare Web Analytics --> */}
-        <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "24bc94c5419241dcafa5223c7cd712e2"}' />
+        <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "1a8172f0982a46e2ac9ee6e70e6cecf5"}' />
 
         {props.headComponents}
       </head>
