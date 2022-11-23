@@ -12,7 +12,8 @@ import Colors from '@data/colors.json'
 import Breakpoints from '@data/breakpoints'
 
 import { makeStyles } from '@material-ui/core'
-import { PageProps } from 'gatsby'
+
+import type { PageProps } from 'gatsby'
 
 const useStyles = makeStyles({
   linkList: {
@@ -48,6 +49,7 @@ const Countries: ICountryItem[] = [
   { code: 'bg', name: 'Bulgaria', nativeName: 'България' },
   { code: 'at', name: 'Austria', nativeName: 'Österreich' },
   { code: 'fi', name: 'Finland', nativeName: 'Suomi' },
+  { code: 'ua', name: 'Ukraine', nativeName: 'Україна' },
 ]
 
 export default function IndexPage({ location }: PageProps) {
