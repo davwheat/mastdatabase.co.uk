@@ -27,7 +27,7 @@ interface ILink {
 const Links: ILinkGroup[] = [
   {
     groupName: 'Mobile spectrum',
-    groupDescription: 'A variety of Danish mobile networking related datasets hosted by me.',
+    groupDescription: 'A variety of Danish mobile networking related datasets compiled by the community, available for free. hosted by me.',
     groupLinks: [
       {
         title: 'NR/EARFCN list',
