@@ -15,7 +15,7 @@ function ThreeRanStatus({ location }: PageProps) {
       <Hero firstElement size="huge" color={Colors.primaryBlue}>
         <h1 className="text-shout">Three UK RAN status</h1>
         <p role="doc-subtitle" className="text-loud">
-          A collection of UK mobile networking tools and datasets maintained as part of my hobby.
+          A helper for accessing Three UK's RAN status private API endpoints.
         </p>
       </Hero>
 
