@@ -64,12 +64,12 @@ function MobileNetworkingPage({ location }: PageProps) {
     <Layout
       location={location}
       title="Mobile networking in Bulgaria"
-      description="A collection of Bulgarian mobile networking tools and datasets maintained as part of my hobby."
+      description="A collection of Bulgarian mobile networking tools and datasets compiled by the community."
     >
       <Hero firstElement size="huge" color={Colors.primaryBlue}>
         <h1 className="text-shout">Mobile networking in Bulgaria</h1>
         <p role="doc-subtitle" className="text-loud">
-          A collection of Bulgarian mobile networking tools and datasets maintained as part of my hobby.
+          A collection of Bulgarian mobile networking tools and datasets compiled by the community.
         </p>
       </Hero>
 
