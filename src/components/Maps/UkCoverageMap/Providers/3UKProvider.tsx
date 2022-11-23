@@ -39,7 +39,7 @@ export default class ThreeUkCoverageMapProvider extends CoverageProvider {
 
   getPageMessages(): string[] {
     return [
-      'Three UK implement rate-limiting on their coverage map API. If coloured tiles stop loading, please wait a few minutes, then move the map again. You are less likely to enounter this issue when you are zoomed in closely.',
+      'Three UK implement rate-limiting on their coverage map API. If coloured tiles stop loading, please wait a few minutes, then move the map again. You are less likely to encounter this issue when you are zoomed in closely.',
     ]
   }
 

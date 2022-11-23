@@ -4,13 +4,14 @@ import Section from '@components/Design/Section'
 import Hero from '@components/Design/Hero'
 import Layout from '@components/Layout'
 import CardLink from '@components/MobileNetworking/CardLink'
+import Breadcrumbs from '@components/Design/Breadcrumbs'
 
 import Colors from '@data/colors.json'
 import Breakpoints from '@data/breakpoints'
 
 import { makeStyles } from '@material-ui/styles'
-import Breadcrumbs from '@components/Design/Breadcrumbs'
-import { PageProps } from 'gatsby'
+
+import type { PageProps } from 'gatsby'
 
 interface ILinkGroup {
   groupName: string
@@ -27,17 +28,17 @@ interface ILink {
 const Links: ILinkGroup[] = [
   {
     groupName: 'Datasets',
-    groupDescription: 'A variety of German mobile networking related datasets compiled by the community, available for free.',
+    groupDescription: 'A variety of Ukrainian mobile networking related datasets compiled by the community, available for free.',
     groupLinks: [
       {
         title: 'NR/EARFCN list',
-        description: 'A list of German mobile network frequencies by their NRARFCNs and EARFCNs.',
-        url: '/de/arfcn-list',
+        description: 'A list of Ukrainian mobile network frequencies by their NRARFCNs and EARFCNs.',
+        url: '/ua/arfcn-list',
       },
       {
         title: 'Spectrum allocation',
-        description: 'A visualisation of spectrum allocation for mobile networks within Germany.',
-        url: '/de/spectrum',
+        description: 'A visualisation of spectrum allocation for mobile networks within Ukraine.',
+        url: '/ua/spectrum',
       },
     ],
   },
@@ -57,26 +58,26 @@ const useStyles = makeStyles({
   },
 })
 
-function MobileNetworkingPage({ location }: PageProps) {
+export default function MobileNetworkingPage({ location }: PageProps) {
   const classes = useStyles()
 
   return (
     <Layout
       location={location}
-      title="Mobile networking in Germany"
-      description="A collection of German mobile networking tools and datasets maintained as part of my hobby."
+      title="Mobile networking in Ukraine"
+      description="A collection of Ukrainian mobile networking tools and datasets maintained as part of my hobby."
     >
       <Hero firstElement size="huge" color={Colors.primaryBlue}>
-        <h1 className="text-shout">Mobile networking in Germany</h1>
+        <h1 className="text-shout">Mobile networking in Ukraine</h1>
         <p role="doc-subtitle" className="text-loud">
-          A collection of German mobile networking tools and datasets maintained as part of my hobby.
+          A collection of Ukrainian mobile networking tools and datasets maintained as part of my hobby.
         </p>
       </Hero>
 
       <Breadcrumbs
         data={[
           { t: 'Home', url: '/' },
-          { t: 'Germany', url: '/de' },
+          { t: 'Ukraine', url: '/ua' },
         ]}
       />
 
@@ -95,5 +96,3 @@ function MobileNetworkingPage({ location }: PageProps) {
     </Layout>
   )
 }
-
-export default MobileNetworkingPage
