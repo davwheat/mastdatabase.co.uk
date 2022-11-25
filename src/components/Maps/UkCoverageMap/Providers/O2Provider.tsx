@@ -11,31 +11,35 @@ export default class O2CoverageMapProvider extends CoverageProvider {
     return [
       {
         label: '2G',
-        url: 'https://68aa7b45-tiles.spatialbuzz.net/tiles/o2_uk-v184/styles/o2_uk_v184_voice/{z}/{x}/{y}.png',
+        url: 'https://68aa7b45-tiles.spatialbuzz.net/tiles/o2_uk-v185/styles/o2_uk_v185_voice/{z}/{x}/{y}.png',
       },
       {
         label: '3G 2100 MHz',
-        url: 'https://68aa7b45-tiles.spatialbuzz.net/tiles/o2_uk-v184/styles/o2_uk_v184_data/{z}/{x}/{y}.png',
+        url: 'https://68aa7b45-tiles.spatialbuzz.net/tiles/o2_uk-v185/styles/o2_uk_v185_data/{z}/{x}/{y}.png',
       },
       {
         label: '3G',
-        url: 'https://68aa7b45-tiles.spatialbuzz.net/tiles/o2_uk-v184/styles/o2_uk_v184_datacombined/{z}/{x}/{y}.png',
+        url: 'https://68aa7b45-tiles.spatialbuzz.net/tiles/o2_uk-v185/styles/o2_uk_v185_datacombined/{z}/{x}/{y}.png',
       },
       {
         label: '4G LTE',
-        url: 'https://68aa7b45-tiles.spatialbuzz.net/tiles/o2_uk-v184/styles/o2_uk_v184_lte/{z}/{x}/{y}.png',
+        url: 'https://68aa7b45-tiles.spatialbuzz.net/tiles/o2_uk-v185/styles/o2_uk_v185_lte/{z}/{x}/{y}.png',
       },
       {
         label: '4G VoLTE',
-        url: 'https://68aa7b45-tiles.spatialbuzz.net/tiles/o2_uk-v184/styles/o2_uk_v184_volte/{z}/{x}/{y}.png',
+        url: 'https://68aa7b45-tiles.spatialbuzz.net/tiles/o2_uk-v185/styles/o2_uk_v185_volte/{z}/{x}/{y}.png',
       },
       {
-        label: '5G',
+        label: '5G (n78 only - Oct 2022)',
         url: 'https://68aa7b45-tiles.spatialbuzz.net/tiles/o2_uk-v184/styles/o2_uk_v184_5g/{z}/{x}/{y}.png',
       },
       {
+        label: '5G (all)',
+        url: 'https://68aa7b45-tiles.spatialbuzz.net/tiles/o2_uk-v185/styles/o2_uk_v185_5g/{z}/{x}/{y}.png',
+      },
+      {
         label: 'LTE-M',
-        url: 'https://68aa7b45-tiles.spatialbuzz.net/tiles/o2_uk-v184/styles/o2_uk_v184_ltem/{z}/{x}/{y}.png',
+        url: 'https://68aa7b45-tiles.spatialbuzz.net/tiles/o2_uk-v185/styles/o2_uk_v185_ltem/{z}/{x}/{y}.png',
       },
     ]
   }
@@ -73,6 +77,12 @@ export default class O2CoverageMapProvider extends CoverageProvider {
       {
         key: [
           { color: '#0099d8', label: 'Good outdoors and indoors' },
+          { color: '#faa94a', label: 'Good outdoors' },
+          { color: '#0000', label: 'No coverage' },
+        ],
+      },
+      {
+        key: [
           { color: '#faa94a', label: 'Good outdoors' },
           { color: '#0000', label: 'No coverage' },
         ],
