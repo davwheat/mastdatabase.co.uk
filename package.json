@@ -100,7 +100,7 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean"
   },
-  "packageManager": "yarn@3.2.4",
+  "packageManager": "yarn@3.3.0",
   "resolutions": {
     "underscore.inflection": "davwheat/underscore.inflection#master",
     "@types/react": "^17"
