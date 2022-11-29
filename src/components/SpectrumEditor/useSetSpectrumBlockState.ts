@@ -9,8 +9,6 @@ export function useSetSpectrumBlockState(dataIndex: number, blockIndex: number) 
 
   return (block: SpectrumBlock | null | ((block: SpectrumBlock) => SpectrumBlock | null)) => {
     setSpectrumEditorState(state => {
-      debugger
-
       const newState = { ...state }
 
       const originalEditorState = parseStringAsSpectrumData(newState.rawInput)
