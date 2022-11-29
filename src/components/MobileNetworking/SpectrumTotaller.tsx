@@ -14,6 +14,11 @@ const useStyles = makeStyles({
   table: {
     marginTop: '24px !important',
     fontVariantNumeric: 'tabular-nums',
+    overflowX: 'auto',
+    maxWidth: '100%',
+    width: 'max-content',
+    display: 'block',
+    whiteSpace: 'nowrap',
   },
   boldCell: {
     fontWeight: 'bold',
