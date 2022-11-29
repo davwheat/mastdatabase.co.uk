@@ -7,7 +7,7 @@ import jsonStableStringify from 'json-stable-stringify-without-jsonify'
 export function useSetSpectrumBlockState(dataIndex: number, blockIndex: number) {
   const setSpectrumEditorState = useSetRecoilState(SpectrumEditorAtom)
 
-  return (block: SpectrumBlock | ((block: SpectrumBlock) => SpectrumBlock)) => {
+  return (block: SpectrumBlock | null | ((block: SpectrumBlock) => SpectrumBlock | null)) => {
     setSpectrumEditorState(state => {
       const newState = { ...state }
 
@@ -15,8 +15,13 @@ export function useSetSpectrumBlockState(dataIndex: number, blockIndex: number) 
 
       if (!originalEditorState) throw Error('Invalid existing state -- bailing out for update')
 
-      originalEditorState[dataIndex].spectrumData[blockIndex] =
-        typeof block === 'function' ? block(originalEditorState[dataIndex].spectrumData[blockIndex]) : block
+      const newData = typeof block === 'function' ? block(originalEditorState[dataIndex].spectrumData[blockIndex]) : block
+
+      if (newData === null) {
+        originalEditorState[dataIndex].spectrumData.splice(blockIndex, 1)
+      } else {
+        originalEditorState[dataIndex].spectrumData[blockIndex] = newData
+      }
 
       newState.rawInput = jsonStableStringify(originalEditorState, { space: 2 })
 

@@ -5,10 +5,13 @@ import Hero from '@components/Design/Hero'
 import Layout from '@components/Layout'
 import Breadcrumbs from '@components/Design/Breadcrumbs'
 import AllSpectrumMaps from '@components/MobileNetworking/AllSpectrumMaps'
+import SpectrumTotaller from '@components/MobileNetworking/SpectrumTotaller'
 
 import Colors from '@data/colors.json'
 import GBAllBands from 'mobile-spectrum-data/GB'
-import { PageProps } from 'gatsby'
+
+import type { PageProps } from 'gatsby'
+import MinorAlert from '@components/Design/MinorAlert'
 
 function GBSpectrumAllocationPage({ location }: PageProps) {
   return (
@@ -32,7 +35,7 @@ function GBSpectrumAllocationPage({ location }: PageProps) {
         ]}
       />
 
-      <Section>
+      {/* <Section>
         <h2 className="text-louder">How does allocation work?</h2>
 
         <p className="text-speak">
@@ -48,7 +51,13 @@ function GBSpectrumAllocationPage({ location }: PageProps) {
           The UK's spectrum share is rather varied, with many networks being in posession of much larger amounts of spectrum compared to others,
           which can have a significant impact on their ability to provide consistent experiences to&nbsp;customers.
         </p>
-      </Section>
+      </Section> */}
+
+      <SpectrumTotaller bandsData={GBAllBands}>
+        <MinorAlert color="primaryBlue" coloredBackground heading="Calculation info">
+          <p className="text-speak">This total includes EE's B67 LTE allocation which is not supported by any known COTS UE.</p>
+        </MinorAlert>
+      </SpectrumTotaller>
 
       <AllSpectrumMaps locationName="UK" countryCode="GB" bandsData={GBAllBands} />
     </Layout>

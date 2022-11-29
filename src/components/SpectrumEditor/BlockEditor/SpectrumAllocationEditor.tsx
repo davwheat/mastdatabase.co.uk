@@ -16,7 +16,9 @@ import { parseStringAsSpectrumData } from '../parseStringAsSpectrumData'
 import { makeStyles } from '@material-ui/core'
 import { useSetRecoilState } from 'recoil'
 import TrashIcon from 'mdi-react/TrashOutlineIcon'
+import PlusIcon from 'mdi-react/PlusBoldIcon'
 import jsonStableStringify from 'json-stable-stringify-without-jsonify'
+import { useSetSpectrumAllocationState } from '../useSetSpectrumAllocationState'
 
 const useStyles = makeStyles({
   root: {
@@ -67,6 +69,10 @@ const useStyles = makeStyles({
       },
     },
   },
+
+  newBlockButton: {
+    marginTop: 16,
+  },
 })
 
 interface ISpectrumAllocationEditorProps {
@@ -77,6 +83,8 @@ export default function SpectrumAllocationEditor({ dataIndex }: ISpectrumAllocat
   const classes = useStyles()
   const spectrumBlock = useParsedSpectrumState()![dataIndex]
   const setSpectrumEditorState = useSetRecoilState(SpectrumEditorAtom)
+
+  const setSpectrumAllocationState = useSetSpectrumAllocationState(dataIndex)
 
   const errors = []
 
@@ -128,6 +136,27 @@ export default function SpectrumAllocationEditor({ dataIndex }: ISpectrumAllocat
               </li>
             ))}
           </ul>
+
+          <Button
+            className={classes.newBlockButton}
+            icon={<PlusIcon />}
+            onClick={() => {
+              setSpectrumAllocationState(state => {
+                const newState = { ...state }
+
+                newState.spectrumData.push({
+                  startFreq: 0,
+                  endFreq: 0,
+                  owner: '',
+                  type: 'generic',
+                })
+
+                return newState
+              })
+            }}
+          >
+            Add block
+          </Button>
         </div>
       </div>
 

@@ -50,6 +50,7 @@ const Countries: ICountryItem[] = [
   { code: 'at', name: 'Austria', nativeName: 'Österreich' },
   { code: 'fi', name: 'Finland', nativeName: 'Suomi' },
   { code: 'ua', name: 'Ukraine', nativeName: 'Україна' },
+  { code: 'ro', name: 'Romania', nativeName: 'România' },
 ]
 
 export default function IndexPage({ location }: PageProps) {

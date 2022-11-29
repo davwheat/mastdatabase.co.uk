@@ -8,6 +8,7 @@ import clsx from 'clsx'
 import PlusIcon from 'mdi-react/PlusBoldIcon'
 import { SourceType, SpectrumBlock } from 'mobile-spectrum-data/@types'
 import React, { useState } from 'react'
+import TrashIcon from 'mdi-react/TrashOutlineIcon'
 
 import { useSectionStyles } from '../SpectrumMetadataEditor'
 import SpectrumBlockARFCNEditor from './SpectrumBlockARFCNEditor'
@@ -22,12 +23,29 @@ const useStyles = makeStyles({
     flexDirection: 'column',
     gap: 16,
   },
+
+  headerDeleteSplit: {
+    display: 'flex',
+    alignItems: 'center',
+    marginBottom: 24,
+
+    '& h3': {
+      margin: 0,
+    },
+
+    '& button': {
+      marginLeft: 'auto',
+      padding: '6px 12px',
+    },
+  },
+
   pairedItems: {
     display: 'grid',
     gap: 16,
     gridTemplateColumns: '1fr 1fr',
     justifyItems: 'stretch',
   },
+
   pairedItemsOffset: {
     gridTemplateColumns: '1fr 3fr',
   },
@@ -94,9 +112,24 @@ export default function SpectrumBlockEditor({ dataIndex, blockIndex }: ISpectrum
 
   return (
     <div className={sectClasses.whiteSection}>
-      <h5 className="text-loud">
-        Block {blockIndex + 1} of {useParsedSpectrumState()![dataIndex].spectrumData.length}
-      </h5>
+      <div className={classes.headerDeleteSplit}>
+        <h5 className="text-loud">
+          Block {blockIndex + 1} of {useParsedSpectrumState()![dataIndex].spectrumData.length}
+        </h5>
+        <Button
+          icon={<TrashIcon />}
+          variant="danger"
+          onClick={() => {
+            if (
+              confirm('You will lose all information about this spectrum block. Are you sure you want to delete this block?')
+            ) {
+              setSpectrumBlockState(null)
+            }
+          }}
+        >
+          Delete block
+        </Button>
+      </div>
 
       <div className={classes.form}>
         <TextBox

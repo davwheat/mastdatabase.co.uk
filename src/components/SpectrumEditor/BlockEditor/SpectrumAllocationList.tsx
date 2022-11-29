@@ -56,7 +56,7 @@ export default function SpectrumBlockList() {
             setSpectrumAllocationState(state => {
               const parsedState = parseStringAsSpectrumData(state.rawInput) || []
 
-              parsedState.push({ names: ['My spectrum owner'], spectrumData: [] })
+              parsedState.push({ names: ['123'], spectrumData: [] })
 
               const stringifiedState = jsonStableStringify(parsedState, { space: 2 })
 
