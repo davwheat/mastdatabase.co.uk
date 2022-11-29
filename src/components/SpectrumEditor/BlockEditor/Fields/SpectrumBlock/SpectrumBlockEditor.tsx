@@ -120,9 +120,7 @@ export default function SpectrumBlockEditor({ dataIndex, blockIndex }: ISpectrum
           icon={<TrashIcon />}
           variant="danger"
           onClick={() => {
-            if (
-              confirm('You will lose all information about this spectrum block. Are you sure you want to delete this block?')
-            ) {
+            if (confirm('You will lose all information about this spectrum block. Are you sure you want to delete this block?')) {
               setSpectrumBlockState(null)
             }
           }}
