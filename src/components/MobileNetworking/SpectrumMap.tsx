@@ -300,10 +300,20 @@ export function SpectrumMap({ caption, data, note, spectrumHighlight, countryCod
   )
 }
 
+function getColour(countryCode: string | undefined, { owner, ownerLongName }: ISpectrumAllocation) {
+  const color = getOperatorColor(countryCode ?? 'I_DO_NOT_EXIST', ownerLongName ?? owner)
+
+  if (color === '#dddddd' && ownerLongName) {
+    return getOperatorColor(countryCode ?? 'I_DO_NOT_EXIST', owner)
+  }
+
+  return color
+}
+
 function SpectrumMapItem({ allocation, onClick, isSelected, descId, countryCode }: ISpectrumMapItemProps) {
   const classes = useSpectrumMapItemStyles()
   const { owner, startFreq, endFreq } = allocation
-  const color = getOperatorColor(countryCode ?? 'I_DO_NOT_EXIST', owner)
+  const color = getColour(countryCode, allocation)
 
   const bandwidthMhz = endFreq - startFreq
   const columnCount = Math.round((bandwidthMhz * 100_000) / HERTZ_ACCURACY)
