@@ -5,9 +5,11 @@ import Layout from '@components/Layout'
 import Breadcrumbs from '@components/Design/Breadcrumbs'
 import AllSpectrumMaps from '@components/MobileNetworking/AllSpectrumMaps'
 
-import DKSpectrumData from 'mobile-spectrum-data/DK'
+import DKAllBands from 'mobile-spectrum-data/DK'
 import Colors from '@data/colors.json'
 import { PageProps } from 'gatsby'
+import SpectrumTotaller from '@components/MobileNetworking/SpectrumTotaller'
+import MinorAlert from '@components/Design/MinorAlert'
 
 function DKSpectrumAllocationPage({ location }: PageProps) {
   return (
@@ -31,7 +33,13 @@ function DKSpectrumAllocationPage({ location }: PageProps) {
         ]}
       />
 
-      <AllSpectrumMaps locationName="Danish" countryCode="DK" bandsData={DKSpectrumData} />
+      <SpectrumTotaller bandsData={DKAllBands}>
+        <MinorAlert color="primaryBlue" coloredBackground heading="Calculation info">
+          <p className="text-speak">This total includes TDC's B67 LTE allocation which is not supported by any known COTS UE.</p>
+        </MinorAlert>
+      </SpectrumTotaller>
+
+      <AllSpectrumMaps locationName="Danish" countryCode="DK" bandsData={DKAllBands} />
     </Layout>
   )
 }
