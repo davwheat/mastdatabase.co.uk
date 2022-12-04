@@ -5,54 +5,44 @@ export default class O2CoverageMapProvider extends CoverageProvider {
   defaultLayerId: number = 3
   supportsSites: boolean = false
 
+  private version = 'v185'
   private fetchSitesAborter: AbortController | null = null
 
   getLayers(): ICoverageLayer[] {
     return [
       {
         label: '2G',
-        url: 'https://68aa7b45-tiles.spatialbuzz.net/tiles/o2_uk-v185/styles/o2_uk_v185_voice/{z}/{x}/{y}.png',
+        url: `https://234-10.coveragetiles.com/${this.version}/2g/{z}/{x}/{y}.png`,
       },
       {
         label: '3G 2100 MHz',
-        url: 'https://68aa7b45-tiles.spatialbuzz.net/tiles/o2_uk-v185/styles/o2_uk_v185_data/{z}/{x}/{y}.png',
+        url: `https://234-10.coveragetiles.com/${this.version}/3g_2100/{z}/{x}/{y}.png`,
       },
       {
         label: '3G',
-        url: 'https://68aa7b45-tiles.spatialbuzz.net/tiles/o2_uk-v185/styles/o2_uk_v185_datacombined/{z}/{x}/{y}.png',
+        url: `https://234-10.coveragetiles.com/${this.version}/3g_all/{z}/{x}/{y}.png`,
       },
       {
         label: '4G LTE',
-        url: 'https://68aa7b45-tiles.spatialbuzz.net/tiles/o2_uk-v185/styles/o2_uk_v185_lte/{z}/{x}/{y}.png',
-      },
-      {
-        label: '4G VoLTE',
-        url: 'https://68aa7b45-tiles.spatialbuzz.net/tiles/o2_uk-v185/styles/o2_uk_v185_volte/{z}/{x}/{y}.png',
+        url: `https://234-10.coveragetiles.com/${this.version}/4g/{z}/{x}/{y}.png`,
       },
       {
         label: '5G (n78 only - Oct 2022)',
-        url: 'https://68aa7b45-tiles.spatialbuzz.net/tiles/o2_uk-v184/styles/o2_uk_v184_5g/{z}/{x}/{y}.png',
+        url: `https://234-10.coveragetiles.com/v184/5g/{z}/{x}/{y}.png`,
       },
       {
         label: '5G (all)',
-        url: 'https://68aa7b45-tiles.spatialbuzz.net/tiles/o2_uk-v185/styles/o2_uk_v185_5g/{z}/{x}/{y}.png',
+        url: `https://234-10.coveragetiles.com/${this.version}/5g/{z}/{x}/{y}.png`,
       },
       {
         label: 'LTE-M',
-        url: 'https://68aa7b45-tiles.spatialbuzz.net/tiles/o2_uk-v185/styles/o2_uk_v185_ltem/{z}/{x}/{y}.png',
+        url: `https://234-10.coveragetiles.com/${this.version}/lte-m/{z}/{x}/{y}.png`,
       },
     ]
   }
 
   getLayerKeys(): ICoverageLayerKey[] {
     return [
-      {
-        key: [
-          { color: '#0099d8', label: 'Good outdoors and indoors' },
-          { color: '#faa94a', label: 'Good outdoors' },
-          { color: '#0000', label: 'No coverage' },
-        ],
-      },
       {
         key: [
           { color: '#0099d8', label: 'Good outdoors and indoors' },

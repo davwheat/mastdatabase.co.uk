@@ -98,8 +98,10 @@ export default function UkCoverageMapPage(Provider: { new (): CoverageProvider }
             </p>
           )}
 
-          {provider.getPageMessages().map(msg => (
-            <p className={clsx('text-speak', classes.sitesAvailable)}>{msg}</p>
+          {provider.getPageMessages().map((msg, i) => (
+            <p key={i} className={clsx('text-speak', classes.sitesAvailable)}>
+              {msg}
+            </p>
           ))}
 
           <CoverageKey keyData={provider.getLayerKeys()[selectedLayerId]} />

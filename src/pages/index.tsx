@@ -39,7 +39,7 @@ const useStyles = makeStyles({
 interface ICountryItem {
   code: string
   name: string
-  nativeName: string
+  nativeName: React.ReactNode
 }
 
 const Countries: ICountryItem[] = [
@@ -51,6 +51,17 @@ const Countries: ICountryItem[] = [
   { code: 'fi', name: 'Finland', nativeName: 'Suomi' },
   { code: 'ua', name: 'Ukraine', nativeName: 'Україна' },
   { code: 'ro', name: 'Romania', nativeName: 'România' },
+  {
+    code: 'mk',
+    name: 'North Macedonia',
+    nativeName: (
+      <>
+        Северна Македонија/
+        <wbr />
+        Maqedonia e Veriut
+      </>
+    ),
+  },
 ]
 
 export default function IndexPage({ location }: PageProps) {
