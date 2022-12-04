@@ -4,12 +4,9 @@ import Header from './PageComponents/Header'
 import Footer from './PageComponents/Footer'
 import SEO from './SEO'
 
-import { makeStyles, ThemeProvider } from '@material-ui/styles'
-import theme from '../theme'
+import { makeStyles } from '@material-ui/styles'
 
 import type { LocationContext } from '@gatsbyjs/reach-router'
-import { ScrollContext } from 'gatsby-react-router-scroll'
-import { RecoilRoot } from 'recoil'
 
 const useStyles = makeStyles({
   mainContent: {
@@ -26,27 +23,20 @@ interface Props {
   title: string
   description?: string
   location: LocationContext
+  children?: React.ReactNode
 }
 
 const Layout: React.FC<Props> = ({ children, title, description, location }) => {
   const classes = useStyles()
 
   return (
-    <React.StrictMode>
-      <RecoilRoot>
-        <ScrollContext location={location}>
-          <ThemeProvider theme={theme}>
-            <SEO title={title} description={description} />
+    <>
+      <SEO title={title} description={description} />
 
-            <Header />
-
-            <main className={classes.mainContent}>{children}</main>
-
-            <Footer />
-          </ThemeProvider>
-        </ScrollContext>
-      </RecoilRoot>
-    </React.StrictMode>
+      <Header />
+      <main className={classes.mainContent}>{children}</main>
+      <Footer />
+    </>
   )
 }
 

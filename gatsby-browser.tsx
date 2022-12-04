@@ -7,6 +7,10 @@
 import './src/styles/main.less'
 
 import React from 'react'
+import { RecoilRoot } from 'recoil'
+import { MuiThemeProvider } from '@material-ui/core'
+
+import theme from './src/theme'
 
 export const onClientEntry = () => {
   if (process.env.NODE_ENV !== 'production') {
@@ -15,4 +19,14 @@ export const onClientEntry = () => {
       trackAllPureComponents: true,
     })
   }
+}
+
+export function wrapRootElement({ element }) {
+  return (
+    <React.StrictMode>
+      <RecoilRoot>
+        <MuiThemeProvider theme={theme}>{element}</MuiThemeProvider>
+      </RecoilRoot>
+    </React.StrictMode>
+  )
 }
