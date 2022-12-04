@@ -69,7 +69,6 @@ module.exports = {
         },
       },
     },
-    `gatsby-plugin-csp`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
