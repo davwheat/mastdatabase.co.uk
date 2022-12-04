@@ -85,20 +85,23 @@ export default function Breadcrumbs({ data }: IBreadcrumbsProps) {
       </nav>
 
       {/* JSON-LD breadcrumb data for crawlers */}
-      <script type="application/ld+json">
-        {JSON.stringify({
-          '@context': 'https://schema.org',
-          '@type': 'BreadcrumbList',
-          itemListElement: data.map((crumb, i) => ({
-            '@type': 'ListItem',
-            position: i,
-            item: {
-              '@id': 'https://mastdatabase.co.uk' + crumb.url,
-              name: crumb.t,
-            },
-          })),
-        })}
-      </script>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            itemListElement: data.map((crumb, i) => ({
+              '@type': 'ListItem',
+              position: i,
+              item: {
+                '@id': 'https://mastdatabase.co.uk' + crumb.url,
+                name: crumb.t,
+              },
+            })),
+          }),
+        }}
+      />
     </Section>
   )
 }
