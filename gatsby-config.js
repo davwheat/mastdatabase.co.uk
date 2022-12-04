@@ -12,7 +12,7 @@ const prodPlugins = !__IS_DEV__
         },
       },
       // Fixed hot reload in dev
-      `gatsby-plugin-preact`,
+      // `gatsby-plugin-preact`,
     ]
   : []
 
