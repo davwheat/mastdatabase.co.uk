@@ -1,4 +1,5 @@
-import CoverageProvider, { ICoverageLayer, ICoverageLayerKey, ISiteItem } from './CoverageProvider'
+import dayjs from 'dayjs'
+import CoverageProvider, { ICoverageLayer, ICoverageLayerKey } from './CoverageProvider'
 
 export default class O2CoverageMapProvider extends CoverageProvider {
   providerName: string = 'O2 UK'
@@ -6,7 +7,8 @@ export default class O2CoverageMapProvider extends CoverageProvider {
   supportsSites: boolean = false
 
   private version = 'v185'
-  private fetchSitesAborter: AbortController | null = null
+  private versionLastUpdated = '2022-11-22T17:31:09.000Z'
+  // private fetchSitesAborter: AbortController | null = null
 
   getLayers(): ICoverageLayer[] {
     return [
@@ -94,87 +96,87 @@ export default class O2CoverageMapProvider extends CoverageProvider {
   }
 
   getPageMessages(): string[] {
-    return []
+    return [`Coverage tiles last updated ${dayjs(this.versionLastUpdated).format('D MMMM YYYY')}.`]
   }
 
-  async getSites(centreLat: number, centreLon: number, bbox: L.LatLngBounds): Promise<ISiteItem[]> {
-    if (this.fetchSitesAborter) this.fetchSitesAborter.abort()
+  // async getSites(centreLat: number, centreLon: number, bbox: L.LatLngBounds): Promise<ISiteItem[]> {
+  //   if (this.fetchSitesAborter) this.fetchSitesAborter.abort()
 
-    this.fetchSitesAborter ||= new AbortController()
-    const ab = this.fetchSitesAborter
+  //   this.fetchSitesAborter ||= new AbortController()
+  //   const ab = this.fetchSitesAborter
 
-    const response = await fetch(`https://proxies.mastdatabase.co.uk/uk/o2/coverage-map/sites?lon=${centreLon}&lat=${centreLat}`, {
-      signal: ab.signal,
-    })
+  //   const response = await fetch(`https://proxies.mastdatabase.co.uk/uk/o2/coverage-map/sites?lon=${centreLon}&lat=${centreLat}`, {
+  //     signal: ab.signal,
+  //   })
 
-    this.fetchSitesAborter = null
+  //   this.fetchSitesAborter = null
 
-    const wrappedResponse: { info: string[]; ok: boolean; data: SpatialBuzzResponse.RootObject } = await response.json()
+  //   const wrappedResponse: { info: string[]; ok: boolean; data: SpatialBuzzResponse.RootObject } = await response.json()
 
-    const { lon } = wrappedResponse.data.search_point.point
+  //   const { lon } = wrappedResponse.data.search_point.point
 
-    if (lon < -180 || lon > 180) {
-      return []
-    }
+  //   if (lon < -180 || lon > 180) {
+  //     return []
+  //   }
 
-    return wrappedResponse.data.records.map(r => ({
-      id: r.id,
-      lat: r.point.lat,
-      long: r.point.lon,
-    }))
-  }
+  //   return wrappedResponse.data.records.map(r => ({
+  //     id: r.id,
+  //     lat: r.point.lat,
+  //     long: r.point.lon,
+  //   }))
+  // }
 }
 
-declare module SpatialBuzzResponse {
-  export interface RasterValue {
-    layer: number
-    raw: number
-    cat: number
-  }
+// declare module SpatialBuzzResponse {
+//   export interface RasterValue {
+//     layer: number
+//     raw: number
+//     cat: number
+//   }
 
-  export interface Geojson {
-    type: string
-    coordinates: number[]
-  }
+//   export interface Geojson {
+//     type: string
+//     coordinates: number[]
+//   }
 
-  export interface Point {
-    lon: number
-    lat: number
-  }
+//   export interface Point {
+//     lon: number
+//     lat: number
+//   }
 
-  export interface PointGrid {
-    x: number
-    y: number
-    srs?: number
-  }
+//   export interface PointGrid {
+//     x: number
+//     y: number
+//     srs?: number
+//   }
 
-  export interface SearchPoint {
-    geojson: Geojson
-    point: Point
-    point_grid: PointGrid
-  }
+//   export interface SearchPoint {
+//     geojson: Geojson
+//     point: Point
+//     point_grid: PointGrid
+//   }
 
-  export interface Distance {
-    miles: number
-    km: number
-  }
+//   export interface Distance {
+//     miles: number
+//     km: number
+//   }
 
-  export interface Record {
-    counter: number
-    id: string
-    point: Point
-    point_grid: PointGrid
-    distance: Distance
-  }
+//   export interface Record {
+//     counter: number
+//     id: string
+//     point: Point
+//     point_grid: PointGrid
+//     distance: Distance
+//   }
 
-  export interface RootObject {
-    customer: string
-    raster_values: RasterValue[]
-    total: number
-    avg_distance: number
-    grid_srs: number
-    search_point: SearchPoint
-    search_results: any[]
-    records: Record[]
-  }
-}
+//   export interface RootObject {
+//     customer: string
+//     raster_values: RasterValue[]
+//     total: number
+//     avg_distance: number
+//     grid_srs: number
+//     search_point: SearchPoint
+//     search_results: any[]
+//     records: Record[]
+//   }
+// }
