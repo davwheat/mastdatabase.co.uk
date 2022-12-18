@@ -89,6 +89,7 @@ interface Props {
   firstElement?: boolean
   className?: string
   innerClassName?: string
+  children?: React.ReactNode
 }
 
 const Hero: React.FC<Props> = ({ children, color = '#000', size = 'normal', firstElement = false, className, innerClassName }) => {

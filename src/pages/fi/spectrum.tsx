@@ -33,7 +33,7 @@ function FISpectrumAllocationPage({ location }: PageProps) {
         ]}
       />
 
-      <SpectrumTotaller bandsData={FIAllBands} />
+      <SpectrumTotaller countryCode="FI" bandsData={FIAllBands} />
 
       <AllSpectrumMaps locationName="Finland" countryCode="FI" bandsData={FIAllBands} />
     </Layout>

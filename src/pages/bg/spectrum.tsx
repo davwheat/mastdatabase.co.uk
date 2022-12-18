@@ -33,7 +33,7 @@ function BGSpectrumAllocationPage({ location }: PageProps) {
         ]}
       />
 
-      <SpectrumTotaller bandsData={BGAllBands} />
+      <SpectrumTotaller countryCode="BG" bandsData={BGAllBands} />
 
       <AllSpectrumMaps locationName="Bulgaria" countryCode="BG" bandsData={BGAllBands} />
     </Layout>

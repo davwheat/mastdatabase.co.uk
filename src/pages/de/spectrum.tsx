@@ -32,7 +32,7 @@ function DESpectrumAllocationPage({ location }: PageProps) {
         ]}
       />
 
-      <SpectrumTotaller bandsData={DEAllBands} />
+      <SpectrumTotaller countryCode="DE" bandsData={DEAllBands} />
 
       <AllSpectrumMaps locationName="German" countryCode="DE" bandsData={DEAllBands} />
     </Layout>

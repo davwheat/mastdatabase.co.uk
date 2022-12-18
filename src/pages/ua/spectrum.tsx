@@ -33,7 +33,7 @@ function UASpectrumAllocationPage({ location }: PageProps) {
         ]}
       />
 
-      <SpectrumTotaller bandsData={UAAllBands} />
+      <SpectrumTotaller countryCode="UA" bandsData={UAAllBands} />
 
       <AllSpectrumMaps locationName="Ukraine" countryCode="UA" bandsData={UAAllBands} />
     </Layout>
