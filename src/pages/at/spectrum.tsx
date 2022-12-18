@@ -1,6 +1,5 @@
 import React from 'react'
 
-import Section from '@components/Design/Section'
 import Hero from '@components/Design/Hero'
 import Layout from '@components/Layout'
 import Breadcrumbs from '@components/Design/Breadcrumbs'
@@ -33,7 +32,7 @@ function ATSpectrumAllocationPage({ location }: PageProps) {
         ]}
       />
 
-      <SpectrumTotaller bandsData={ATAllBands} />
+      <SpectrumTotaller countryCode="AT" bandsData={ATAllBands} />
 
       <AllSpectrumMaps locationName="Austria" countryCode="AT" bandsData={ATAllBands} />
     </Layout>

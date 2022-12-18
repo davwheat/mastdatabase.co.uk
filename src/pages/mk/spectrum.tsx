@@ -33,7 +33,7 @@ function MKSpectrumAllocationPage({ location }: PageProps) {
         ]}
       />
 
-      <SpectrumTotaller bandsData={MKAllBands} />
+      <SpectrumTotaller countryCode="MK" bandsData={MKAllBands} />
 
       <AllSpectrumMaps locationName="North Macedonia" countryCode="MK" bandsData={MKAllBands} />
     </Layout>

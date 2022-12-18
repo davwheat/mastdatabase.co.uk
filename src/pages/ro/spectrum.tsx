@@ -34,7 +34,7 @@ function ROSpectrumAllocationPage({ location }: PageProps) {
         ]}
       />
 
-      <SpectrumTotaller bandsData={ROAllBands} />
+      <SpectrumTotaller countryCode="RO" bandsData={ROAllBands} />
 
       <AllSpectrumMaps locationName="Romania" countryCode="RO" bandsData={ROAllBands} />
     </Layout>

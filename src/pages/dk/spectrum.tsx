@@ -33,7 +33,7 @@ function DKSpectrumAllocationPage({ location }: PageProps) {
         ]}
       />
 
-      <SpectrumTotaller bandsData={DKAllBands}>
+      <SpectrumTotaller countryCode="DK" bandsData={DKAllBands}>
         <MinorAlert color="primaryBlue" coloredBackground heading="Calculation info">
           <p className="text-speak">This total includes TDC's B67 LTE allocation which is not supported by any known COTS UE.</p>
         </MinorAlert>

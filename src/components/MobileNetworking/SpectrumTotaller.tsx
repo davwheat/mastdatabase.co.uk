@@ -4,10 +4,12 @@ import type { SpectrumBlock, SpectrumData } from 'mobile-spectrum-data/@types'
 import Section from '@components/Design/Section'
 import { formatFrequency } from 'mobile-spectrum-data/utils'
 import { makeStyles } from '@material-ui/core'
+import { getOperatorInfoByNameOrAlias } from 'mobile-spectrum-data/OperatorInfo'
 
 export interface SpectrumTotallerProps {
   bandsData: SpectrumData[]
   children?: React.ReactNode
+  countryCode: string
 }
 
 const useStyles = makeStyles({
@@ -25,7 +27,7 @@ const useStyles = makeStyles({
   },
 })
 
-function aggregateBandsData(bandsData: SpectrumData[]): Record<string, Record<number, number>> {
+function aggregateBandsData(country: string, bandsData: SpectrumData[]): Record<string, Record<number, number>> {
   function getFreqCategory(freq: number): number {
     if (freq < 1000) {
       return 0
@@ -45,19 +47,13 @@ function aggregateBandsData(bandsData: SpectrumData[]): Record<string, Record<nu
 
     band.spectrumData.forEach(block => {
       let accArr: SpectrumBlock[] = []
-      let name = block.ownerLongName ?? block.owner
 
-      if (['Unallocated', 'Private', 'Regional licenses', '?', 'Unavailable'].includes(name)) {
-        return acc
-      }
+      const operatorInfo =
+        getOperatorInfoByNameOrAlias(country, block.ownerLongName ?? '') ?? getOperatorInfoByNameOrAlias(country, block.owner ?? '')
 
-      if (block.ownerLongName && acc[block.ownerLongName]) {
-        name = block.ownerLongName
-        accArr = acc[block.ownerLongName]
-      } else if (acc[block.owner]) {
-        name = block.owner
-        accArr = acc[block.owner]
-      }
+      if (operatorInfo === null) return
+
+      const name = operatorInfo.name
 
       acc[name] ||= accArr
 
@@ -86,10 +82,10 @@ function aggregateBandsData(bandsData: SpectrumData[]): Record<string, Record<nu
   return total
 }
 
-export default function SpectrumTotaller({ bandsData, children }: SpectrumTotallerProps) {
+export default function SpectrumTotaller({ bandsData, children, countryCode }: SpectrumTotallerProps) {
   const classes = useStyles()
 
-  const data = Object.entries(aggregateBandsData(bandsData))
+  const data = Object.entries(aggregateBandsData(countryCode, bandsData))
 
   // sort by total
 

@@ -34,7 +34,7 @@ function AXSpectrumAllocationPage({ location }: PageProps) {
         ]}
       />
 
-      <SpectrumTotaller bandsData={AXAllBands} />
+      <SpectrumTotaller countryCode="FI" bandsData={AXAllBands} />
 
       <AllSpectrumMaps locationName="Åland Islands" countryCode="AX" bandsData={AXAllBands} />
     </Layout>

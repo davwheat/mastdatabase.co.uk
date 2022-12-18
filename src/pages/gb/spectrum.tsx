@@ -53,7 +53,7 @@ function GBSpectrumAllocationPage({ location }: PageProps) {
         </p>
       </Section> */}
 
-      <SpectrumTotaller bandsData={GBAllBands}>
+      <SpectrumTotaller countryCode="GB" bandsData={GBAllBands}>
         <MinorAlert color="primaryBlue" coloredBackground heading="Calculation info">
           <p className="text-speak">This total includes EE's B67 LTE allocation which is not supported by any known COTS UE.</p>
         </MinorAlert>
