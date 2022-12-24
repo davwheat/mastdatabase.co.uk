@@ -51,6 +51,7 @@ const Countries: ICountryItem[] = [
   { code: 'fi', name: 'Finland', nativeName: 'Suomi' },
   { code: 'ua', name: 'Ukraine', nativeName: 'Україна' },
   { code: 'ro', name: 'Romania', nativeName: 'România' },
+  { code: 'ie', name: 'Republic of Ireland', nativeName: 'Éire' },
   {
     code: 'mk',
     name: 'North Macedonia',
