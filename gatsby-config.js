@@ -27,7 +27,7 @@ if (__IS_DEV__) {
 module.exports = {
   flags: {
     // FAST_DEV: true,
-    // DEV_SSR: true,
+    DEV_SSR: true,
   },
   siteMetadata: {
     title: `Mast Database`,
