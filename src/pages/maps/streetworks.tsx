@@ -57,7 +57,7 @@ export default function StreetworksMapPage({ location }: PageProps) {
         <Section>
           <h2 className="text-loud">About</h2>
           <p className="text-speak">
-            View a map of current and future reghistered streetworks relating to telecoms infrastructure in the&nbsp;UK.
+            View a map of current and future registered streetworks relating to telecoms infrastructure in the&nbsp;UK.
           </p>
           <p>
             You can customise the time range or pick a predefined range below. You can also filter whose works to show by opening the settings
