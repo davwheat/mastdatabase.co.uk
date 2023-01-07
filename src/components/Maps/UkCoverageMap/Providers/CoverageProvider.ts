@@ -3,7 +3,7 @@ import React from 'react'
 export type ICoverageLayer = {
   label: string
   hidden?: true
-} & ({ url: string } | { layers: React.ReactChild })
+} & ({ url: string } | { layers: React.ReactNode })
 
 export interface ISiteItem {
   lat: number

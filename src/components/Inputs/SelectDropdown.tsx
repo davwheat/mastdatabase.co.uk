@@ -19,7 +19,7 @@ interface ISelectDropdownProps {
   /**
    * Optional helper text which appears under the textbox. Correctly linked via `aria-describedby`.
    */
-  helpText?: React.ReactChild
+  helpText?: React.ReactNode
 }
 
 const useStyles = makeStyles({

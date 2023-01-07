@@ -36,19 +36,19 @@ interface IProps extends Omit<React.HTMLAttributes<HTMLInputElement>, 'onInput'>
   /**
    * Optional helper text which appears under the textbox. Correctly linked via `aria-describedby`.
    */
-  helpText?: React.ReactChild
+  helpText?: React.ReactNode
   /**
    * An optional element to display at the start of the input field.
    *
    * If used to show units, for example, you should set an appropriate `screenReaderLabel` as these adornments are hidden to screenreaders.
    */
-  startAdornment?: React.ReactChild
+  startAdornment?: React.ReactNode
   /**
    * An optional element to display at the end of the input field.
    *
    * If used to show units, for example, you should set an appropriate `screenReaderLabel` as these adornments are hidden to screenreaders.
    */
-  endAdornment?: React.ReactChild
+  endAdornment?: React.ReactNode
   /**
    * RegEx pattern for validation
    */

@@ -22,7 +22,7 @@ const useStyles = makeStyles({
 interface Props extends React.HTMLAttributes<HTMLButtonElement> {
   className?: string
   onClick: React.MouseEventHandler<HTMLButtonElement>
-  children: React.ReactChild
+  children: React.ReactNode
 }
 
 export default function ButtonLink({ children, className, onClick, ...props }: Props) {
