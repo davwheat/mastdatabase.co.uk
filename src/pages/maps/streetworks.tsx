@@ -4,16 +4,15 @@ import Layout from '@components/Layout'
 import Hero from '@components/Design/Hero'
 import Breadcrumbs from '@components/Design/Breadcrumbs'
 import Section from '@components/Design/Section'
+import StreetworksMap from '@components/Maps/StreetworksMap/StreetworksMap'
+import { StreetworksMapSettings } from '@components/Maps/StreetworksMap/StreetworksMapSettings'
 
 import Colors from '@data/colors.json'
 
 import { makeStyles, NoSsr } from '@material-ui/core'
-
-import StreetworksMap from '@components/Maps/StreetworksMap/StreetworksMap'
+import { ErrorBoundaryContext } from 'react-use-error-boundary'
 
 import type { PageProps } from 'gatsby'
-import { ErrorBoundaryContext } from 'react-use-error-boundary'
-import { StreetworksMapSettings } from '@components/Maps/StreetworksMap/StreetworksMapSettings'
 
 const useStyles = makeStyles({
   mapSection: {
