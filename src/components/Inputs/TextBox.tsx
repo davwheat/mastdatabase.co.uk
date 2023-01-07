@@ -1,7 +1,4 @@
-import React from 'react'
-
-import { useMemo } from 'react'
-import { nanoid } from 'nanoid'
+import React, { useId } from 'react'
 import SearchIcon from 'mdi-react/SearchIcon'
 import { makeStyles } from '@material-ui/styles'
 import clsx from 'clsx'
@@ -125,9 +122,10 @@ export default function TextBox({
   disabled = false,
   ...attrs
 }: IProps) {
-  const id = useMemo(() => nanoid(), [])
-  const helpTextId = useMemo(() => nanoid(), [])
   const classes = useStyles()
+
+  const id = useId()
+  const helpTextId = useId()
 
   return (
     <label htmlFor={id} className={clsx('textbox', classes.inputLabel, className)} aria-label={screenReaderLabel}>

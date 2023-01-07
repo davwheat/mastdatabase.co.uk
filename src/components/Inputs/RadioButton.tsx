@@ -1,9 +1,8 @@
-import React, { useRef } from 'react'
+import React, { useId } from 'react'
 
 import Colors from '@data/colors.json'
 
 import { makeStyles } from '@material-ui/core'
-import { nanoid } from 'nanoid'
 
 export interface IRadioButtonProps {
   className?: string
@@ -78,7 +77,7 @@ const useStyles = makeStyles({
 export default function RadioButton({ name, className, label, checked, onChecked, disabled = false }: IRadioButtonProps) {
   const classes = useStyles()
 
-  const { current: id } = useRef(nanoid())
+  const id = useId()
 
   return (
     <div className={className}>

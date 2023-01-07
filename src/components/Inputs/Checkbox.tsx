@@ -1,8 +1,7 @@
-import React, { useMemo } from 'react'
+import React, { useId } from 'react'
 
 import { makeStyles } from '@material-ui/core'
 
-import { nanoid } from 'nanoid'
 import clsx from 'clsx'
 
 import generateTransitions from '../../functions/generateTransitions'
@@ -99,7 +98,7 @@ const useStyles = makeStyles({
 })
 
 function Checkbox({ label, onChange, checked, disabled, className }: Props) {
-  const id = useMemo(nanoid, [])
+  const id = useId()
   const classes = useStyles()
 
   return (

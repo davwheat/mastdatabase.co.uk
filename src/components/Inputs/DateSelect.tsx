@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useId } from 'react'
 
 import Colors from '@data/colors.json'
 
@@ -119,9 +119,10 @@ export default function DateSelect({
   endAdornment: endAppendix,
   ...attrs
 }: IProps) {
-  const id = useMemo(() => nanoid(), [])
-  const helpTextId = useMemo(() => nanoid(), [])
   const classes = useStyles()
+
+  const id = useId()
+  const helpTextId = useId()
 
   return (
     <label htmlFor={id} className={clsx(classes.inputLabel, className)} aria-label={screenReaderLabel}>

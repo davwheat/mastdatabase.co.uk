@@ -1,7 +1,6 @@
 import { makeStyles } from '@material-ui/core'
 import clsx from 'clsx'
-import { nanoid } from 'nanoid'
-import React, { useRef } from 'react'
+import React, { useId } from 'react'
 import RadioButton from './RadioButton'
 
 export interface IRadioButtonGroupOption<T> {
@@ -57,7 +56,7 @@ export default function RadioButtonGroup<T extends string | number>({
 }: IRadioButtonGroupProps<T>) {
   const classes = useStyles()
 
-  const { current: groupName } = useRef(nanoid())
+  const groupName = useId()
 
   return (
     <fieldset className={clsx(classes.fieldset, className)}>
