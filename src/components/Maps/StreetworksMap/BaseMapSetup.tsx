@@ -10,7 +10,7 @@ export function BaseMapSetup() {
   // Attribute to one.network
   useEffect(() => {
     map.attributionControl?.addAttribution(`&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors`)
-    map.attributionControl?.addAttribution(`&copy; Data from <a href="https://one.network">one.network</a>`)
+    map.attributionControl?.addAttribution(`&copy; Data provided by <a href="https://bidb.uk/">bidb.uk</a>`)
   })
 
   useEffect(() => {

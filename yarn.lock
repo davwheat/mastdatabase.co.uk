@@ -8803,6 +8803,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"hash-wasm@npm:^4.9.0":
+  version: 4.9.0
+  resolution: "hash-wasm@npm:4.9.0"
+  checksum: b8734247fb7f69941f6564179dd891b7de21aa5877b9e32a5c6d777c2ab45cf5a6b021ade2b0156ec780ac41188486d571d9d526ef8206dda1ad306c81112a8a
+  languageName: node
+  linkType: hard
+
 "hasha@npm:^5.2.2":
   version: 5.2.2
   resolution: "hasha@npm:5.2.2"
@@ -10473,6 +10480,7 @@ __metadata:
     gatsby-source-local-git: ^1.3.0
     gatsby-transformer-sharp: ^5.3.1
     get-best-contrast-color: ^0.3.1
+    hash-wasm: ^4.9.0
     json-stable-stringify-without-jsonify: ^1.0.1
     leaflet: ^1.9.3
     leaflet.markercluster: ^1.5.3

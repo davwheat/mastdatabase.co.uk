@@ -122,7 +122,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'cf',
     name: 'CityFibre',
-    aliases: ['CityFibre Metro Networks Limited', 'CityFibre Metro Networks Ltd'],
+    aliases: ['CityFibre', 'CityFibre Metro Networks Limited', 'CityFibre Metro Networks Ltd'],
     category: 'Fixed broadband',
     icon: {
       text: 'CTYF',
@@ -142,7 +142,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'grain',
     name: 'Grain',
-    aliases: ['Grain'],
+    aliases: ['Grain', 'Grain Connect', 'Grain Communications Ltd', 'Grain Communications Ltd__1822'],
     category: 'Fixed broadband',
     icon: {
       text: 'GRAI',
@@ -362,7 +362,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'lit',
     name: 'Lit Fibre',
-    aliases: ['Broadreach Networks Limited', 'Lit Fibre Group Ltd'],
+    aliases: ['Broadreach Networks Limited', 'Lit Fibre Group Ltd', 'Lit Fibre'],
     category: 'Fixed broadband',
     icon: {
       text: 'LIT',
@@ -519,6 +519,36 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
       type: 'gigaclear',
     },
   },
+  {
+    id: 'ix-wireless',
+    name: 'IX Wireless',
+    aliases: ['IX Wireless Limited'],
+    category: 'Fixed broadband',
+    icon: {
+      text: 'IX W',
+      type: 'ix-wireless',
+    },
+  },
+  {
+    id: 'brsk',
+    name: 'BRSK Limited',
+    aliases: ['BRSK LIMITED'],
+    category: 'Fixed broadband',
+    icon: {
+      text: 'BRSK',
+      type: 'brsk',
+    },
+  },
+  {
+    id: 'wildanet',
+    name: 'Wildanet',
+    aliases: ['Wildanet'],
+    category: 'Fixed broadband',
+    icon: {
+      text: 'WLDA',
+      type: 'wildanet',
+    },
+  },
 
   // FWA
   {
@@ -626,7 +656,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'telcom',
     name: 'Telcom Infrastructure',
-    aliases: ['Telcom Infrastructure Limited'],
+    aliases: ['Telcom Infrastructure Limited', 'Telcom Infrastructure Ltd'],
     category: 'Telecoms infrastructure',
     icon: {
       text: 'TLCM',
@@ -703,6 +733,36 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
       type: 'tata',
     },
   },
+  {
+    id: 'next-gen-access',
+    name: 'Next Gen Access Ltd',
+    aliases: ['Next Gen Access Ltd'],
+    category: 'Telecoms infrastructure',
+    icon: {
+      text: 'NGA',
+      type: 'next-gen-access',
+    },
+  },
+  {
+    id: 'lumen-technologies',
+    name: 'Lumen Technologies',
+    aliases: ['Global Crossing (UK) Telecommunications'],
+    category: 'Telecoms infrastructure',
+    icon: {
+      text: 'LUMN',
+      type: 'lumen',
+    },
+  },
+  {
+    id: 'bai-comms',
+    name: 'BAI Communications Limited',
+    aliases: ['Bai Communications Limited'],
+    category: 'Telecoms infrastructure',
+    icon: {
+      text: 'BAI',
+      type: 'bai',
+    },
+  },
 
   // Business broadband solutions
   {
@@ -745,6 +805,26 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
       type: 'zayo',
     },
   },
+  {
+    id: 'its-group',
+    name: 'ITS Technology Group',
+    aliases: ['ITS Technology Group'],
+    category: 'Business broadband',
+    icon: {
+      text: 'ITS',
+      type: 'its-group',
+    },
+  },
+  {
+    id: 'glide',
+    name: 'Glide',
+    aliases: ['Glide', 'Concept Solutions People Ltd'],
+    category: 'Business broadband',
+    icon: {
+      text: 'GLID',
+      type: 'glide',
+    },
+  },
 
   // Street furniture
   {
@@ -755,6 +835,16 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
     icon: {
       text: 'NWP',
       type: 'newworldpayphones',
+    },
+  },
+  {
+    id: 'infolines',
+    name: 'Infolines Public Networks Limited',
+    aliases: ['Infolines Public Networks Limited'],
+    category: 'Street furniture',
+    icon: {
+      text: 'INFO',
+      type: 'infolines',
     },
   },
 ]
@@ -804,20 +894,20 @@ function getPromoterId(dataPoint: StreetworksDataPoint): string | undefined {
 }
 
 export function getPromoterIcon(dataPoint: StreetworksDataPoint) {
-  return promoterIcons[getPromoterId(dataPoint)!]
+  return promoterIcons[getPromoterId(dataPoint)!] ?? createPromoterIcon('??', 'unknown')!
 }
 
 export function getPromoterName(dataPoint: StreetworksDataPoint) {
-  return promoterNames[getPromoterId(dataPoint)!]
+  return promoterNames[getPromoterId(dataPoint)!] ?? dataPoint.promoter ?? 'Unknown'
 }
 
 export function isPromoterDataPoint(dataPoint: StreetworksDataPoint) {
   const id = getPromoterId(dataPoint)
 
-  if (!id) return false
+  if (!id) return true
 
   const states = getPromoterStates()
-  if (!states[id]) return false
+  if (id in states && !states[id]) return false
 
   return true
 }
