@@ -8,14 +8,11 @@ import Section from '@components/Design/Section'
 import Colors from '@data/colors.json'
 
 import { makeStyles, NoSsr } from '@material-ui/core'
-
-import StreetworksMap from '@components/Maps/StreetworksMap/StreetworksMap'
-
-import type { PageProps } from 'gatsby'
 import { ErrorBoundaryContext } from 'react-use-error-boundary'
-import { StreetworksMapSettings } from '@components/Maps/StreetworksMap/StreetworksMapSettings'
 import Link from '@components/Links/Link'
 import TubeDasMap from '@components/Maps/TubeDasMap/TubeDasMap'
+
+import type { PageProps } from 'gatsby'
 
 const useStyles = makeStyles({
   mapSection: {
