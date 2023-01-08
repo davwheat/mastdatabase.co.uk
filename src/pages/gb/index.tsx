@@ -66,6 +66,11 @@ const Links: ILinkGroup[] = [
         description: "Access to Three UK's RAN status API endpoint via a proxy.",
         url: '/gb/three-ran-status',
       },
+      {
+        title: 'Virgin Media deployment info',
+        description: 'Discover hidden information about Virgin Media deployments in your local area.',
+        url: '/gb/virgin-media-deployment-info',
+      },
     ],
   },
 ]
