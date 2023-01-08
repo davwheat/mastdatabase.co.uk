@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react'
 
 import useFixLeafletAssets from '@hooks/useFixLeafletAssets'
-import {  useUserLocation } from '@hooks/useUserLocation'
+import { useUserLocation } from '@hooks/useUserLocation'
 import useForceRender from '@hooks/useForceRerender'
 import { useErrorBoundary } from 'react-use-error-boundary'
 
