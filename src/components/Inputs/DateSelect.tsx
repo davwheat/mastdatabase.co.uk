@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useId } from 'react'
 
 import Colors from '@data/colors.json'
 
@@ -36,19 +36,19 @@ interface IProps extends Omit<React.HTMLAttributes<HTMLInputElement>, 'onInput'>
   /**
    * Optional helper text which appears under the textbox. Correctly linked via `aria-describedby`.
    */
-  helpText?: React.ReactChild
+  helpText?: React.ReactNode
   /**
    * An optional element to display at the start of the input field.
    *
    * If used to show units, for example, you should set an appropriate `screenReaderLabel` as these adornments are hidden to screenreaders.
    */
-  startAdornment?: React.ReactChild
+  startAdornment?: React.ReactNode
   /**
    * An optional element to display at the end of the input field.
    *
    * If used to show units, for example, you should set an appropriate `screenReaderLabel` as these adornments are hidden to screenreaders.
    */
-  endAdornment?: React.ReactChild
+  endAdornment?: React.ReactNode
   /**
    * RegEx pattern for validation
    */
@@ -119,9 +119,10 @@ export default function DateSelect({
   endAdornment: endAppendix,
   ...attrs
 }: IProps) {
-  const id = useMemo(() => nanoid(), [])
-  const helpTextId = useMemo(() => nanoid(), [])
   const classes = useStyles()
+
+  const id = useId()
+  const helpTextId = useId()
 
   return (
     <label htmlFor={id} className={clsx(classes.inputLabel, className)} aria-label={screenReaderLabel}>

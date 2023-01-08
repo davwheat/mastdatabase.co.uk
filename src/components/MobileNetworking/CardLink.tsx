@@ -8,8 +8,8 @@ import clsx from 'clsx'
 import generateTransitions from '@functions/generateTransitions'
 
 interface ICardLinkProps {
-  title: React.ReactChild
-  description?: React.ReactChild
+  title: React.ReactNode
+  description?: React.ReactNode
   url: string
 }
 

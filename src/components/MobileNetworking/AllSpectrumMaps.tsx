@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useId, useState } from 'react'
 
 import Section from '@components/Design/Section'
 import { HighlightedSpectrum, SpectrumMap } from '@components/MobileNetworking/SpectrumMap'
@@ -151,11 +151,11 @@ export default function AllSpectrumMaps({ bandsData, locationName, countryCode }
   const [endHighlight, setEndHighlight] = useState<{ text: string; val: number | null }>({ text: '', val: NaN })
   const [highlightBandwidth, setHighlightBandwidth] = useState<{ text: string; val: number | null }>({ text: '', val: NaN })
 
-  const { current: formIds } = useRef({
-    highlightTypeArfcn: nanoid(),
-    highlightTypeArfcnBw: nanoid(),
-    highlightTypeFreq: nanoid(),
-  })
+  const formIds = {
+    highlightTypeArfcn: useId(),
+    highlightTypeArfcnBw: useId(),
+    highlightTypeFreq: useId(),
+  }
 
   const isHighlightPresent = (() => {
     if (!startHighlight.val) return false

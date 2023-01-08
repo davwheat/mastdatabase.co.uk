@@ -14,7 +14,7 @@ function getTwemojiUrl(codepoint: string): string {
 /**
  * Converts a two-letter ISO country code into a flag emoji for that country.
  */
-export default function countryCodeToFlag(countryCode: string): React.ReactChild {
+export default function countryCodeToFlag(countryCode: string): React.ReactNode {
   const regionalIndicators = countryCode.toLowerCase().split('').map(charToRegionalIndicator)
 
   const codepoint = regionalIndicators.map(c => c.codePointAt(0)!.toString(16)).join('-')

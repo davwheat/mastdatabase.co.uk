@@ -1,14 +1,12 @@
 import React, { useCallback, useState } from 'react'
 
 import useFixLeafletAssets from '@hooks/useFixLeafletAssets'
-import { getGeolocationPermissionStatus, useUserLocation } from '@hooks/useUserLocation'
+import { useUserLocation } from '@hooks/useUserLocation'
 import useForceRender from '@hooks/useForceRerender'
 import { useErrorBoundary } from 'react-use-error-boundary'
 
 import { MapContainer, ScaleControl, useMap, useMapEvent } from 'react-leaflet'
-import { Fab, makeStyles, Zoom } from '@material-ui/core'
 
-import clsx from 'clsx'
 import dayjs from 'dayjs'
 import dayjs_tz from 'dayjs/plugin/timezone'
 import dayjs_utc from 'dayjs/plugin/utc'

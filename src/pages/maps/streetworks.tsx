@@ -4,19 +4,20 @@ import Layout from '@components/Layout'
 import Hero from '@components/Design/Hero'
 import Breadcrumbs from '@components/Design/Breadcrumbs'
 import Section from '@components/Design/Section'
+import StreetworksMap from '@components/Maps/StreetworksMap/StreetworksMap'
+import { StreetworksMapSettings } from '@components/Maps/StreetworksMap/StreetworksMapSettings'
 
 import Colors from '@data/colors.json'
 
 import { makeStyles, NoSsr } from '@material-ui/core'
-
-import StreetworksMap from '@components/Maps/StreetworksMap/StreetworksMap'
+import { ErrorBoundaryContext } from 'react-use-error-boundary'
 
 import type { PageProps } from 'gatsby'
-import { ErrorBoundaryContext } from 'react-use-error-boundary'
-import { StreetworksMapSettings } from '@components/Maps/StreetworksMap/StreetworksMapSettings'
 
 const useStyles = makeStyles({
   mapSection: {
+    marginTop: '0 !important',
+
     '& .leaflet-popup-content': {
       '& dt': {
         fontWeight: 'bold',
@@ -57,15 +58,14 @@ export default function StreetworksMapPage({ location }: PageProps) {
         <Section>
           <h2 className="text-loud">About</h2>
           <p className="text-speak">
-            View a map of current and future registered streetworks relating to telecoms infrastructure in the&nbsp;UK.
+            View a map of current and future registered streetworks relating to telecoms infrastructure in Great Britain.
           </p>
-          <p>
-            You can customise the time range or pick a predefined range below. You can also filter whose works to show by opening the settings
-            modal with the cog in the bottom-right of the&nbsp;map.
+          <p className="text-speak">
+            You can also filter whose works to show by opening the settings modal with the cog in the bottom-right of the&nbsp;map.
           </p>
         </Section>
 
-        <StreetworksMapSettings />
+        {/* <StreetworksMapSettings /> */}
 
         <Section width="full" className={classes.mapSection}>
           <NoSsr>

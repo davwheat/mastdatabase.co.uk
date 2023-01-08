@@ -4,8 +4,9 @@ import { LayerGroup, useMap, useMapEvent } from 'react-leaflet'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 
 import { getPromoterIcon, getPromoterName, isPromoterDataPoint } from '@functions/maps/streetworks/streetworksPromoterUtils'
+import getStreetworksDataPoints, { StreetworksDataPointWithHash } from '@functions/maps/streetworks/getStreetworksDataPoints'
 import getStreetworksDataPointDetails from '@functions/maps/streetworks/getStreetworksDataPointDetails'
-import getStreetworksDataPoints, { StreetworksDataPoint } from '@functions/maps/streetworks/getStreetworksDataPoints'
+
 import { StatusMessages } from './MapStatusMessages'
 import DataMarker from '@leaflet/DataMarker'
 import { StreetworksMapPersistentSettingsAtom, StreetworksMapSettingsAtom, StreetworksMapStatusMessagesAtom } from '@atoms'
@@ -27,7 +28,7 @@ export function StreetworksMarkers() {
 
   const aborter = useRef<AbortController>(new AbortController())
 
-  const streetmapSettings = useRecoilValue(StreetworksMapSettingsAtom)
+  // const streetmapSettings = useRecoilValue(StreetworksMapSettingsAtom)
   const streetmapPersistentSettings = useRecoilValue(StreetworksMapPersistentSettingsAtom)
 
   const loadPointsTimeoutKey = useRef<number | null>(null)
@@ -55,14 +56,14 @@ export function StreetworksMarkers() {
       settingsError: false,
     })
 
-  function validateSettings(): boolean {
-    // If end is before start
-    if (streetmapSettings.streetworksEndDate < streetmapSettings.streetworksStartDate) {
-      return false
-    }
+  // function validateSettings(): boolean {
+  //   // If end is before start
+  //   if (streetmapSettings.streetworksEndDate < streetmapSettings.streetworksStartDate) {
+  //     return false
+  //   }
 
-    return true
-  }
+  //   return true
+  // }
 
   const debouncedLoadPoints = () => {
     if (loadPointsTimeoutKey.current) clearTimeout(loadPointsTimeoutKey.current)
@@ -73,33 +74,26 @@ export function StreetworksMarkers() {
     loadPointsTimeoutKey.current = window.setTimeout(() => {
       loadPointsTimeoutKey.current = null
 
-      loadPoints(
-        map,
-        setStatusMessages,
-        markerGroup.current!,
-        aborter.current,
-        streetmapSettings.streetworksStartDate,
-        streetmapSettings.streetworksEndDate,
-      )
+      loadPoints(map, setStatusMessages, markerGroup.current!, aborter.current)
     }, 1000)
   }
 
   function loadNewPoints() {
     aborter.current.abort()
 
-    if (!validateSettings()) {
-      markerGroup.current?.clearLayers()
+    // if (!validateSettings()) {
+    //   markerGroup.current?.clearLayers()
 
-      setStatusMessages({
-        loading: false,
-        fetchFail: false,
-        upstreamError: false,
-        tooManyPoints: false,
-        settingsError: true,
-      })
+    //   setStatusMessages({
+    //     loading: false,
+    //     fetchFail: false,
+    //     upstreamError: false,
+    //     tooManyPoints: false,
+    //     settingsError: true,
+    //   })
 
-      return
-    }
+    //   return
+    // }
 
     debouncedLoadPoints()
   }
@@ -126,13 +120,12 @@ async function loadPoints(
   setStatusMessages: (s: StatusMessages) => void,
   markerGroup: LayerGroupType<any>,
   aborter: AbortController,
-  startTime: number,
-  endTime: number,
 ) {
+  const L = window.L as typeof import('leaflet')
+
   const bounds = map.getBounds()
 
-  const bbString = bounds.toBBoxString()
-  const rawData = await getStreetworksDataPoints(bbString, aborter, new Date(startTime), new Date(endTime))
+  const rawData = await getStreetworksDataPoints(bounds, aborter)
 
   if (typeof rawData === 'string') {
     switch (rawData) {
@@ -155,13 +148,13 @@ async function loadPoints(
 
   const dataPoints = rawData.filter(isPromoterDataPoint)
 
-  const oldMarkers = (markerGroup?.getLayers() as DataMarker<StreetworksDataPoint>[]) || []
-  const oldMarkersMap = new Map(oldMarkers.map(m => [m.data.u_se_id, m]))
-  const newPoints: StreetworksDataPoint[] = []
+  const oldMarkers = (markerGroup?.getLayers() as DataMarker<StreetworksDataPointWithHash>[]) || []
+  const oldMarkersMap = new Map(oldMarkers.map(m => [m.data.hash, m]))
+  const newPoints: StreetworksDataPointWithHash[] = []
 
   dataPoints.forEach(point => {
     // Remove matching markers from 'to be removed' list
-    if (oldMarkersMap.has(point.u_se_id)) oldMarkersMap.delete(point.u_se_id)
+    if (oldMarkersMap.has(point.hash)) oldMarkersMap.delete(point.hash)
     else newPoints.push(point)
   })
 
@@ -170,62 +163,61 @@ async function loadPoints(
   newPoints.map(point => {
     const name = getPromoterName(point)
 
-    new DataMarker([point.latitude, point.longitude], point, {
-      icon: getPromoterIcon(point),
-    })
-      .bindPopup(
-        `
-        <h1>${name} works</h1>
-        <p>
-          ${dayjs.tz(point.start_date, point.start_date_tz).format("DD MMM 'YY HH:mm")}
-          to
-          ${dayjs.tz(point.end_date, point.end_date_tz).format("DD MMM 'YY HH:mm")}
-        </p>
-          
-        <h2>Work description</h2>
-        <p>${point.works_desc || 'None provided'}</p>
-          
-        <h2>Work permit ref</h2>
-        <p>${point.permit_ref || 'None provided'}</p>
-          
-        <h2>Promoter</h2>
-        <p>${point.promoter || 'None provided'}</p>
-          
-        <h2>Current status</h2>
-        <p>${
-          dayjs.tz(point.start_date, point.start_date_tz).diff(dayjs()) < 0
-            ? 'Works in progress'
-            : dayjs.tz(point.end_date, point.start_date_tz).diff(dayjs()) < 0
-            ? 'Completed'
-            : 'Upcoming'
-        }</p>
-          
-        <h2>Permit status</h2>
-        <p id="${point.se_id}__permit_status_desc">Loading...</p>
-          
-        <h2>Works last updated</h2>
-        <p id="${point.se_id}__event_lastmod_date_disp">Loading...</p>
-          
-        <h2>Last updated on one.network</h2>
-        <p id="${point.se_id}__last_adapter_update_disp">Loading...</p>
-        `,
-        { closeButton: false, className: 'streetworks-popup' },
-      )
-      .addTo(markerGroup)
-      .on('popupopen', function (e) {
-        const elementIdPrefix = `${e.target.data.se_id}__`
-
-        getStreetworksDataPointDetails(e.target.data.se_id || e.target.data.entity_id, e.target.data.phase_id).then(data => {
-          const fields = ['permit_status_desc', 'event_lastmod_date_disp', 'last_adapter_update_disp']
-
-          fields.forEach(field => {
-            const el = document.getElementById(`${elementIdPrefix}${field}`)
-            if (!el) return
-
-            el.innerText = data.swdata[field]
-          })
+    L.geoJSON(JSON.parse(point.geojson_wgs84), {
+      pointToLayer(geoJsonPoint, latlng) {
+        return new DataMarker([latlng.lat, latlng.lng], point, {
+          icon: getPromoterIcon(point),
         })
-      })
+          .bindPopup(
+            `
+          <h1>${name} works</h1>
+          <p>
+            ${dayjs.tz(point.start_date, 'Europe/London').format("DD MMM 'YY HH:mm")}
+            to
+            ${dayjs.tz(point.end_date, 'Europe/London').format("DD MMM 'YY HH:mm")}
+          </p>
+            
+          <h2>Work description</h2>
+          <p>${point.works_desc || 'None provided'}</p>
+
+          <h2>Promoter</h2>
+          <p>${point.promoter || 'None provided'}</p>
+          
+          <h2>Permit status</h2>
+          <p id="${point.id}__permit_status_desc">Loading...</p>
+            
+          <h2>Works last updated</h2>
+          <p id="${point.id}__event_lastmod_date_disp">Loading...</p>
+            
+          <h2>Last updated on one.network</h2>
+          <p id="${point.id}__last_adapter_update_disp">Loading...</p>
+          `,
+            { closeButton: false, className: 'streetworks-popup' },
+          )
+          .addTo(markerGroup)
+          .on('popupopen', function (e) {
+            const elementIdPrefix = `${e.target.data.id}__`
+
+            getStreetworksDataPointDetails(e.target.data.id, e.target.data.phase_id ?? 1).then(data => {
+              const fields = ['permit_status_desc', 'event_lastmod_date_disp', 'last_adapter_update_disp']
+              const dateFields = ['event_lastmod_date_disp', 'last_adapter_update_disp']
+
+              fields.forEach(field => {
+                const el = document.getElementById(`${elementIdPrefix}${field}`)
+                if (!el) return
+
+                const info = data.swdata[field]
+
+                if (dateFields.includes(field) && info) {
+                  el.innerText = dayjs.tz(info, 'Europe/London').format('DD MMM YYYY HH:mm:ss')
+                } else {
+                  el.innerText = info ?? 'Unknown'
+                }
+              })
+            })
+          })
+      },
+    })
   })
 
   setStatusMessages({

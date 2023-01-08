@@ -22,7 +22,7 @@ const useStyles = makeStyles({
 interface IMapCustomButtonProps extends Record<string, unknown> {
   showWhen?: (() => boolean) | boolean
   className?: string
-  children: React.ReactChild
+  children: React.ReactNode
   'aria-label': string
   onClick(): void
 }

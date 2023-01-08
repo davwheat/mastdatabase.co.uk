@@ -1,7 +1,6 @@
-import React from 'react'
+import React, { useId } from 'react'
 
 import { useMemo } from 'react'
-import { nanoid } from 'nanoid'
 import { makeStyles } from '@material-ui/styles'
 import clsx from 'clsx'
 import Colors from '@data/colors.json'
@@ -34,7 +33,7 @@ interface IProps extends Omit<React.DetailedHTMLProps<React.HTMLAttributes<HTMLT
   /**
    * Optional helper text which appears under the textbox. Correctly linked via `aria-describedby`.
    */
-  helpText?: React.ReactChild
+  helpText?: React.ReactNode
   disabled?: boolean
 }
 
@@ -94,9 +93,10 @@ export default function TextArea({
   disabled = false,
   ...attrs
 }: IProps) {
-  const id = useMemo(() => nanoid(), [])
-  const helpTextId = useMemo(() => nanoid(), [])
   const classes = useStyles()
+
+  const id = useId()
+  const helpTextId = useId()
 
   return (
     <label htmlFor={id} className={clsx(classes.inputLabel, className)} aria-label={screenReaderLabel}>

@@ -1,7 +1,4 @@
-import React from 'react'
-
-import { useMemo } from 'react'
-import { nanoid } from 'nanoid'
+import React, { useId } from 'react'
 import SearchIcon from 'mdi-react/SearchIcon'
 import { makeStyles } from '@material-ui/styles'
 import clsx from 'clsx'
@@ -39,19 +36,19 @@ interface IProps extends Omit<React.HTMLAttributes<HTMLInputElement>, 'onInput'>
   /**
    * Optional helper text which appears under the textbox. Correctly linked via `aria-describedby`.
    */
-  helpText?: React.ReactChild
+  helpText?: React.ReactNode
   /**
    * An optional element to display at the start of the input field.
    *
    * If used to show units, for example, you should set an appropriate `screenReaderLabel` as these adornments are hidden to screenreaders.
    */
-  startAdornment?: React.ReactChild
+  startAdornment?: React.ReactNode
   /**
    * An optional element to display at the end of the input field.
    *
    * If used to show units, for example, you should set an appropriate `screenReaderLabel` as these adornments are hidden to screenreaders.
    */
-  endAdornment?: React.ReactChild
+  endAdornment?: React.ReactNode
   /**
    * RegEx pattern for validation
    */
@@ -125,9 +122,10 @@ export default function TextBox({
   disabled = false,
   ...attrs
 }: IProps) {
-  const id = useMemo(() => nanoid(), [])
-  const helpTextId = useMemo(() => nanoid(), [])
   const classes = useStyles()
+
+  const id = useId()
+  const helpTextId = useId()
 
   return (
     <label htmlFor={id} className={clsx('textbox', classes.inputLabel, className)} aria-label={screenReaderLabel}>
