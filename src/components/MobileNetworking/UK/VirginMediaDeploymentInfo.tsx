@@ -253,7 +253,7 @@ export default function VirginMediaDeploymentInfo({ data }: VirginMediaDeploymen
       {statusDetails.tel.saleable ? '' : <strong>not </strong>}saleable.
     </p>,
     <p className="text-speak" key="prev-seen-tv">
-      TV has {statusDetails.tv.previouslySeen ? '' : <strong>not </strong>}
+      (Unreliable) TV has {statusDetails.tv.previouslySeen ? '' : <strong>not </strong>}
       been seen at this property before and is {statusDetails.tv.saleable ? '' : <strong>not </strong>}saleable.
     </p>,
   )
