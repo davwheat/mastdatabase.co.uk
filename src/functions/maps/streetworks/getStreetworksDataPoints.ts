@@ -41,8 +41,6 @@ export interface StreetworksDataPointWithHash extends StreetworksDataPoint {
 export default async function getStreetworksDataPoints(
   boundingBox: L.LatLngBounds,
   aborter: AbortController,
-  startDate: Date,
-  endDate: Date,
 ): Promise<StreetworksDataPointWithHash[] | GetStreetworksDataPointsErrors> {
   const L = window.L as typeof import('leaflet')
 

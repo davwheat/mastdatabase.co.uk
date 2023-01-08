@@ -16,6 +16,8 @@ import type { PageProps } from 'gatsby'
 
 const useStyles = makeStyles({
   mapSection: {
+    marginTop: '0 !important',
+
     '& .leaflet-popup-content': {
       '& dt': {
         fontWeight: 'bold',
@@ -62,6 +64,8 @@ export default function StreetworksMapPage({ location }: PageProps) {
             You can also filter whose works to show by opening the settings modal with the cog in the bottom-right of the&nbsp;map.
           </p>
         </Section>
+
+        {/* <StreetworksMapSettings /> */}
 
         <Section width="full" className={classes.mapSection}>
           <NoSsr>

@@ -28,7 +28,7 @@ export function StreetworksMarkers() {
 
   const aborter = useRef<AbortController>(new AbortController())
 
-  const streetmapSettings = useRecoilValue(StreetworksMapSettingsAtom)
+  // const streetmapSettings = useRecoilValue(StreetworksMapSettingsAtom)
   const streetmapPersistentSettings = useRecoilValue(StreetworksMapPersistentSettingsAtom)
 
   const loadPointsTimeoutKey = useRef<number | null>(null)
@@ -56,14 +56,14 @@ export function StreetworksMarkers() {
       settingsError: false,
     })
 
-  function validateSettings(): boolean {
-    // If end is before start
-    if (streetmapSettings.streetworksEndDate < streetmapSettings.streetworksStartDate) {
-      return false
-    }
+  // function validateSettings(): boolean {
+  //   // If end is before start
+  //   if (streetmapSettings.streetworksEndDate < streetmapSettings.streetworksStartDate) {
+  //     return false
+  //   }
 
-    return true
-  }
+  //   return true
+  // }
 
   const debouncedLoadPoints = () => {
     if (loadPointsTimeoutKey.current) clearTimeout(loadPointsTimeoutKey.current)
@@ -74,33 +74,26 @@ export function StreetworksMarkers() {
     loadPointsTimeoutKey.current = window.setTimeout(() => {
       loadPointsTimeoutKey.current = null
 
-      loadPoints(
-        map,
-        setStatusMessages,
-        markerGroup.current!,
-        aborter.current,
-        streetmapSettings.streetworksStartDate,
-        streetmapSettings.streetworksEndDate,
-      )
+      loadPoints(map, setStatusMessages, markerGroup.current!, aborter.current)
     }, 1000)
   }
 
   function loadNewPoints() {
     aborter.current.abort()
 
-    if (!validateSettings()) {
-      markerGroup.current?.clearLayers()
+    // if (!validateSettings()) {
+    //   markerGroup.current?.clearLayers()
 
-      setStatusMessages({
-        loading: false,
-        fetchFail: false,
-        upstreamError: false,
-        tooManyPoints: false,
-        settingsError: true,
-      })
+    //   setStatusMessages({
+    //     loading: false,
+    //     fetchFail: false,
+    //     upstreamError: false,
+    //     tooManyPoints: false,
+    //     settingsError: true,
+    //   })
 
-      return
-    }
+    //   return
+    // }
 
     debouncedLoadPoints()
   }
@@ -127,14 +120,12 @@ async function loadPoints(
   setStatusMessages: (s: StatusMessages) => void,
   markerGroup: LayerGroupType<any>,
   aborter: AbortController,
-  startTime: number,
-  endTime: number,
 ) {
   const L = window.L as typeof import('leaflet')
 
   const bounds = map.getBounds()
 
-  const rawData = await getStreetworksDataPoints(bounds, aborter, new Date(startTime), new Date(endTime))
+  const rawData = await getStreetworksDataPoints(bounds, aborter)
 
   if (typeof rawData === 'string') {
     switch (rawData) {

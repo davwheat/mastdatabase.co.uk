@@ -17,7 +17,7 @@ export interface IStreetworksMapSettingsState {
 export const StreetworksMapPersistentSettingsAtom = persistentAtom<IStreetworksMapPersistentSettingsState>({
   key: 'streetworksMapPersistentSettings',
   default: {
-    useBetaHighPerfMode: false,
+    useBetaHighPerfMode: true,
   },
 })
 
