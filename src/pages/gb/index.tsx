@@ -68,7 +68,7 @@ const Links: ILinkGroup[] = [
       },
       {
         title: 'Virgin Media deployment info',
-        description: "Discover hidden information about Virgin Media deployments in your local area.",
+        description: 'Discover hidden information about Virgin Media deployments in your local area.',
         url: '/gb/virgin-media-deployment-info',
       },
     ],
