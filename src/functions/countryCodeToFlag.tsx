@@ -8,7 +8,7 @@ function charToRegionalIndicator(char: string) {
 }
 
 function getTwemojiUrl(codepoint: string): string {
-  return `https://twemoji.maxcdn.com/2/svg/${codepoint}.svg`
+  return `https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/${codepoint}.svg`
 }
 
 /**
