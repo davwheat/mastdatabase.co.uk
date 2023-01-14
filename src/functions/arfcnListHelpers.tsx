@@ -36,7 +36,7 @@ export function getBandPrefix(rat: SupportedArfcnListRats): string | null {
   return null
 }
 
-export function createFuse(dataset: ArfcnDataItem[], sortByFilterRelevance: boolean) {
+export function createFuse(dataset: readonly ArfcnDataItem[], sortByFilterRelevance: boolean) {
   return new Fuse(dataset, {
     shouldSort: sortByFilterRelevance,
     threshold: 0.2,
@@ -79,8 +79,8 @@ export function sortArfcnData(data: ArfcnDataItem[], sort: ISort) {
   })
 }
 
-export function filterAndSortData(data: ArfcnDataItem[], filterQuery: string, sortByFilterRelevance: boolean, sort: ISort) {
-  const fuse = createFuse(data, sortByFilterRelevance)
+export function filterAndSortData(data: readonly ArfcnDataItem[], filterQuery: string, sortByFilterRelevance: boolean, sort: ISort) {
+  const fuse = createFuse([...data], sortByFilterRelevance)
 
   if (filterQuery.trim() !== '') {
     // Only filter
@@ -93,7 +93,7 @@ export function filterAndSortData(data: ArfcnDataItem[], filterQuery: string, so
   }
 
   // Only search
-  return sortArfcnData(data, sort)
+  return sortArfcnData([...data], sort)
 }
 
 const useSortButtonStyles = makeStyles({
