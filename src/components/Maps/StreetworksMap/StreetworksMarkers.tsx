@@ -4,12 +4,12 @@ import { LayerGroup, useMap, useMapEvent } from 'react-leaflet'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 
 import { getPromoterIcon, getPromoterName, isPromoterDataPoint } from '@functions/maps/streetworks/streetworksPromoterUtils'
-import getStreetworksDataPoints, { StreetworksDataPointWithHash } from '@functions/maps/streetworks/getStreetworksDataPoints'
+import getStreetworksDataPoints, { StreetworksDataPoint } from '@functions/maps/streetworks/getStreetworksDataPoints'
 import getStreetworksDataPointDetails from '@functions/maps/streetworks/getStreetworksDataPointDetails'
 
 import { StatusMessages } from './MapStatusMessages'
 import DataMarker from '@leaflet/DataMarker'
-import { StreetworksMapPersistentSettingsAtom, StreetworksMapSettingsAtom, StreetworksMapStatusMessagesAtom } from '@atoms'
+import { StreetworksMapPersistentSettingsAtom, StreetworksMapStatusMessagesAtom } from '@atoms'
 
 import dayjs from 'dayjs'
 import dayjs_tz from 'dayjs/plugin/timezone'
@@ -29,7 +29,7 @@ export function StreetworksMarkers() {
   const aborter = useRef<AbortController>(new AbortController())
 
   // const streetmapSettings = useRecoilValue(StreetworksMapSettingsAtom)
-  const streetmapPersistentSettings = useRecoilValue(StreetworksMapPersistentSettingsAtom)
+  // const streetmapPersistentSettings = useRecoilValue(StreetworksMapPersistentSettingsAtom)
 
   const loadPointsTimeoutKey = useRef<number | null>(null)
 
@@ -148,13 +148,13 @@ async function loadPoints(
 
   const dataPoints = rawData.filter(isPromoterDataPoint)
 
-  const oldMarkers = (markerGroup?.getLayers() as DataMarker<StreetworksDataPointWithHash>[]) || []
-  const oldMarkersMap = new Map(oldMarkers.map(m => [m.data.hash, m]))
-  const newPoints: StreetworksDataPointWithHash[] = []
+  const oldMarkers = (markerGroup?.getLayers() as DataMarker<StreetworksDataPoint>[]) || []
+  const oldMarkersMap = new Map(oldMarkers.map(m => [m.data.id, m]))
+  const newPoints: StreetworksDataPoint[] = []
 
   dataPoints.forEach(point => {
     // Remove matching markers from 'to be removed' list
-    if (oldMarkersMap.has(point.hash)) oldMarkersMap.delete(point.hash)
+    if (oldMarkersMap.has(point.id)) oldMarkersMap.delete(point.id)
     else newPoints.push(point)
   })
 

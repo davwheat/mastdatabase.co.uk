@@ -1,7 +1,6 @@
 import dayjs from 'dayjs'
 import dayjs_tz from 'dayjs/plugin/timezone'
 import dayjs_utc from 'dayjs/plugin/utc'
-import { streetworksDataPointToHash } from './streetworksDataPointToHash'
 
 dayjs.extend(dayjs_tz)
 dayjs.extend(dayjs_utc)
@@ -31,17 +30,13 @@ export interface StreetworksDataPoint {
   distance: number
 }
 
-export interface StreetworksDataPointWithHash extends StreetworksDataPoint {
-  readonly hash: string
-}
-
 /**
  * @returns An array of data point objects, if the request was successful.
  */
 export default async function getStreetworksDataPoints(
   boundingBox: L.LatLngBounds,
   aborter: AbortController,
-): Promise<StreetworksDataPointWithHash[] | GetStreetworksDataPointsErrors> {
+): Promise<StreetworksDataPoint[] | GetStreetworksDataPointsErrors> {
   const L = window.L as typeof import('leaflet')
 
   // Thanks for the BIDB.uk creator for letting me use their API! :)
@@ -73,16 +68,7 @@ export default async function getStreetworksDataPoints(
       return 'upstream error'
     }
 
-    return Promise.all(
-      json.map(async (point: StreetworksDataPoint): Promise<StreetworksDataPointWithHash> => {
-        const hash = await streetworksDataPointToHash(point)
-
-        return {
-          ...point,
-          hash,
-        }
-      }),
-    )
+    return json
   } catch (e) {
     return 'upstream error'
   }
