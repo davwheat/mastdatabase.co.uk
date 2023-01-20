@@ -25,7 +25,7 @@ export default function FreshwaveMap({ sites }: IFreshwaveMapProps) {
   return (
     <MapContainer
       style={{
-        height: '60vh',
+        height: '70vh',
       }}
       center={[51.692, 5.155]}
       zoom={5}

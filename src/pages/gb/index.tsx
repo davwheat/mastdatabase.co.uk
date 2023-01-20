@@ -51,6 +51,11 @@ const Links: ILinkGroup[] = [
         url: '/maps/streetworks',
       },
       {
+        title: 'UK telecom sites',
+        description: 'View a map of UK telecom sites, compiled from various government datasets.',
+        url: '/gb/sites',
+      },
+      {
         title: 'Network coverage',
         description: 'See official UK mobile network coverage plots for 2G/3G/4G/5G on simple, easy-to-use maps.',
         url: '/gb/coverage',
