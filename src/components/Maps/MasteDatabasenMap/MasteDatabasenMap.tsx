@@ -53,7 +53,7 @@ export default function MasteDatabasenMap() {
     <MapContainer
       style={
         {
-          '--map-height': '60vh',
+          '--map-height': '70vh',
           height: 'var(--map-height)',
         } as any
       }

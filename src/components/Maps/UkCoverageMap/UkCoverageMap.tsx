@@ -25,7 +25,7 @@ export default function UkCoverageMap({ provider, selectedLayerId }: IUkCoverage
   return (
     <MapContainer
       style={{
-        height: '60vh',
+        height: '70vh',
       }}
       center={[50.82, -0.136]}
       zoom={13}
