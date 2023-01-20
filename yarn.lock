@@ -2753,16 +2753,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sentry/browser@npm:7.30.0":
-  version: 7.30.0
-  resolution: "@sentry/browser@npm:7.30.0"
+"@sentry/browser@npm:7.31.1":
+  version: 7.31.1
+  resolution: "@sentry/browser@npm:7.31.1"
   dependencies:
-    "@sentry/core": 7.30.0
-    "@sentry/replay": 7.30.0
-    "@sentry/types": 7.30.0
-    "@sentry/utils": 7.30.0
+    "@sentry/core": 7.31.1
+    "@sentry/replay": 7.31.1
+    "@sentry/types": 7.31.1
+    "@sentry/utils": 7.31.1
     tslib: ^1.9.3
-  checksum: 7c227d944391c27fe1cae32c78e9ea99a24f0bf491297e11ccadcbd848a8ba4a280eb0ad68c9b1d493ed0dde69609916f5ad43bebdee481b3c7564af92641292
+  checksum: 83e15bc8e0bd1c3ef1226716b5faf02f5a048fa0f628c808e5b54796c417424cdb95f7c2128aee3601fa048ac4e5438d4f1a0fab86bfc414e46b4c2272753349
   languageName: node
   linkType: hard
 
@@ -2783,87 +2783,85 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sentry/core@npm:7.30.0":
-  version: 7.30.0
-  resolution: "@sentry/core@npm:7.30.0"
+"@sentry/core@npm:7.31.1":
+  version: 7.31.1
+  resolution: "@sentry/core@npm:7.31.1"
   dependencies:
-    "@sentry/types": 7.30.0
-    "@sentry/utils": 7.30.0
+    "@sentry/types": 7.31.1
+    "@sentry/utils": 7.31.1
     tslib: ^1.9.3
-  checksum: 661a068bbe1afc66668f1808667fec09320b549e8bf06c0a4263398d7bac023a533535073fe469c656ea925d625a5e3fb93dd6535f3226893854b33e7813ab8c
+  checksum: 9e00c18d0af5e2c3566931b9a9410dc0b368c81b66ae26b529bbb072db9a09d30e0b1a395cc5785009a8c9e1208ce701d14cf93b1e6a52a2b5c012ebda01bd06
   languageName: node
   linkType: hard
 
-"@sentry/gatsby@npm:^7.30.0":
-  version: 7.30.0
-  resolution: "@sentry/gatsby@npm:7.30.0"
+"@sentry/gatsby@npm:^7.31.1":
+  version: 7.31.1
+  resolution: "@sentry/gatsby@npm:7.31.1"
   dependencies:
-    "@sentry/react": 7.30.0
-    "@sentry/tracing": 7.30.0
-    "@sentry/types": 7.30.0
-    "@sentry/utils": 7.30.0
+    "@sentry/react": 7.31.1
+    "@sentry/tracing": 7.31.1
+    "@sentry/types": 7.31.1
+    "@sentry/utils": 7.31.1
     "@sentry/webpack-plugin": 1.19.0
   peerDependencies:
     gatsby: ^2.0.0 || ^3.0.0 || ^4.0.0 || ^5.0.0
     react: 15.x || 16.x || 17.x || 18.x
-  checksum: c882b7b50c5a401b23161abeea018ed4993566c1e4c8bd2506c06af1f028d077ce45a1cefd4706cae05244767ff20a63d4237c2253c31e4aae31530db9fd7c6d
+  checksum: b23bc63877d35e61177a390e42fcb590cb9e69e6035a353e3f5c0f27d29a50ead1c81d45a18193902fe0919957b7c19ddaefd777314e90b027427f5909b48fd2
   languageName: node
   linkType: hard
 
-"@sentry/react@npm:7.30.0":
-  version: 7.30.0
-  resolution: "@sentry/react@npm:7.30.0"
+"@sentry/react@npm:7.31.1":
+  version: 7.31.1
+  resolution: "@sentry/react@npm:7.31.1"
   dependencies:
-    "@sentry/browser": 7.30.0
-    "@sentry/types": 7.30.0
-    "@sentry/utils": 7.30.0
+    "@sentry/browser": 7.31.1
+    "@sentry/types": 7.31.1
+    "@sentry/utils": 7.31.1
     hoist-non-react-statics: ^3.3.2
     tslib: ^1.9.3
   peerDependencies:
     react: 15.x || 16.x || 17.x || 18.x
-  checksum: 3f70e7068545e1f71a5a94a94d749771bc591c53ab85b0278e2ba642f5463d378ec00f62c93b040f7fd8866b9738a821b6906f26636b2585cf5020efac73fb26
+  checksum: c46cedfbaffdbf5603e1fd2c841a15480afcad8115156ed6c971d57044008fe49950231844caa8dba2e4c6c1a372422fde2d8301aae570ef8fb52358661ca3f7
   languageName: node
   linkType: hard
 
-"@sentry/replay@npm:7.30.0":
-  version: 7.30.0
-  resolution: "@sentry/replay@npm:7.30.0"
+"@sentry/replay@npm:7.31.1":
+  version: 7.31.1
+  resolution: "@sentry/replay@npm:7.31.1"
   dependencies:
-    "@sentry/core": 7.30.0
-    "@sentry/types": 7.30.0
-    "@sentry/utils": 7.30.0
-  peerDependencies:
-    "@sentry/browser": ">=7.24.0"
-  checksum: da7f545ddad9e7584a155382d210e9f8bf2479651dae1c94196075be5d973ceed1d74d49745377ffd0a736c6e3654da98c36ede67c5c18f6f125c191416bb1f3
+    "@sentry/core": 7.31.1
+    "@sentry/types": 7.31.1
+    "@sentry/utils": 7.31.1
+  checksum: 09432a8f15a9907589c6d783a75ace9d09056b1c3070e7864bf09fec36ad49f46319ecb8b00610f0390113b07b33f9567191196a2eebe9a1ef42146c2c62bcf0
   languageName: node
   linkType: hard
 
-"@sentry/tracing@npm:7.30.0":
-  version: 7.30.0
-  resolution: "@sentry/tracing@npm:7.30.0"
+"@sentry/tracing@npm:7.31.1":
+  version: 7.31.1
+  resolution: "@sentry/tracing@npm:7.31.1"
   dependencies:
-    "@sentry/core": 7.30.0
-    "@sentry/types": 7.30.0
-    "@sentry/utils": 7.30.0
+    "@sentry/core": 7.31.1
+    "@sentry/types": 7.31.1
+    "@sentry/utils": 7.31.1
     tslib: ^1.9.3
-  checksum: 475b41e3c9503bd6a00db058050388914f2c04763d7d204527c9b83cfb0af02cde413c3bb9935a300a0ff2fc9e1b100442d55ab6edd9ce535ebc2793ea16111e
+  checksum: 748d9e8b2a7891ac0fecaa47bb6af792c37d3a6a261e15bd00f8f04bc4769127088435e0fd011e5f82be2602c8a52663ffcee26615ab7bfc580d5dc8e8d1d0bf
   languageName: node
   linkType: hard
 
-"@sentry/types@npm:7.30.0":
-  version: 7.30.0
-  resolution: "@sentry/types@npm:7.30.0"
-  checksum: be228ae65f8750513371b6692821aa0d92d15354aa9fd7f1f1b497c2a53d20769fd56f89a1516d80e416ab73596609e805a6fae2b51510018338eedf5a0dd260
+"@sentry/types@npm:7.31.1":
+  version: 7.31.1
+  resolution: "@sentry/types@npm:7.31.1"
+  checksum: 246d9529ef3a47f1f69f24b32a3737b583afc8e3fa632ee097ca5b0aff1de1f35b22317a175803f663920fc252358b45caa4e3ebe0f124f36f7fa262a21ff3b2
   languageName: node
   linkType: hard
 
-"@sentry/utils@npm:7.30.0":
-  version: 7.30.0
-  resolution: "@sentry/utils@npm:7.30.0"
+"@sentry/utils@npm:7.31.1":
+  version: 7.31.1
+  resolution: "@sentry/utils@npm:7.31.1"
   dependencies:
-    "@sentry/types": 7.30.0
+    "@sentry/types": 7.31.1
     tslib: ^1.9.3
-  checksum: df99b77706dc38a206ba4a27da2226c73c5a465a39591dde66455a8ca52b070830ad3fa3cbc803d4e45bd0e4e4fad74552f3d92d681a8dd4c95c4733cc9ff4cc
+  checksum: dc40063d2287f211a8e4f8df94e2b3aaf5caf3a6316a7054b9e6ddbff2eef3151267f53239ef4b9eb87eec9f5ccd7a8e0a828163db38ca23795b7746d02095e7
   languageName: node
   linkType: hard
 
@@ -6920,15 +6918,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"esri-leaflet@npm:^3.0.9":
-  version: 3.0.9
-  resolution: "esri-leaflet@npm:3.0.9"
+"esri-leaflet@npm:^3.0.10":
+  version: 3.0.10
+  resolution: "esri-leaflet@npm:3.0.10"
   dependencies:
     "@terraformer/arcgis": ^2.1.0
     tiny-binary-search: ^1.0.3
   peerDependencies:
     leaflet: ^1.0.0
-  checksum: 7447e646edd4eaf222af0052c912f764d1c2771bd43b0c1f2ecafc45ffaa919df89c4f8b00300cea0abc839ead65746202ab1060406a7e98a66586c040b56222
+  checksum: d5eef42255ba8808349e7279d06bae3dede532e040c1c012397f315579da1660f2f7040b3d90e40d52130fcffeea4a2478144def61a434d65105936566dfaa5e
   languageName: node
   linkType: hard
 
@@ -8172,9 +8170,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby@npm:^5.4.1":
-  version: 5.4.1
-  resolution: "gatsby@npm:5.4.1"
+"gatsby@npm:^5.4.2":
+  version: 5.4.2
+  resolution: "gatsby@npm:5.4.2"
   dependencies:
     "@babel/code-frame": ^7.18.6
     "@babel/core": ^7.20.7
@@ -8350,7 +8348,7 @@ __metadata:
       optional: true
   bin:
     gatsby: ./cli.js
-  checksum: 56f4ca1e89e83466b58394b17a10847768987f68c1a6b20f8d9bd18382c7074a983cb7b2715d1d6a858e53bd14fc35b2bfa5ee599c2d258dbbe4ac4eef20f72e
+  checksum: 2aad07109bec78ef46ff86e01c518a75cfa8a92c2d0b8b93999bc7e3f50d29c0d2e5365cf5652d4e832055582d950ce3c10277910ec2c950adaa19269b41d2f4
   languageName: node
   linkType: hard
 
@@ -10460,7 +10458,7 @@ __metadata:
     "@material-ui/core": ^4.12.4
     "@material-ui/styles": ^4.11.5
     "@reach/tabs": ^0.18.0
-    "@sentry/gatsby": ^7.30.0
+    "@sentry/gatsby": ^7.31.1
     "@sentry/webpack-plugin": ^1.20.0
     "@slixites/gatsby-plugin-google-fonts": ^1.1.1
     "@types/color": ^3.0.3
@@ -10470,7 +10468,7 @@ __metadata:
     "@types/leaflet.markercluster": ^1.5.1
     "@types/material-ui": ^0.21.12
     "@types/rbush": ^3.0.0
-    "@types/react": ^18.0.26
+    "@types/react": ^18.0.27
     "@types/throttle-debounce": ^5.0.0
     "@types/uuid": ^9.0.0
     "@welldone-software/why-did-you-render": ^7.0.1
@@ -10480,11 +10478,11 @@ __metadata:
     clsx: ^1.2.1
     cross-env: ^7.0.3
     dayjs: ^1.11.7
-    esri-leaflet: ^3.0.9
+    esri-leaflet: ^3.0.10
     file-saver: ^2.0.5
     font-color-contrast: ^11.1.0
     fuse.js: ^6.6.2
-    gatsby: ^5.4.1
+    gatsby: ^5.4.2
     gatsby-plugin-canonical-urls: ^5.4.0
     gatsby-plugin-csp: ^1.1.4
     gatsby-plugin-image: ^3.4.0
@@ -10510,11 +10508,11 @@ __metadata:
     leaflet: ^1.9.3
     leaflet.markercluster: ^1.5.3
     mdi-react: ^9.1.0
-    mobile-spectrum-data: ^1.4.0
+    mobile-spectrum-data: ^1.5.0
     nanoid: ^4.0.0
     preact: ^10.11.3
     preact-render-to-string: ^5.2.6
-    prettier: ^2.8.2
+    prettier: ^2.8.3
     prop-types: ^15.8.1
     rbush: ^3.0.1
     react: ^18.2.0
@@ -10886,10 +10884,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mobile-spectrum-data@npm:^1.4.0":
-  version: 1.4.0
-  resolution: "mobile-spectrum-data@npm:1.4.0"
-  checksum: d0bcfccb2b3ec43cd0d093a6821ae569bd75e65c366fce75c4d3b98321ad20d6803720d7181dfb5f2d02039697d3a2a5efad0fd53d01815cd71e795048c2c577
+"mobile-spectrum-data@npm:^1.5.0":
+  version: 1.5.0
+  resolution: "mobile-spectrum-data@npm:1.5.0"
+  checksum: e448bddcf9de10ac18a29b4b49adc855aa7421daa72e1e734b21a5ae673d4242c34714a9e42bcf3aa584ef0c28e3870e85fceedb08394f5ccdbfbd1949b9a048
   languageName: node
   linkType: hard
 
@@ -12349,12 +12347,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier@npm:^2.8.2":
-  version: 2.8.2
-  resolution: "prettier@npm:2.8.2"
+"prettier@npm:^2.8.3":
+  version: 2.8.3
+  resolution: "prettier@npm:2.8.3"
   bin:
     prettier: bin-prettier.js
-  checksum: 740c56c2128d587d656ea1dde9bc9c3503dfc94db4f3ac387259215eeb2e216680bdad9d18a0c9feecc6b42cfa188d6fa777df4c36c1d00cedd4199074fbfbd2
+  checksum: 92f2ceb522d454370e02082aa74ad27388672f7cee8975028b59517c069fe643bdc73e322675c8faf2ff173d7a626d1a6389f26b474000308e793aa25fff46e5
   languageName: node
   linkType: hard
 
