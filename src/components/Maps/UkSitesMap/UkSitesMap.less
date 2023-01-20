@@ -1,0 +1,45 @@
+.streetworks-popup {
+  border-radius: 12px;
+
+  .leaflet-container a.leaflet-popup-close-button {
+    right: 16px;
+  }
+
+  .leaflet-popup-content {
+    margin: 0;
+    padding: 16px;
+
+    &-wrapper {
+      max-height: calc(var(--map-height, 70vh) - 48px);
+      max-width: calc(90vw - 16px);
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+
+    h1 {
+      font-size: 18px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    h2 {
+      font-size: 14px;
+      margin: 8px 0;
+      margin-bottom: -6px;
+      font-weight: bold;
+    }
+
+    p {
+      font-size: 14px;
+      margin: 8px 0;
+    }
+
+    > :first-child {
+      margin-top: 0;
+    }
+
+    > :last-child {
+      margin-bottom: 0;
+    }
+  }
+}

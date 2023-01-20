@@ -65,6 +65,11 @@ export default function MapsPage({ location }: PageProps) {
             url="/gb/coverage"
           />
           <CardLink
+            title="UK telecoms sites"
+            description="View a map of UK telecoms sites based on a dataset of business rates set by HMRC."
+            url="/gb/sites"
+          />
+          <CardLink
             title="Freshwave site map"
             description="See all registered site locations with Freshwave. This does not correspond to active sites, just possible locations."
             url="/maps/freshwave"
