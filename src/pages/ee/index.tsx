@@ -3,7 +3,7 @@ import React from 'react'
 import Section from '@components/Design/Section'
 import Hero from '@components/Design/Hero'
 import Layout from '@components/Layout'
-import CardLink from '@components/MobileNetworking/CardLink'
+import CardLink from '@components/Links/CardLink'
 
 import Colors from '@data/colors.json'
 import Breakpoints from '@data/breakpoints'
