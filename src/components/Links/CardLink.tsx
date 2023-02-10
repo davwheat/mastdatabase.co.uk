@@ -33,11 +33,12 @@ const useStyles = makeStyles({
     flexGrow: 1,
   },
 
-  link: {
-    textDecoration: 'none',
+  cardLink: {
+    textDecoration: 'none !important',
     display: 'flex',
     border: '2px solid black',
     outline: '0px solid black',
+    background: 'white',
 
     '&:hover, &:focus, &:active': {
       outlineWidth: 2,
@@ -80,8 +81,10 @@ const useStyles = makeStyles({
 function CardLink({ title, description, url }: ICardLinkProps) {
   const classes = useStyles()
 
+  console.log('lol', classes.cardLink)
+
   return (
-    <Link className={classes.link} href={url}>
+    <Link className={classes.cardLink} href={url}>
       <article className={classes.card}>
         <header className={classes.header}>
           <h3 className={clsx('text-loud', classes.heading, !description && classes.headingNoMargin)}>{title}</h3>

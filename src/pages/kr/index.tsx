@@ -4,13 +4,14 @@ import Section from '@components/Design/Section'
 import Hero from '@components/Design/Hero'
 import Layout from '@components/Layout'
 import CardLink from '@components/Links/CardLink'
+import Breadcrumbs from '@components/Design/Breadcrumbs'
 
 import Colors from '@data/colors.json'
 import Breakpoints from '@data/breakpoints'
 
 import { makeStyles } from '@material-ui/styles'
-import Breadcrumbs from '@components/Design/Breadcrumbs'
-import { PageProps } from 'gatsby'
+
+import type { PageProps } from 'gatsby'
 
 interface ILinkGroup {
   groupName: string
@@ -27,12 +28,12 @@ interface ILink {
 const Links: ILinkGroup[] = [
   {
     groupName: 'Datasets',
-    groupDescription: 'A variety of Estonian mobile networking related datasets compiled by the community, available for free.',
+    groupDescription: 'A variety of South Korean mobile networking related datasets compiled by the community, available for free.',
     groupLinks: [
       {
         title: 'Spectrum allocation',
-        description: 'A visualisation of spectrum allocation for mobile networks within Estonia.',
-        url: '/ee/spectrum',
+        description: 'A visualisation of spectrum allocation for mobile networks within South Korea.',
+        url: '/kr/spectrum',
       },
     ],
   },
@@ -52,26 +53,26 @@ const useStyles = makeStyles({
   },
 })
 
-function MobileNetworkingPage({ location }: PageProps) {
+export default function MobileNetworkingPage({ location }: PageProps) {
   const classes = useStyles()
 
   return (
     <Layout
       location={location}
-      title="Mobile networking in Estonia"
-      description="A collection of Estonian mobile networking tools and datasets compiled by the community."
+      title="Mobile networking in South Korea"
+      description="A collection of South Korean mobile networking tools and datasets compiled by the community."
     >
       <Hero firstElement size="huge" color={Colors.primaryBlue}>
-        <h1 className="text-shout">Mobile networking in Estonia</h1>
+        <h1 className="text-shout">Mobile networking in South Korea</h1>
         <p role="doc-subtitle" className="text-loud">
-          A collection of Estonian mobile networking tools and datasets compiled by the community.
+          A collection of South Korean mobile networking tools and datasets compiled by the community.
         </p>
       </Hero>
 
       <Breadcrumbs
         data={[
           { t: 'Home', url: '/' },
-          { t: 'Estonia', url: '/ee' },
+          { t: 'South Korea', url: '/kr' },
         ]}
       />
 
@@ -90,5 +91,3 @@ function MobileNetworkingPage({ location }: PageProps) {
     </Layout>
   )
 }
-
-export default MobileNetworkingPage

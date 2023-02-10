@@ -3,7 +3,7 @@ import React from 'react'
 import Section from '@components/Design/Section'
 import Hero from '@components/Design/Hero'
 import Layout from '@components/Layout'
-import CardLink from '@components/MobileNetworking/CardLink'
+import CardLink from '@components/Links/CardLink'
 
 import Colors from '@data/colors.json'
 import Breakpoints from '@data/breakpoints'
@@ -71,11 +71,11 @@ const Links: ILinkGroup[] = [
         description: "Access to Three UK's RAN status API endpoint via a proxy.",
         url: '/gb/three-ran-status',
       },
-      {
-        title: 'Virgin Media deployment info',
-        description: 'Discover hidden information about Virgin Media deployments in your local area.',
-        url: '/gb/virgin-media-deployment-info',
-      },
+      // {
+      //   title: 'Virgin Media deployment info',
+      //   description: 'Discover hidden information about Virgin Media deployments in your local area.',
+      //   url: '/gb/virgin-media-deployment-info',
+      // },
     ],
   },
 ]
