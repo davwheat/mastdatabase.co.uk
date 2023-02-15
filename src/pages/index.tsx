@@ -65,6 +65,17 @@ const Countries: ICountryItem[] = [
       </>
     ),
   },
+  {
+    code: 'rs',
+    name: 'Serbia',
+    nativeName: (
+      <>
+        Србија/
+        <wbr />
+        Srbija
+      </>
+    ),
+  },
 ]
 
 export default function IndexPage({ location }: PageProps) {
