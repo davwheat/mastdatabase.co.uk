@@ -9,7 +9,7 @@ import ArfcnListIntro from '@components/MobileNetworking/ArfcnListIntro'
 import ArfcnList from '@components/MobileNetworking/ArfcnList'
 
 import EARFCNs from 'mobile-spectrum-data/RS/EARFCNs'
-import NRARFCNs from 'mobile-spectrum-data/RS/NRARFCNs'
+// import NRARFCNs from 'mobile-spectrum-data/RS/NRARFCNs'
 
 import type { PageProps } from 'gatsby'
 
@@ -36,7 +36,7 @@ function RSArfcnListPage({ location }: PageProps) {
       <ArfcnList
         heading="Serbian ARFCN table"
         ratData={{
-          nr: NRARFCNs,
+          // nr: NRARFCNs,
           lte: EARFCNs,
         }}
       />
