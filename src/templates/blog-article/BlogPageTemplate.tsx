@@ -1,0 +1,232 @@
+import React from 'react'
+
+import { graphql } from 'gatsby'
+
+import type { LocationContext } from '@gatsbyjs/reach-router'
+import { MDXProvider, MDXProviderComponentsProp } from '@mdx-js/react'
+import { MDXRenderer } from 'gatsby-plugin-mdx'
+import { makeStyles } from '@material-ui/core'
+import clsx from 'clsx'
+
+import { BlogHero } from '@components/BlogComponents/BlogHero'
+import Section from '@components/Design/Section'
+
+import Layout from '@components/Layout'
+import Link from '@components/Links/Link'
+import { MdxHeadingInterop } from '@components/BlogComponents/Typography/MdxHeadingInterop'
+import { TableOfContents } from '@components/BlogComponents/TableOfContents'
+import { BlogErrorBoundary } from '@components/BlogComponents/BlogErrorBoundary'
+import { FactBox, MathBlock } from '@blog/index'
+
+import TeX from '@matejmazur/react-katex'
+
+import 'katex/dist/katex.min.css'
+import '@styles/blog.less'
+
+const MdxShortcodes: MDXProviderComponentsProp = {
+  a: Link,
+  h1: MdxHeadingInterop('h1'),
+  h2: MdxHeadingInterop('h2'),
+  h3: MdxHeadingInterop('h3'),
+  h4: MdxHeadingInterop('h4'),
+  h5: MdxHeadingInterop('h5'),
+  h6: MdxHeadingInterop('h6'),
+  img: props => <img draggable="false" {...props} loading="lazy" />,
+  TableOfContents,
+  div: props => {
+    if (props.className?.includes?.('math-display')) {
+      return <MathBlock {...props} />
+    }
+
+    return <div {...props} />
+  },
+  span: props => {
+    if (props.className?.includes?.('math-inline')) {
+      const { children, ...others } = props
+      return <TeX math={children} {...others} />
+    }
+
+    return <span {...props} />
+  },
+}
+
+export interface IMdxPageContext {
+  frontmatter: {
+    /**
+     * Blog article title, defined in frontmatter.
+     */
+    title: string
+    /**
+     * Blog article description, defined in frontmatter.
+     */
+    description: string
+    path: string
+    redirect_from?: string[]
+    /**
+     * Date article was created at.
+     */
+    created_at: string
+    /**
+     * Date article was updated at.
+     */
+    updated_at?: string
+    created_at_iso: string
+    updated_at_iso?: string
+    /**
+     * Is the post archived (hidden from the article list).
+     */
+    archived: boolean
+  }
+
+  /**
+   * A list of all headings in the document, down to a depth of H3.
+   */
+  tableOfContents: { items: TableOfContents }
+  /**
+   * An estimated time needed to read this article in minutes.
+   */
+  fields: {
+    timeToRead: {
+      minutes: number
+      words: number
+    }
+  }
+  /**
+   * An excerpt from the markdown file, used for SEO.
+   */
+  excerpt: string
+}
+
+interface IBlogPageTemplateProps {
+  pageContext: { id: string; page: number }
+  data: { mdx: IMdxPageContext & { page: number } }
+  location: LocationContext
+  children: React.ReactNode
+}
+
+const useStyles = makeStyles({
+  footerPara: {
+    marginBottom: 32,
+  },
+  bottomNav: {
+    marginTop: -16,
+    marginBottom: 24,
+  },
+})
+
+export default function BlogPageTemplate({ pageContext, location, data: { mdx: data }, children }: IBlogPageTemplateProps) {
+  const context = data
+  const classes = useStyles()
+
+  context.frontmatter.updated_at ||= context.frontmatter.created_at
+  context.frontmatter.archived ||= false
+
+  return (
+    <Layout location={location} title={context.frontmatter.title} description={context.frontmatter.description || context.excerpt}>
+      <script type="application/ld+json">
+        {JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'BlogPosting',
+          headline: context.frontmatter.title,
+          // image: 'https://benborgers.com/assets/json-ld.png',
+          publisher: {
+            '@type': 'Organization',
+            name: 'David Wheatley',
+            url: 'https://davwheat.dev',
+            // logo: {
+            //   '@type': 'ImageObject',
+            //   url: 'https://benborgers.com/assets/index.png',
+            //   width: '1200',
+            //   height: '630',
+            // },
+          },
+          url: `https://davwheat.dev/${context.frontmatter.path}`,
+          datePublished: context.frontmatter.created_at_iso,
+          dateCreated: context.frontmatter.created_at_iso,
+          dateModified: context.frontmatter.updated_at_iso ?? context.frontmatter.created_at_iso,
+          description: context.frontmatter.description,
+          author: {
+            '@type': 'Person',
+            name: 'David Wheatley',
+            url: 'https://davwheat.dev',
+          },
+          mainEntityOfPage: {
+            '@type': 'WebPage',
+            '@id': `https://davwheat.dev/blog/${pageContext.page}`,
+          },
+        })}
+      </script>
+
+      <article id="blog-article">
+        <BlogErrorBoundary>
+          <BlogHero pageContext={context} />
+
+          <Section>
+            <Link href={`/blog/${pageContext.page}`}>Back to article list</Link>
+          </Section>
+
+          <hr />
+
+          <Section id="blog-article-content">
+            <BlogErrorBoundary>
+              {context.frontmatter.archived && (
+                <FactBox title="Archived">
+                  This article has been archived. Information contained within it may be out-of-date or wholly incorrect. This article has been
+                  retained purely for historical and archival purposes only.
+                </FactBox>
+              )}
+
+              <MDXProvider components={MdxShortcodes}>
+                {/* <MDXRenderer pageContext={contextNoBody}>{body}</MDXRenderer> */}
+                {children}
+              </MDXProvider>
+            </BlogErrorBoundary>
+          </Section>
+
+          <hr />
+
+          <Section component="footer">
+            <p className={clsx('text-speak text-center', classes.footerPara)}>
+              Noticed something not quite right with this blog article? Give me a poke at{' '}
+              <Link href={`mailto:blog@davwheat.dev?subject=${encodeURIComponent(context.frontmatter.title)}`}>blog@davwheat.dev</Link> or{' '}
+              <Link href="https://t.me/davwheat">t.me/davwheat</Link> and let me know.
+            </p>
+          </Section>
+
+          <nav className={classes.bottomNav}>
+            <Link href={`/blog/${pageContext.page}`}>Back to article list</Link>
+          </nav>
+        </BlogErrorBoundary>
+      </article>
+    </Layout>
+  )
+}
+
+export const query = graphql`
+  query MdxBlogPost($id: String) {
+    mdx(id: { eq: $id }) {
+      frontmatter {
+        title
+        description
+        path
+        redirect_from
+        created_at(formatString: "LLL", locale: "en-GB")
+        updated_at(formatString: "LLL", locale: "en-GB")
+        created_at_iso: created_at
+        updated_at_iso: updated_at
+        archived
+      }
+
+      id
+      tableOfContents(maxDepth: 3)
+      excerpt
+
+      fields {
+        timeToRead {
+          minutes
+          words
+        }
+      }
+    }
+  }
+`
