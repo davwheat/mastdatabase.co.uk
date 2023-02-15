@@ -8,8 +8,8 @@ import Breadcrumbs from '@components/Design/Breadcrumbs'
 import ArfcnListIntro from '@components/MobileNetworking/ArfcnListIntro'
 import ArfcnList from '@components/MobileNetworking/ArfcnList'
 
-import EARFCNs from 'mobile-spectrum-data/IE/EARFCNs'
-import NRARFCNs from 'mobile-spectrum-data/IE/NRARFCNs'
+import EARFCNs from 'mobile-spectrum-data/RS/EARFCNs'
+import NRARFCNs from 'mobile-spectrum-data/RS/NRARFCNs'
 
 import type { PageProps } from 'gatsby'
 
