@@ -45,7 +45,7 @@
     "leaflet": "^1.9.3",
     "leaflet.markercluster": "^1.5.3",
     "mdi-react": "^9.1.0",
-    "mobile-spectrum-data": "^1.6.2",
+    "mobile-spectrum-data": "^1.6.3",
     "nanoid": "^4.0.1",
     "prop-types": "^15.8.1",
     "rbush": "^3.0.1",
