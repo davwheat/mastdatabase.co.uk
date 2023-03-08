@@ -6,6 +6,10 @@ export default class EECoverageMapProvider extends CoverageProvider {
   providerName: string = 'EE'
   defaultLayerId: number = 4
   supportsSites: boolean = false
+  readonly supportsVersionHistory = false
+
+  protected allVersions: undefined
+  protected version: undefined
 
   getLayers(): ICoverageLayer[] {
     return [

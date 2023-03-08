@@ -25,11 +25,11 @@ export default abstract class CoverageProvider<VersionHistorySupported extends b
   abstract getLayerKeys(): ICoverageLayerKey[]
   abstract getPageMessages(): string[]
 
-  protected abstract version: VersionHistorySupported extends true ? string : never
-  protected abstract readonly allVersions: VersionHistorySupported extends true ? Record<string, string> : never
+  protected abstract version: VersionHistorySupported extends true ? string : undefined
+  protected abstract readonly allVersions: VersionHistorySupported extends true ? Record<string, string> : undefined
 
   public getCurrentVersion(): string {
-    return this.version
+    return this.version!
   }
 
   public getTilesVersions(): Record<string, string> {
@@ -41,7 +41,7 @@ export default abstract class CoverageProvider<VersionHistorySupported extends b
       throw new Error("This provider doesn't support version history")
     }
 
-    if (!Object.keys(this.allVersions).includes(version)) {
+    if (!Object.keys(this.allVersions!).includes(version)) {
       return false
     }
 

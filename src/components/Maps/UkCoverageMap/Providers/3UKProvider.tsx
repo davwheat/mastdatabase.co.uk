@@ -4,12 +4,15 @@ import CoverageProvider, { ICoverageLayer, ICoverageLayerKey } from './CoverageP
 import dayjs from 'dayjs'
 import { TileLayer } from 'react-leaflet'
 
-export default class ThreeUkCoverageMapProvider extends CoverageProvider {
+export default class ThreeUkCoverageMapProvider extends CoverageProvider<true> {
   providerName: string = 'Three UK'
   defaultLayerId: number = 2
   supportsSites: boolean = false
+  readonly supportsVersionHistory = true
 
-  protected readonly version: string = '2023-01-26'
+  protected readonly allVersions = { '2022-11-15': '15 Nov 2022', '2023-01-26': '26 Jan 2023' }
+
+  protected version: string = '2023-01-26'
 
   private readonly zoomLevels: Record<number, [number, number]> = {
     14: [12, Infinity],
@@ -17,8 +20,8 @@ export default class ThreeUkCoverageMapProvider extends CoverageProvider {
     9: [7, 8.999],
   }
 
-  protected getTileUrl(layer: string): string {
-    return `https://234-20.coveragetiles.com/${this.version}/${layer}/{z}/{x}/{y}.png`
+  protected getTileUrl(layer: string, version: string = this.version): string {
+    return `https://234-20.coveragetiles.com/${version}/${layer}/{z}/{x}/{y}.png`
   }
 
   protected getTileLayerEntry(label: string, layer: string): ICoverageLayer {
@@ -32,7 +35,7 @@ export default class ThreeUkCoverageMapProvider extends CoverageProvider {
               maxNativeZoom={parseInt(nativeZoom)}
               minZoom={minZoom}
               maxZoom={maxZoom}
-              key={this.getTileUrl(layer)}
+              key={this.getTileUrl(layer) + `__${nativeZoom}-${minZoom}-${maxZoom}`}
               opacity={0.5}
               url={this.getTileUrl(layer)}
               attribution={this.attributionTemplate(label)}
@@ -73,7 +76,7 @@ export default class ThreeUkCoverageMapProvider extends CoverageProvider {
   }
 
   getPageMessages(): string[] {
-    return [`Coverage tiles last updated ${dayjs(this.version).format('D MMMM YYYY')}.`]
+    return []
   }
 
   getLayers(): ICoverageLayer[] {
