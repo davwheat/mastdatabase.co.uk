@@ -5,7 +5,7 @@ import { Marker, Popup, useMap, useMapEvent } from 'react-leaflet'
 import type { default as CoverageProvider, ISiteItem } from './Providers/CoverageProvider'
 
 interface ISitesLayerProps {
-  provider: CoverageProvider
+  provider: CoverageProvider<boolean>
 }
 
 const ZOOM_CUTOFF = 9

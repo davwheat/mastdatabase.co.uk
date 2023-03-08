@@ -1,7 +1,6 @@
-import React, { useContext, useRef } from 'react'
+import React, { useContext, useId } from 'react'
 
 import { Backdrop, makeStyles, Modal, ModalProps, Fade } from '@material-ui/core'
-import { nanoid } from 'nanoid'
 import CrossIcon from 'mdi-react/CloseIcon'
 import clsx from 'clsx'
 
@@ -51,10 +50,10 @@ export function useCloseModal() {
 export function ModalDialog({ children, open, className, ...props }: ModalProps) {
   const classes = useDialogStyles()
 
-  const { current: ids } = useRef<ModalDialogIds>({
-    title: nanoid(),
-    body: nanoid(),
-  })
+  const ids = {
+    title: useId(),
+    body: useId(),
+  }
 
   return (
     <Modal

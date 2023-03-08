@@ -11,9 +11,10 @@ import GeolocationButton from '@leaflet/GeolocationButton'
 import MapCustomButtonsContainer from '@leaflet/MapCustomButtonsContainer'
 
 import type CoverageProvider from './Providers/CoverageProvider'
+import { NoSsr } from '@material-ui/core'
 
 export interface IUkCoverageMapProps {
-  provider: CoverageProvider
+  provider: CoverageProvider<boolean>
   selectedLayerId: number
 }
 
@@ -38,13 +39,15 @@ export default function UkCoverageMap({ provider, selectedLayerId }: IUkCoverage
         zIndex={0}
       />
 
-      {layer && 'url' in layer && (
-        <TileLayer key={layer.url} opacity={0.5} url={layer.url} attribution={provider.attributionTemplate(layer.label)} />
-      )}
+      <NoSsr>
+        {layer && 'url' in layer && (
+          <TileLayer key={layer.url} opacity={0.5} url={layer.url} attribution={provider.attributionTemplate(layer.label)} />
+        )}
 
-      {layer && 'layers' in layer && <React.Fragment key={selectedLayerId}>{layer.layers}</React.Fragment>}
+        {layer && 'layers' in layer && <React.Fragment key={selectedLayerId}>{layer.layers}</React.Fragment>}
 
-      {provider.supportsSites && <SitesLayer provider={provider} />}
+        {provider.supportsSites && <SitesLayer provider={provider} />}
+      </NoSsr>
 
       <MapComponents />
 

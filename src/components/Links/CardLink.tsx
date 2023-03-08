@@ -81,8 +81,6 @@ const useStyles = makeStyles({
 function CardLink({ title, description, url }: ICardLinkProps) {
   const classes = useStyles()
 
-  console.log('lol', classes.cardLink)
-
   return (
     <Link className={classes.cardLink} href={url}>
       <article className={classes.card}>

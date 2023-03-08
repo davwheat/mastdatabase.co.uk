@@ -1,14 +1,17 @@
 import dayjs from 'dayjs'
 import CoverageProvider, { ICoverageLayer, ICoverageLayerKey } from './CoverageProvider'
 
-export default class O2CoverageMapProvider extends CoverageProvider {
+export default class O2CoverageMapProvider extends CoverageProvider<true> {
   providerName: string = 'O2 UK'
   defaultLayerId: number = 3
   supportsSites: boolean = false
+  readonly supportsVersionHistory = true
 
-  private version = 'v185'
-  private versionLastUpdated = '2022-11-22T17:31:09.000Z'
-  // private fetchSitesAborter: AbortController | null = null
+  protected version = 'v185'
+  protected allVersions: Record<string, string> = {
+    v184: '25 Nov 2022',
+    v185: '25 Jan 2023',
+  }
 
   getLayers(): ICoverageLayer[] {
     return [
@@ -96,7 +99,7 @@ export default class O2CoverageMapProvider extends CoverageProvider {
   }
 
   getPageMessages(): string[] {
-    return [`Coverage tiles last updated ${dayjs(this.versionLastUpdated).format('D MMMM YYYY')}.`]
+    return []
   }
 
   // async getSites(centreLat: number, centreLon: number, bbox: L.LatLngBounds): Promise<ISiteItem[]> {

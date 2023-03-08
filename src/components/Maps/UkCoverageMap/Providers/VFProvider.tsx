@@ -7,6 +7,10 @@ export default class VodafoneCoverageMapProvider extends CoverageProvider {
   providerName: string = 'Vodafone'
   defaultLayerId: number = 2
   supportsSites: boolean = false
+  readonly supportsVersionHistory = false
+
+  protected allVersions: undefined
+  protected version: undefined
 
   getLayerKeys(): ICoverageLayerKey[] {
     const genericKey = [

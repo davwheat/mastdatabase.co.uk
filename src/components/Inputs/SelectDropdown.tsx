@@ -1,6 +1,5 @@
-import React, { useRef } from 'react'
+import React, { useId } from 'react'
 
-import { nanoid } from 'nanoid'
 import clsx from 'clsx'
 import { makeStyles } from '@material-ui/core'
 
@@ -78,9 +77,9 @@ const useStyles = makeStyles({
 })
 
 export default function SelectDropdown({ label, value, options, onChange, className, selectClassName, helpText }: ISelectDropdownProps) {
-  const {
-    current: { selectId, helpTextId },
-  } = useRef({ selectId: nanoid(), helpTextId: nanoid() })
+  const selectId = useId()
+  const helpTextId = useId()
+
   const classes = useStyles()
 
   return (
