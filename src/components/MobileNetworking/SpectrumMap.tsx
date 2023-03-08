@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useId, useRef, useState } from 'react'
 import { makeStyles } from '@material-ui/styles'
 import clsx from 'clsx'
 import Colors from '@data/colors.json'
@@ -197,9 +197,7 @@ const useSpectrumMapDetailsStyles = makeStyles({
 export function SpectrumMap({ caption, data, note, spectrumHighlight, countryCode, className }: ISpectrumMapProps) {
   const classes = useSpectrumMapStyles()
 
-  const {
-    current: { descId },
-  } = useRef({ descId: nanoid() })
+  const descId = useId()
 
   const minMhz = Math.min(...data.map(a => a.startFreq))
   const maxMhz = Math.max(...data.map(a => a.endFreq))
