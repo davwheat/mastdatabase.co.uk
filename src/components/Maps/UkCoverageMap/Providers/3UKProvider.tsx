@@ -9,7 +9,7 @@ export default class ThreeUkCoverageMapProvider extends CoverageProvider {
   defaultLayerId: number = 2
   supportsSites: boolean = false
 
-  protected readonly version: string = '2022-11-15'
+  protected readonly version: string = '2023-01-26'
 
   private readonly zoomLevels: Record<number, [number, number]> = {
     14: [12, Infinity],
