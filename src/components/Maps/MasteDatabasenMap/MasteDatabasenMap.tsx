@@ -72,34 +72,3 @@ export default function MasteDatabasenMap() {
     </MapContainer>
   )
 }
-
-const useStyles = makeStyles({
-  customButtonsContainer: {
-    position: 'absolute',
-    zIndex: 10e2,
-    bottom: 32,
-    right: 12,
-    display: 'grid',
-    gridTemplateColumns: '1fr',
-    gap: 16,
-  },
-  customButton: {
-    height: 52,
-    width: 52,
-
-    '& svg': {
-      display: 'block',
-      margin: 'auto',
-    },
-
-    '&:disabled': {
-      cursor: 'not-allowed',
-    },
-  },
-  geolocationButton: {
-    '&[data-located=true]': {
-      background: '#4285f4',
-      color: '#fff',
-    },
-  },
-})
