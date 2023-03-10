@@ -58,6 +58,7 @@ export default function MastedatabasenMapPage({ location }: PageProps) {
             point on the map, hence I have created a reimplementation of the site.
           </p>
           <p>Please note that this map is not fully accessible to assistive technologies at this time.</p>
+          <p>The data on this page will automatically update every Tuesday at around 12 pm UTC.</p>
         </Section>
 
         <RecoilRoot>
