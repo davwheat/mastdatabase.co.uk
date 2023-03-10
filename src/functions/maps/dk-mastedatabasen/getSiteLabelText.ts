@@ -1,14 +1,10 @@
 import type { ISite } from '@components/Maps/MasteDatabasenMap/JsonApi/Models'
 import { predictThreeDkEnb } from './predictThreeDkEnb'
 
-const OperatorIdToAbbr: Record<string, string> = {
-  '1': 'Banedanmark',
-  '2': 'TDC',
-  '3': 'Cibicom',
-  '4': 'Telia-Telenor',
-  '5': '3 DK',
-  '6': 'Norlys',
-  '7': 'DR',
+const OperatorNameToAbbr: Record<string, string> = {
+  'TDC Mobil A/S': 'TDC',
+  'Telia - Telenor (TT Netværket)': 'Telia-Telenor',
+  'Hi3G Denmark ApS': '3 DK',
 }
 
 export const RatShorthand: Record<string, string> = {
@@ -22,11 +18,11 @@ export function getSiteLabelText(sites: ISite[], showEnb: boolean = false): stri
   const labelSegments: string[] = []
 
   // #region Operator shortname
-  labelSegments.push(OperatorIdToAbbr[sites[0].Operator()?.id ?? ''] ?? sites[0].Operator()?.operatorName ?? 'UNKNOWN')
+  labelSegments.push(OperatorNameToAbbr[sites[0].Operator()?.operatorName ?? ''] ?? sites[0].Operator()?.operatorName ?? 'UNKNOWN')
   // #endregion
 
   // #region Station name(s)
-  if (showEnb && sites[0].Operator()?.id === '5') {
+  if (showEnb && ['Hi3G', '3 DK'].some(str => sites[0].Operator()?.operatorName.includes(str))) {
     const enb = predictThreeDkEnb(sites[0].stationName)
 
     labelSegments.push(enb ? `eNB ${predictThreeDkEnb(sites[0].stationName)}` : 'Unknown eNB')
