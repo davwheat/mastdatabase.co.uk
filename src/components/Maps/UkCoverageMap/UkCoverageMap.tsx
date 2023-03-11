@@ -41,7 +41,13 @@ export default function UkCoverageMap({ provider, selectedLayerId }: IUkCoverage
 
       <NoSsr>
         {layer && 'url' in layer && (
-          <TileLayer key={layer.url} opacity={0.5} url={layer.url} attribution={provider.attributionTemplate(layer.label)} />
+          <TileLayer
+            className="coverage-tiles"
+            key={layer.url}
+            opacity={0.5}
+            url={layer.url}
+            attribution={provider.attributionTemplate(layer.label)}
+          />
         )}
 
         {layer && 'layers' in layer && <React.Fragment key={selectedLayerId}>{layer.layers}</React.Fragment>}
