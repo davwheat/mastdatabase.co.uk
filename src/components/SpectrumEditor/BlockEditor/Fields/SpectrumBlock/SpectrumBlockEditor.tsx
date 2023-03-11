@@ -12,6 +12,7 @@ import TrashIcon from 'mdi-react/TrashOutlineIcon'
 
 import { useSectionStyles } from '../SpectrumMetadataEditor'
 import SpectrumBlockARFCNEditor from './SpectrumBlockARFCNEditor'
+import Breakpoints from '@data/breakpoints'
 
 function isValidFloat(value: string) {
   return !isNaN(Number(value))
@@ -44,16 +45,28 @@ const useStyles = makeStyles({
     gap: 16,
     gridTemplateColumns: '1fr 1fr',
     justifyItems: 'stretch',
+
+    [Breakpoints.upTo.tablet]: {
+      gridTemplateColumns: '1fr',
+    },
   },
 
   pairedItemsOffset: {
     gridTemplateColumns: '1fr 3fr',
+
+    [Breakpoints.upTo.tablet]: {
+      gridTemplateColumns: '1fr',
+    },
   },
 
   detailTextbox: {
     display: 'flex',
     gap: 16,
     alignItems: 'baseline',
+
+    [Breakpoints.upTo.tablet]: {
+      flexDirection: 'column',
+    },
 
     '& + &': {
       marginTop: 8,
