@@ -15,6 +15,11 @@ import { useSetRecoilState } from 'recoil'
 import jsonStableStringify from 'json-stable-stringify-without-jsonify'
 
 const useStyles = makeStyles({
+  list: {
+    margin: 0,
+    padding: 0,
+    listStyle: 'none',
+  },
   error: {
     maxWidth: 720,
     margin: 'auto',
@@ -43,7 +48,7 @@ export default function SpectrumBlockList() {
 
   return (
     <>
-      <ul>
+      <ul className={classes.list}>
         {spectrumEditorState.map((_, i) => (
           <SpectrumAllocationEditor key={i} dataIndex={i} />
         ))}
