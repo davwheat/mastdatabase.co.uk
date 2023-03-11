@@ -31,6 +31,7 @@ export default class ThreeUkCoverageMapProvider extends CoverageProvider<true> {
         <>
           {Object.entries(this.zoomLevels).map(([nativeZoom, [minZoom, maxZoom]]) => (
             <TileLayer
+              className="coverage-tiles"
               minNativeZoom={parseInt(nativeZoom)}
               maxNativeZoom={parseInt(nativeZoom)}
               minZoom={minZoom}
