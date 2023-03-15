@@ -74,6 +74,12 @@ const useStyles = makeStyles({
     height: '1em',
     marginRight: 10,
   },
+  cardLinkWithIcon: {
+    '& h3': {
+      display: 'flex',
+      alignItems: 'center',
+    },
+  },
 })
 
 function CoverageMapsPage({ location }: PageProps) {
@@ -104,6 +110,7 @@ function CoverageMapsPage({ location }: PageProps) {
           <div className={classes.linkList}>
             {group.groupLinks.map(({ title, icon: Icon, ...link }) => (
               <CardLink
+                className={classes.cardLinkWithIcon}
                 key={title}
                 title={
                   <>
