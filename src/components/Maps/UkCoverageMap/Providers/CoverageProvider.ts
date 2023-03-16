@@ -25,6 +25,8 @@ export default abstract class CoverageProvider<VersionHistorySupported extends b
   abstract getLayerKeys(): ICoverageLayerKey[]
   abstract getPageMessages(): string[]
 
+  abstract readonly providerIcon: React.ReactNode
+
   protected abstract version: VersionHistorySupported extends true ? string : undefined
   protected abstract readonly allVersions: VersionHistorySupported extends true ? Record<string, string> : undefined
 

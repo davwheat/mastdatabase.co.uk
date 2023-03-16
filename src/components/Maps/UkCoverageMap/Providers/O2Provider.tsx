@@ -1,11 +1,14 @@
-import dayjs from 'dayjs'
+import React from 'react'
 import CoverageProvider, { ICoverageLayer, ICoverageLayerKey } from './CoverageProvider'
+import O2Logo from '@assets/icons/brands/o2.inline.svg'
 
 export default class O2CoverageMapProvider extends CoverageProvider<true> {
   providerName: string = 'O2 UK'
-  defaultLayerId: number = 3
+  defaultLayerId: number = this.getLayers().findIndex(layer => layer.label === '4G LTE')
   supportsSites: boolean = false
   readonly supportsVersionHistory = true
+
+  readonly providerIcon = (<O2Logo />)
 
   protected version = 'v185'
   protected allVersions: Record<string, string> = {

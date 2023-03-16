@@ -4,18 +4,21 @@ import Section from '@components/Design/Section'
 import Hero from '@components/Design/Hero'
 import Layout from '@components/Layout'
 import CardLink from '@components/Links/CardLink'
+import Breadcrumbs from '@components/Design/Breadcrumbs'
 
 import Colors from '@data/colors.json'
 import Breakpoints from '@data/breakpoints'
 
 import { makeStyles } from '@material-ui/styles'
-import Breadcrumbs from '@components/Design/Breadcrumbs'
 import { PageProps } from 'gatsby'
 
 import O2Logo from '@assets/icons/brands/o2.inline.svg'
 import VodafoneLogo from '@assets/icons/brands/vodafone.inline.svg'
 import EELogo from '@assets/icons/brands/ee.inline.svg'
 import ThreeLogo from '@assets/icons/brands/three.inline.svg'
+
+import GridIcon from 'mdi-react/ViewGridIcon'
+import clsx from 'clsx'
 
 interface ILinkGroup {
   groupName: string
@@ -74,6 +77,16 @@ const useStyles = makeStyles({
     height: '1em',
     marginRight: 10,
   },
+  cardLinkWithIcon: {
+    '& h3': {
+      display: 'flex',
+      alignItems: 'center',
+    },
+  },
+  fullWidthItem: {
+    gridColumnStart: 1,
+    gridColumnEnd: 'calc(var(--columns) + 1)',
+  },
 })
 
 function CoverageMapsPage({ location }: PageProps) {
@@ -104,6 +117,7 @@ function CoverageMapsPage({ location }: PageProps) {
           <div className={classes.linkList}>
             {group.groupLinks.map(({ title, icon: Icon, ...link }) => (
               <CardLink
+                className={classes.cardLinkWithIcon}
                 key={title}
                 title={
                   <>
@@ -113,6 +127,17 @@ function CoverageMapsPage({ location }: PageProps) {
                 {...link}
               />
             ))}
+
+            <CardLink
+              className={clsx(classes.cardLinkWithIcon, classes.fullWidthItem)}
+              title={
+                <>
+                  <GridIcon className={classes.icon} /> &mdash; All networks (split view)
+                </>
+              }
+              url="/gb/coverage/all-networks"
+              description="View all networks on one map, split into 4 sections."
+            />
           </div>
         </Section>
       ))}

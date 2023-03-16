@@ -11,6 +11,7 @@ interface ICardLinkProps {
   title: React.ReactNode
   description?: React.ReactNode
   url: string
+  className?: string
 }
 
 const CARD_PADDING = 16 as const
@@ -78,11 +79,11 @@ const useStyles = makeStyles({
   },
 })
 
-function CardLink({ title, description, url }: ICardLinkProps) {
+function CardLink({ title, description, url, className }: ICardLinkProps) {
   const classes = useStyles()
 
   return (
-    <Link className={classes.cardLink} href={url}>
+    <Link className={clsx(classes.cardLink, className)} href={url}>
       <article className={classes.card}>
         <header className={classes.header}>
           <h3 className={clsx('text-loud', classes.heading, !description && classes.headingNoMargin)}>{title}</h3>
