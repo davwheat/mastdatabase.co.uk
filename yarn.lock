@@ -7484,6 +7484,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"fscreen@npm:^1.0.2":
+  version: 1.2.0
+  resolution: "fscreen@npm:1.2.0"
+  checksum: ac50f9ac52a157b8fe6aaecdf9efa7c1cfa90b42a76c3bc6b85372fab05c5a9cd72c1b7f4c2e273eba1a0e630e381fd72ae135fcc57acd05a0943d5d0c21b451
+  languageName: node
+  linkType: hard
+
 "fsevents@npm:~2.3.2":
   version: 2.3.2
   resolution: "fsevents@npm:2.3.2"
@@ -9905,6 +9912,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"leaflet.sync@npm:^0.2.4":
+  version: 0.2.4
+  resolution: "leaflet.sync@npm:0.2.4"
+  checksum: 57459a56141d6bde994cd3da5ec2cb649d3ff493983c96ee64c340b4297246725a6932e7943975632d958a681a49330f40b572359244fef48caa0060867a2625
+  languageName: node
+  linkType: hard
+
 "leaflet@npm:^1.9.3":
   version: 1.9.3
   resolution: "leaflet@npm:1.9.3"
@@ -10430,6 +10444,7 @@ __metadata:
     json-stable-stringify-without-jsonify: ^1.0.1
     leaflet: ^1.9.3
     leaflet.markercluster: ^1.5.3
+    leaflet.sync: ^0.2.4
     mdi-react: ^9.1.0
     mobile-spectrum-data: ^1.6.3
     nanoid: ^4.0.1
@@ -10439,6 +10454,7 @@ __metadata:
     react: ^18.2.0
     react-dom: ^18.2.0
     react-esri-leaflet: ^2.0.1
+    react-full-screen: ^1.1.1
     react-head: ^3.4.2
     react-hooks-visible: ^1.1.1
     react-leaflet: ^4.2.1
@@ -12604,6 +12620,17 @@ __metadata:
     react-dom: ^18.0.0
     react-leaflet: ^4.0.0
   checksum: cf3b4f643ddcd7f9096cc3bc64891b8c1ff1005c9a99f59fd2cf7953ae255daac08bdc10bcc63f353349b50fa71f716a81fef89463a9ca68fbd59838a0e9b5ea
+  languageName: node
+  linkType: hard
+
+"react-full-screen@npm:^1.1.1":
+  version: 1.1.1
+  resolution: "react-full-screen@npm:1.1.1"
+  dependencies:
+    fscreen: ^1.0.2
+  peerDependencies:
+    react: ">= 16.8.0"
+  checksum: 70ad927b9d6c485ac46b5bb4b1639ef9a860da28290b3a1c419c42b9c427d78b80e8dba403eb6451458af56838012c81d5e12ef05097395f154defc32fe06c34
   languageName: node
   linkType: hard
 
