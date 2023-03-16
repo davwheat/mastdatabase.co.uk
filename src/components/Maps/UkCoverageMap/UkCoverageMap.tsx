@@ -9,16 +9,33 @@ import SitesLayer from './SitesLayer'
 import { GeolocationMarker } from '@leaflet/GeolocationMarker'
 import GeolocationButton from '@leaflet/GeolocationButton'
 import MapCustomButtonsContainer from '@leaflet/MapCustomButtonsContainer'
+import { NoSsr } from '@material-ui/core'
 
 import type CoverageProvider from './Providers/CoverageProvider'
-import { NoSsr } from '@material-ui/core'
+import type { Map } from 'leaflet'
 
 export interface IUkCoverageMapProps {
   provider: CoverageProvider<boolean>
   selectedLayerId: number
+  showAttribution?: boolean
+  showFullscreenButton?: boolean
+  showGeolocation?: boolean
+  showZoomControl?: boolean
+  children?: React.ReactNode
 }
 
-export default function UkCoverageMap({ provider, selectedLayerId }: IUkCoverageMapProps) {
+export default React.forwardRef<Map, IUkCoverageMapProps>(function UkCoverageMap(
+  {
+    provider,
+    selectedLayerId,
+    showAttribution = true,
+    showFullscreenButton = true,
+    showGeolocation = true,
+    showZoomControl = true,
+    children,
+  }: IUkCoverageMapProps,
+  ref: React.Ref<Map>,
+) {
   useFixLeafletAssets()
 
   const layer = provider.getLayers()?.[selectedLayerId]
@@ -32,10 +49,12 @@ export default function UkCoverageMap({ provider, selectedLayerId }: IUkCoverage
       zoom={13}
       minZoom={1}
       attributionControl={false}
+      zoomControl={showZoomControl}
+      ref={ref}
     >
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        attribution={showAttribution ? '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors' : undefined}
         zIndex={0}
       />
 
@@ -55,26 +74,26 @@ export default function UkCoverageMap({ provider, selectedLayerId }: IUkCoverage
         {provider.supportsSites && <SitesLayer provider={provider} />}
       </NoSsr>
 
-      <MapComponents />
+      <MapComponents showFullscreenButton={showFullscreenButton} />
 
-      <AttributionControl position="bottomright" prefix={undefined} />
+      {showAttribution && <AttributionControl position="bottomright" prefix={undefined} />}
 
-      <GeolocationMarker />
+      {showGeolocation && <GeolocationMarker />}
 
-      <MapCustomButtonsContainer>
-        <GeolocationButton />
-      </MapCustomButtonsContainer>
+      <MapCustomButtonsContainer>{showGeolocation && <GeolocationButton />}</MapCustomButtonsContainer>
+
+      {children}
     </MapContainer>
   )
-}
+})
 
-function MapComponents() {
+function MapComponents({ showFullscreenButton = true }: { showFullscreenButton?: boolean }) {
   const L = window.L as typeof import('leaflet')
 
   const map = useMap()
 
   useEffect(() => {
-    if (!map.fullScreenControl) {
+    if (!map.fullScreenControl && showFullscreenButton) {
       L.fullScreen({
         position: 'topleft',
         title: 'Enter fullscreen mode',
