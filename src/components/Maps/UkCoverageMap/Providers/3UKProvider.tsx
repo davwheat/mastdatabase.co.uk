@@ -1,24 +1,26 @@
 import React from 'react'
 import CoverageProvider, { ICoverageLayer, ICoverageLayerKey } from './CoverageProvider'
 
-import dayjs from 'dayjs'
 import { TileLayer } from 'react-leaflet'
+import ThreeLogo from '@assets/icons/brands/three.inline.svg'
 
 export default class ThreeUkCoverageMapProvider extends CoverageProvider<true> {
-  providerName: string = 'Three UK'
-  defaultLayerId: number = 2
-  supportsSites: boolean = false
-  readonly supportsVersionHistory = true
-
-  protected readonly allVersions = { '2022-11-15': '15 Nov 2022', '2023-01-26': '26 Jan 2023' }
-
-  protected version: string = '2023-01-26'
-
   private readonly zoomLevels: Record<number, [number, number]> = {
     14: [12, Infinity],
     12: [9, 11.999],
     9: [7, 8.999],
   }
+
+  providerName: string = 'Three UK'
+  defaultLayerId: number = this.getLayers().findIndex(layer => layer.label === '4G VoLTE')
+  supportsSites: boolean = false
+  readonly supportsVersionHistory = true
+
+  readonly providerIcon = (<ThreeLogo />)
+
+  protected readonly allVersions = { '2022-11-15': '15 Nov 2022', '2023-01-26': '26 Jan 2023' }
+
+  protected version: string = '2023-01-26'
 
   protected getTileUrl(layer: string, version: string = this.version): string {
     return `https://234-20.coveragetiles.com/${version}/${layer}/{z}/{x}/{y}.png`

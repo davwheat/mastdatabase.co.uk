@@ -2,12 +2,15 @@ import React from 'react'
 
 import CoverageProvider, { ICoverageLayer, ICoverageLayerKey } from './CoverageProvider'
 import { DynamicMapLayer } from 'react-esri-leaflet'
+import VodafoneLogo from '@assets/icons/brands/vodafone.inline.svg'
 
 export default class VodafoneCoverageMapProvider extends CoverageProvider {
   providerName: string = 'Vodafone'
-  defaultLayerId: number = 2
+  defaultLayerId: number = this.getLayers().findIndex(layer => layer.label === '4G')
   supportsSites: boolean = false
   readonly supportsVersionHistory = false
+
+  readonly providerIcon = (<VodafoneLogo />)
 
   protected allVersions: undefined
   protected version: undefined

@@ -1,12 +1,15 @@
 import React from 'react'
 import { TileLayer } from 'react-leaflet'
 import CoverageProvider, { ICoverageLayer, ICoverageLayerKey } from './CoverageProvider'
+import EELogo from '@assets/icons/brands/ee.inline.svg'
 
 export default class EECoverageMapProvider extends CoverageProvider {
   providerName: string = 'EE'
-  defaultLayerId: number = 4
+  defaultLayerId: number = this.getLayers().findIndex(layer => layer.label === '4G (all bands)')
   supportsSites: boolean = false
   readonly supportsVersionHistory = false
+
+  readonly providerIcon = (<EELogo />)
 
   protected allVersions: undefined
   protected version: undefined
