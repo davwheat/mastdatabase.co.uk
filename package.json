@@ -84,7 +84,7 @@
     "cross-env": "^7.0.3",
     "gatsby-plugin-perf-budgets": "^0.0.18",
     "gatsby-plugin-webpack-bundle-analyser-v2": "^1.1.30",
-    "prettier": "^2.8.4",
+    "prettier": "^2.8.5",
     "typescript": "^5.0.2"
   },
   "license": "MIT",
