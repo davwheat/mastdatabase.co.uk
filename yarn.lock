@@ -10448,7 +10448,7 @@ __metadata:
     leaflet: ^1.9.3
     leaflet.markercluster: ^1.5.3
     leaflet.sync: ^0.2.4
-    mdi-react: ^9.1.0
+    mdi-react: ^9.2.0
     mobile-spectrum-data: ^1.7.0
     nanoid: ^4.0.1
     prettier: ^2.8.4
@@ -10474,12 +10474,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"mdi-react@npm:^9.1.0":
-  version: 9.1.0
-  resolution: "mdi-react@npm:9.1.0"
+"mdi-react@npm:^9.2.0":
+  version: 9.2.0
+  resolution: "mdi-react@npm:9.2.0"
   peerDependencies:
     react: ">=0.14.0"
-  checksum: 131fda8df28ce0e123384f994b30e88993c5a91645f84f0a809d53116380225fb055cfb6897a4d224096a57ebae35da348aa86c45e0a14f7bc15e76fed6b94c1
+  checksum: 6ae33ba778499f7a3b8af71b25c94e02ea13a8648ce5a3c29dac200bb87ed3c8441417fc54b1e25000bdc5f7e5684232c8e3715c184bd5d4fba2b90f8bb303c9
   languageName: node
   linkType: hard
 
