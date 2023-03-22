@@ -34,7 +34,7 @@
     "gatsby-plugin-react-svg": "^3.3.0",
     "gatsby-plugin-remove-console": "^0.0.2",
     "gatsby-plugin-sharp": "^5.7.0",
-    "gatsby-plugin-sitemap": "^6.7.0",
+    "gatsby-plugin-sitemap": "^6.8.0",
     "gatsby-plugin-webpack-size": "^2.0.1",
     "gatsby-react-router-scroll": "^6.7.0",
     "gatsby-source-filesystem": "^5.7.0",
