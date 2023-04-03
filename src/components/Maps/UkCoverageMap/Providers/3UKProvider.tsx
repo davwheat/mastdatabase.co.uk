@@ -8,6 +8,7 @@ export default class ThreeUkCoverageMapProvider extends CoverageProvider<true> {
   defaultLayerId: number = this.getLayers().findIndex(layer => layer.label === '4G VoLTE')
   supportsSites: boolean = false
   readonly supportsVersionHistory = true
+  readonly maxZoom = 14
 
   readonly providerIcon = (<ThreeLogo />)
 
