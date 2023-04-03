@@ -1,24 +1,21 @@
 import React from 'react'
 import CoverageProvider, { ICoverageLayer, ICoverageLayerKey } from './CoverageProvider'
 
-import { TileLayer } from 'react-leaflet'
 import ThreeLogo from '@assets/icons/brands/three.inline.svg'
 
 export default class ThreeUkCoverageMapProvider extends CoverageProvider<true> {
-  private readonly zoomLevels: Record<number, [number, number]> = {
-    14: [12, Infinity],
-    12: [9, 11.999],
-    9: [7, 8.999],
-  }
-
   providerName: string = 'Three UK'
   defaultLayerId: number = this.getLayers().findIndex(layer => layer.label === '4G VoLTE')
   supportsSites: boolean = false
   readonly supportsVersionHistory = true
+  readonly maxZoom = 14
 
   readonly providerIcon = (<ThreeLogo />)
 
-  protected readonly allVersions = { '2022-11-15': '15 Nov 2022', '2023-01-26': '26 Jan 2023' }
+  protected readonly allVersions = {
+    '2022-11-15': '15 Nov 2022',
+    '2023-01-26': '26 Jan 2023',
+  }
 
   protected version: string = '2023-01-26'
 
@@ -29,23 +26,7 @@ export default class ThreeUkCoverageMapProvider extends CoverageProvider<true> {
   protected getTileLayerEntry(label: string, layer: string): ICoverageLayer {
     return {
       label,
-      layers: (
-        <>
-          {Object.entries(this.zoomLevels).map(([nativeZoom, [minZoom, maxZoom]]) => (
-            <TileLayer
-              className="coverage-tiles"
-              minNativeZoom={parseInt(nativeZoom)}
-              maxNativeZoom={parseInt(nativeZoom)}
-              minZoom={minZoom}
-              maxZoom={maxZoom}
-              key={this.getTileUrl(layer) + `__${nativeZoom}-${minZoom}-${maxZoom}`}
-              opacity={0.5}
-              url={this.getTileUrl(layer)}
-              attribution={this.attributionTemplate(label)}
-            />
-          ))}
-        </>
-      ),
+      url: this.getTileUrl(layer),
     }
   }
 

@@ -56,6 +56,7 @@ export default React.forwardRef<Map, IUkCoverageMapProps>(function UkCoverageMap
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution={showAttribution ? '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors' : undefined}
         zIndex={0}
+        maxNativeZoom={19}
       />
 
       <NoSsr>
@@ -66,6 +67,7 @@ export default React.forwardRef<Map, IUkCoverageMapProps>(function UkCoverageMap
             opacity={0.5}
             url={layer.url}
             attribution={provider.attributionTemplate(layer.label)}
+            maxNativeZoom={provider.maxZoom}
           />
         )}
 

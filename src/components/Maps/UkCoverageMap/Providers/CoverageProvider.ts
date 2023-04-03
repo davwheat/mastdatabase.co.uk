@@ -20,6 +20,7 @@ export default abstract class CoverageProvider<VersionHistorySupported extends b
   abstract defaultLayerId: number
   abstract supportsSites: boolean
   abstract readonly supportsVersionHistory: VersionHistorySupported
+  readonly maxZoom: number = 15
 
   abstract getLayers(): ICoverageLayer[]
   abstract getLayerKeys(): ICoverageLayerKey[]
