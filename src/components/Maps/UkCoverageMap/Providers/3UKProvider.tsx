@@ -15,9 +15,10 @@ export default class ThreeUkCoverageMapProvider extends CoverageProvider<true> {
   protected readonly allVersions = {
     '2022-11-15': '15 Nov 2022',
     '2023-01-26': '26 Jan 2023',
+    '2023-03-24': '24 Mar 2023',
   }
 
-  protected version: string = '2023-01-26'
+  protected version: string = '2023-03-24'
 
   protected getTileUrl(layer: string, version: string = this.version): string {
     return `https://234-20.coveragetiles.com/${version}/${layer}/{z}/{x}/{y}.png`
