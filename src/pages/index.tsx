@@ -86,7 +86,7 @@ export default function IndexPage({ location }: PageProps) {
       <Hero firstElement size="huge" color={Colors.primaryBlue}>
         <h1 className="text-shout">Mast Database</h1>
         <p role="doc-subtitle" className="text-loud">
-          A collection of mobile networking tools and resources for the&nbsp;UK.
+          A collection of mobile networking tools and resources for the UK and around the &nbsp;world.
         </p>
       </Hero>
 
