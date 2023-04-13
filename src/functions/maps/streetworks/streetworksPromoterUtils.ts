@@ -60,7 +60,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'three',
     name: 'Three',
-    aliases: ['Hutchison 3G Ltd', 'Hutchinson Microtel'],
+    aliases: ['Three UK', 'Hutchison 3G Ltd', 'Hutchinson Microtel'],
     category: 'Mobile network',
     icon: {
       text: '3',
