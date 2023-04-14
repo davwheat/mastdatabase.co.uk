@@ -1,6 +1,5 @@
 import React, { useId } from 'react'
 
-import { useMemo } from 'react'
 import { makeStyles } from '@material-ui/styles'
 import clsx from 'clsx'
 import Colors from '@data/colors.json'

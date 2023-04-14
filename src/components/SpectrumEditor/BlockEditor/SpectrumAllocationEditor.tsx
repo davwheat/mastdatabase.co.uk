@@ -71,7 +71,7 @@ const useStyles = makeStyles({
   },
 
   newBlockButton: {
-    marginTop: 16,
+    marginTop: '16px !important',
   },
 })
 

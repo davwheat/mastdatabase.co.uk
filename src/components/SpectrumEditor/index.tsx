@@ -5,7 +5,7 @@ import SpectrumBlockList from './BlockEditor/SpectrumAllocationList'
 import { SpectrumEditorSettings } from './SpectrumEditorSettings'
 import Breakpoints from '@data/breakpoints'
 
-import { makeStyles } from '@material-ui/core'
+import { NoSsr, makeStyles } from '@material-ui/core'
 
 const useStyles = makeStyles({
   blocksListSection: {
@@ -34,7 +34,9 @@ export default function SpectrumEditor() {
             <h2 className="text-louder">All spectrum allocations</h2>
           </div>
 
-          <SpectrumBlockList />
+          <NoSsr>
+            <SpectrumBlockList />
+          </NoSsr>
         </div>
       </Section>
     </>

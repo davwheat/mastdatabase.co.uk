@@ -12,6 +12,7 @@ import SelectDropdown from '@components/Inputs/SelectDropdown'
 import * as _AllSpectrumData from 'mobile-spectrum-data'
 import { SpectrumData } from 'mobile-spectrum-data/@types'
 import jsonStableStringify from 'json-stable-stringify-without-jsonify'
+import useIsFirstRender from '@hooks/useIsFirstRender'
 
 const useStyles = makeStyles({
   root: {
@@ -47,6 +48,7 @@ const AllSelectOptions = [{ label: 'Select a region...', value: '' }, ...AllSpec
 
 export function SpectrumEditorSettings() {
   const classes = useStyles()
+  const firstRender = useIsFirstRender()
   const [{ rawInput }, setSpectrumEditorState] = useRecoilState(SpectrumEditorAtom)
   const resetSpectrumEditorState = useResetRecoilState(SpectrumEditorAtom)
   const parsedInput = useParsedSpectrumState()
@@ -60,7 +62,7 @@ export function SpectrumEditorSettings() {
         readOnly
         onInput={() => {}}
         className={classes.root}
-        value={rawInput}
+        value={firstRender ? '' : rawInput}
         onClick={e => {
           e.currentTarget.setSelectionRange(0, e.currentTarget.value.length)
           e.currentTarget.focus()
@@ -70,7 +72,17 @@ export function SpectrumEditorSettings() {
       <div className={classes.buttonContainer}>
         <Button
           onClick={() => {
-            readJsonFromFile().then(text => {
+            readJsonFromFile(async file => {
+              const text = await file.text()
+
+              // If not valid JSON, abort
+              try {
+                JSON.parse(text)
+              } catch {
+                alert('Error: Invalid JSON')
+                return
+              }
+
               if (!text) return
 
               setSpectrumEditorState(s => ({ ...s, rawInput: text }))

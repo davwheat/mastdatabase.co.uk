@@ -27,7 +27,7 @@ const useStyles = makeStyles({
   },
 
   textboxAddButton: {
-    padding: 0,
+    padding: '0 !important',
     height: '100%',
     width: 48,
     justifyContent: 'center',
