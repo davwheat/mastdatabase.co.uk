@@ -70,7 +70,17 @@ export function SpectrumEditorSettings() {
       <div className={classes.buttonContainer}>
         <Button
           onClick={() => {
-            readJsonFromFile().then(text => {
+            readJsonFromFile(async file => {
+              const text = await file.text()
+
+              // If not valid JSON, abort
+              try {
+                JSON.parse(text)
+              } catch {
+                alert('Error: Invalid JSON')
+                return
+              }
+
               if (!text) return
 
               setSpectrumEditorState(s => ({ ...s, rawInput: text }))

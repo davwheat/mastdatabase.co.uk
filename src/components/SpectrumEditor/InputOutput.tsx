@@ -1,21 +1,21 @@
 import { saveAs } from 'file-saver'
 import jsonStableStringify from 'json-stable-stringify-without-jsonify'
 
-export async function readJsonFromFile(): Promise<string | void> {
+export function readJsonFromFile(fileSelected: (file: File) => void) {
   const inp = document.createElement('input')
   inp.setAttribute('type', 'file')
   inp.setAttribute('accept', '.json,application/json')
 
+  inp.addEventListener('change', () => {
+    if (inp.files?.length !== 1) {
+      alert('Error: No file selected for import.')
+      return
+    }
+
+    fileSelected(inp.files[0])
+  })
+
   inp.click()
-
-  const files = inp.files
-
-  if (files?.length !== 1) {
-    alert('Error: No file selected for import.')
-    return
-  }
-
-  return await files[0].text()
 }
 
 export function saveJsonToFile(jsonData: object) {
