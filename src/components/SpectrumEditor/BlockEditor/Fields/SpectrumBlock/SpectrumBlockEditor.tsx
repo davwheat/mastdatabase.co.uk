@@ -1,18 +1,23 @@
+import React from 'react'
+
 import Button from '@components/Inputs/Button'
 import SelectDropdown from '@components/Inputs/SelectDropdown'
 import TextBox from '@components/Inputs/TextBox'
 import { useParsedSpectrumState } from '@components/SpectrumEditor/useParsedSpectrumState'
 import { useSetSpectrumBlockState } from '@components/SpectrumEditor/useSetSpectrumBlockState'
-import { makeStyles } from '@material-ui/core'
-import clsx from 'clsx'
-import PlusIcon from 'mdi-react/PlusBoldIcon'
-import { SourceType, SpectrumBlock } from 'mobile-spectrum-data/@types'
-import React, { useState } from 'react'
-import TrashIcon from 'mdi-react/TrashOutlineIcon'
+import UnmanagedTextBox from '@components/Inputs/UnmanagedTextBox'
+import SpectrumBlockARFCNEditor from './SpectrumBlockARFCNEditor'
 
 import { useSectionStyles } from '../SpectrumMetadataEditor'
-import SpectrumBlockARFCNEditor from './SpectrumBlockARFCNEditor'
 import Breakpoints from '@data/breakpoints'
+
+import { makeStyles } from '@material-ui/core'
+import clsx from 'clsx'
+
+import PlusIcon from 'mdi-react/PlusBoldIcon'
+import TrashIcon from 'mdi-react/TrashOutlineIcon'
+
+import type { SourceType, SpectrumBlock } from 'mobile-spectrum-data/@types'
 
 function isValidFloat(value: string) {
   return !isNaN(Number(value))
@@ -110,16 +115,6 @@ export default function SpectrumBlockEditor({ dataIndex, blockIndex }: ISpectrum
   const classes = useStyles()
   const blockData = useParsedSpectrumState()![dataIndex].spectrumData[blockIndex]
   const setSpectrumBlockState = useSetSpectrumBlockState(dataIndex, blockIndex)
-
-  const [freqInputsState, setFreqInputsState] = useState({
-    startDl: blockData.startFreq.toString(),
-    endDl: blockData.endFreq.toString(),
-
-    // @ts-expect-error
-    startUl: blockData.pairedWith?.startFreq.toString() || '0',
-    // @ts-expect-error
-    endUl: blockData.pairedWith?.endFreq.toString() || '0',
-  })
 
   const details = typeof blockData.details === 'string' ? [blockData.details] : blockData.details
 
@@ -278,13 +273,11 @@ export default function SpectrumBlockEditor({ dataIndex, blockIndex }: ISpectrum
         </div>
 
         <div className={classes.pairedItems}>
-          <TextBox
+          <UnmanagedTextBox
             label="Downlink start frequency (MHz)"
-            value={freqInputsState.startDl}
-            helpText={!isValidFloat(freqInputsState.startDl) ? 'Invalid frequency' : undefined}
+            defaultValue={blockData.startFreq.toString()}
+            helpText={val => (!isValidFloat(val) ? 'Invalid frequency' : undefined)}
             onInput={val => {
-              setFreqInputsState(state => ({ ...state, startDl: val }))
-
               if (!isValidFloat(val)) return
 
               setSpectrumBlockState(blockData => {
@@ -293,13 +286,11 @@ export default function SpectrumBlockEditor({ dataIndex, blockIndex }: ISpectrum
             }}
           />
 
-          <TextBox
+          <UnmanagedTextBox
             label="Downlink end frequency (MHz)"
-            value={freqInputsState.endDl}
-            helpText={!isValidFloat(freqInputsState.endDl) ? 'Invalid frequency' : undefined}
+            defaultValue={blockData.endFreq.toString()}
+            helpText={val => (!isValidFloat(val) ? 'Invalid frequency' : undefined)}
             onInput={val => {
-              setFreqInputsState(state => ({ ...state, endDl: val }))
-
               if (!isValidFloat(val)) return
 
               setSpectrumBlockState(blockData => {
@@ -311,13 +302,11 @@ export default function SpectrumBlockEditor({ dataIndex, blockIndex }: ISpectrum
 
         {'pairedWith' in blockData && (
           <div className={classes.pairedItems}>
-            <TextBox
+            <UnmanagedTextBox
               label="Uplink start frequency (MHz)"
-              value={freqInputsState.startUl}
-              helpText={!isValidFloat(freqInputsState.startUl) ? 'Invalid frequency' : undefined}
+              defaultValue={blockData.pairedWith?.startFreq.toString() || '0'}
+              helpText={val => (!isValidFloat(val) ? 'Invalid frequency' : undefined)}
               onInput={val => {
-                setFreqInputsState(state => ({ ...state, startUl: val }))
-
                 if (!isValidFloat(val)) return
 
                 setSpectrumBlockState(blockData => {
@@ -333,13 +322,11 @@ export default function SpectrumBlockEditor({ dataIndex, blockIndex }: ISpectrum
               }}
             />
 
-            <TextBox
+            <UnmanagedTextBox
               label="Uplink end frequency (MHz)"
-              value={freqInputsState.endUl}
-              helpText={!isValidFloat(freqInputsState.endUl) ? 'Invalid frequency' : undefined}
+              defaultValue={blockData.pairedWith?.endFreq.toString() || '0'}
+              helpText={val => (!isValidFloat(val) ? 'Invalid frequency' : undefined)}
               onInput={val => {
-                setFreqInputsState(state => ({ ...state, endUl: val }))
-
                 if (!isValidFloat(val)) return
 
                 setSpectrumBlockState(blockData => {
