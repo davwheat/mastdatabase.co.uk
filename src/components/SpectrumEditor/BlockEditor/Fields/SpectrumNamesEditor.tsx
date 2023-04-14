@@ -7,6 +7,7 @@ import { useSetSpectrumAllocationState } from '@components/SpectrumEditor/useSet
 import { useSectionStyles } from './SpectrumMetadataEditor'
 
 import PlusIcon from 'mdi-react/PlusBoldIcon'
+
 import { makeStyles } from '@material-ui/core'
 
 const useStyles = makeStyles({
@@ -36,14 +37,14 @@ const useStyles = makeStyles({
   },
 
   textboxRemoveButton: {
-    padding: 0,
+    padding: '0 !important',
     height: '100%',
     width: 48,
     justifyContent: 'center',
   },
 
   addNameButton: {
-    marginTop: 16,
+    marginTop: '16px !important',
   },
 })
 

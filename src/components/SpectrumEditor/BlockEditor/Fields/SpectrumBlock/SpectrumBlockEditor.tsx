@@ -94,14 +94,14 @@ const useStyles = makeStyles({
   },
 
   textboxRemoveButton: {
-    padding: 0,
+    padding: '0 !important',
     height: '100%',
     width: 48,
     justifyContent: 'center',
   },
 
   addDetailButton: {
-    marginTop: 16,
+    marginTop: '16px !important',
   },
 })
 
