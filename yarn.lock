@@ -10422,7 +10422,7 @@ __metadata:
     leaflet.markercluster: ^1.5.3
     leaflet.sync: ^0.2.4
     mdi-react: ^9.2.0
-    mobile-spectrum-data: ^1.7.0
+    mobile-spectrum-data: ^1.8.0
     nanoid: ^4.0.2
     prettier: ^2.8.7
     prop-types: ^15.8.1
@@ -10777,10 +10777,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mobile-spectrum-data@npm:^1.7.0":
-  version: 1.7.0
-  resolution: "mobile-spectrum-data@npm:1.7.0"
-  checksum: 0d73545e0ec938675743a726879e184e253abf299e4f7af93139a81a5eb71002a5e5a6a819683c594232918bc6477a0afbf77d5b730667d9850d1fe143d2592f
+"mobile-spectrum-data@npm:^1.8.0":
+  version: 1.8.0
+  resolution: "mobile-spectrum-data@npm:1.8.0"
+  checksum: 0f27f0e43e9e59e4274c0fdc80b23f167c1dc18d45db85a4179dfa286091776838e7c7b95fb1d4913a1502a3aff59ceb21630114c2f19759a5dae2bb2859fe55
   languageName: node
   linkType: hard
 
