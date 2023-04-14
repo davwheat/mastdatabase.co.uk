@@ -6,8 +6,9 @@ import { useSetSpectrumAllocationState } from '@components/SpectrumEditor/useSet
 import Link from '@components/Links/Link'
 import { useSectionStyles } from './SpectrumMetadataEditor'
 
-import { makeStyles } from '@material-ui/core'
 import { SpectrumData } from 'mobile-spectrum-data/@types'
+
+import { makeStyles } from '@material-ui/core'
 
 const useStyles = makeStyles({
   form: {

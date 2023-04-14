@@ -1,10 +1,11 @@
 import React from 'react'
 
+import SpectrumNamesEditor from './SpectrumNamesEditor'
+import SpectrumExtraDataEditor from './SpectrumExtraDataEditor'
+
 import Colors from '@data/colors.json'
 
 import { makeStyles } from '@material-ui/core'
-import SpectrumNamesEditor from './SpectrumNamesEditor'
-import SpectrumExtraDataEditor from './SpectrumExtraDataEditor'
 
 export const useSectionStyles = makeStyles({
   whiteSection: {
