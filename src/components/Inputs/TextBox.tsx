@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/styles'
 import clsx from 'clsx'
 import Colors from '@data/colors.json'
 
-interface IProps extends Omit<React.HTMLAttributes<HTMLInputElement>, 'onInput'> {
+export interface ITextBoxProps extends Omit<React.HTMLAttributes<HTMLInputElement>, 'onInput'> {
   /**
    * The type associated with the input element in the outputted HTML.
    */
@@ -121,7 +121,7 @@ export default function TextBox({
   endAdornment: endAppendix,
   disabled = false,
   ...attrs
-}: IProps) {
+}: ITextBoxProps) {
   const classes = useStyles()
 
   const id = useId()
