@@ -4,12 +4,13 @@ import Hero from '@components/Design/Hero'
 import Layout from '@components/Layout'
 import Breadcrumbs from '@components/Design/Breadcrumbs'
 import AllSpectrumMaps from '@components/MobileNetworking/AllSpectrumMaps'
-
-import DKAllBands from 'mobile-spectrum-data/DK'
-import Colors from '@data/colors.json'
-import { PageProps } from 'gatsby'
 import SpectrumTotaller from '@components/MobileNetworking/SpectrumTotaller'
 import MinorAlert from '@components/Design/MinorAlert'
+
+import Colors from '@data/colors.json'
+import DKAllBands from 'mobile-spectrum-data/DK'
+
+import type { PageProps } from 'gatsby'
 
 function DKSpectrumAllocationPage({ location }: PageProps) {
   return (

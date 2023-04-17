@@ -4,12 +4,12 @@ import Hero from '@components/Design/Hero'
 import Layout from '@components/Layout'
 import Breadcrumbs from '@components/Design/Breadcrumbs'
 import AllSpectrumMaps from '@components/MobileNetworking/AllSpectrumMaps'
+import SpectrumTotaller from '@components/MobileNetworking/SpectrumTotaller'
 
 import Colors from '@data/colors.json'
 import KRAllBands from 'mobile-spectrum-data/KR'
 
 import type { PageProps } from 'gatsby'
-import SpectrumTotaller from '@components/MobileNetworking/SpectrumTotaller'
 
 function KRSpectrumAllocationPage({ location }: PageProps) {
   return (
