@@ -76,11 +76,8 @@ const Countries: ICountryItem[] = [
       </>
     ),
   },
-  {
-    code: 'ru',
-    name: 'Russia',
-    nativeName: 'Россия',
-  },
+  { code: 'ru', name: 'Russia', nativeName: 'Россия' },
+  { code: 'pt', name: 'Portugal', nativeName: 'Portugal' },
 ]
 
 export default function IndexPage({ location }: PageProps) {
