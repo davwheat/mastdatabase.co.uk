@@ -4,11 +4,12 @@ import Hero from '@components/Design/Hero'
 import Layout from '@components/Layout'
 import Breadcrumbs from '@components/Design/Breadcrumbs'
 import AllSpectrumMaps from '@components/MobileNetworking/AllSpectrumMaps'
+import SpectrumTotaller from '@components/MobileNetworking/SpectrumTotaller'
 
 import Colors from '@data/colors.json'
 import DEAllBands from 'mobile-spectrum-data/DE'
-import { PageProps } from 'gatsby'
-import SpectrumTotaller from '@components/MobileNetworking/SpectrumTotaller'
+
+import type { PageProps } from 'gatsby'
 
 function DESpectrumAllocationPage({ location }: PageProps) {
   return (

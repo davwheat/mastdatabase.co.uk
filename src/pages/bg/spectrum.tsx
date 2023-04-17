@@ -1,15 +1,15 @@
 import React from 'react'
 
-import Section from '@components/Design/Section'
 import Hero from '@components/Design/Hero'
 import Layout from '@components/Layout'
 import Breadcrumbs from '@components/Design/Breadcrumbs'
 import AllSpectrumMaps from '@components/MobileNetworking/AllSpectrumMaps'
+import SpectrumTotaller from '@components/MobileNetworking/SpectrumTotaller'
 
 import Colors from '@data/colors.json'
 import BGAllBands from 'mobile-spectrum-data/BG'
-import { PageProps } from 'gatsby'
-import SpectrumTotaller from '@components/MobileNetworking/SpectrumTotaller'
+
+import type { PageProps } from 'gatsby'
 
 function BGSpectrumAllocationPage({ location }: PageProps) {
   return (
