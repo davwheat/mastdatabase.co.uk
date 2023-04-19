@@ -27,7 +27,7 @@
     "gatsby-plugin-csp": "^1.1.4",
     "gatsby-plugin-image": "^3.8.0",
     "gatsby-plugin-less": "^7.8.0",
-    "gatsby-plugin-manifest": "^5.8.0",
+    "gatsby-plugin-manifest": "^5.9.0",
     "gatsby-plugin-material-ui": "^3.0.1",
     "gatsby-plugin-meta-redirect": "^1.1.1",
     "gatsby-plugin-react-head": "https://github.com/davwheat/gatsby-plugin-react-head",
