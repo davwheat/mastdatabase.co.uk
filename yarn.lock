@@ -7757,15 +7757,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-plugin-less@npm:^7.8.0":
-  version: 7.8.0
-  resolution: "gatsby-plugin-less@npm:7.8.0"
+"gatsby-plugin-less@npm:^7.9.0":
+  version: 7.9.0
+  resolution: "gatsby-plugin-less@npm:7.9.0"
   dependencies:
     "@babel/runtime": ^7.20.13
     less-loader: ^6.2.0
   peerDependencies:
     gatsby: ^5.0.0-next
-  checksum: 0858a408558a1bc80fb16ccbd640883eba60a06185607ed917f1a75250719b6564ab37ab0b27ac83f6d5706a683e3cfa461f1796ef0ac55ffebd62307118b25c
+  checksum: 64698067f1d291f491d5978d3a530d00c0d51fd9a614189a97d98b647355263bb9bf8900ea0107ce83a49d8f3ccffd839d11e2fb1f3ccb33f3b6b8a6a9240606
   languageName: node
   linkType: hard
 
@@ -10399,7 +10399,7 @@ __metadata:
     gatsby-plugin-canonical-urls: ^5.8.0
     gatsby-plugin-csp: ^1.1.4
     gatsby-plugin-image: ^3.8.0
-    gatsby-plugin-less: ^7.8.0
+    gatsby-plugin-less: ^7.9.0
     gatsby-plugin-manifest: ^5.8.0
     gatsby-plugin-material-ui: ^3.0.1
     gatsby-plugin-meta-redirect: ^1.1.1
