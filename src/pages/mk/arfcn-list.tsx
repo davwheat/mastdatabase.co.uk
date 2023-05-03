@@ -18,7 +18,7 @@ function MKArfcnListPage({ location }: PageProps) {
   return (
     <Layout
       location={location}
-      title="Romanian ARFCN list"
+      title="North Macedonian ARFCN list"
       description="A mostly complete list of North Macedonian mobile networks' ARFCNs for 4G LTE and 5G NR."
     >
       <Hero firstElement size="huge" color={Colors.primaryBlue}>
