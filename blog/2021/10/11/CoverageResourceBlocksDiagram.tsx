@@ -155,7 +155,7 @@ export default function CoverageResourceBlocksDiagram() {
   )
   const dataLine = useRef<HTMLSpanElement>(null)
 
-  const [frequencyBand, setFrequencyBand] = useState<typeof AvailableFrequencies[number]>(AvailableFrequencies[0])
+  const [frequencyBand, setFrequencyBand] = useState<(typeof AvailableFrequencies)[number]>(AvailableFrequencies[0])
   const [speed, setSpeed] = useState(150)
 
   /**
