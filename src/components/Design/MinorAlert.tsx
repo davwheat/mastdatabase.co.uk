@@ -9,7 +9,7 @@ export interface IMinorAlertProps {
   className?: string
   heading?: React.ReactNode
   children: React.ReactNode
-  color: keyof (typeof Colors)['pale']
+  color: keyof typeof Colors['pale']
   coloredBackground?: boolean
 }
 
