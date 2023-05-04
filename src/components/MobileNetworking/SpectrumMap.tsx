@@ -42,6 +42,7 @@ export interface ISpectrumMapProps {
   spectrumHighlight?: HighlightedSpectrum[]
   countryCode?: string
   className?: string
+  customColors?: Record<string, string[]>
 }
 
 export interface ISpectrumMapItemProps {
@@ -50,6 +51,7 @@ export interface ISpectrumMapItemProps {
   onClick: (allocation: SpectrumBlock) => void
   descId: string
   countryCode?: string
+  customColors?: Record<string, string[]>
 }
 
 export interface ISpectrumMapDetailsProps {
@@ -195,7 +197,7 @@ const useSpectrumMapDetailsStyles = makeStyles({
   },
 })
 
-export function SpectrumMap({ caption, data, note, spectrumHighlight, countryCode, className }: ISpectrumMapProps) {
+export function SpectrumMap({ caption, data, note, spectrumHighlight, countryCode, className, customColors }: ISpectrumMapProps) {
   const classes = useSpectrumMapStyles()
 
   const descId = useId()
@@ -253,6 +255,7 @@ export function SpectrumMap({ caption, data, note, spectrumHighlight, countryCod
               onClick={() => setSelectedSpectrumBlock(allocation)}
               descId={descId}
               countryCode={countryCode}
+              customColors={customColors}
             />
           ))}
           {isSpectrumHighlighted &&
@@ -301,7 +304,16 @@ export function SpectrumMap({ caption, data, note, spectrumHighlight, countryCod
   )
 }
 
-function getColour(countryCode: string | undefined, { owner, ownerLongName }: ISpectrumAllocation) {
+function getColour(countryCode: string | undefined, { owner, ownerLongName }: ISpectrumAllocation, customColors?: Record<string, string[]>) {
+  // Support custom colors
+  if (customColors) {
+    const found = Object.entries(customColors).find(([key, value]) => value.includes(ownerLongName ?? owner))
+
+    if (found) {
+      return found[0]
+    }
+  }
+
   const color = getOperatorColor(countryCode ?? 'I_DO_NOT_EXIST', ownerLongName ?? owner)
 
   if (color === '#dddddd' && ownerLongName) {
@@ -311,10 +323,10 @@ function getColour(countryCode: string | undefined, { owner, ownerLongName }: IS
   return color
 }
 
-function SpectrumMapItem({ allocation, onClick, isSelected, descId, countryCode }: ISpectrumMapItemProps) {
+function SpectrumMapItem({ allocation, onClick, isSelected, descId, countryCode, customColors }: ISpectrumMapItemProps) {
   const classes = useSpectrumMapItemStyles()
   const { owner, startFreq, endFreq } = allocation
-  const color = getColour(countryCode, allocation)
+  const color = getColour(countryCode, allocation, customColors)
 
   const bandwidthMhz = endFreq - startFreq
   const columnCount = Math.round((bandwidthMhz * 100_000) / HERTZ_ACCURACY)
