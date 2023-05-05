@@ -12,7 +12,7 @@
     "@material-ui/core": "^4.12.4",
     "@material-ui/styles": "^4.11.5",
     "@reach/tabs": "^0.18.0",
-    "@sentry/gatsby": "^7.50.0",
+    "@sentry/gatsby": "^7.51.0",
     "@slixites/gatsby-plugin-google-fonts": "^1.1.1",
     "active-resource": "^1.0.0-beta.7",
     "case-sensitive-paths-webpack-plugin": "^2.4.0",
