@@ -171,3 +171,11 @@ main {
 :root {
   --reach-tabs: 1;
 }
+
+.clearfix {
+  &::after {
+    display: block;
+    content: '';
+    clear: both;
+  }
+}
