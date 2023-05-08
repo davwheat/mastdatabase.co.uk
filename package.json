@@ -76,7 +76,7 @@
     "@types/leaflet.markercluster": "^1.5.1",
     "@types/material-ui": "^0.21.12",
     "@types/rbush": "^3.0.0",
-    "@types/react": "^18.2.1",
+    "@types/react": "^18.2.6",
     "@types/throttle-debounce": "^5.0.0",
     "@types/uuid": "^9.0.1",
     "@welldone-software/why-did-you-render": "^7.0.1",
