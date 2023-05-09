@@ -56,7 +56,7 @@ const Breakpoints: Breakpoints = {
   upTo: Object.keys(pixelValues).reduce(
     (prev, val) => ({
       ...prev,
-      [val]: mediaUpTo(pixelValues[val]),
+      [val]: mediaUpTo(pixelValues[val as BreakpointNames]),
     }),
     {},
   ),
@@ -64,7 +64,7 @@ const Breakpoints: Breakpoints = {
   downTo: Object.keys(pixelValues).reduce(
     (prev, val) => ({
       ...prev,
-      [val]: mediaDownTo(pixelValues[val]),
+      [val]: mediaDownTo(pixelValues[val as BreakpointNames]),
     }),
     {},
   ),
@@ -79,7 +79,7 @@ const Breakpoints: Breakpoints = {
               val1 !== val2
                 ? {
                     ...prev2,
-                    [val2]: mediaBetween(pixelValues[val1], pixelValues[val2]),
+                    [val2]: mediaBetween(pixelValues[val1 as BreakpointNames], pixelValues[val2 as BreakpointNames]),
                   }
                 : prev2,
             {},
