@@ -7729,7 +7729,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-parcel-config@npm:^1.9.0":
+"gatsby-parcel-config@npm:1.9.0":
   version: 1.9.0
   resolution: "gatsby-parcel-config@npm:1.9.0"
   dependencies:
@@ -8148,9 +8148,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby@npm:^5.9.0":
-  version: 5.9.0
-  resolution: "gatsby@npm:5.9.0"
+"gatsby@npm:^5.9.1":
+  version: 5.9.1
+  resolution: "gatsby@npm:5.9.1"
   dependencies:
     "@babel/code-frame": ^7.18.6
     "@babel/core": ^7.20.12
@@ -8238,7 +8238,7 @@ __metadata:
     gatsby-legacy-polyfills: ^3.9.0
     gatsby-link: ^5.9.0
     gatsby-page-utils: ^3.9.0
-    gatsby-parcel-config: ^1.9.0
+    gatsby-parcel-config: 1.9.0
     gatsby-plugin-page-creator: ^5.9.0
     gatsby-plugin-typescript: ^5.9.0
     gatsby-plugin-utils: ^4.9.0
@@ -8324,7 +8324,7 @@ __metadata:
       optional: true
   bin:
     gatsby: ./cli.js
-  checksum: 8ff98365fd85edd6edc230d5707a2a59009ee661f944e0d9789dca9c06a462a2067f78f481408d195cdd9f386026c57ad538f647b76ce8dc906909c8a7806d8e
+  checksum: 2cac5011355f6f85954080f61bc59fd8ccf39b91e5bfbd7e0e7002778f74c86e987e7117047917d760e53217b9ffeeb1a8b95799334832c10428bf3cf769934d
   languageName: node
   linkType: hard
 
@@ -10451,7 +10451,7 @@ __metadata:
     file-saver: ^2.0.5
     font-color-contrast: ^11.1.0
     fuse.js: ^6.6.2
-    gatsby: ^5.9.0
+    gatsby: ^5.9.1
     gatsby-plugin-canonical-urls: ^5.9.0
     gatsby-plugin-csp: ^1.1.4
     gatsby-plugin-image: ^3.9.0
