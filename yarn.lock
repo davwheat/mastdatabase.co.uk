@@ -7751,14 +7751,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-plugin-canonical-urls@npm:^5.9.0":
-  version: 5.9.0
-  resolution: "gatsby-plugin-canonical-urls@npm:5.9.0"
+"gatsby-plugin-canonical-urls@npm:^5.10.0":
+  version: 5.10.0
+  resolution: "gatsby-plugin-canonical-urls@npm:5.10.0"
   dependencies:
     "@babel/runtime": ^7.20.13
   peerDependencies:
     gatsby: ^5.0.0-next
-  checksum: bba7396652db86645cb6bbb3fe1515614b770addd8f49ecf04bd84bd9e701efd62ced56ce37c3a68670b5a4ad06ddcb38fa2e7d5c358b8483f8daf338790e6b4
+  checksum: f4d0f00b758b216601644696e2965a1af8467f6bb26fc5fcc3d56f69cd0690d351845f87cc8915b41ea02232d834a4dd9c8fdfa4f23a36a8e108e5dc82033f6b
   languageName: node
   linkType: hard
 
@@ -10452,7 +10452,7 @@ __metadata:
     font-color-contrast: ^11.1.0
     fuse.js: ^6.6.2
     gatsby: ^5.9.0
-    gatsby-plugin-canonical-urls: ^5.9.0
+    gatsby-plugin-canonical-urls: ^5.10.0
     gatsby-plugin-csp: ^1.1.4
     gatsby-plugin-image: ^3.9.0
     gatsby-plugin-less: ^7.9.0
