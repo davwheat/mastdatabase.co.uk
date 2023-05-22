@@ -122,12 +122,12 @@ function VHUKMergerPage({ location }: PageProps) {
 
         <p className="text-speak">
           At the start of its operations, Three partnered with O2 to provide national roaming on O2's GSM service in order to offer coverage
-          parity outside of their own 3G areas. Three replaced O2's services with Orange in May 2006, who provided GSM fallback until 2010 when
-          Three opted to begin switching off national roaming entirely.
+          parity outside of their own 3G areas. Three replaced O2's services with Orange in May 2006, who provided GSM fallback into 2015 when
+          Three opted to switch off national roaming entirely.
         </p>
 
         <p className="text-speak">
-          In 2007, Three UK and T-Mobile UK announced a joint-venture named MBNL to consolidate their network infrastructure build and upgrades
+          In 2007, Three UK and T-Mobile UK announced a joint venture named MBNL to consolidate their network infrastructure build and upgrades
           programme, with the goal of reducing costs and improving coverage. Later, this expanded to include Orange UK after it merged with
           T-Mobile to form EE. MBNL started to wind down from April 2023, with Three and EE handling upgrades and maintenance unilaterally into
           the future.
@@ -148,8 +148,9 @@ function VHUKMergerPage({ location }: PageProps) {
         <h2 className="text-louder">Merger with Vodafone</h2>
 
         <p className="text-speak">
-          Three's latest merger talks are with Vodafone, for which rumours first began circulating around May 2022, potentially sparked by
-          Liberty Global and Telefónica UK's merger of their respective businesses (Virgin Media and O2) in 2021.
+          Three's latest merger talks are with Vodafone, for which rumours first began circulating around May 2022. These talks were potentially
+          sparked by Liberty Global and Telefónica UK's merger of their respective businesses (Virgin Media and O2) in 2021, but had likely been
+          considered prior to this.
         </p>
 
         <p className="text-speak">
@@ -179,10 +180,10 @@ function VHUKMergerPage({ location }: PageProps) {
         </div>
 
         <p className="text-speak">
-          Vodafone has a large infrastructure network of mobile base stations across the UK, operated in partnership with O2 under the
-          joint-venture Cornerstone. Cornerstone was formed in 2009, and is responsible for the maintenance and upgrades of both Vodafone and
-          O2's mobile networks, with the two networks sharing the same infrastructure. The two networks share repsonsibility of the
-          infrastructure by splitting the country into zones under projects named Beacon 1 and Beacon 2.
+          Vodafone has a large infrastructure network of mobile base stations across the UK, operated in partnership with O2 under the joint
+          venture Cornerstone. Cornerstone was formed in 2009, and is responsible for the maintenance and upgrades of both Vodafone and O2's
+          mobile networks, with the two networks sharing the same infrastructure. The two networks share repsonsibility of the infrastructure by
+          splitting the country into zones under projects named Beacon 1 and Beacon 2.
         </p>
 
         <p className="text-speak">
@@ -248,6 +249,31 @@ function VHUKMergerPage({ location }: PageProps) {
             </tr>
           </tbody>
         </table>
+
+        <h3 className="text-speak-up">Post-merger infrastructure</h3>
+
+        <p className="text-speak">
+          A merger between Vodafone and Three would result in significant overlap of infrastructure from the two networks' current coverage
+          portfolio. A big question is what steps would be taken to consolidate the two networks into one, and what would happen to the
+          infrastructure that is no longer needed.
+        </p>
+
+        <p className="text-speak">
+          Although the mobile tower market in 2023 is very different to that of 2010, we are likely to see a similar process take place as that
+          which happened at EE when T-Mobile and Orange merged. The network will attempt to identify sites with coverage not provided by any
+          other sites and those that provide capacity that is hard to supplement with other masts, keep those and then decommission the others
+          slowly. In EE's case the decision-making process was complicated by the need to offer Three 'free' access to some sites as part of the
+          competition mitigation allowing the deal to proceed and by Three choosing to 'buy in' to some sites. Sticking with the tried and tested
+          EE playbook, it is likely that the sites will be grouped into clusters and prioritised for rebuild to a single design standard.
+        </p>
+
+        <p className="text-speak">
+          Media reports have suggested that the details of this outline plan have been a sticking point in the merger negotiations, however the
+          merger comes at a time when all networks are attempting to monetise their existing grids and increase the tenancy ratio (the number of
+          networks using each mast). Grid monetisation would mean that a nimbler approach, choosing the best of both major UK grids, may be the
+          ideal way forward. The contracts underpinning tower monetisation, typically 15&ndash;20-year deals, may be a stumbling block in a quick
+          decommission programme to realise the merger benefits, however the precise details are naturally commercially sensitive.
+        </p>
 
         {/* Needed for floated image(s) */}
         <div className="clearfix" role="presentation" aria-hidden="true" />
