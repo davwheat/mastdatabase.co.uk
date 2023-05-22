@@ -3,7 +3,6 @@ import React from 'react'
 import { graphql } from 'gatsby'
 
 import { MDXProvider, MDXProviderComponentsProp } from '@mdx-js/react'
-import { MDXRenderer } from 'gatsby-plugin-mdx'
 import { makeStyles } from '@material-ui/core'
 import clsx from 'clsx'
 
@@ -63,6 +62,7 @@ export default function BlogPageTemplate({ pageContext, location, data: { mdx: d
   const context = data
   const classes = useStyles()
 
+  // ||= not supported with acorn?
   context.frontmatter.updated_at = context.frontmatter.updated_at || context.frontmatter.created_at
   context.frontmatter.archived = context.frontmatter.archived || false
 
