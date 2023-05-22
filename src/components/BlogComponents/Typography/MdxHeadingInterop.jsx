@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Heading, IHeadingProps } from './Heading'
+import { Heading } from './Heading'
 
 /**
  * Function that takes a heading variant and returns a functional component that
@@ -11,8 +11,8 @@ import { Heading, IHeadingProps } from './Heading'
  *          // ...
  *          <H1 id="my-heading" noAnchorButton>My heading</H1>
  */
-export function MdxHeadingInterop(variant: IHeadingProps['variant']): (props: Omit<IHeadingProps, 'variant'>) => JSX.Element {
-  return (props: Omit<IHeadingProps, 'variant'>) => {
+export function MdxHeadingInterop(variant) {
+  return props => {
     return <Heading variant={variant} {...props} />
   }
 }

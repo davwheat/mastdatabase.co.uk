@@ -41,14 +41,7 @@ const useStyles = makeStyles({
   },
 })
 
-export interface IBlogCardProps {
-  title: string
-  date: string
-  description: string
-  slug: string
-}
-
-export const BlogCard = ({ title, date, description, slug }: IBlogCardProps) => {
+export const BlogCard = ({ title, date, description, slug }) => {
   const classes = useStyles()
 
   return (

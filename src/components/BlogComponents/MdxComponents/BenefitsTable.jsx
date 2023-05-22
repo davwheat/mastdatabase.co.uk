@@ -4,21 +4,21 @@ import { makeStyles } from '@material-ui/styles'
 
 import TickIcon from '@assets/icons/tick.svg'
 
-interface IBenefit {
-  text: string
-  description?: string[]
-}
+// interface IBenefit {
+//   text: string
+//   description?: string[]
+// }
 
-export interface IBenefitsTableProps {
-  /**
-   * Array of column headings
-   */
-  columnHeadings: [string, string]
-  /**
-   *
-   */
-  children: () => [IBenefit[], IBenefit[]]
-}
+// export interface IBenefitsTableProps {
+//   /**
+//    * Array of column headings
+//    */
+//   columnHeadings: [string, string]
+//   /**
+//    *
+//    */
+//   children: () => [IBenefit[], IBenefit[]]
+// }
 
 const useStyles = makeStyles({
   table: {
@@ -46,11 +46,14 @@ const useStyles = makeStyles({
   },
 })
 
-export function BenefitsTable({ columnHeadings, children }: IBenefitsTableProps) {
+export function BenefitsTable({ columnHeadings, children }) {
   const classes = useStyles()
   const data = children()
 
-  const childrenByRow: [IBenefit, IBenefit][] = Array.from(Array(Math.max(data[0].length, data[1].length)), () => [null, null])
+  /**
+   * @type [any, any][]
+   */
+  const childrenByRow = Array.from(Array(Math.max(data[0].length, data[1].length)), () => [null, null])
 
   data[0].forEach((c, i) => {
     childrenByRow[i][0] = c

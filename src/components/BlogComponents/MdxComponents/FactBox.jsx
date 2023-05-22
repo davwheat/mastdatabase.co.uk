@@ -3,10 +3,10 @@ import React from 'react'
 import Colors from '@data/colors.json'
 import { makeStyles } from '@material-ui/styles'
 
-export interface IFactBoxProps {
-  title?: string
-  children: React.ReactNode
-}
+// export interface IFactBoxProps {
+//   title?: string
+//   children: React.ReactNode
+// }
 
 const useStyles = makeStyles({
   factBox: {
@@ -23,7 +23,7 @@ const useStyles = makeStyles({
   },
 })
 
-export function FactBox({ title = 'Interesting fact', children }: IFactBoxProps) {
+export function FactBox({ title = 'Interesting fact', children }) {
   const classes = useStyles()
 
   return (

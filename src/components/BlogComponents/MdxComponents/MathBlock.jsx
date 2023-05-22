@@ -6,12 +6,12 @@ import clsx from 'clsx'
 import TeX from '@matejmazur/react-katex'
 import Colors from '@data/colors.json'
 
-interface IMathBlockProps {
-  title?: string
-  math: string
-  footer?: string
-  color: 'blue' | 'pink' | 'neutral'
-}
+// interface IMathBlockProps {
+//   title?: string
+//   math: string
+//   footer?: string
+//   color: 'blue' | 'pink' | 'neutral'
+// }
 
 const useStyles = makeStyles({
   root: {
@@ -70,7 +70,7 @@ const useStyles = makeStyles({
   },
 })
 
-export function MathBlock({ title, math, footer, color = 'blue' }: IMathBlockProps) {
+export function MathBlock({ title, math, footer, color = 'blue' }) {
   const classes = useStyles()
 
   return (

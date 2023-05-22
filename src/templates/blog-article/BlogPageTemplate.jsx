@@ -2,7 +2,6 @@ import React from 'react'
 
 import { graphql } from 'gatsby'
 
-import type { LocationContext } from '@gatsbyjs/reach-router'
 import { MDXProvider, MDXProviderComponentsProp } from '@mdx-js/react'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
 import { makeStyles } from '@material-ui/core'
@@ -23,7 +22,7 @@ import TeX from '@matejmazur/react-katex'
 import 'katex/dist/katex.min.css'
 import '@styles/blog.less'
 
-const MdxShortcodes: MDXProviderComponentsProp = {
+const MdxShortcodes = {
   a: Link,
   h1: MdxHeadingInterop('h1'),
   h2: MdxHeadingInterop('h2'),
@@ -50,60 +49,6 @@ const MdxShortcodes: MDXProviderComponentsProp = {
   },
 }
 
-export interface IMdxPageContext {
-  frontmatter: {
-    /**
-     * Blog article title, defined in frontmatter.
-     */
-    title: string
-    /**
-     * Blog article description, defined in frontmatter.
-     */
-    description: string
-    path: string
-    redirect_from?: string[]
-    /**
-     * Date article was created at.
-     */
-    created_at: string
-    /**
-     * Date article was updated at.
-     */
-    updated_at?: string
-    created_at_iso: string
-    updated_at_iso?: string
-    /**
-     * Is the post archived (hidden from the article list).
-     */
-    archived: boolean
-  }
-
-  /**
-   * A list of all headings in the document, down to a depth of H3.
-   */
-  tableOfContents: { items: TableOfContents }
-  /**
-   * An estimated time needed to read this article in minutes.
-   */
-  fields: {
-    timeToRead: {
-      minutes: number
-      words: number
-    }
-  }
-  /**
-   * An excerpt from the markdown file, used for SEO.
-   */
-  excerpt: string
-}
-
-interface IBlogPageTemplateProps {
-  pageContext: { id: string; page: number }
-  data: { mdx: IMdxPageContext & { page: number } }
-  location: LocationContext
-  children: React.ReactNode
-}
-
 const useStyles = makeStyles({
   footerPara: {
     marginBottom: 32,
@@ -114,12 +59,12 @@ const useStyles = makeStyles({
   },
 })
 
-export default function BlogPageTemplate({ pageContext, location, data: { mdx: data }, children }: IBlogPageTemplateProps) {
+export default function BlogPageTemplate({ pageContext, location, data: { mdx: data }, children }) {
   const context = data
   const classes = useStyles()
 
-  context.frontmatter.updated_at ||= context.frontmatter.created_at
-  context.frontmatter.archived ||= false
+  context.frontmatter.updated_at = context.frontmatter.updated_at || context.frontmatter.created_at
+  context.frontmatter.archived = context.frontmatter.archived || false
 
   return (
     <Layout location={location} title={context.frontmatter.title} description={context.frontmatter.description || context.excerpt}>
@@ -203,7 +148,7 @@ export default function BlogPageTemplate({ pageContext, location, data: { mdx: d
 }
 
 export const query = graphql`
-  query MdxBlogPost($id: String) {
+  query ($id: String!) {
     mdx(id: { eq: $id }) {
       frontmatter {
         title

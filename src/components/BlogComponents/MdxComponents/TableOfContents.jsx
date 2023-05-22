@@ -3,19 +3,6 @@ import Link from '@components/Links/Link'
 import { Heading } from '@components/BlogComponents/Typography/Heading'
 import { makeStyles } from '@material-ui/styles'
 import clsx from 'clsx'
-import type { IMdxPageContext } from '@templates/blog-article/BlogPageTemplate'
-
-interface ITableOfContentsProps {
-  data: { mdx: IMdxPageContext }
-}
-
-export type TableOfContentsItem = {
-  url: string
-  title: string
-  items?: TableOfContentsItem[]
-}
-
-export type TableOfContents = TableOfContentsItem[]
 
 const useTocStyles = makeStyles({
   tocRoot: {
@@ -48,7 +35,7 @@ export function TableOfContents({
   data: {
     mdx: { tableOfContents },
   },
-}: ITableOfContentsProps) {
+}) {
   const classes = useTocStyles()
 
   if (!tableOfContents) {
@@ -77,11 +64,7 @@ export function TableOfContents({
   )
 }
 
-interface ITableOfContentsItemProps {
-  data: TableOfContentsItem
-}
-
-function TableOfContentsItem({ data }: ITableOfContentsItemProps) {
+function TableOfContentsItem({ data }) {
   const classes = useTocStyles()
 
   return (

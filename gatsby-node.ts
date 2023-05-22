@@ -81,6 +81,7 @@ export const createPages = async inp => {
 
 export const onCreateNode = ({ node, actions }) => {
   const { createNodeField } = actions
+
   if (node.internal.type === `Mdx`) {
     createNodeField({
       node,
@@ -118,6 +119,7 @@ async function createBlogArticles({ actions, graphql, reporter }) {
   if (result.errors) {
     reporter.panic('failed to create posts ', result.errors)
   }
+
   const pages = result.data.allMdx.nodes
 
   pages.forEach((page, i) => {
@@ -141,8 +143,7 @@ async function createBlogArticles({ actions, graphql, reporter }) {
 
     actions.createPage({
       path: `/blog/${frontmatter.path}`,
-      component: path.resolve(`./src/templates/blog-article/BlogPageTemplate.tsx`) + `?__contentFilePath=${internal.contentFilePath}`,
-
+      component: `${path.resolve(`./src/templates/blog-article/BlogPageTemplate.jsx`)}?__contentFilePath=${internal.contentFilePath}`,
       context: { id, page: Math.ceil((i + 1) / BlogArticlesPerPage) },
     })
   })

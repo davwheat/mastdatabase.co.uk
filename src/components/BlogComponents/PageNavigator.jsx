@@ -47,7 +47,8 @@ export default function PageNavigator({ currentPage, maxPage }) {
   pages.add(currentPage + 1)
   pages.add(currentPage - 1)
 
-  const pageArray: number[] = Array.from(pages).filter(p => p >= 1 && p <= maxPage)
+  /** @type {number[]} */
+  const pageArray = Array.from(pages).filter(p => p >= 1 && p <= maxPage)
 
   let lastP = 1
 
