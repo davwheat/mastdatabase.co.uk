@@ -3,6 +3,30 @@ import React from 'react'
 import clsx from 'clsx'
 import { makeStyles } from '@material-ui/styles'
 
+// import { Link } from '@components/Link';
+
+export interface IHeadingProps {
+  /**
+   * Heading type.
+   */
+  variant: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
+  /**
+   * Which style the heading should use.
+   *
+   * Only needed to override the style from the `variant` prop.
+   *
+   * Use sparingly.
+   */
+  lookAlikeVariant?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
+  /**
+   * Hides the `#` icon when the heading is hovered over.
+   */
+  noAnchorButton?: boolean
+  id?: string
+  className?: string
+  children: React.ReactNode
+}
+
 const useStyles = makeStyles({
   common: {
     lineHeight: 1.15,
@@ -44,7 +68,7 @@ const useStyles = makeStyles({
   },
 })
 
-export function Heading({ variant, className, children, lookAlikeVariant, noAnchorButton = false, ...otherProps }) {
+export function Heading({ variant, className, children, lookAlikeVariant, noAnchorButton = false, ...otherProps }: IHeadingProps) {
   const classes = useStyles()
 
   return React.createElement(variant, {

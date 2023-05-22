@@ -1,6 +1,11 @@
 import { makeStyles } from '@material-ui/styles'
 import React from 'react'
+import type { IMdxPageContextWithoutBody } from '@templates/blog-article/BlogPageTemplate'
 import Hero from '@components/Design/Hero'
+
+interface IDocsPageInfoProps {
+  pageContext: IMdxPageContextWithoutBody
+}
 
 const useStyles = makeStyles({
   root: {
@@ -22,7 +27,7 @@ const useStyles = makeStyles({
 /**
  * Shows some article metadata.
  */
-export function BlogHero({ pageContext }) {
+export function BlogHero({ pageContext }: IDocsPageInfoProps) {
   const classes = useStyles()
 
   if (!pageContext) {

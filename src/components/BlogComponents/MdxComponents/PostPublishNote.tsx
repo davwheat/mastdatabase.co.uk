@@ -11,6 +11,11 @@ import SquiggleSvg from '@assets/images/squiggles/squiggle1.inline.svg'
 
 dayjs.extend(dayjsLocalizedFormat)
 
+export interface IPostPublishNoteBox {
+  date: Date | Dayjs
+  children: React.ReactNode
+}
+
 const useStyles = makeStyles({
   postPubNote: {
     padding: 16,
@@ -49,7 +54,7 @@ const useStyles = makeStyles({
   },
 })
 
-export function PostPublishNote({ date, children }) {
+export function PostPublishNote({ date, children }: IPostPublishNoteBox) {
   const classes = useStyles()
 
   return (
