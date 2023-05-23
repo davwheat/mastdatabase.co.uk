@@ -36,7 +36,12 @@ const useStyles = makeStyles({
   },
 })
 
-export default function PageNavigator({ currentPage, maxPage }) {
+interface PageNavigatorProps {
+  currentPage: number
+  maxPage: number
+}
+
+export default function PageNavigator({ currentPage, maxPage }: PageNavigatorProps) {
   const classes = useStyles()
 
   const pages = new Set<number>()
@@ -48,6 +53,7 @@ export default function PageNavigator({ currentPage, maxPage }) {
   pages.add(currentPage - 1)
 
   const pageArray: number[] = Array.from(pages).filter(p => p >= 1 && p <= maxPage)
+  pageArray.sort((a, b) => a - b)
 
   let lastP = 1
 
