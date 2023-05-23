@@ -111,7 +111,7 @@
     "clean": "gatsby clean",
     "lint": "eslint . --ext md,mdx"
   },
-  "packageManager": "yarn@3.5.0",
+  "packageManager": "yarn@3.5.1",
   "resolutions": {
     "underscore.inflection": "davwheat/underscore.inflection#master",
     "@types/react": "^18",
