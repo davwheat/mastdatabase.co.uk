@@ -125,6 +125,7 @@ export default function Footer() {
 
         <nav className={classes.nav}>
           <Link href="/">Home</Link>
+          <Link href="/blog">Blog</Link>
           <Link href="https://davwheat.dev/">David Wheatley</Link>
         </nav>
       </main>
