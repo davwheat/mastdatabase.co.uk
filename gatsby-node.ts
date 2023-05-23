@@ -174,8 +174,8 @@ async function createBlogListing({ actions, graphql, reporter }) {
   const posts = result.data.allMdx.nodes
   const numPages = Math.ceil(posts.length / BlogArticlesPerPage)
 
-  actions.createRedirect({
-    fromPath: `/blog/1`,
+  createRedirect({
+    fromPath: `/blog/1/`,
     toPath: `/blog`,
     redirectInBrowser: true,
     isPermanent: true,
