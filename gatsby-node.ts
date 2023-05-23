@@ -2,7 +2,7 @@ import path from 'path'
 import CaseSensitivePathsPlugin from 'case-sensitive-paths-webpack-plugin'
 import readingTime from 'reading-time'
 
-const BlogArticlesPerPage = 2
+const BlogArticlesPerPage = 16
 
 /**
  * Customise webpack config.
