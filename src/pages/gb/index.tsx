@@ -41,17 +41,17 @@ const Links: ILinkGroup[] = [
       },
     ],
   },
-  {
-    groupName: 'Analyses',
-    groupDescription: 'UK mobile networking analyses.',
-    groupLinks: [
-      {
-        title: 'Vodafone-Three merger',
-        description: "How the merger between Vodafone UK and Three UK might affect the nation's telecommunications.",
-        url: '/gb/vodafone-three-merger',
-      },
-    ],
-  },
+  // {
+  //   groupName: 'Analyses',
+  //   groupDescription: 'UK mobile networking analyses.',
+  //   groupLinks: [
+  //     {
+  //       title: 'Vodafone-Three merger',
+  //       description: "How the merger between Vodafone UK and Three UK might affect the nation's telecommunications.",
+  //       url: '/gb/vodafone-three-merger',
+  //     },
+  //   ],
+  // },
   {
     groupName: 'Maps',
     groupDescription: 'UK mobile network related maps.',
