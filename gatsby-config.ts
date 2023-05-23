@@ -5,7 +5,7 @@ const __IS_DEV__ = process.env.NODE_ENV !== 'production'
 import Colors from './src/data/colors.json'
 
 const nonCiPlugins: any[] = !(process.env.CI || process.env.CF_PAGES)
-  ? [`gatsby-plugin-webpack-bundle-analyser-v2`, `gatsby-plugin-webpack-size`]
+  ? [`gatsby-plugin-webpack-bundle-analyser-v2`, `gatsby-plugin-webpack-size`, `gatsby-plugin-perf-budgets`]
   : []
 
 // These plugins will only be used in production builds
@@ -99,7 +99,6 @@ const config: GatsbyConfig = {
         },
       },
     },
-    `gatsby-plugin-perf-budgets`,
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
