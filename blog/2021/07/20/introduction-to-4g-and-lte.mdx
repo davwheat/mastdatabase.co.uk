@@ -1,0 +1,85 @@
+---
+title: Introduction to 4G/LTE and carrier aggregation.
+description: 4G and LTE are terms that are often use interchangeably, but there are some significant differences between them.
+path: 2021/07/20/introduction-to-4g-and-lte
+created_at: 2021-07-20T01:00Z
+---
+
+import { FactBox } from '@blog'
+
+<TableOfContents {...props} />
+
+## An introduction into 4G/LTE
+
+LTE is a standard that was developed by the 3GPP (3rd Generation Partnership Project) and was first commercially deployed in December 2009 in
+Stockholm and Oslo by Telia.
+
+4G is a specification defined the United Nation's International Telecommunication Union (ITU). In a nutshell, it requires:
+
+- peak throughput of 100 Mbps for rapidly moving devices (cars, trains, etc.)
+- peak throughput of 1 Gbps for slowly moving devices (pedestrians)
+
+<FactBox title="GSM's weird acronym">
+
+The weirdness of GSM's acronym is because it was originally named **Groupe Spécial Mobile** (French for "Special Mobile Group"), set up by the
+European Conference of Postal and Telecommunications Administrations (CEPT) in 1983.
+
+This responsibility was transferred to the brand new European Telecommunications Standards Institute in 1988, following a proposal by the EU.
+
+</FactBox>
+
+## What's the difference between 4G and LTE?
+
+While many people refer to 4G and LTE interchangably, they are different.
+
+The 4G specification defines a minimum theoretical speed, but for a long time LTE networking infrastructure couldn't actually meet these speeds.
+This didn't stop networks from branding their LTE networks as "4G" or "4G LTE", however. It wasn't until LTE-Advanced (connecting to LTE on
+multiple frequencies at once) was deployed that LTE could meet 4G's specifications and call itself 4G.
+
+A lot of confusion stems from the fact that some networks in the USA and Canada branded some evolved versions of their 3G networking (namely
+[HSPA+](https://en.wikipedia.org/wiki/Evolved_High_Speed_Packet_Access)) "4G", despite it still actually being 3G.
+
+When these networks then started rolling out real 4G infrastructure, they were left with an issue: they had already released 4G, so they couldn't
+actually call 4G by its actual name without confusing customers. Some networks chose to brand services as "4G LTE", while others chose even more
+confusing names, such as ["5Ge" on AT&T](https://www.tomsguide.com/uk/us/5ge-explained,news-29329.html).
+
+Eventually, most consumers and networks shortened this to just "LTE", resulting in the confusing system we have today. Thankfully, these
+schenanigans seem to have fizzled away with 5G.
+
+| North America |     Rest of World     |
+| :-----------: | :-------------------: |
+|      2G       |          2G           |
+|      3G       |          3G           |
+|      4G       | HSPA/HSPA+ (still 3G) |
+|  LTE/4G LTE   | 4G LTE (trials only)  |
+|  4G LTE/5Ge   |       4G+/LTE-A       |
+|      5G       |          5G           |
+
+## What is LTE-Advanced (4G+)?
+
+LTE-Advanced is the first version of LTE to truly comply with the 4G specification.
+
+LTE-A does this by including special technology called carrier aggregation (CA). CA allows your device to communicate with a 4G LTE network on
+multiple frequencies at the same time. For example, in the UK on Vodafone, your phone would likely connect to bands 7 and 20 at the same time,
+aggregating their theoretical throughput (speed). By doing this, it can significantly increase the theoretical speed available to users.
+
+There are different types of carrier aggregation: intra-band contiguous; intra-band non-contiguous; and inter-band non-contiguous. These sound
+far more complex than they really are.
+
+### Intra-band contiguous
+
+Your phone makes multiple connections on a single frequency band, in one continuous block of frequencies.
+
+![Diagram of intra-band contiguous carrier aggregation](./intraband-contiguous.svg)
+
+### Intra-band non-contiguous
+
+Your phone makes multiple connections on a single frequency band, in one or more blocks of frequencies.
+
+![Diagram of intra-band non-contiguous carrier aggregation](./intraband-noncontiguous.svg)
+
+### Inter-band non-contiguous
+
+Your phone makes multiple connections on two or more frequency bands.
+
+![Diagram of inter-band non-contiguous carrier aggregation](./interband-noncontiguous.svg)

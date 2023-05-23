@@ -1,4 +1,5 @@
 {
+  "include": ["./src/**/*"],
   "compilerOptions": {
     "target": "ESNext" /* or at least ES2015 */,
     "module": "ESNext" /* or at least ES2015 */,
@@ -21,7 +22,8 @@
       "@templates/*": ["templates/*"],
       "@hooks/*": ["hooks/*"],
       "@leaflet/*": ["leaflet/*"],
-      "@atoms": ["atoms"]
+      "@atoms": ["atoms"],
+      "@blog/*": ["components/BlogComponents/MdxComponents/*"]
     }
   },
   "exclude": ["node_modules", "build", "scripts", "acceptance-tests", "webpack", "jest", "src/setupTests.ts"]
