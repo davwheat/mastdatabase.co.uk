@@ -1,0 +1,121 @@
+---
+title: 'LTE: why are high frequencies faster than low frequencies?'
+description: While theoretical speed on different frequencies are identical on LTE, this is very rarely the case in the real world. Why is that?
+path: 2021/10/11/speed-differences-high-low-frequencies
+created_at: 2021-10-11T20:00Z
+---
+
+import { FactBox, MathBlock } from '@blog'
+import SineWaveDampeningSimulator from './SineWaveDampeningSimulator'
+import CoverageResourceBlocksDiagram from './CoverageResourceBlocksDiagram'
+
+<TableOfContents {...props}></TableOfContents>
+
+In the past [I have discussed duplexing modes](/blog/2021/07/24/lte-bands-and-duplex-modes) (FDD and TDD) to see how they affect speed on LTE and
+5G. In that article, I touched on the fact that frequency shouldn't affect throughput in theoretical terms, but I never explained why this wasn't
+the case in the real-world.
+
+# Penetration power
+
+All radio waves come under the category of electromagnetic radiation. Electromagnetic waves travel through materials differently. This depends on
+a number of characteristics, including the wave frequency.
+
+When a wave passes through a material, it loses a proportion of its power for every metre it travels. This is referred to as the **attentuation
+coefficient**. Materials with a high attentuation coefficient are less easily penetrated by waves, such as those from phone masts.
+
+This attenuation coefficient varies dependent on the material density, construction and the wave frequency. Lower frequency waves (e.g. B20/800
+MHz) normally travel more easily through materials than higher frequency waves (e.g. B1/2100 MHz) as materials have lower attenuation
+coefficients for waves at these lower frequencies.
+
+This power loss is most critically an issue with [newer 5G mmWave](https://www.androidauthority.com/what-is-5g-mmwave-933631/), which uses
+frequencies upwards of 26 GHz. These frequencies can be blocked using just sheets of paper, let alone brick walls or
+[even just your hands](https://www.eetimes.com/mwc-are-your-5-fingers-blocking-your-5g/).
+
+<SineWaveDampeningSimulator></SineWaveDampeningSimulator>
+
+# How does the distance affect LTE?
+
+Every phone needs to be in receiving and transmitting range of an LTE site to access an LTE network.
+
+LTE on Band 20 (800 MHz) can inherently transmit and receive across greater distances than LTE on Band 40 (2300 MHz), because of the general rule
+of higher frequencies have higher attenuation coefficients, meaning power loss is higher over longer distances.
+
+It may appear, at first, that this only has an effect on network coverage, but this also ends up having a significant impact on speed too.
+
+# Why does greater coverage result in lower speeds?
+
+## Resource Blocks
+
+On LTE, every device is allocated a number of **resource blocks** (RBs). These are specific transceiving periods which the network dedicates to
+the specific UE.
+
+RBs are used for transmitting and receiving data over the network. The number of resource blocks allocated to a UE is dependent on the throughput
+requested by the UE, as well as what the eNB is able to provide. Often times, the limiting factor for LTE/NR performance is the resource block
+count available to the UE.
+
+## Allocating blocks
+
+All eNBs have a limited number of resource blocks available to allocate. This total needs to be shared between all UEs connected to the cell
+site. The total number of RBs available for the eNB to allocate depends on the bandwidth available within its spectrum. You can see the bandwidth
+to resource block count mapping in the table below.
+
+<div className="narrow">
+
+| Bandwidth | RBs | Subcarriers |
+| :-------: | :-: | :---------: |
+|  1.4 MHz  |  6  |     72      |
+|   3 MHz   | 15  |     180     |
+|   5 MHz   | 25  |     375     |
+|  10 MHz   | 50  |     600     |
+|  15 MHz   | 75  |     975     |
+|  20 MHz   | 100 |    1200     |
+
+</div>
+
+<FactBox title="Previous article">
+
+For more detailed research and information about what resource blocks are, along with additional background information about subcarriers and
+QAM, [check out my previous article](/blog/2021/08/21/ofdm-subcarriers-rb-in-4g-lte-and-5g) about orthogonal frequency division multiplexing
+(OFDM).
+
+</FactBox>
+
+For a LTE 800 MHz (B20) site with 10 MHz bandwidth &mdash; this is a typical O2-UK coverage-oriented site &mdash; this would be just **50 RBs**.
+Meanwhile, for a site with 3xCA on B1+B7+B20 with 15, 20 and 10 MHz respectively (a typical Vodafone UK capacity site), this is a total of **225
+RBs**.
+
+Remember from my OFDM article, linked above, that we can calculate the maximum theoretical throughput using the number of resource blocks and the
+modulation used for data transfer:
+
+<figure role="group">
+  <MathBlock
+    title="Max throughput calculation"
+    math="\text{subcarrier count} = \text{RB count} \times 12\\\text{max throughput (bps)} = 15000 \times \text{subcarrier count} \times \text{bits per symbol}"
+  ></MathBlock>
+  <MathBlock
+    color="neutral"
+    title="Example"
+    footer="45 MHz (225 resource blocks) at 256 QAM"
+    math="\text{subcarrier count} = 225 \times 12 = 2700\\2700 \times 15000 \times 8 = 324\space\text{Mbps}"
+  ></MathBlock>
+</figure>
+
+We can see that decreasing the number of resource blocks **directly affects the theoretical throughput** between the UE and eNB. However,
+remember that those 225 resource blocks must be shared between all devices connected to the eNB, which isn't just yours (unless your're on some
+super special test site, of course!).
+
+<CoverageResourceBlocksDiagram></CoverageResourceBlocksDiagram>
+
+As you modify the frequency, notice how the amount of RBs, and therefore maximum throughput, allocated to each individual UE changes. This is a
+direct consequence of reaching greater or fewer UEs from one eNB.
+
+## Conclusion
+
+While frequency should have no effect on the achieveable speeds in theory, however real-world speeds almost always do relate to frequency.
+
+The extra coverage achieved on lower frequencies normally means that networks deploy a reduced number of sites, resulting in a greater number of
+UEs connected to a single site. This means that the amount of resources available to individual devices is reduced, meaning that possible speeds
+are much lower.
+
+If you haven't checked out the previous article, which explores how duplexing modes (TDD and FDD) affect speeds and useability, I'd highly
+recommend [giving it a read](/blog/2021/07/24/lte-bands-and-duplex-modes).
