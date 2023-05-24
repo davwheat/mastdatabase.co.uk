@@ -50,25 +50,6 @@ export default function Breadcrumbs({ data }: IBreadcrumbsProps) {
     breadcrumbsToDisplay.push(data[data.length - 2], data[data.length - 1])
   }
 
-  console.log(
-    JSON.stringify(
-      {
-        '@context': 'https://schema.org',
-        '@type': 'BreadcrumbList',
-        itemListElement: data.map((crumb, i) => ({
-          '@type': 'ListItem',
-          position: i,
-          item: {
-            '@id': 'https://mastdatabase.co.uk' + crumb.url,
-            name: crumb.t,
-          },
-        })),
-      },
-      null,
-      2,
-    ),
-  )
-
   return (
     <Section width="wider" darker usePadding>
       <nav aria-label="Breadcrumbs">
