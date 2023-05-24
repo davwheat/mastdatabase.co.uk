@@ -2,12 +2,13 @@ import React from 'react'
 
 import { graphql } from 'gatsby'
 
-import { MDXProvider, MDXProviderComponentsProp } from '@mdx-js/react'
+import { MDXProvider } from '@mdx-js/react'
 import { makeStyles } from '@material-ui/core'
 import clsx from 'clsx'
 
 import { BlogHero } from '@components/BlogComponents/BlogHero'
 import Section from '@components/Design/Section'
+import Breadcrumbs from '@components/Design/Breadcrumbs'
 
 import Layout from '@components/Layout'
 import Link from '@components/Links/Link'
@@ -15,6 +16,7 @@ import { MdxHeadingInterop } from '@components/BlogComponents/Typography/MdxHead
 import { TableOfContents } from '@components/BlogComponents/TableOfContents'
 import { BlogErrorBoundary } from '@components/BlogComponents/BlogErrorBoundary'
 import { FactBox, MathBlock } from '@blog/index'
+import truncateString from '@functions/truncate'
 
 import TeX from '@matejmazur/react-katex'
 
@@ -113,11 +115,13 @@ export default function BlogPageTemplate({ pageContext, location, data: { mdx: d
         <BlogErrorBoundary>
           <BlogHero pageContext={context} />
 
-          <Section>
-            <Link href={`/blog/${pageContext.page}`}>Back to article list</Link>
-          </Section>
-
-          <hr />
+          <Breadcrumbs
+            data={[
+              { t: 'Home', url: '/' },
+              { t: 'Blog articles', url: `/blog/${pageContext.page}` },
+              { t: truncateString(context.frontmatter.title, 35), url: location.pathname },
+            ]}
+          />
 
           <Section id="blog-article-content">
             <BlogErrorBoundary>
@@ -128,10 +132,7 @@ export default function BlogPageTemplate({ pageContext, location, data: { mdx: d
                 </FactBox>
               )}
 
-              <MDXProvider components={MdxShortcodes}>
-                {/* <MDXRenderer pageContext={contextNoBody}>{body}</MDXRenderer> */}
-                {children}
-              </MDXProvider>
+              <MDXProvider components={MdxShortcodes}>{children}</MDXProvider>
             </BlogErrorBoundary>
           </Section>
 
@@ -140,7 +141,7 @@ export default function BlogPageTemplate({ pageContext, location, data: { mdx: d
           <Section component="footer">
             <p className={clsx('text-speak text-center', classes.footerPara)}>
               Noticed something not quite right with this blog article? Give me a poke at{' '}
-              <Link href={`mailto:blog@davwheat.dev?subject=${encodeURIComponent(context.frontmatter.title)}`}>blog@davwheat.dev</Link> or{' '}
+              <Link href={`mailto:blog@mastdatabase.co.uk?subject=${encodeURIComponent(context.frontmatter.title)}`}>blog@davwheat.dev</Link> or{' '}
               <Link href="https://t.me/davwheat">t.me/davwheat</Link> and let me know.
             </p>
           </Section>
