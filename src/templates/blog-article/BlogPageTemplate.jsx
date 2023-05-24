@@ -141,8 +141,10 @@ export default function BlogPageTemplate({ pageContext, location, data: { mdx: d
           <Section component="footer">
             <p className={clsx('text-speak text-center', classes.footerPara)}>
               Noticed something not quite right with this blog article? Give me a poke at{' '}
-              <Link href={`mailto:blog@mastdatabase.co.uk?subject=${encodeURIComponent(context.frontmatter.title)}`}>blog@davwheat.dev</Link> or{' '}
-              <Link href="https://t.me/davwheat">t.me/davwheat</Link> and let me know.
+              <Link href={`mailto:blog@mastdatabase.co.uk?subject=${encodeURIComponent(context.frontmatter.title)}`}>
+                blog@mastdatabase.co.uk
+              </Link>{' '}
+              or <Link href="https://t.me/davwheat">t.me/davwheat</Link> and let me know.
             </p>
           </Section>
 
