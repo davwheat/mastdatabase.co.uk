@@ -110,6 +110,7 @@ export default function IndexPage({ location }: PageProps) {
             description="Web GUI for editing spectrum data for this site, and the mobile-spectrum-data package."
             url="/spectrum-editor"
           />
+          <CardLink title="Blog" description="Mobile networking blog, explaining technologies, new developments and more." url="/blog" />
         </div>
       </Section>
 

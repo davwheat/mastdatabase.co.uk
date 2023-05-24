@@ -2,12 +2,13 @@ import React from 'react'
 
 import { graphql } from 'gatsby'
 
-import { MDXProvider, MDXProviderComponentsProp } from '@mdx-js/react'
+import { MDXProvider } from '@mdx-js/react'
 import { makeStyles } from '@material-ui/core'
 import clsx from 'clsx'
 
 import { BlogHero } from '@components/BlogComponents/BlogHero'
 import Section from '@components/Design/Section'
+import Breadcrumbs from '@components/Design/Breadcrumbs'
 
 import Layout from '@components/Layout'
 import Link from '@components/Links/Link'
@@ -15,6 +16,7 @@ import { MdxHeadingInterop } from '@components/BlogComponents/Typography/MdxHead
 import { TableOfContents } from '@components/BlogComponents/TableOfContents'
 import { BlogErrorBoundary } from '@components/BlogComponents/BlogErrorBoundary'
 import { FactBox, MathBlock } from '@blog/index'
+import truncateString from '@functions/truncate'
 
 import TeX from '@matejmazur/react-katex'
 
@@ -68,49 +70,58 @@ export default function BlogPageTemplate({ pageContext, location, data: { mdx: d
 
   return (
     <Layout location={location} title={context.frontmatter.title} description={context.frontmatter.description || context.excerpt}>
-      <script type="application/ld+json">
-        {JSON.stringify({
-          '@context': 'https://schema.org',
-          '@type': 'BlogPosting',
-          headline: context.frontmatter.title,
-          // image: 'https://benborgers.com/assets/json-ld.png',
-          publisher: {
-            '@type': 'Organization',
-            name: 'David Wheatley',
-            url: 'https://davwheat.dev',
-            // logo: {
-            //   '@type': 'ImageObject',
-            //   url: 'https://benborgers.com/assets/index.png',
-            //   width: '1200',
-            //   height: '630',
-            // },
-          },
-          url: `https://davwheat.dev/${context.frontmatter.path}`,
-          datePublished: context.frontmatter.created_at_iso,
-          dateCreated: context.frontmatter.created_at_iso,
-          dateModified: context.frontmatter.updated_at_iso ?? context.frontmatter.created_at_iso,
-          description: context.frontmatter.description,
-          author: {
-            '@type': 'Person',
-            name: 'David Wheatley',
-            url: 'https://davwheat.dev',
-          },
-          mainEntityOfPage: {
-            '@type': 'WebPage',
-            '@id': `https://davwheat.dev/blog/${pageContext.page}`,
-          },
-        })}
-      </script>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            {
+              '@context': 'https://schema.org',
+              '@type': 'BlogPosting',
+              headline: context.frontmatter.title,
+              // image: 'https://benborgers.com/assets/json-ld.png',
+              publisher: {
+                '@type': 'Organization',
+                name: 'David Wheatley',
+                url: 'https://davwheat.dev',
+                // logo: {
+                //   '@type': 'ImageObject',
+                //   url: 'https://benborgers.com/assets/index.png',
+                //   width: '1200',
+                //   height: '630',
+                // },
+              },
+              url: `https://davwheat.dev/${context.frontmatter.path}`,
+              datePublished: context.frontmatter.created_at_iso,
+              dateCreated: context.frontmatter.created_at_iso,
+              dateModified: context.frontmatter.updated_at_iso ?? context.frontmatter.created_at_iso,
+              description: context.frontmatter.description,
+              author: {
+                '@type': 'Person',
+                name: 'David Wheatley',
+                url: 'https://davwheat.dev',
+              },
+              mainEntityOfPage: {
+                '@type': 'WebPage',
+                '@id': `https://davwheat.dev/blog/${pageContext.page}`,
+              },
+            },
+            null,
+            2,
+          ),
+        }}
+      />
 
       <article id="blog-article">
         <BlogErrorBoundary>
           <BlogHero pageContext={context} />
 
-          <Section>
-            <Link href={`/blog/${pageContext.page}`}>Back to article list</Link>
-          </Section>
-
-          <hr />
+          <Breadcrumbs
+            data={[
+              { t: 'Home', url: '/' },
+              { t: 'Blog articles', url: `/blog/${pageContext.page}` },
+              { t: truncateString(context.frontmatter.title, 35), url: location.pathname },
+            ]}
+          />
 
           <Section id="blog-article-content">
             <BlogErrorBoundary>
@@ -121,10 +132,7 @@ export default function BlogPageTemplate({ pageContext, location, data: { mdx: d
                 </FactBox>
               )}
 
-              <MDXProvider components={MdxShortcodes}>
-                {/* <MDXRenderer pageContext={contextNoBody}>{body}</MDXRenderer> */}
-                {children}
-              </MDXProvider>
+              <MDXProvider components={MdxShortcodes}>{children}</MDXProvider>
             </BlogErrorBoundary>
           </Section>
 
@@ -133,8 +141,10 @@ export default function BlogPageTemplate({ pageContext, location, data: { mdx: d
           <Section component="footer">
             <p className={clsx('text-speak text-center', classes.footerPara)}>
               Noticed something not quite right with this blog article? Give me a poke at{' '}
-              <Link href={`mailto:blog@davwheat.dev?subject=${encodeURIComponent(context.frontmatter.title)}`}>blog@davwheat.dev</Link> or{' '}
-              <Link href="https://t.me/davwheat">t.me/davwheat</Link> and let me know.
+              <Link href={`mailto:blog@mastdatabase.co.uk?subject=${encodeURIComponent(context.frontmatter.title)}`}>
+                blog@mastdatabase.co.uk
+              </Link>{' '}
+              or <Link href="https://t.me/davwheat">t.me/davwheat</Link> and let me know.
             </p>
           </Section>
 
