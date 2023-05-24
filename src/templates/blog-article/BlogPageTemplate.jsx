@@ -68,39 +68,46 @@ export default function BlogPageTemplate({ pageContext, location, data: { mdx: d
 
   return (
     <Layout location={location} title={context.frontmatter.title} description={context.frontmatter.description || context.excerpt}>
-      <script type="application/ld+json">
-        {JSON.stringify({
-          '@context': 'https://schema.org',
-          '@type': 'BlogPosting',
-          headline: context.frontmatter.title,
-          // image: 'https://benborgers.com/assets/json-ld.png',
-          publisher: {
-            '@type': 'Organization',
-            name: 'David Wheatley',
-            url: 'https://davwheat.dev',
-            // logo: {
-            //   '@type': 'ImageObject',
-            //   url: 'https://benborgers.com/assets/index.png',
-            //   width: '1200',
-            //   height: '630',
-            // },
-          },
-          url: `https://davwheat.dev/${context.frontmatter.path}`,
-          datePublished: context.frontmatter.created_at_iso,
-          dateCreated: context.frontmatter.created_at_iso,
-          dateModified: context.frontmatter.updated_at_iso ?? context.frontmatter.created_at_iso,
-          description: context.frontmatter.description,
-          author: {
-            '@type': 'Person',
-            name: 'David Wheatley',
-            url: 'https://davwheat.dev',
-          },
-          mainEntityOfPage: {
-            '@type': 'WebPage',
-            '@id': `https://davwheat.dev/blog/${pageContext.page}`,
-          },
-        })}
-      </script>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            {
+              '@context': 'https://schema.org',
+              '@type': 'BlogPosting',
+              headline: context.frontmatter.title,
+              // image: 'https://benborgers.com/assets/json-ld.png',
+              publisher: {
+                '@type': 'Organization',
+                name: 'David Wheatley',
+                url: 'https://davwheat.dev',
+                // logo: {
+                //   '@type': 'ImageObject',
+                //   url: 'https://benborgers.com/assets/index.png',
+                //   width: '1200',
+                //   height: '630',
+                // },
+              },
+              url: `https://davwheat.dev/${context.frontmatter.path}`,
+              datePublished: context.frontmatter.created_at_iso,
+              dateCreated: context.frontmatter.created_at_iso,
+              dateModified: context.frontmatter.updated_at_iso ?? context.frontmatter.created_at_iso,
+              description: context.frontmatter.description,
+              author: {
+                '@type': 'Person',
+                name: 'David Wheatley',
+                url: 'https://davwheat.dev',
+              },
+              mainEntityOfPage: {
+                '@type': 'WebPage',
+                '@id': `https://davwheat.dev/blog/${pageContext.page}`,
+              },
+            },
+            null,
+            2,
+          ),
+        }}
+      />
 
       <article id="blog-article">
         <BlogErrorBoundary>
