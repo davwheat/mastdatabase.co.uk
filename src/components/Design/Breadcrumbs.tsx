@@ -56,7 +56,7 @@ export default function Breadcrumbs({ data }: IBreadcrumbsProps) {
         <ol className={classes.listRoot}>
           {breadcrumbsToDisplay.map((crumb, index) => {
             const separator = index < breadcrumbsToDisplay.length - 1 && (
-              <span className={classes.separator} aria-hidden="true">
+              <span className={classes.separator} aria-hidden="true" role="presentation">
                 /
               </span>
             )
