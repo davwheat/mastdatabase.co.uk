@@ -124,7 +124,9 @@
       }
     }
 
-    img.emoji {
+    img.emoji,
+    // Workaround for broken remark-twemoji
+    img[classname='emoji'] {
       display: inline-block;
       height: 1.15em;
       width: auto;
