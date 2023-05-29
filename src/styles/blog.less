@@ -7,7 +7,7 @@
     margin: 32px 16px;
   }
 
-  &-content {
+  &-content > div {
     ul {
       list-style-type: square;
       list-style-position: outside;
@@ -41,14 +41,15 @@
     }
 
     img {
-      &:not(.gatsby-resp-image-image) {
-        display: block;
-        width: 500px;
-        max-width: 100%;
-        margin: auto;
-      }
-
       object-fit: contain;
+    }
+
+    > img,
+    > figure > img:last-child {
+      display: block;
+      width: 500px;
+      max-width: 100%;
+      margin: 16px auto;
     }
 
     .gatsby-resp-image-wrapper {
