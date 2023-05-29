@@ -3,40 +3,42 @@ import { TileLayer } from 'react-leaflet'
 import CoverageProvider, { ICoverageLayer, ICoverageLayerKey } from './CoverageProvider'
 import EELogo from '@assets/icons/brands/ee.inline.svg'
 
-export default class EECoverageMapProvider extends CoverageProvider {
+export default class EECoverageMapProvider extends CoverageProvider<true> {
   providerName: string = 'EE'
   defaultLayerId: number = this.getLayers().findIndex(layer => layer.label === '4G (all bands)')
   supportsSites: boolean = false
-  readonly supportsVersionHistory = false
+  readonly supportsVersionHistory = true
 
   readonly providerIcon = (<EELogo />)
 
-  protected allVersions: undefined
-  protected version: undefined
+  protected allVersions = {
+    '2023-05-12': '12 May 2023',
+  }
+  protected version = '2023-05-12'
 
   getLayers(): ICoverageLayer[] {
     return [
       {
         label: '2G',
-        url: this.makeLayerUri('2g_ee'),
+        url: this.makeLayerUri('2g'),
       },
       {
         label: '3G',
-        url: this.makeLayerUri('3g_ee'),
+        url: this.makeLayerUri('3g'),
       },
       {
         label: '4G (non-VoLTE)',
-        url: this.makeLayerUri('4g_base_ee'),
+        url: this.makeLayerUri('4g'),
       },
       {
         label: '4G (800 MHz only)',
         hidden: true,
-        url: this.makeLayerUri('4g_800_ltea'),
+        url: this.makeLayerUri('4g_800'),
       },
       {
         label: '4G (1800 MHz only)',
         hidden: true,
-        url: this.makeLayerUri('4g_1800_ltea'),
+        url: this.makeLayerUri('4g_1800'),
       },
       {
         label: '4G (2600 MHz only)',
@@ -45,14 +47,14 @@ export default class EECoverageMapProvider extends CoverageProvider {
           <>
             {/* Add twice to improve opaqueness */}
             <TileLayer
-              key={this.makeLayerUri('4g_2600_ltea')}
-              url={this.makeLayerUri('4g_2600_ltea')}
+              key={this.makeLayerUri('4g_2600')}
+              url={this.makeLayerUri('4g_2600')}
               attribution={this.attributionTemplate('4G (2600 MHz only)')}
             />
             <TileLayer
-              key={this.makeLayerUri('4g_2600_ltea') + '2'}
+              key={this.makeLayerUri('4g_2600') + '2'}
               opacity={0.5}
-              url={this.makeLayerUri('4g_2600_ltea')}
+              url={this.makeLayerUri('4g_2600')}
               attribution={this.attributionTemplate('4G (2600 MHz only)')}
             />
           </>
@@ -60,37 +62,37 @@ export default class EECoverageMapProvider extends CoverageProvider {
       },
       {
         label: '4G (all bands)',
-        url: this.makeLayerUri('4g_max_ee'),
+        url: this.makeLayerUri('4g_volte'),
       },
       {
         label: '4G CA only (legacy)',
         hidden: true,
-        url: this.makeLayerUri('4g_ca1826_ltea'),
+        url: this.makeLayerUri('4g_18_26_ca'),
       },
       {
         label: '5G (n78 + LTE)',
         hidden: true,
-        url: this.makeLayerUri('5g_base_ee'),
+        url: this.makeLayerUri('5g_high'),
       },
       {
         label: '5G (n78 only)',
         hidden: true,
-        url: this.makeLayerUri('5g_3400_ee'),
+        url: this.makeLayerUri('5g_3400'),
       },
       {
-        label: '5G (n1 only)',
+        label: '5G (n1 only) [DEAD]',
         hidden: true,
-        url: this.makeLayerUri('5g_2100_ee'),
+        url: this.makeLayerUri('5g_2100'),
       },
       {
         label: '5G (all)',
-        url: this.makeLayerUri('5g_max_ee'),
+        url: this.makeLayerUri('5g'),
       },
     ]
   }
 
   private makeLayerUri(layerName: string): string {
-    return `https://coverage.ee.co.uk/geowebcache/service/gmaps?layers=${layerName}&zoom={z}&x={x}&y={y}&format=image/png`
+    return `https://234-30.coveragetiles.com/${this.version}/${layerName}/{z}/{x}/{y}.png`
   }
 
   getLayerKeys(): ICoverageLayerKey[] {

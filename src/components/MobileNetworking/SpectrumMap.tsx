@@ -1,14 +1,15 @@
-import React, { useId, useRef, useState } from 'react'
+import React, { useId, useState } from 'react'
 import { makeStyles } from '@material-ui/styles'
 import clsx from 'clsx'
 import Colors from '@data/colors.json'
 import Breakpoints from '@data/breakpoints'
-import { nanoid } from 'nanoid'
-import type { SpectrumBlock } from 'mobile-spectrum-data/@types'
 import { arfcnToFrequency, formatFrequency } from 'mobile-spectrum-data/utils'
 import { getOperatorColor } from 'mobile-spectrum-data/OperatorInfo'
 import fontColorContrast from 'font-color-contrast'
 import Link from '@components/Links/Link'
+import { NoSsr } from '@material-ui/core'
+
+import type { SpectrumBlock } from 'mobile-spectrum-data/@types'
 
 export interface IColorPair {
   back: string
@@ -282,9 +283,11 @@ export function SpectrumMap({ caption, data, note, spectrumHighlight, countryCod
           </div>
         </div>
 
-        <div aria-live="polite" id={descId} className={classes.spectrumInfo}>
-          {selectedSpectrumBlock !== null && <SpectrumMapDetails allocation={selectedSpectrumBlock} />}
-        </div>
+        <NoSsr>
+          <div aria-live="polite" id={descId} className={classes.spectrumInfo}>
+            {!!selectedSpectrumBlock && <SpectrumMapDetails allocation={selectedSpectrumBlock} />}
+          </div>
+        </NoSsr>
       </div>
 
       <footer className={clsx(classes.footer, 'softer-bg')}>

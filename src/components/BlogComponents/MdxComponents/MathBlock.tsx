@@ -15,24 +15,25 @@ interface IMathBlockProps {
 
 const useStyles = makeStyles({
   root: {
-    marginTop: '1em',
-    marginBottom: '1em',
+    marginTop: '1em !important',
+    marginBottom: '1em !important',
 
     'figure[role="group"] &': {
-      marginBottom: 0,
-      marginTop: 0,
+      marginBottom: '0 !important',
+      marginTop: '0 !important',
 
       '&:first-child': {
-        marginTop: '1em',
+        marginTop: '1em !important',
       },
       '&:last-child': {
-        marginBottom: '1em',
+        marginBottom: '1em !important',
       },
     },
   },
   title: {
     fontWeight: 'bold',
-    padding: '8px 16px',
+    padding: '8px 16px !important',
+    margin: '0 !important',
   },
   title_blue: {
     background: Colors.primaryBlue,
@@ -45,7 +46,7 @@ const useStyles = makeStyles({
   },
   mathBlock: {
     background: Colors.lightGrey,
-    padding: '8px 16px',
+    padding: '8px 16px !important',
     overflowX: 'auto',
   },
   warning: {

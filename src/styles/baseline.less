@@ -144,6 +144,17 @@ main {
   p {
     margin-bottom: 0.5em;
   }
+
+  p {
+    + h1,
+    + h2,
+    + h3,
+    + h4,
+    + h5,
+    + h6 {
+      margin-top: 1em;
+    }
+  }
 }
 
 .sr-only {
@@ -159,4 +170,12 @@ main {
 // https://reach.tech/styling/#skip-including-styles
 :root {
   --reach-tabs: 1;
+}
+
+.clearfix {
+  &::after {
+    display: block;
+    content: '';
+    clear: both;
+  }
 }

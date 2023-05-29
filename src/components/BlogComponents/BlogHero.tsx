@@ -36,6 +36,8 @@ export function BlogHero({ pageContext }: IDocsPageInfoProps) {
     )
   }
 
+  const minsToRead = Math.round(pageContext.fields.timeToRead.minutes) || 1
+
   return (
     <Hero firstElement>
       <h1 className="text-shout">{pageContext.frontmatter.title}</h1>
@@ -45,7 +47,7 @@ export function BlogHero({ pageContext }: IDocsPageInfoProps) {
 
       <aside className={classes.root}>
         <span>
-          ~{pageContext.fields.timeToRead.minutes} min{pageContext.fields.timeToRead.minutes !== 1 && 's'} to read
+          ~{minsToRead} min{minsToRead !== 1 && 's'} to read
         </span>
         <span>Published {pageContext.frontmatter.created_at}</span>
       </aside>

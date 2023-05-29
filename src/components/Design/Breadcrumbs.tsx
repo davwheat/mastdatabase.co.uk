@@ -56,7 +56,7 @@ export default function Breadcrumbs({ data }: IBreadcrumbsProps) {
         <ol className={classes.listRoot}>
           {breadcrumbsToDisplay.map((crumb, index) => {
             const separator = index < breadcrumbsToDisplay.length - 1 && (
-              <span className={classes.separator} aria-hidden="true">
+              <span className={classes.separator} aria-hidden="true" role="presentation">
                 /
               </span>
             )
@@ -88,18 +88,22 @@ export default function Breadcrumbs({ data }: IBreadcrumbsProps) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'BreadcrumbList',
-            itemListElement: data.map((crumb, i) => ({
-              '@type': 'ListItem',
-              position: i,
-              item: {
-                '@id': 'https://mastdatabase.co.uk' + crumb.url,
-                name: crumb.t,
-              },
-            })),
-          }),
+          __html: JSON.stringify(
+            {
+              '@context': 'https://schema.org',
+              '@type': 'BreadcrumbList',
+              itemListElement: data.map((crumb, i) => ({
+                '@type': 'ListItem',
+                position: i,
+                item: {
+                  '@id': 'https://mastdatabase.co.uk' + crumb.url,
+                  name: crumb.t,
+                },
+              })),
+            },
+            null,
+            2,
+          ),
         }}
       />
     </Section>

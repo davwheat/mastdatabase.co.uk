@@ -7,7 +7,7 @@
     margin: 32px 16px;
   }
 
-  &-content {
+  &-content > div {
     ul {
       list-style-type: square;
       list-style-position: outside;
@@ -41,14 +41,18 @@
     }
 
     img {
-      &:not(.gatsby-resp-image-image) {
-        display: block;
-        width: 500px;
-        max-width: 100%;
-        margin: auto;
-      }
-
       object-fit: contain;
+    }
+
+    > img,
+    > figure > img:last-child {
+      display: block;
+      width: 500px;
+      max-width: 100%;
+      margin: 16px auto;
+    }
+
+    .gatsby-resp-image-wrapper {
       margin-top: 1.5em;
       margin-bottom: 1.5em;
     }
@@ -121,7 +125,9 @@
       }
     }
 
-    img.emoji {
+    img.emoji,
+    // Workaround for broken remark-twemoji
+    img[classname='emoji'] {
       display: inline-block;
       height: 1.15em;
       width: auto;
@@ -132,10 +138,13 @@
       font-family: 'Consolas', 'Courier New', Courier, monospace;
     }
 
-    figure > p + figcaption {
+    figure > figcaption {
       text-align: center;
       display: block;
       padding: 0 32px;
+
+      margin-top: -0.5em;
+      margin-bottom: 0.5em;
 
       // .text-whisper-up
       font-size: 15px;

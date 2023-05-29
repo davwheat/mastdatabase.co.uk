@@ -6,24 +6,28 @@ import PageNavigator from '@components/BlogComponents/PageNavigator'
 import Layout from '@components/Layout'
 import Hero from '@components/Design/Hero'
 import Section from '@components/Design/Section'
+import Breadcrumbs from '@components/Design/Breadcrumbs'
 
 import Colors from '@data/colors.json'
 
 import { makeStyles } from '@material-ui/styles'
 import Breakpoints from '@data/breakpoints'
-// import Link from '@components/Links/Link'
-// import SearchIcon from 'mdi-react/SearchIcon'
 
-import type { IMdxPageContextWithoutBody } from '@templates/blog-article/BlogPageTemplate'
 import type { PageProps } from 'gatsby'
 
 interface IBlogArticlesListProps extends PageProps {
   data: {
     allMdx: {
-      nodes: (IMdxPageContextWithoutBody & {
-        frontmatter: { path: string }
+      nodes: {
         id: string
-      })[]
+        frontmatter: {
+          path: string
+          title: string
+          description: string
+          created_at: string
+        }
+        excerpt: string
+      }[]
     }
   }
   pageContext: {
@@ -88,14 +92,14 @@ export default function BlogArticlesList({
         </p>
       </Hero>
 
-      <Section width="wider">
-        {/* <p className={classes.searchLink}>
-          <Link href="/blog/search">
-            <SearchIcon className={classes.searchIcon} />
-            Search blog
-          </Link>
-        </p> */}
+      <Breadcrumbs
+        data={[
+          { t: 'Home', url: '/' },
+          { t: 'Blog articles', url: `/blog/${currentPage}` },
+        ]}
+      />
 
+      <Section width="wider">
         <ul className={classes.list}>{Posts}</ul>
       </Section>
 
