@@ -18,6 +18,31 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Find existing build status comment
+        uses: peter-evans/find-comment@v2
+        id: find_status_comment
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-author: 'github-actions[bot]'
+          body-includes: Deploying with
+
+      - name: Create or update comment
+        uses: peter-evans/create-or-update-comment@v3
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-id: ${{ steps.find_status_comment.outputs.comment-id }}
+          edit-mode: replace
+          body: |
+            ## Deploying with &nbsp;<a href="https://pages.dev"><img alt="Cloudflare Pages" src="https://user-images.githubusercontent.com/23264/106598434-9e719e00-654f-11eb-9e59-6167043cfa01.png" width="16"></a> &nbsp;Cloudflare Pages
+
+            <table><tr><td><strong>Latest commit:</strong> </td><td>
+            <code>${{ github.sha }}</code>
+            </td></tr>
+            <tr><td><strong>Status:</strong></td><td>
+            &nbsp;⚡️&nbsp; Build in progress...
+            </td></tr>
+            </table>
+
       - name: Use Node.js ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v3
         with:
@@ -52,6 +77,7 @@ jobs:
 
       - name: Publish to Cloudflare Pages
         uses: cloudflare/pages-action@1
+        id: cf-pages-upload
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
@@ -59,3 +85,34 @@ jobs:
           directory: public # e.g. 'dist'
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
           wranglerVersion: '3'
+
+      - name: Find existing build status comment
+        uses: peter-evans/find-comment@v2
+        id: find_current_status_comment
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-author: 'github-actions[bot]'
+          body-includes: ${{ github.sha }}
+
+      - name: Update comment
+        if: steps.find_current_status_comment.outputs.comment-id != ''
+        uses: peter-evans/create-or-update-comment@v3
+        with:
+          comment-id: ${{ steps.find_current_status_comment.outputs.comment-id }}
+          edit-mode: replace
+          body: |
+            ## Deploying with &nbsp;<a href="https://pages.dev"><img alt="Cloudflare Pages" src="https://user-images.githubusercontent.com/23264/106598434-9e719e00-654f-11eb-9e59-6167043cfa01.png" width="16"></a> &nbsp;Cloudflare Pages
+
+            <table><tr><td><strong>Latest commit:</strong> </td><td>
+            <code>${{ github.sha }}</code>
+            </td></tr>
+            <tr><td><strong>Status:</strong></td><td>
+            &nbsp;✅&nbsp; Deploy successful!
+            </td></tr>
+            <tr><td><strong>Preview URL:</strong></td><td>
+            <a href='${{ steps.cf-pages-upload.outputs.url }}'>${{ steps.cf-pages-upload.outputs.url }}</a>
+            </td></tr>
+            <tr><td><strong>Branch Preview URL:</strong></td><td>
+            <a href='${{ steps.cf-pages-upload.outputs.alias }}'>${{ steps.cf-pages-upload.outputs.alias }}</a>
+            </td></tr>
+            </table>
