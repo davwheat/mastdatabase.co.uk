@@ -2,6 +2,9 @@ name: Smoketest
 
 on:
   push:
+    branches:
+      - main
+      - deploy
   pull_request:
   workflow_dispatch:
 
