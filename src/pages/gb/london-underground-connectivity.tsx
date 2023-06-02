@@ -28,18 +28,18 @@ const useStyles = makeStyles({
   },
 })
 
-export default function StreetworksMapPage({ location }: PageProps) {
+export default function TubeConnectivityMap({ location }: PageProps) {
   const classes = useStyles()
 
   return (
     <Layout
       location={location}
-      title="UK telecoms streetworks map"
-      description="See active and future telecoms streetworks across the United Kingdom."
+      title="London Underground mobile connectivity map"
+      description="Interactive map of mobile network deployments on the London Underground."
     >
       <ErrorBoundaryContext>
         <Hero firstElement size="huge" color={Colors.primaryRed}>
-          <h1 className="text-shout">London Underground connectivity</h1>
+          <h1 className="text-shout">London Underground mobile connectivity</h1>
           <p role="doc-subtitle" className="text-loud">
             Interactive map of mobile network deployments on the London Underground.
           </p>
@@ -57,16 +57,26 @@ export default function StreetworksMapPage({ location }: PageProps) {
           <h2 className="text-loud">Mobile connectivity on the Tube</h2>
           <p className="text-speak">
             Mobile connectivity on the London Underground is provided by a combination of leaky feeders in tunnels and DAS units in stations. The
-            programme is operated by{' '}
+            programme is operated by Boldyn Networks (previously known as BAI Communications) as part of a{' '}
             <Link href="https://www.baicommunications.com/mediarelease/bai-communications-awarded-20-year-concession-to-deliver-high-speed-mobile-coverage-across-the-london-underground/">
-              BAI Communications as part of a 20-year concession awarded by Transport for&nbsp;London
+              20-year concession awarded by Transport for&nbsp;London
             </Link>
             .
           </p>
           <p className="text-speak">
-            The programme entails full 4G connectivity throughout the London Underground by the end of 2024, as well as 5G connectivity at some
-            select stations. As of now, the deployment is not yet complete, hence a map of deployments and other information is useful for those
+            The programme entails full mobile connectivity throughout the London Underground by the end of 2024, including 5G connectivity at
+            select stations. As of yet, the rollout is not complete, hence a map of deployments and other information is useful for those
             interested in tracking the rollout over&nbsp;time.
+          </p>
+        </Section>
+
+        <Section>
+          <h2 className="text-loud">Using the map</h2>
+
+          <p className="text-speak">Sections of the network that have mobile connectivity are highlighted in green.</p>
+
+          <p className="text-speak">
+            If you'd prefer, you can hide all sections of the network that don't have connectivity, or show and hide particular lines.
           </p>
         </Section>
 
