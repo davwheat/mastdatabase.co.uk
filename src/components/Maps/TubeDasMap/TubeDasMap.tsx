@@ -170,11 +170,11 @@ function stationMarker(geoJsonPoint, latLng): Layer {
 `
 
   return new L.CircleMarker(latLng, {
-    radius: 6,
+    radius: 5,
     fillColor: '#fff',
     fillOpacity: 1,
-    color: lines.length === 1 ? lineAttrs[lines[0].name].colour : '#000',
-    weight: 2.5,
+    color: '#000',
+    weight: 2,
     className: hasConnectivity ? 'has-connectivity' : 'no-connectivity',
   }).bindPopup(popupContent)
 }
