@@ -201,10 +201,14 @@ export default function TubeDasMap() {
         backgroundColor: '#fff',
       }}
       center={[51.509865, -0.118092]}
-      zoom={11}
+      zoom={10}
       minZoom={1}
       attributionControl={false}
-      className={classes.mapRoot}
+      maxBounds={[
+        [51.775, -1.172],
+        [51.3, 0.41],
+      ]}
+      maxBoundsViscosity={0.5}
     >
       <MapLayers />
 
