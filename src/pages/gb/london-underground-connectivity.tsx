@@ -73,7 +73,9 @@ export default function TubeConnectivityMap({ location }: PageProps) {
         <Section>
           <h2 className="text-loud">Using the map</h2>
 
-          <p className="text-speak">Sections of the network that have mobile connectivity are highlighted in green.</p>
+          <p className="text-speak">
+            Sections of the network that have mobile connectivity within stations and tunnels are highlighted in green.
+          </p>
 
           <p className="text-speak">
             If you'd prefer, you can hide all sections of the network that don't have connectivity, or show and hide particular lines.
