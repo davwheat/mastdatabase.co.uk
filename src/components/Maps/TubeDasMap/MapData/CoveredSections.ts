@@ -1,12 +1,33 @@
+type Networks = 'O2' | 'Vodafone' | 'EE' | 'Three'
+
+interface Connectivity {
+  '2G'?: ('GSM900' | 'GSM1800')[]
+  '3G'?: ('UMTS900' | 'UMTS2100')[]
+  '4G'?: ('B1' | 'B3' | 'B8' | 'B20' | 'B32' | 'B38' | 'B40')[]
+  '5G'?: ('n1' | 'n3' | 'n7' | 'n8' | 'n20' | 'n28' | 'n38' | 'n40' | 'n77' | 'n78' | 'n258')[]
+}
+
+type OperatorConnectivity = {
+  [key in Networks]: Connectivity
+}
+
+interface CoverageGroup {
+  groupName: string
+  state: 'live' | 'planned'
+  segments: CoverageSegment[]
+}
+
 interface CoverageSegment {
   section: string
+  services?: OperatorConnectivity
   startStationId: string
   endStationId: string
 }
 
-const StationSegmentsWithCoverage: { groupName: string; segments: CoverageSegment[] }[] = [
+const StationSegmentsWithCoverage: CoverageGroup[] = [
   {
     groupName: 'Jubilee Line Extension',
+    state: 'live',
     segments: [
       {
         section: 'Jubilee Line Extension - Canning Town to North Greenwich',
@@ -52,6 +73,7 @@ const StationSegmentsWithCoverage: { groupName: string; segments: CoverageSegmen
   },
   {
     groupName: 'Central Line',
+    state: 'live',
     segments: [
       {
         section: 'Central Line - Holland Park to Notting Hill Gate',
@@ -67,6 +89,7 @@ const StationSegmentsWithCoverage: { groupName: string; segments: CoverageSegmen
   },
   {
     groupName: 'Northern Line',
+    state: 'live',
     segments: [
       {
         section: 'Northern Line - Kentish Town to Tufnell Park',
