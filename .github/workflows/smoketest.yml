@@ -91,7 +91,7 @@ jobs:
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
           wranglerVersion: '3'
           # Use PR head branch if available, otherwise use the current branch
-          branch: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.label || github.ref_name }}
+          branch: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || github.ref_name }}
 
       - name: Find existing build status comment
         uses: peter-evans/find-comment@v2
