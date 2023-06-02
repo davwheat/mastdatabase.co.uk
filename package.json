@@ -97,7 +97,8 @@
     "gatsby-plugin-perf-budgets": "^0.0.18",
     "gatsby-plugin-webpack-bundle-analyser-v2": "^1.1.31",
     "prettier": "^2.8.8",
-    "typescript": "^5.0.4"
+    "typescript": "^5.0.4",
+    "wrangler": "^3.0.1"
   },
   "license": "MIT",
   "scripts": {
