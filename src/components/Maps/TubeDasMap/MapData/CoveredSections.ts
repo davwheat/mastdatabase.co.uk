@@ -70,7 +70,7 @@ const StationSegmentsWithCoverage: { groupName: string; segments: CoverageSegmen
     segments: [
       {
         section: 'Northern Line - Kentish Town to Tufnell Park',
-        startStationId: '940GZZLUKTW',
+        startStationId: '940GZZLUKSH',
         endStationId: '940GZZLUTFP',
       },
       {
