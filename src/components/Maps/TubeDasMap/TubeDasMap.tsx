@@ -147,7 +147,7 @@ function filterCoveredLineData(feature: geojson.Feature<geojson.GeometryObject, 
 function styleCoveredLineData(feature: geojson.Feature<geojson.GeometryObject, any> | undefined): PathOptions {
   return {
     weight: LINE_WIDTH * 2,
-    color: '#03fc45',
+    color: '#5de800',
     fill: true,
     fillColor: '#fff',
     lineCap: 'butt',
