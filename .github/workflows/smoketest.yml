@@ -20,6 +20,7 @@ jobs:
 
       - name: Find existing build status comment
         uses: peter-evans/find-comment@v2
+        if: github.event_name == 'pull_request'
         id: find_status_comment
         with:
           issue-number: ${{ github.event.pull_request.number }}
@@ -28,6 +29,7 @@ jobs:
 
       - name: Create or update comment
         uses: peter-evans/create-or-update-comment@v3
+        if: github.event_name == 'pull_request'
         with:
           issue-number: ${{ github.event.pull_request.number }}
           comment-id: ${{ steps.find_status_comment.outputs.comment-id }}
@@ -88,6 +90,7 @@ jobs:
 
       - name: Find existing build status comment
         uses: peter-evans/find-comment@v2
+        if: github.event_name == 'pull_request'
         id: find_current_status_comment
         with:
           issue-number: ${{ github.event.pull_request.number }}
@@ -95,7 +98,7 @@ jobs:
           body-includes: ${{ github.sha }}
 
       - name: Update comment
-        if: steps.find_current_status_comment.outputs.comment-id != ''
+        if: github.event_name == 'pull_request' && steps.find_current_status_comment.outputs.comment-id != ''
         uses: peter-evans/create-or-update-comment@v3
         with:
           comment-id: ${{ steps.find_current_status_comment.outputs.comment-id }}
