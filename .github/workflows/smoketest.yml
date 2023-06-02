@@ -38,7 +38,7 @@ jobs:
             ## Deploying with &nbsp;<a href="https://pages.dev"><img alt="Cloudflare Pages" src="https://user-images.githubusercontent.com/23264/106598434-9e719e00-654f-11eb-9e59-6167043cfa01.png" width="16"></a> &nbsp;Cloudflare Pages
 
             <table><tr><td><strong>Latest commit:</strong> </td><td>
-            <code>${{ github.sha }}</code>
+            <code>${{  github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}</code>
             </td></tr>
             <tr><td><strong>Status:</strong></td><td>
             &nbsp;⚡️&nbsp; Build in progress...
@@ -87,6 +87,8 @@ jobs:
           directory: public # e.g. 'dist'
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
           wranglerVersion: '3'
+          # Use PR head branch if available, otherwise use the current branch
+          branch: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.label || github.ref_name }}
 
       - name: Find existing build status comment
         uses: peter-evans/find-comment@v2
@@ -95,7 +97,7 @@ jobs:
         with:
           issue-number: ${{ github.event.pull_request.number }}
           comment-author: 'github-actions[bot]'
-          body-includes: ${{ github.sha }}
+          body-includes: ${{  github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
 
       - name: Update comment
         if: github.event_name == 'pull_request' && steps.find_current_status_comment.outputs.comment-id != ''
@@ -107,7 +109,7 @@ jobs:
             ## Deploying with &nbsp;<a href="https://pages.dev"><img alt="Cloudflare Pages" src="https://user-images.githubusercontent.com/23264/106598434-9e719e00-654f-11eb-9e59-6167043cfa01.png" width="16"></a> &nbsp;Cloudflare Pages
 
             <table><tr><td><strong>Latest commit:</strong> </td><td>
-            <code>${{ github.sha }}</code>
+            <code>${{  github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}</code>
             </td></tr>
             <tr><td><strong>Status:</strong></td><td>
             &nbsp;✅&nbsp; Deploy successful!
