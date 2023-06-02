@@ -14,6 +14,8 @@ import MapCustomButtonsContainer from '@leaflet/MapCustomButtonsContainer'
 
 import type { PathOptions, Layer } from 'leaflet'
 import type * as geojson from 'geojson'
+import { doesStationHaveCoverage, isLineSegmentCovered } from './MapData/CoveredSections'
+import { makeStyles } from '@material-ui/core'
 
 const MULTI_LINE_STROKE_COLOUR_ALTERNATE = 8
 const LINE_WIDTH = 5
@@ -116,9 +118,36 @@ function styleLineData(feature: geojson.Feature<geojson.GeometryObject, any> | u
 
   const firstLineColor = lineAttrs[lines[0]]?.colour ?? '#000'
 
+  const stationSegments: [string, string] = feature?.properties.lines
+    .map(l => [l.start_sid, l.end_sid])
+    .filter(([a, b]) => !!a || !!b)
+    .flat(1)
+
+  const hasConnectivity = isLineSegmentCovered(...stationSegments)
+
   return {
     weight: LINE_WIDTH,
     color: firstLineColor,
+    fill: true,
+    fillColor: '#fff',
+    lineCap: 'butt',
+    className: hasConnectivity ? 'has-connectivity' : 'no-connectivity',
+  }
+}
+
+function filterCoveredLineData(feature: geojson.Feature<geojson.GeometryObject, any> | undefined): boolean {
+  const stationSegments: [string, string] = feature?.properties.lines
+    .map(l => [l.start_sid, l.end_sid])
+    .filter(([a, b]) => !!a || !!b)
+    .flat(1)
+
+  return isLineSegmentCovered(...stationSegments)
+}
+
+function styleCoveredLineData(feature: geojson.Feature<geojson.GeometryObject, any> | undefined): PathOptions {
+  return {
+    weight: LINE_WIDTH * 2,
+    color: '#03fc45',
     fill: true,
     fillColor: '#fff',
     lineCap: 'butt',
@@ -130,11 +159,14 @@ function stationMarker(geoJsonPoint, latLng): Layer {
 
   const lines = getLinesFromFeature(geoJsonPoint)
 
+  const hasConnectivity = doesStationHaveCoverage(geoJsonPoint.properties.id)
+
   const popupContent = document.createElement('div')
 
   popupContent.innerHTML = `
   <p class="text-whisper-loud">${geoJsonPoint.properties.name}</p>
   <p class="text-whisper">Served by: ${lines.map(l => l?.name ?? '???').join(', ')}</p>
+  <p class="text-whisper">Station ID: ${geoJsonPoint.properties.id}</p>
 `
 
   return new L.CircleMarker(latLng, {
@@ -143,11 +175,24 @@ function stationMarker(geoJsonPoint, latLng): Layer {
     fillOpacity: 1,
     color: lines.length === 1 ? lineAttrs[lines[0].name].colour : '#000',
     weight: 2.5,
+    className: hasConnectivity ? 'has-connectivity' : 'no-connectivity',
   }).bindPopup(popupContent)
 }
 
+const useStyles = makeStyles({
+  mapRoot: {
+    '& .no-connectivity': {
+      filter: 'grayscale(70%)',
+    },
+    '& .leaflet-base-pane': {
+      filter: 'grayscale(100%)',
+    },
+  },
+})
+
 export default function TubeDasMap() {
   useFixLeafletAssets()
+  const classes = useStyles()
 
   return (
     <MapContainer
@@ -159,6 +204,7 @@ export default function TubeDasMap() {
       zoom={11}
       minZoom={1}
       attributionControl={false}
+      className={classes.mapRoot}
     >
       <MapLayers />
 
@@ -180,8 +226,6 @@ function MapLayers() {
 
   const onLineLayerMade = useCallback(
     (feature, layer) => {
-      const L = window.L as typeof import('leaflet')
-
       const lines = getLinesFromFeature(feature).map(l => l.name)
 
       if (lines.length <= 1) return
@@ -220,23 +264,27 @@ function MapLayers() {
 
   return (
     <>
-      <Pane name="stations" style={{ zIndex: 100 }}>
+      <Pane key="stations" name="stations" style={{ zIndex: 100 }}>
         <GeoJSON data={TflStations as any} filter={filterLineData} pointToLayer={stationMarker} />
       </Pane>
 
-      <Pane name="lines" style={{ zIndex: 50 }}>
+      <Pane key="lines" name="lines" style={{ zIndex: 50 }}>
         <GeoJSON data={TflLines as any} filter={filterLineData} style={styleLineData} onEachFeature={onLineLayerMade} />
       </Pane>
 
-      <Pane name="zones" style={{ zIndex: 10 }}>
+      <Pane name="coveredLines" key="coveredLines" style={{ zIndex: 49 }}>
+        <GeoJSON data={TflLines as any} filter={filterCoveredLineData} style={styleCoveredLineData} />
+      </Pane>
+
+      <Pane key="zones" name="zones" style={{ zIndex: 10 }}>
         <GeoJSON data={TflZones as any} style={styleZoneData} />
       </Pane>
 
-      <Pane name="thames" style={{ zIndex: 1 }}>
+      <Pane key="thames" name="thames" style={{ zIndex: 1 }}>
         <GeoJSON data={Thames as any} style={styleThamesData} />
       </Pane>
 
-      <Pane name="base" style={{ zIndex: 0 }}>
+      <Pane key="base" name="base" style={{ zIndex: 0 }}>
         <TileLayer
           opacity={0.45}
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
