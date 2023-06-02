@@ -228,6 +228,8 @@ function MapLayers() {
     (feature, layer) => {
       const lines = getLinesFromFeature(feature).map(l => l.name)
 
+      const hasConnectivity = doesStationHaveCoverage(feature.properties.id)
+
       if (lines.length <= 1) return
 
       const allLineColours = lines.map(l => lineAttrs[l]?.colour ?? '#000')
@@ -254,6 +256,7 @@ function MapLayers() {
           color,
           lineCap: 'butt',
           weight: LINE_WIDTH,
+          className: hasConnectivity ? 'has-connectivity' : 'no-connectivity',
         })
           .bindPopup(popupContent)
           .addTo(map)
