@@ -97,12 +97,13 @@
     "gatsby-plugin-perf-budgets": "^0.0.18",
     "gatsby-plugin-webpack-bundle-analyser-v2": "^1.1.31",
     "prettier": "^2.8.8",
-    "typescript": "^5.0.4"
+    "typescript": "^5.0.4",
+    "wrangler": "^3.0.1"
   },
   "license": "MIT",
   "scripts": {
     "build": "cross-env NODE_ENV=production gatsby build",
-    "build:ci": "cross-env NODE_ENV=production gatsby build --verbose",
+    "build:ci": "cross-env NODE_ENV=production GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES=true gatsby build --log-pages --verbose",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md,less,mdx}\"",
     "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,md,less,mdx}\"",
