@@ -126,12 +126,14 @@ const lineAttrs = {
   'Waterloo & City': { id: 'W', colour: '#95CDBA', network: 'Tube' },
 }
 
-function styleCoveredLineData(feature: geojson.Feature<geojson.GeometryObject, GeoJsonLineProperties> | undefined): PathOptions {
+function styleCoveredLineData(feature: geojson.Feature<geojson.GeometryObject, GeoJsonLineProperties>): PathOptions {
+  const segments = getStationSegmentsFromLineData(feature)
+  const hasConnectivity = segments && isLineSegmentCovered(...segments)
+
   return {
     weight: LINE_WIDTH * 2,
-    color: '#5de800',
-    fill: true,
-    fillColor: '#fff',
+    color: hasConnectivity === 'live' ? '#5de800' : '#ff8400',
+    fill: false,
     lineCap: 'butt',
   }
 }
@@ -147,13 +149,13 @@ function stationMarker(feature: geojson.Feature<geojson.GeometryObject, GeoJsonS
     fillOpacity: 1,
     color: '#000',
     weight: 2,
-    className: hasConnectivity ? 'has-connectivity' : 'no-connectivity',
+    className: `${hasConnectivity}-connectivity`,
   }).bindPopup(generatePopupContentForStation(feature))
 }
 
 const useStyles = makeStyles({
   mapRoot: {
-    '& .no-connectivity': {
+    '& .none-connectivity': {
       filter: 'grayscale(70%)',
     },
     '& .leaflet-base-pane': {
@@ -165,9 +167,12 @@ const useStyles = makeStyles({
         marginBottom: '0.5em',
       },
     },
+    '& .leaflet-pane > svg path.leaflet-interactive': {
+      pointerEvents: 'visiblePainted !important',
+    },
   },
   hideNonConnectedAreas: {
-    '& .no-connectivity': {
+    '& .none-connectivity': {
       display: 'none',
     },
   },
@@ -239,21 +244,25 @@ function generatePopupContentForLineSection(feature: geojson.Feature<geojson.Geo
 
   if (!segments) {
     popupContent.innerHTML = `
-<p class="text-whisper">No data available</p>
+<p class="text-whisper">Unknown track - no data available</p>
+<p class="text-whisper">${feature.properties.id}</p>
 `
   } else {
     const data = getLineSegmentCoverage(...segments)
 
     if (!data) {
       popupContent.innerHTML = `
-  <p class="text-whisper">No data available</p>
+      <p class="text-whisper">No data available</p>
+      <p class="text-whisper">${segments.join('/')}</p>
 `
     } else {
-      const { group, section, coverage } = data
+      const { group, section, coverage, opens, state } = data
 
       popupContent.innerHTML = `
   <p class="text-whisper"><strong>${group}</strong></p>
   <p class="text-whisper"><strong>${section}</strong></p>
+
+  ${!!state ? `<p class="text-whisper">${state === 'planned' ? 'Launches' : 'Launched'} ${opens}</p>` : ''}
 `
 
       if (!coverage) {
@@ -361,12 +370,12 @@ function MapLayers({ hideSectionsWithNoConnectivity, hiddenLines }: TubeDasMapPr
           // Station
           const hasConnectivity = doesStationHaveCoverage(feature.properties.id)
 
-          if (!hasConnectivity) return false
+          if (hasConnectivity === 'none') return false
         } else {
           const stationSegments = getStationSegmentsFromLineData(feature)
           const hasConnectivity = stationSegments && isLineSegmentCovered(...stationSegments)
 
-          if (!hasConnectivity) return false
+          if (hasConnectivity === 'none') return false
         }
       }
 
@@ -387,7 +396,7 @@ function MapLayers({ hideSectionsWithNoConnectivity, hiddenLines }: TubeDasMapPr
 
       const hasConnectivity = isLineSegmentCovered(...stationSegments)
 
-      return hasConnectivity
+      return hasConnectivity !== 'none'
     },
     [map, isLineSegmentCovered, filterLineData, hideSectionsWithNoConnectivity],
   )
@@ -405,10 +414,9 @@ function MapLayers({ hideSectionsWithNoConnectivity, hiddenLines }: TubeDasMapPr
       return {
         weight: LINE_WIDTH,
         color: firstLineColor,
-        fill: true,
-        fillColor: '#fff',
+        fill: false,
         lineCap: 'butt',
-        className: hasConnectivity ? 'has-connectivity' : 'no-connectivity',
+        className: `${hasConnectivity}-connectivity`,
       }
     },
     [hiddenLines],
@@ -442,7 +450,7 @@ function MapLayers({ hideSectionsWithNoConnectivity, hiddenLines }: TubeDasMapPr
           color,
           lineCap: 'butt',
           weight: LINE_WIDTH,
-          className: hasConnectivity ? 'has-connectivity' : 'no-connectivity',
+          className: `${hasConnectivity}-connectivity`,
         })
           .bindPopup(generatePopupContentForLineSection(feature))
           .addTo(map)

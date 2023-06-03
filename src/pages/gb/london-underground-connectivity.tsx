@@ -130,7 +130,8 @@ export default function TubeConnectivityMap({ location }: PageProps) {
           <h2 className="text-loud">Using the map</h2>
 
           <p className="text-speak">
-            Sections of the network that have mobile connectivity within stations and tunnels are highlighted in green.
+            Sections of the network that have mobile connectivity within stations and tunnels are highlighted in green. Sections highlighted in
+            orange are planned to open soon.
           </p>
 
           <p className="text-speak">
