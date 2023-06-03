@@ -133,8 +133,7 @@ function styleCoveredLineData(feature: geojson.Feature<geojson.GeometryObject, G
   return {
     weight: LINE_WIDTH * 2,
     color: hasConnectivity === 'live' ? '#5de800' : '#ff8400',
-    fill: true,
-    fillColor: '#fff',
+    fill: false,
     lineCap: 'butt',
   }
 }
@@ -408,8 +407,7 @@ function MapLayers({ hideSectionsWithNoConnectivity, hiddenLines }: TubeDasMapPr
       return {
         weight: LINE_WIDTH,
         color: firstLineColor,
-        fill: true,
-        fillColor: '#fff',
+        fill: false,
         lineCap: 'butt',
         className: `${hasConnectivity}-connectivity`,
       }
