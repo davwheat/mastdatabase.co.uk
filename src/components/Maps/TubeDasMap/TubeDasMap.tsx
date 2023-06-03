@@ -409,7 +409,7 @@ function MapLayers({ hideSectionsWithNoConnectivity, hiddenLines }: TubeDasMapPr
       const firstLineColor = lineAttrs[lines[0]]?.colour ?? '#000'
 
       const stationSegments = getStationSegmentsFromLineData(feature)
-      const hasConnectivity = stationSegments && isLineSegmentCovered(...stationSegments)
+      const hasConnectivity = (stationSegments && isLineSegmentCovered(...stationSegments)) ?? 'none'
 
       return {
         weight: LINE_WIDTH,
