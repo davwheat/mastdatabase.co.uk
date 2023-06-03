@@ -330,7 +330,6 @@ function MapLayers({ hideSectionsWithNoConnectivity, hiddenLines }: TubeDasMapPr
 `
 
         new L.Polyline(latLngs, {
-          // __is_line: true,
           pane: 'linesOverlay',
           dashArray,
           dashOffset: (MULTI_LINE_STROKE_COLOUR_ALTERNATE * extraNum).toString(),
@@ -346,12 +345,6 @@ function MapLayers({ hideSectionsWithNoConnectivity, hiddenLines }: TubeDasMapPr
     [map, hiddenLines],
   )
 
-  // const onLinesRemoved = useCallback(() => {
-  //   map.eachLayer(layer => {
-  //     if (layer.options.__is_line) layer.remove()
-  //   })
-  // }, [map])
-
   return (
     <>
       <Pane key={`stations__${JSON.stringify(hiddenLines)}_${hideSectionsWithNoConnectivity}`} name="stations" style={{ zIndex: 100 }}>
@@ -359,13 +352,7 @@ function MapLayers({ hideSectionsWithNoConnectivity, hiddenLines }: TubeDasMapPr
       </Pane>
 
       <Pane key={`lines__${JSON.stringify(hiddenLines)}_${hideSectionsWithNoConnectivity}`} name="lines" style={{ zIndex: 50 }}>
-        <GeoJSON
-          data={TflLines as any}
-          filter={filterLineData}
-          style={styleLineData}
-          onEachFeature={onLineLayerMade}
-          // onRemove={onLinesRemoved}
-        />
+        <GeoJSON data={TflLines as any} filter={filterLineData} style={styleLineData} onEachFeature={onLineLayerMade} />
       </Pane>
 
       <Pane key={`linesOverlay__${JSON.stringify(hiddenLines)}_${hideSectionsWithNoConnectivity}`} name="linesOverlay" style={{ zIndex: 51 }} />
