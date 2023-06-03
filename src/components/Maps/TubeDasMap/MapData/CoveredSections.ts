@@ -208,6 +208,90 @@ const StationSegmentsWithCoverage: CoverageGroup[] = [
       },
     ],
   },
+
+  // UPCOMING
+  {
+    groupName: 'Central Line',
+    state: 'planned',
+    segments: [
+      {
+        section: 'Oxford Circus to Tottenham Court Road',
+        startStationId: '940GZZLUOXC',
+        endStationId: '940GZZLUTCR',
+      },
+      {
+        section: 'Tottenham Court Road to Holborn',
+        startStationId: '940GZZLUTCR',
+        endStationId: '940GZZLUHBN',
+      },
+      {
+        section: 'Holborn to Chancery Lane',
+        startStationId: '940GZZLUHBN',
+        endStationId: '940GZZLUCHL',
+      },
+      {
+        section: 'Chancery Lane to St Pauls',
+        startStationId: '940GZZLUCHL',
+        endStationId: '940GZZLUSPU',
+      },
+      {
+        section: "St Paul's to Bank",
+        startStationId: '940GZZLUSPU',
+        endStationId: '940GZZLUBNK',
+      },
+    ],
+  },
+  {
+    groupName: 'Northern Line',
+    state: 'planned',
+    segments: [
+      {
+        section: 'Tottenham Court Road to Goodge Street',
+        startStationId: '940GZZLUTCR',
+        endStationId: '940GZZLUGDG',
+      },
+      {
+        section: 'Goodge Street to Warren Street',
+        startStationId: '940GZZLUGDG',
+        endStationId: '940GZZLUWRR',
+      },
+      {
+        section: 'Warren Street to Euston',
+        startStationId: '940GZZLUWRR',
+        endStationId: '940GZZLUEUS',
+      },
+      {
+        section: 'Euston to Mornington Crescent',
+        startStationId: '940GZZLUEUS',
+        endStationId: '940GZZLUMTC',
+      },
+      {
+        section: 'Mornington Crescent to Camden Town',
+        startStationId: '940GZZLUMTC',
+        endStationId: '940GZZLUCTN',
+      },
+      {
+        section: 'Camden Town to Kentish Town',
+        startStationId: '940GZZLUCTN',
+        endStationId: '940GZZLUKSH',
+      },
+      {
+        section: 'Camden Town to Chalk Farm',
+        startStationId: '940GZZLUCTN',
+        endStationId: '940GZZLUCFM',
+      },
+      {
+        section: 'Chalk Farm to Belsize Park',
+        startStationId: '940GZZLUCFM',
+        endStationId: '940GZZLUBZP',
+      },
+      {
+        section: 'Belsize Park to Hampstead',
+        startStationId: '940GZZLUBZP',
+        endStationId: '940GZZLUHTD',
+      },
+    ],
+  },
 ]
 
 const StationCoverageInfo: Record<string, OperatorConnectivity> = {
@@ -220,8 +304,11 @@ const StationCoverageInfo: Record<string, OperatorConnectivity> = {
   },
 }
 
-const StationCoverageMap: Record<string, { end: string; group: string; section: string; coverage: OperatorConnectivity }[]> = {}
-const StationsWithCoverage: Set<string> = new Set()
+const StationCoverageMap: Record<
+  string,
+  { end: string; group: string; section: string; coverage?: OperatorConnectivity; state?: 'live' | 'planned' }[]
+> = {}
+const StationsWithCoverage: Map<string, 'live' | 'planned'> = new Map()
 
 export function getStationCoverageInfo(sid: string): Readonly<OperatorConnectivity> {
   return StationCoverageInfo[sid]
@@ -233,21 +320,32 @@ StationSegmentsWithCoverage.forEach((group, groupNum) => {
     segments.sort()
 
     StationCoverageMap[segments[0]] ||= []
-    StationCoverageMap[segments[0]].push({ end: segments[1], group: group.groupName, section: segment.section, coverage: segment.services })
+    StationCoverageMap[segments[0]].push({
+      end: segments[1],
+      group: group.groupName,
+      section: segment.section,
+      coverage: segment.services,
+      state: group.state,
+    })
 
-    StationsWithCoverage.add(segments[0])
-    StationsWithCoverage.add(segments[1])
+    if (StationsWithCoverage.get(segments[0]) !== 'live') {
+      StationsWithCoverage.set(segments[0], group.state)
+    }
+
+    if (StationsWithCoverage.get(segments[1]) !== 'live') {
+      StationsWithCoverage.set(segments[1], group.state)
+    }
   })
 })
 
-export function isLineSegmentCovered(startSid: string, endSid: string): boolean {
-  return !!getLineSegmentCoverage(startSid, endSid)
+export function isLineSegmentCovered(startSid: string, endSid: string): 'live' | 'planned' | 'none' {
+  return getLineSegmentCoverage(startSid, endSid)?.state ?? 'none'
 }
 
 export function getLineSegmentCoverage(
   startSid: string,
   endSid: string,
-): { group: string; section: string; coverage: OperatorConnectivity } | null {
+): { group: string; section: string; state?: 'live' | 'planned'; coverage?: OperatorConnectivity } | null {
   const segments = [startSid, endSid]
   segments.sort()
 
@@ -256,6 +354,6 @@ export function getLineSegmentCoverage(
   return coveredSegments?.find(seg => seg.end === segments[1]) ?? null
 }
 
-export function doesStationHaveCoverage(sid: string): boolean {
-  return StationsWithCoverage.has(sid)
+export function doesStationHaveCoverage(sid: string): 'live' | 'planned' | 'none' {
+  return StationsWithCoverage.get(sid) ?? 'none'
 }

@@ -127,9 +127,12 @@ const lineAttrs = {
 }
 
 function styleCoveredLineData(feature: geojson.Feature<geojson.GeometryObject, GeoJsonLineProperties> | undefined): PathOptions {
+  const segments = getStationSegmentsFromLineData(feature)
+  const hasConnectivity = isLineSegmentCovered(...segments)
+
   return {
     weight: LINE_WIDTH * 2,
-    color: '#5de800',
+    color: hasConnectivity === 'live' ? '#5de800' : '#ff8400',
     fill: true,
     fillColor: '#fff',
     lineCap: 'butt',
@@ -147,13 +150,13 @@ function stationMarker(feature: geojson.Feature<geojson.GeometryObject, GeoJsonS
     fillOpacity: 1,
     color: '#000',
     weight: 2,
-    className: hasConnectivity ? 'has-connectivity' : 'no-connectivity',
+    className: `${hasConnectivity}-connectivity`,
   }).bindPopup(generatePopupContentForStation(feature))
 }
 
 const useStyles = makeStyles({
   mapRoot: {
-    '& .no-connectivity': {
+    '& .none-connectivity': {
       filter: 'grayscale(70%)',
     },
     '& .leaflet-base-pane': {
@@ -167,7 +170,7 @@ const useStyles = makeStyles({
     },
   },
   hideNonConnectedAreas: {
-    '& .no-connectivity': {
+    '& .none-connectivity': {
       display: 'none',
     },
   },
@@ -361,12 +364,12 @@ function MapLayers({ hideSectionsWithNoConnectivity, hiddenLines }: TubeDasMapPr
           // Station
           const hasConnectivity = doesStationHaveCoverage(feature.properties.id)
 
-          if (!hasConnectivity) return false
+          if (hasConnectivity === 'none') return false
         } else {
           const stationSegments = getStationSegmentsFromLineData(feature)
           const hasConnectivity = stationSegments && isLineSegmentCovered(...stationSegments)
 
-          if (!hasConnectivity) return false
+          if (hasConnectivity === 'none') return false
         }
       }
 
@@ -387,7 +390,7 @@ function MapLayers({ hideSectionsWithNoConnectivity, hiddenLines }: TubeDasMapPr
 
       const hasConnectivity = isLineSegmentCovered(...stationSegments)
 
-      return hasConnectivity
+      return hasConnectivity !== 'none'
     },
     [map, isLineSegmentCovered, filterLineData, hideSectionsWithNoConnectivity],
   )
@@ -408,7 +411,7 @@ function MapLayers({ hideSectionsWithNoConnectivity, hiddenLines }: TubeDasMapPr
         fill: true,
         fillColor: '#fff',
         lineCap: 'butt',
-        className: hasConnectivity ? 'has-connectivity' : 'no-connectivity',
+        className: `${hasConnectivity}-connectivity`,
       }
     },
     [hiddenLines],
@@ -442,7 +445,7 @@ function MapLayers({ hideSectionsWithNoConnectivity, hiddenLines }: TubeDasMapPr
           color,
           lineCap: 'butt',
           weight: LINE_WIDTH,
-          className: hasConnectivity ? 'has-connectivity' : 'no-connectivity',
+          className: `${hasConnectivity}-connectivity`,
         })
           .bindPopup(generatePopupContentForLineSection(feature))
           .addTo(map)
