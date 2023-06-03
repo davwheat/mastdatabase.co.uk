@@ -48,32 +48,19 @@ export default class VodafoneCoverageMapProvider extends CoverageProvider {
         key: genericKey,
       },
       {
-        key: [
-          { color: '#00ffff', label: 'Variable service' },
-          { color: '#ffaa00', label: 'Good service' },
-          { color: '#ff0000', label: 'Very good service' },
-        ],
+        key: [{ color: '', label: 'Random colours for each area surrounding an impacted site' }],
       },
       {
-        key: [
-          { color: '#00ffff', label: 'Variable service' },
-          { color: '#ffaa00', label: 'Good service' },
-          { color: '#ff0000', label: 'Very good service' },
-        ],
+        key: genericKey,
       },
       {
-        key: [
-          { color: '#00ffff', label: 'Variable service' },
-          { color: '#ffaa00', label: 'Good service' },
-          { color: '#ff0000', label: 'Very good service' },
-        ],
+        key: genericKey,
       },
       {
-        key: [
-          { color: '#00ffff', label: 'Variable service' },
-          { color: '#ffaa00', label: 'Good service' },
-          { color: '#ff0000', label: 'Very good service' },
-        ],
+        key: genericKey,
+      },
+      {
+        key: genericKey,
       },
     ]
   }
@@ -90,7 +77,7 @@ export default class VodafoneCoverageMapProvider extends CoverageProvider {
           <DynamicMapLayer
             className="coverage-tiles"
             opacity={0.5}
-            url="https://mapserver.vodafone.co.uk/arcgis/rest/services/Vodafone_2G_Live_Service/MapServer"
+            url="https://mapserver.vodafone.co.uk/arcgis/rest/services/VF_LIVE_2G/MapServer"
           />
         ),
       },
@@ -100,7 +87,7 @@ export default class VodafoneCoverageMapProvider extends CoverageProvider {
           <DynamicMapLayer
             className="coverage-tiles"
             opacity={0.5}
-            url="https://mapserver.vodafone.co.uk/arcgis/rest/services/Vodafone_2G_Plan_Service/MapServer"
+            url="https://mapserver.vodafone.co.uk/arcgis/rest/services/VF_PLAN_2G/MapServer"
           />
         ),
       },
@@ -110,7 +97,7 @@ export default class VodafoneCoverageMapProvider extends CoverageProvider {
           <DynamicMapLayer
             className="coverage-tiles"
             opacity={0.5}
-            url="https://mapserver.vodafone.co.uk/arcgis/rest/services/Vodafone_3G_Live_Service/MapServer"
+            url="https://mapserver.vodafone.co.uk/arcgis/rest/services/VF_LIVE_3G/MapServer"
           />
         ),
       },
@@ -120,7 +107,7 @@ export default class VodafoneCoverageMapProvider extends CoverageProvider {
           <DynamicMapLayer
             className="coverage-tiles"
             opacity={0.5}
-            url="https://mapserver.vodafone.co.uk/arcgis/rest/services/Vodafone_3G_Plan_Service/MapServer"
+            url="https://mapserver.vodafone.co.uk/arcgis/rest/services/VF_PLAN_3G/MapServer"
           />
         ),
       },
@@ -130,7 +117,7 @@ export default class VodafoneCoverageMapProvider extends CoverageProvider {
           <DynamicMapLayer
             className="coverage-tiles"
             opacity={0.5}
-            url="https://mapserver.vodafone.co.uk/arcgis/rest/services/Vodafone_4G_Live_Service/MapServer"
+            url="https://mapserver.vodafone.co.uk/arcgis/rest/services/VF_LIVE_4G/MapServer"
           />
         ),
       },
@@ -140,7 +127,7 @@ export default class VodafoneCoverageMapProvider extends CoverageProvider {
           <DynamicMapLayer
             className="coverage-tiles"
             opacity={0.5}
-            url="https://mapserver.vodafone.co.uk/arcgis/rest/services/Vodafone_4G_Plan_Service/MapServer"
+            url="https://mapserver.vodafone.co.uk/arcgis/rest/services/VF_PLAN_4G/MapServer"
           />
         ),
       },
@@ -150,7 +137,7 @@ export default class VodafoneCoverageMapProvider extends CoverageProvider {
           <DynamicMapLayer
             className="coverage-tiles"
             opacity={0.5}
-            url="https://mapserver.vodafone.co.uk/arcgis/rest/services/Vodafone_5G_Live_Service/MapServer"
+            url="https://mapserver.vodafone.co.uk/arcgis/rest/services/VF_LIVE_5G/MapServer"
           />
         ),
       },
@@ -160,47 +147,58 @@ export default class VodafoneCoverageMapProvider extends CoverageProvider {
           <DynamicMapLayer
             className="coverage-tiles"
             opacity={0.5}
-            url="https://mapserver.vodafone.co.uk/arcgis/rest/services/Vodafone_5G_Plan_Service/MapServer"
+            url="https://mapserver.vodafone.co.uk/arcgis/rest/services/VF_PLAN_5G/MapServer"
           />
         ),
       },
       {
-        label: 'Paknet',
+        label: 'Network outage impact map',
+        hidden: true,
         layers: (
           <DynamicMapLayer
             className="coverage-tiles"
-            opacity={0.5}
-            url="https://mapserver.vodafone.co.uk/arcgis/rest/services/Paknet/MapServer"
+            opacity={0.7}
+            url="https://mapserver.vodafone.co.uk/arcgis/rest/services/VF_IMPACT_FOOTPRINT/MapServer"
           />
         ),
       },
       {
-        label: 'Flex paging',
+        label: 'IoT (indoor)',
         layers: (
           <DynamicMapLayer
             className="coverage-tiles"
             opacity={0.5}
-            url="https://mapserver.vodafone.co.uk/arcgis/rest/services/Pager_Flex/MapServer"
+            url="https://mapserver.vodafone.co.uk/arcgis/rest/services/VF_LIVE_IOT_IN/MapServer"
           />
         ),
       },
       {
-        label: 'Select paging',
+        label: 'IoT (outdoor)',
         layers: (
           <DynamicMapLayer
             className="coverage-tiles"
             opacity={0.5}
-            url="https://mapserver.vodafone.co.uk/arcgis/rest/services/Pager_Select/MapServer"
+            url="https://mapserver.vodafone.co.uk/arcgis/rest/services/VF_PLAN_IOT_OUT/MapServer"
           />
         ),
       },
       {
-        label: 'Premier paging',
+        label: 'IoT (planned indoor)',
         layers: (
           <DynamicMapLayer
             className="coverage-tiles"
             opacity={0.5}
-            url="https://mapserver.vodafone.co.uk/arcgis/rest/services/Pager_Premier/MapServer"
+            url="https://mapserver.vodafone.co.uk/arcgis/rest/services/VF_PLAN_IOT_IN/MapServer"
+          />
+        ),
+      },
+      {
+        label: 'IoT (planned outdoor)',
+        layers: (
+          <DynamicMapLayer
+            className="coverage-tiles"
+            opacity={0.5}
+            url="https://mapserver.vodafone.co.uk/arcgis/rest/services/VF_PLAN_IOT_OUT/MapServer"
           />
         ),
       },
