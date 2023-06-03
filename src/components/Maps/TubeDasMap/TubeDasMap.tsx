@@ -167,6 +167,9 @@ const useStyles = makeStyles({
         marginBottom: '0.5em',
       },
     },
+    '& .leaflet-pane > svg path.leaflet-interactive': {
+      pointerEvents: 'visiblePainted !important',
+    },
   },
   hideNonConnectedAreas: {
     '& .none-connectivity': {
