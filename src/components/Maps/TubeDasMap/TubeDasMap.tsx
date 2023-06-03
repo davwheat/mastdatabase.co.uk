@@ -244,7 +244,7 @@ function generatePopupContentForLineSection(feature: geojson.Feature<geojson.Geo
 
   if (!segments) {
     popupContent.innerHTML = `
-<p class="text-whisper">No data available</p>
+<p class="text-whisper">Unknown track - no data available</p>
 `
   } else {
     const data = getLineSegmentCoverage(...segments)
