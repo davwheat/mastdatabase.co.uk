@@ -201,7 +201,7 @@ export default function TubeDasMap({ hideSectionsWithNoConnectivity, hiddenLines
   const classes = useStyles()
 
   return (
-    <div className={clsx(classes.mapRoot, { [classes.hideNonConnectedAreas]: hideSectionsWithNoConnectivity })}>
+    <div className={clsx(classes.mapRoot)}>
       <MapContainer
         style={{
           height: '60vh',
@@ -217,7 +217,7 @@ export default function TubeDasMap({ hideSectionsWithNoConnectivity, hiddenLines
         ]}
         maxBoundsViscosity={0.5}
       >
-        <MapLayers hiddenLines={hiddenLines} />
+        <MapLayers hiddenLines={hiddenLines} hideSectionsWithNoConnectivity={hideSectionsWithNoConnectivity} />
 
         <MapComponents />
 
@@ -231,48 +231,64 @@ export default function TubeDasMap({ hideSectionsWithNoConnectivity, hiddenLines
   )
 }
 
-function MapLayers({ hiddenLines }: { hiddenLines: TubeDasMapProps['hiddenLines'] }) {
+function getStationSegmentsFromLineData(feature: geojson.Feature<geojson.GeometryObject, GeoJsonLineProperties>): [string, string] {
+  return feature
+    ?.properties!.lines!.map(l => [l.start_sid, l.end_sid] as [string | undefined, string | undefined])
+    .filter(([a, b]) => !!a && !!b)
+    .flat(1) as [string, string]
+}
+
+function MapLayers({ hideSectionsWithNoConnectivity, hiddenLines }: TubeDasMapProps) {
   const L = window.L as typeof import('leaflet')
 
   const map = useMap()
 
   const filterLineData = useCallback(
-    (feature: geojson.Feature<geojson.GeometryObject, any> | undefined): boolean => {
+    (feature: geojson.Feature<geojson.GeometryObject, GeoJsonLineProperties | GeoJsonStationProperties> | undefined): boolean => {
+      if (!feature) return false
+
       const lines = getLinesFromFeature(feature, hiddenLines)
+
+      if (hideSectionsWithNoConnectivity) {
+        if (!!('zone' in feature.properties)) {
+          // Station
+          const hasConnectivity = doesStationHaveCoverage(feature.properties.id)
+
+          if (!hasConnectivity) return false
+        } else {
+          const stationSegments = getStationSegmentsFromLineData(feature)
+          const hasConnectivity = isLineSegmentCovered(...stationSegments)
+
+          if (!hasConnectivity) return false
+        }
+      }
 
       if (!lines) return true
       if (lines.length === 0) return false
 
       return true
     },
-    [map, hiddenLines, getLinesFromFeature],
+    [map, hiddenLines, getLinesFromFeature, hideSectionsWithNoConnectivity],
   )
 
   const filterCoveredLineData = useCallback(
     (feature: geojson.Feature<geojson.GeometryObject, GeoJsonLineProperties> | undefined): boolean => {
       if (!filterLineData(feature)) return false
 
-      const stationSegments = feature
-        ?.properties!.lines!.map(l => [l.start_sid, l.end_sid] as [string | undefined, string | undefined])
-        .filter(([a, b]) => !!a && !!b)
-        .flat(1) as [string, string]
-
+      const stationSegments = getStationSegmentsFromLineData(feature!)
       return isLineSegmentCovered(...stationSegments)
     },
-    [map, isLineSegmentCovered, filterLineData],
+    [map, isLineSegmentCovered, filterLineData, hideSectionsWithNoConnectivity],
   )
 
   const styleLineData = useCallback(
     (feature: geojson.Feature<geojson.GeometryObject, GeoJsonLineProperties> | undefined): PathOptions => {
-      const lines = getLinesFromFeature(feature, hiddenLines).map(l => l.name)
+      if (!feature) return {}
 
+      const lines = getLinesFromFeature(feature, hiddenLines).map(l => l.name)
       const firstLineColor = lineAttrs[lines[0]]?.colour ?? '#000'
 
-      const stationSegments = feature
-        ?.properties!.lines!.map(l => [l.start_sid, l.end_sid] as [string | undefined, string | undefined])
-        .filter(([a, b]) => !!a && !!b)
-        .flat(1) as [string, string]
-
+      const stationSegments = getStationSegmentsFromLineData(feature)
       const hasConnectivity = isLineSegmentCovered(...stationSegments)
 
       return {
@@ -338,11 +354,11 @@ function MapLayers({ hiddenLines }: { hiddenLines: TubeDasMapProps['hiddenLines'
 
   return (
     <>
-      <Pane key={`stations__${JSON.stringify(hiddenLines)}`} name="stations" style={{ zIndex: 100 }}>
+      <Pane key={`stations__${JSON.stringify(hiddenLines)}_${hideSectionsWithNoConnectivity}`} name="stations" style={{ zIndex: 100 }}>
         <GeoJSON data={TflStations as any} filter={filterLineData} pointToLayer={stationMarker} />
       </Pane>
 
-      <Pane key={`lines__${JSON.stringify(hiddenLines)}`} name="lines" style={{ zIndex: 50 }}>
+      <Pane key={`lines__${JSON.stringify(hiddenLines)}_${hideSectionsWithNoConnectivity}`} name="lines" style={{ zIndex: 50 }}>
         <GeoJSON
           data={TflLines as any}
           filter={filterLineData}
@@ -352,9 +368,9 @@ function MapLayers({ hiddenLines }: { hiddenLines: TubeDasMapProps['hiddenLines'
         />
       </Pane>
 
-      <Pane key={`linesOverlay__${JSON.stringify(hiddenLines)}`} name="linesOverlay" style={{ zIndex: 51 }} />
+      <Pane key={`linesOverlay__${JSON.stringify(hiddenLines)}_${hideSectionsWithNoConnectivity}`} name="linesOverlay" style={{ zIndex: 51 }} />
 
-      <Pane key={`coveredLines__${JSON.stringify(hiddenLines)}`} name="coveredLines" style={{ zIndex: 49 }}>
+      <Pane key={`coveredLines__${JSON.stringify(hiddenLines)}_${hideSectionsWithNoConnectivity}`} name="coveredLines" style={{ zIndex: 49 }}>
         <GeoJSON data={TflLines as any} filter={filterCoveredLineData} style={styleCoveredLineData} />
       </Pane>
 
