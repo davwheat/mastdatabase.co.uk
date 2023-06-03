@@ -376,7 +376,13 @@ function MapLayers({ hideSectionsWithNoConnectivity, hiddenLines }: TubeDasMapPr
         } else {
           // Line
           const stationSegments = getStationSegmentsFromLineData(feature)
-          const hasConnectivity = (stationSegments && isLineSegmentCovered(...stationSegments)) ?? 'none'
+          const hasConnectivity =
+            (stationSegments &&
+              isLineSegmentCovered(
+                ...stationSegments,
+                lines.map(l => l.name),
+              )) ??
+            'none'
 
           if (hasConnectivity === 'none') return false
         }
@@ -394,10 +400,16 @@ function MapLayers({ hideSectionsWithNoConnectivity, hiddenLines }: TubeDasMapPr
     (feature: geojson.Feature<geojson.GeometryObject, GeoJsonLineProperties> | undefined): boolean => {
       if (!filterLineData(feature)) return false
 
+      const lines = getLinesFromFeature(feature, hiddenLines)
+
       const stationSegments = getStationSegmentsFromLineData(feature!)
       if (!stationSegments) return false
 
-      const hasConnectivity = isLineSegmentCovered(...stationSegments) ?? 'none'
+      const hasConnectivity =
+        isLineSegmentCovered(
+          ...stationSegments,
+          lines.map(l => l.name),
+        ) ?? 'none'
 
       return hasConnectivity !== 'none'
     },
@@ -412,7 +424,7 @@ function MapLayers({ hideSectionsWithNoConnectivity, hiddenLines }: TubeDasMapPr
       const firstLineColor = lineAttrs[lines[0]]?.colour ?? '#000'
 
       const stationSegments = getStationSegmentsFromLineData(feature)
-      const hasConnectivity = (stationSegments && isLineSegmentCovered(...stationSegments)) ?? 'none'
+      const hasConnectivity = (stationSegments && isLineSegmentCovered(...stationSegments, lines)) ?? 'none'
 
       return {
         weight: LINE_WIDTH,
