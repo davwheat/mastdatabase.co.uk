@@ -260,7 +260,7 @@ function generatePopupContentForLineSection(feature: geojson.Feature<geojson.Geo
   <p class="text-whisper"><strong>${group}</strong></p>
   <p class="text-whisper"><strong>${section}</strong></p>
 
-  ${!!state ? `<p class="text-whisper">${state === 'planned' ? 'Opens' : 'Opened'} ${opens}</p>` : ''}
+  ${!!state ? `<p class="text-whisper">${state === 'planned' ? 'Launches' : 'Launched'} ${opens}</p>` : ''}
 `
 
       if (!coverage) {
