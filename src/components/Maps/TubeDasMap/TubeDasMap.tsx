@@ -126,7 +126,9 @@ const lineAttrs = {
   'Waterloo & City': { id: 'W', colour: '#95CDBA', network: 'Tube' },
 }
 
-function styleCoveredLineData(feature: geojson.Feature<geojson.GeometryObject, GeoJsonLineProperties>): PathOptions {
+function styleCoveredLineData(feature: geojson.Feature<geojson.GeometryObject, GeoJsonLineProperties> | undefined): PathOptions {
+  if (!feature) return {}
+
   const segments = getStationSegmentsFromLineData(feature)
   const hasConnectivity = segments && isLineSegmentCovered(...segments)
 
@@ -372,8 +374,9 @@ function MapLayers({ hideSectionsWithNoConnectivity, hiddenLines }: TubeDasMapPr
 
           if (hasConnectivity === 'none') return false
         } else {
+          // Line
           const stationSegments = getStationSegmentsFromLineData(feature)
-          const hasConnectivity = stationSegments && isLineSegmentCovered(...stationSegments)
+          const hasConnectivity = (stationSegments && isLineSegmentCovered(...stationSegments)) ?? 'none'
 
           if (hasConnectivity === 'none') return false
         }
@@ -394,7 +397,7 @@ function MapLayers({ hideSectionsWithNoConnectivity, hiddenLines }: TubeDasMapPr
       const stationSegments = getStationSegmentsFromLineData(feature!)
       if (!stationSegments) return false
 
-      const hasConnectivity = isLineSegmentCovered(...stationSegments)
+      const hasConnectivity = isLineSegmentCovered(...stationSegments) ?? 'none'
 
       return hasConnectivity !== 'none'
     },
