@@ -363,7 +363,7 @@ StationSegmentsWithCoverage.forEach((group, groupNum) => {
 })
 
 export function isLineSegmentCovered(startSid: string, endSid: string): 'live' | 'planned' | 'none' {
-  return getLineSegmentCoverage(startSid, endSid)?.state ?? 'none'
+  return getLineSegmentCoverage(startSid, endSid)?.state || 'none'
 }
 
 export function getLineSegmentCoverage(
