@@ -155,6 +155,23 @@ const StationSegmentsWithCoverage: CoverageGroup[] = [
     ],
   },
   {
+    groupName: 'Heathrow Tunnels',
+    state: 'live',
+    opens: 'pre-2009',
+    segments: [
+      {
+        section: 'Hayes & Harlington to Heathrow Terminals 2 & 3/4',
+        startStationId: '910GHAYESAH',
+        endStationId: '910GHTRWTM4',
+      },
+      {
+        section: 'Heathrow Terminals 2 & 3 to Heathrow Terminal 5',
+        startStationId: '910GHTRWAPT',
+        endStationId: '910GHTRWTM5',
+      },
+    ],
+  },
+  {
     groupName: 'Central Line',
     state: 'live',
     opens: 'December 2022',
