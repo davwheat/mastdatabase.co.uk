@@ -23,6 +23,7 @@ interface CoverageSegment {
   services?: OperatorConnectivity
   startStationId: string
   endStationId: string
+  lineFilter?: string[]
 }
 
 const CoveragePresets: Record<'tunnels' | 'station', Record<Networks, Record<string, Connectivity>>> = {
@@ -280,6 +281,7 @@ const StationSegmentsWithCoverage: CoverageGroup[] = [
       },
       {
         section: 'Warren Street to Euston',
+        lineFilter: ['Northern'],
         startStationId: '940GZZLUWRR',
         endStationId: '940GZZLUEUS',
       },
@@ -327,10 +329,17 @@ const StationCoverageInfo: Record<string, OperatorConnectivity> = {
   },
 }
 
-const StationCoverageMap: Record<
-  string,
-  { end: string; group: string; section: string; coverage?: OperatorConnectivity; state?: 'live' | 'planned'; opens: string }[]
-> = {}
+interface StationCoverage {
+  end: string
+  group: string
+  section: string
+  coverage?: OperatorConnectivity
+  state?: 'live' | 'planned'
+  opens: string
+  lineFilter?: string[]
+}
+
+const StationCoverageMap: Record<string, StationCoverage[]> = {}
 const StationsWithCoverage: Map<string, 'live' | 'planned'> = new Map()
 
 export function getStationCoverageInfo(sid: string): Readonly<OperatorConnectivity> {
@@ -350,6 +359,7 @@ StationSegmentsWithCoverage.forEach((group, groupNum) => {
       coverage: segment.services,
       state: group.state,
       opens: group.opens,
+      lineFilter: segment.lineFilter,
     })
 
     if (StationsWithCoverage.get(segments[0]) !== 'live') {
@@ -362,20 +372,27 @@ StationSegmentsWithCoverage.forEach((group, groupNum) => {
   })
 })
 
-export function isLineSegmentCovered(startSid: string, endSid: string): 'live' | 'planned' | 'none' {
-  return getLineSegmentCoverage(startSid, endSid)?.state || 'none'
+export function isLineSegmentCovered(startSid: string, endSid: string, lines?: string[]): 'live' | 'planned' | 'none' {
+  return getLineSegmentCoverage(startSid, endSid, lines)?.state || 'none'
 }
 
-export function getLineSegmentCoverage(
-  startSid: string,
-  endSid: string,
-): { group: string; section: string; state?: 'live' | 'planned'; coverage?: OperatorConnectivity; opens: string } | null {
+export function getLineSegmentCoverage(startSid: string, endSid: string, lines?: string[]): StationCoverage | null {
   const segments = [startSid, endSid]
   segments.sort()
 
   const coveredSegments = StationCoverageMap[segments[0]]
 
-  return coveredSegments?.find(seg => seg.end === segments[1]) ?? null
+  return (
+    coveredSegments?.find(seg => {
+      if (seg.end !== segments[1]) return false
+
+      if (seg.lineFilter && lines) {
+        if (!lines.some(line => seg.lineFilter?.includes(line))) return false
+      }
+
+      return true
+    }) ?? null
+  )
 }
 
 export function doesStationHaveCoverage(sid: string): 'live' | 'planned' | 'none' {
