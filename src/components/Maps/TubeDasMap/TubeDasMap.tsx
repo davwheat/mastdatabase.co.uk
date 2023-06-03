@@ -7,7 +7,7 @@ import TflLines from './MapData/tfl_lines.geo.json'
 import TflStations from './MapData/tfl_stations.geo.json'
 import TflZones from './MapData/tfl_zones_1_to_6.geo.json'
 import Thames from './MapData/thames.geo.json'
-import { doesStationHaveCoverage, isLineSegmentCovered } from './MapData/CoveredSections'
+import { doesStationHaveCoverage, getLineSegmentCoverage, getStationCoverageInfo, isLineSegmentCovered } from './MapData/CoveredSections'
 
 import useFixLeafletAssets from '@hooks/useFixLeafletAssets'
 import GeolocationButton from '@leaflet/GeolocationButton'
@@ -136,20 +136,10 @@ function styleCoveredLineData(feature: geojson.Feature<geojson.GeometryObject, G
   }
 }
 
-function stationMarker(geoJsonPoint: geojson.Feature<geojson.GeometryObject, GeoJsonStationProperties>, latLng: LatLngExpression): Layer {
+function stationMarker(feature: geojson.Feature<geojson.GeometryObject, GeoJsonStationProperties>, latLng: LatLngExpression): Layer {
   const L = window.L as typeof import('leaflet')
 
-  const lines = getLinesFromFeature(geoJsonPoint, [])
-
-  const hasConnectivity = doesStationHaveCoverage(geoJsonPoint.properties.id)
-
-  const popupContent = document.createElement('div')
-
-  popupContent.innerHTML = `
-  <p class="text-whisper-loud">${geoJsonPoint.properties.name}</p>
-  <p class="text-whisper">Served by: ${lines.map(l => l?.name ?? '???').join(', ')}</p>
-  <p class="text-whisper">Station ID: ${geoJsonPoint.properties.id}</p>
-`
+  const hasConnectivity = doesStationHaveCoverage(feature.properties.id)
 
   return new L.CircleMarker(latLng, {
     radius: 5,
@@ -158,7 +148,7 @@ function stationMarker(geoJsonPoint: geojson.Feature<geojson.GeometryObject, Geo
     color: '#000',
     weight: 2,
     className: hasConnectivity ? 'has-connectivity' : 'no-connectivity',
-  }).bindPopup(popupContent)
+  }).bindPopup(generatePopupContentForStation(feature))
 }
 
 const useStyles = makeStyles({
@@ -168,6 +158,12 @@ const useStyles = makeStyles({
     },
     '& .leaflet-base-pane': {
       filter: 'grayscale(100%)',
+    },
+    '& .leaflet-popup-content': {
+      '& p': {
+        margin: 0,
+        marginBottom: '0.5em',
+      },
     },
   },
   hideNonConnectedAreas: {
@@ -231,11 +227,122 @@ export default function TubeDasMap({ hideSectionsWithNoConnectivity, hiddenLines
   )
 }
 
-function getStationSegmentsFromLineData(feature: geojson.Feature<geojson.GeometryObject, GeoJsonLineProperties>): [string, string] {
+function getStationSegmentsFromLineData(feature: geojson.Feature<geojson.GeometryObject, GeoJsonLineProperties>): [string, string] | undefined {
   return feature
     ?.properties!.lines!.map(l => [l.start_sid, l.end_sid] as [string | undefined, string | undefined])
-    .filter(([a, b]) => !!a && !!b)
-    .flat(1) as [string, string]
+    .filter(([a, b]) => !!a && !!b)?.[0] as [string, string] | undefined
+}
+
+function generatePopupContentForLineSection(feature: geojson.Feature<geojson.GeometryObject, GeoJsonLineProperties>): HTMLDivElement {
+  const segments = getStationSegmentsFromLineData(feature)
+  const popupContent = document.createElement('div')
+
+  if (!segments) {
+    popupContent.innerHTML = `
+<p class="text-whisper">No data available</p>
+`
+  } else {
+    const data = getLineSegmentCoverage(...segments)
+
+    if (!data) {
+      popupContent.innerHTML = `
+  <p class="text-whisper">No data available</p>
+`
+    } else {
+      const { group, section, coverage } = data
+
+      popupContent.innerHTML = `
+  <p class="text-whisper"><strong>${group}</strong></p>
+  <p class="text-whisper"><strong>${section}</strong></p>
+`
+
+      if (!coverage) {
+        popupContent.innerHTML += `
+  <p class="text-whisper">No coverage data available</p>
+`
+      } else {
+        popupContent.innerHTML += `
+  <table>
+    <thead>
+      <tr>
+        <th>Network</th>
+        <th>2G</th>
+        <th>3G</th>
+        <th>4G</th>
+        <th>5G</th>
+      </tr>
+    </thead>
+    <tbody>
+      ${Object.entries(coverage)
+        .map(([network, networkCoverage]) => {
+          return `
+        <tr>
+          <td>${network}</td>
+          <td>${(networkCoverage?.['2G']?.join(', ') || 'N/A') ?? 'Unknown'}</td>
+          <td>${(networkCoverage?.['3G']?.join(', ') || 'N/A') ?? 'Unknown'}</td>
+          <td>${(networkCoverage?.['4G']?.join(', ') || 'N/A') ?? 'Unknown'}</td>
+          <td>${(networkCoverage?.['5G']?.join(', ') || 'N/A') ?? 'Unknown'}</td>
+        </tr>
+      `
+        })
+        .join('')}
+    </tbody>
+  </table>
+`
+      }
+    }
+  }
+
+  return popupContent
+}
+
+function generatePopupContentForStation(feature: geojson.Feature<geojson.GeometryObject, GeoJsonStationProperties>): HTMLDivElement {
+  const popupContent = document.createElement('div')
+
+  const lines = getLinesFromFeature(feature, [])
+  const coverage = getStationCoverageInfo(feature.properties.id)
+
+  popupContent.innerHTML = `
+  <p class="text-whisper"><strong>${feature.properties.name}</strong></p>
+  <p class="text-whisper">Served by ${lines.map(l => l?.name ?? '???').join(', ')}</p>
+`
+
+  if (!coverage) {
+    popupContent.innerHTML += `
+  <p class="text-whisper">No coverage data available</p>
+`
+  } else {
+    popupContent.innerHTML += `
+  <table>
+    <thead>
+      <tr>
+        <th>Network</th>
+        <th>2G</th>
+        <th>3G</th>
+        <th>4G</th>
+        <th>5G</th>
+      </tr>
+    </thead>
+    <tbody>
+      ${Object.entries(coverage)
+        .map(([network, networkCoverage]) => {
+          return `
+        <tr>
+          <td>${network}</td>
+          <td>${(networkCoverage?.['2G']?.join(', ') || 'N/A') ?? 'Unknown'}</td>
+          <td>${(networkCoverage?.['3G']?.join(', ') || 'N/A') ?? 'Unknown'}</td>
+          <td>${(networkCoverage?.['4G']?.join(', ') || 'N/A') ?? 'Unknown'}</td>
+          <td>${(networkCoverage?.['5G']?.join(', ') || 'N/A') ?? 'Unknown'}</td>
+        </tr>
+      `
+        })
+        .join('')}
+    </tbody>
+  </table>
+`
+  }
+
+  return popupContent
 }
 
 function MapLayers({ hideSectionsWithNoConnectivity, hiddenLines }: TubeDasMapProps) {
@@ -257,7 +364,7 @@ function MapLayers({ hideSectionsWithNoConnectivity, hiddenLines }: TubeDasMapPr
           if (!hasConnectivity) return false
         } else {
           const stationSegments = getStationSegmentsFromLineData(feature)
-          const hasConnectivity = isLineSegmentCovered(...stationSegments)
+          const hasConnectivity = stationSegments && isLineSegmentCovered(...stationSegments)
 
           if (!hasConnectivity) return false
         }
@@ -276,7 +383,11 @@ function MapLayers({ hideSectionsWithNoConnectivity, hiddenLines }: TubeDasMapPr
       if (!filterLineData(feature)) return false
 
       const stationSegments = getStationSegmentsFromLineData(feature!)
-      return isLineSegmentCovered(...stationSegments)
+      if (!stationSegments) return false
+
+      const hasConnectivity = isLineSegmentCovered(...stationSegments)
+
+      return hasConnectivity
     },
     [map, isLineSegmentCovered, filterLineData, hideSectionsWithNoConnectivity],
   )
@@ -289,7 +400,7 @@ function MapLayers({ hideSectionsWithNoConnectivity, hiddenLines }: TubeDasMapPr
       const firstLineColor = lineAttrs[lines[0]]?.colour ?? '#000'
 
       const stationSegments = getStationSegmentsFromLineData(feature)
-      const hasConnectivity = isLineSegmentCovered(...stationSegments)
+      const hasConnectivity = stationSegments && isLineSegmentCovered(...stationSegments)
 
       return {
         weight: LINE_WIDTH,
@@ -304,11 +415,10 @@ function MapLayers({ hideSectionsWithNoConnectivity, hiddenLines }: TubeDasMapPr
   )
 
   const onLineLayerMade = useCallback(
-    (feature, layer) => {
+    (feature: geojson.Feature<geojson.GeometryObject, GeoJsonLineProperties>, layer) => {
+      layer.bindPopup(generatePopupContentForLineSection(feature))
+
       const lines = getLinesFromFeature(feature, hiddenLines).map(l => l.name)
-
-      const hasConnectivity = doesStationHaveCoverage(feature.properties.id)
-
       if (lines.length <= 1) return
 
       const allLineColours = lines.map(l => lineAttrs[l]?.colour ?? '#000')
@@ -317,17 +427,13 @@ function MapLayers({ hideSectionsWithNoConnectivity, hiddenLines }: TubeDasMapPr
       const coords = feature.geometry.coordinates
       const latLngs = L.GeoJSON.coordsToLatLngs(coords)
 
+      const hasConnectivity = doesStationHaveCoverage(feature.properties.id)
+
       allLineColours.forEach((color, i) => {
         const extraNum = i + 1
         const totalCount = lines.length
 
         let dashArray = `${MULTI_LINE_STROKE_COLOUR_ALTERNATE} ${MULTI_LINE_STROKE_COLOUR_ALTERNATE * (totalCount - 1)}`
-
-        const popupContent = document.createElement('div')
-
-        popupContent.innerHTML = `
-  <p class="text-whisper"><strong>Track segment ID:</strong> ${feature.properties.id}</p>
-`
 
         new L.Polyline(latLngs, {
           pane: 'linesOverlay',
@@ -338,7 +444,7 @@ function MapLayers({ hideSectionsWithNoConnectivity, hiddenLines }: TubeDasMapPr
           weight: LINE_WIDTH,
           className: hasConnectivity ? 'has-connectivity' : 'no-connectivity',
         })
-          .bindPopup(popupContent)
+          .bindPopup(generatePopupContentForLineSection(feature))
           .addTo(map)
       })
     },
