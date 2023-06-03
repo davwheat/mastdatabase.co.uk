@@ -48,8 +48,8 @@ export default function TubeConnectivityMap({ location }: PageProps) {
         <Breadcrumbs
           data={[
             { t: 'Home', url: '/' },
-            { t: 'Maps', url: '/maps' },
-            { t: 'London Underground connectivity', url: '/maps/london-underground-connectivity' },
+            { t: 'United Kingdom', url: '/gb' },
+            { t: 'London Underground connectivity', url: '/gb/london-underground-connectivity' },
           ]}
         />
 
