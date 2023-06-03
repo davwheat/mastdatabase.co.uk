@@ -14,6 +14,7 @@ type OperatorConnectivity = {
 interface CoverageGroup {
   groupName: string
   state: 'live' | 'planned'
+  opens: string
   segments: CoverageSegment[]
 }
 
@@ -109,6 +110,7 @@ const StationSegmentsWithCoverage: CoverageGroup[] = [
   {
     groupName: 'Jubilee Line Extension',
     state: 'live',
+    opens: 'March 2020',
     segments: [
       {
         section: 'Canning Town to North Greenwich',
@@ -155,6 +157,7 @@ const StationSegmentsWithCoverage: CoverageGroup[] = [
   {
     groupName: 'Central Line',
     state: 'live',
+    opens: 'December 2022',
     segments: [
       {
         section: 'Holland Park to Notting Hill Gate',
@@ -183,6 +186,7 @@ const StationSegmentsWithCoverage: CoverageGroup[] = [
   {
     groupName: 'Northern Line',
     state: 'live',
+    opens: 'January 2023',
     segments: [
       {
         section: 'Kentish Town to Tufnell Park',
@@ -213,6 +217,7 @@ const StationSegmentsWithCoverage: CoverageGroup[] = [
   {
     groupName: 'Central Line',
     state: 'planned',
+    opens: 'Summer 2023',
     segments: [
       {
         section: 'Oxford Circus to Tottenham Court Road',
@@ -244,6 +249,7 @@ const StationSegmentsWithCoverage: CoverageGroup[] = [
   {
     groupName: 'Northern Line',
     state: 'planned',
+    opens: 'Summer 2023',
     segments: [
       {
         section: 'Tottenham Court Road to Goodge Street',
@@ -306,7 +312,7 @@ const StationCoverageInfo: Record<string, OperatorConnectivity> = {
 
 const StationCoverageMap: Record<
   string,
-  { end: string; group: string; section: string; coverage?: OperatorConnectivity; state?: 'live' | 'planned' }[]
+  { end: string; group: string; section: string; coverage?: OperatorConnectivity; state?: 'live' | 'planned'; opens: string }[]
 > = {}
 const StationsWithCoverage: Map<string, 'live' | 'planned'> = new Map()
 
@@ -326,6 +332,7 @@ StationSegmentsWithCoverage.forEach((group, groupNum) => {
       section: segment.section,
       coverage: segment.services,
       state: group.state,
+      opens: group.opens,
     })
 
     if (StationsWithCoverage.get(segments[0]) !== 'live') {
@@ -345,7 +352,7 @@ export function isLineSegmentCovered(startSid: string, endSid: string): 'live' |
 export function getLineSegmentCoverage(
   startSid: string,
   endSid: string,
-): { group: string; section: string; state?: 'live' | 'planned'; coverage?: OperatorConnectivity } | null {
+): { group: string; section: string; state?: 'live' | 'planned'; coverage?: OperatorConnectivity; opens: string } | null {
   const segments = [startSid, endSid]
   segments.sort()
 

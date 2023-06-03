@@ -126,9 +126,9 @@ const lineAttrs = {
   'Waterloo & City': { id: 'W', colour: '#95CDBA', network: 'Tube' },
 }
 
-function styleCoveredLineData(feature: geojson.Feature<geojson.GeometryObject, GeoJsonLineProperties> | undefined): PathOptions {
+function styleCoveredLineData(feature: geojson.Feature<geojson.GeometryObject, GeoJsonLineProperties>): PathOptions {
   const segments = getStationSegmentsFromLineData(feature)
-  const hasConnectivity = isLineSegmentCovered(...segments)
+  const hasConnectivity = segments && isLineSegmentCovered(...segments)
 
   return {
     weight: LINE_WIDTH * 2,
@@ -254,11 +254,13 @@ function generatePopupContentForLineSection(feature: geojson.Feature<geojson.Geo
   <p class="text-whisper">No data available</p>
 `
     } else {
-      const { group, section, coverage } = data
+      const { group, section, coverage, opens, state } = data
 
       popupContent.innerHTML = `
   <p class="text-whisper"><strong>${group}</strong></p>
   <p class="text-whisper"><strong>${section}</strong></p>
+
+  ${!!state ? `<p class="text-whisper">${state === 'planned' ? 'Opens' : 'Opened'} ${opens}</p>` : ''}
 `
 
       if (!coverage) {
