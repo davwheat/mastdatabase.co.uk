@@ -20623,7 +20623,10 @@
     },
     {
       "type": "Feature",
-      "properties": { "id": "HeathrowSpur", "lines": [{ "name": "Elizabeth line", "opened": 2018 }] },
+      "properties": {
+        "id": "HeathrowSpur",
+        "lines": [{ "name": "Elizabeth line", "opened": 2018, "start_sid": "910GHAYESAH", "end_sid": "910GHTRWTM4" }]
+      },
       "geometry": {
         "type": "LineString",
         "coordinates": [
@@ -21040,7 +21043,10 @@
     },
     {
       "type": "Feature",
-      "properties": { "id": "CrossrailT5", "lines": [{ "name": "Elizabeth line", "opened": 2020 }] },
+      "properties": {
+        "id": "CrossrailT5",
+        "lines": [{ "name": "Elizabeth line", "opened": 2020, "start_sid": "910GHTRWAPT", "end_sid": "910GHTRWTM5" }]
+      },
       "geometry": {
         "type": "LineString",
         "coordinates": [
