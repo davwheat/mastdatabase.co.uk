@@ -5,9 +5,6 @@ import Hero from '@components/Design/Hero'
 import Breadcrumbs from '@components/Design/Breadcrumbs'
 import Section from '@components/Design/Section'
 import Link from '@components/Links/Link'
-import TubeDasMap, { TubeDasMapProps } from '@components/Maps/TubeDasMap/TubeDasMap'
-import Checkbox from '@components/Inputs/Checkbox'
-import Accordion from '@components/Design/Accordion'
 
 import Colors from '@data/colors.json'
 
