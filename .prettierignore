@@ -2,3 +2,8 @@
 public
 size-plugin.json
 src/gatsby-types.d.ts
+
+
+# Project specific
+src/components/Maps/UKRailCoverageMap/MapData/*
+src/components/Maps/UKRoadCoverageMap/MapData/*
