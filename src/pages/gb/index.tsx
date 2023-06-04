@@ -65,6 +65,11 @@ const Links: ILinkGroup[] = [
         description: 'An interactive map of mobile coverage deployments on the London Underground and other TfL services.',
         url: '/gb/london-underground-connectivity',
       },
+      {
+        title: 'UK railway coverage not-spots',
+        description: 'Where bad mobile coverage meets UK railway infrastructure.',
+        url: '/gb/railway-coverage-notspots',
+      },
     ],
   },
   {
