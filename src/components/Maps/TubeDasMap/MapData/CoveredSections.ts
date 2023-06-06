@@ -319,14 +319,194 @@ const StationSegmentsWithCoverage: CoverageGroup[] = [
   },
 ]
 
-const StationCoverageInfo: Record<string, OperatorConnectivity> = {
+const StationCoverageInfo: Record<string, { state: 'live' | 'planned'; coverage: OperatorConnectivity }> = {
+  // #region Northern Line
+  // #region Northern Line, Kentish Branch
   // Kentish Town
   '940GZZLUKSH': {
-    EE: CoveragePresets.station.EE.no_5g,
-    Three: CoveragePresets.station.Three.normal,
-    Vodafone: CoveragePresets.station.Vodafone.normal,
-    O2: CoveragePresets.station.O2.normal,
+    state: 'live',
+    coverage: {
+      EE: CoveragePresets.station.EE.no_5g,
+      Three: CoveragePresets.station.Three.normal,
+      Vodafone: CoveragePresets.station.Vodafone.normal,
+      O2: CoveragePresets.station.O2.normal,
+    },
   },
+  // Tufnell Park
+  '940GZZLUTFP': {
+    state: 'live',
+    coverage: {},
+  },
+  // Archway
+  '940GZZLUACY': {
+    state: 'live',
+    coverage: {},
+  },
+  // #endregion
+
+  // Camden Town
+  '940GZZLUCTN': {
+    state: 'live',
+    coverage: {},
+  },
+  // Mornington Crescent
+  '940GZZLUMTC': {
+    state: 'planned',
+    coverage: {},
+  },
+  // Euston
+  '940GZZLUEUS': {
+    state: 'planned',
+    coverage: {},
+  },
+  // Warren Street
+  '940GZZLUWRR': {
+    state: 'planned',
+    coverage: {},
+  },
+  // Goodge Street
+  '940GZZLUGDG': {
+    state: 'planned',
+    coverage: {},
+  },
+  // Tottenham Court Road
+  '940GZZLUTCR': {
+    state: 'planned',
+    coverage: {},
+  },
+  // #endregion
+
+  // #region Chalk Farm branch
+  // Chalk Farm
+  '940GZZLUCFM': {
+    state: 'planned',
+    coverage: {},
+  },
+  // Belsize Park
+  '940GZZLUBZP': {
+    state: 'planned',
+    coverage: {},
+  },
+  // Hampstead
+  '940GZZLUHTD': {
+    state: 'planned',
+    coverage: {},
+  },
+
+  // #region Central Line
+  // Queensway
+  '940GZZLUQWY': {
+    state: 'live',
+    coverage: {},
+  },
+  // Notting Hill Gate
+  '940GZZLUNHG': {
+    state: 'live',
+    coverage: {},
+  },
+  // Holland Park
+  '940GZZLUHPK': {
+    state: 'live',
+    coverage: {},
+  },
+
+  // Oxford Circus
+  '940GZZLUOXC': {
+    state: 'planned',
+    coverage: {},
+  },
+  // Tottenham Court Road
+  '940GZZLUTCR': {
+    state: 'planned',
+    coverage: {},
+  },
+  // Holborn
+  '940GZZLUHBN': {
+    state: 'planned',
+    coverage: {},
+  },
+  // Chancery Lane
+  '940GZZLUCHL': {
+    state: 'planned',
+    coverage: {},
+  },
+  // St Pauls
+  '940GZZLUSPU': {
+    state: 'planned',
+    coverage: {},
+  },
+  // Bank
+  '940GZZLUBNK': {
+    state: 'planned',
+    coverage: {},
+  },
+  // #endregion
+
+  // #region Jubilee Line Extension
+  // Westminster
+  '940GZZLUWSM': {
+    state: 'live',
+    coverage: {},
+  },
+  // Waterloo
+  '940GZZLUWLO': {
+    state: 'live',
+    coverage: {},
+  },
+  // Southwark
+  '940GZZLUSWK': {
+    state: 'live',
+    coverage: {},
+  },
+  // London Bridge
+  '940GZZLULNB': {
+    state: 'live',
+    coverage: {},
+  },
+  // Bermondsey
+  '940GZZLUBMY': {
+    state: 'live',
+    coverage: {},
+  },
+  // Canada Water
+  '940GZZLUCWR': {
+    state: 'live',
+    coverage: {},
+  },
+  // Canary Wharf
+  '940GZZLUCYF': {
+    state: 'live',
+    coverage: {},
+  },
+  // North Greenwich
+  '940GZZLUNGW': {
+    state: 'live',
+    coverage: {},
+  },
+  // Canning Town
+  '940GZZLUCGT': {
+    state: 'live',
+    coverage: {},
+  },
+  // #endregion
+
+  // #region Elizabeth Line - Heathrow Branch
+  // Heathrow Terminals 2 & 3
+  '940GZZLUHRC': {
+    state: 'live',
+    coverage: {},
+  },
+  // Heathrow Terminal 4
+  '940GZZLUHR4': {
+    state: 'live',
+    coverage: {},
+  },
+  // Heathrow Terminal 5
+  '940GZZLUHR5': {
+    state: 'live',
+    coverage: {},
+  },
+  // #endregion
 }
 
 interface StationCoverage {
@@ -343,7 +523,7 @@ const StationCoverageMap: Record<string, StationCoverage[]> = {}
 const StationsWithCoverage: Map<string, 'live' | 'planned'> = new Map()
 
 export function getStationCoverageInfo(sid: string): Readonly<OperatorConnectivity> {
-  return StationCoverageInfo[sid]
+  return StationCoverageInfo[sid]?.coverage
 }
 
 StationSegmentsWithCoverage.forEach((group, groupNum) => {
@@ -396,5 +576,5 @@ export function getLineSegmentCoverage(startSid: string, endSid: string, lines?:
 }
 
 export function doesStationHaveCoverage(sid: string): 'live' | 'planned' | 'none' {
-  return StationsWithCoverage.get(sid) ?? 'none'
+  return sid in StationCoverageInfo ? StationCoverageInfo[sid].state : 'none'
 }
