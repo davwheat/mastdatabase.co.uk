@@ -155,6 +155,23 @@ function stationMarker(feature: geojson.Feature<geojson.GeometryObject, GeoJsonS
   }).bindPopup(generatePopupContentForStation(feature))
 }
 
+function coveredStationMarker(feature: geojson.Feature<geojson.GeometryObject, GeoJsonStationProperties>, latLng: LatLngExpression): Layer {
+  const L = window.L as typeof import('leaflet')
+
+  const hasConnectivity = doesStationHaveCoverage(feature.properties.id)
+
+  if (hasConnectivity === 'none') return null as any
+
+  return new L.CircleMarker(latLng, {
+    interactive: false,
+    radius: 8,
+    fillColor: hasConnectivity === 'live' ? '#5de800' : '#ff8400',
+    fillOpacity: 1,
+    stroke: false,
+    pane: 'coveredStations',
+  }).bindPopup(generatePopupContentForStation(feature))
+}
+
 const useStyles = makeStyles({
   mapRoot: {
     '& .none-connectivity': {
@@ -318,7 +335,7 @@ function generatePopupContentForStation(feature: geojson.Feature<geojson.Geometr
   <p class="text-whisper">Served by ${lines.map(l => l?.name ?? '???').join(', ')}</p>
 `
 
-  if (!coverage) {
+  if (!coverage || Object.keys(coverage).length === 0) {
     popupContent.innerHTML += `
   <p class="text-whisper">No coverage data available</p>
 `
@@ -488,6 +505,14 @@ function MapLayers({ hideSectionsWithNoConnectivity, hiddenLines }: TubeDasMapPr
 
       <Pane key={`coveredLines__${JSON.stringify(hiddenLines)}_${hideSectionsWithNoConnectivity}`} name="coveredLines" style={{ zIndex: 49 }}>
         <GeoJSON data={TflLines as any} filter={filterCoveredLineData} style={styleCoveredLineData} />
+      </Pane>
+
+      <Pane
+        key={`coveredStations__${JSON.stringify(hiddenLines)}_${hideSectionsWithNoConnectivity}`}
+        name="coveredStations"
+        style={{ zIndex: 99 }}
+      >
+        <GeoJSON data={TflStations as any} filter={filterLineData} pointToLayer={coveredStationMarker} />
       </Pane>
 
       <Pane key="zones" name="zones" style={{ zIndex: 10 }}>
