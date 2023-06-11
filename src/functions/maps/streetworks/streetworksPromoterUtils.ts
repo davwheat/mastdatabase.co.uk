@@ -87,6 +87,16 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
       type: 'mobile',
     },
   },
+  {
+    id: 'ctil',
+    name: 'CTIL (O2/VF)',
+    aliases: ['CTIL', 'Cornerstone Telecommunications Infrastructure Limited', 'Cornerstone Telecommunications Infrastru'],
+    category: 'Mobile network',
+    icon: {
+      text: 'CTIL',
+      type: 'mobile',
+    },
+  },
 
   // Fixed broadband
   {
