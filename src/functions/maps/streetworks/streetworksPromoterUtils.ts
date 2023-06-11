@@ -636,7 +636,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'gtt',
     name: 'GTT Communications',
-    aliases: ['Hibernia Networks'],
+    aliases: ['Hibernia Networks', 'I-21 Holdings Ltd'],
     category: 'Telecoms infrastructure',
     icon: {
       text: 'GTT',
