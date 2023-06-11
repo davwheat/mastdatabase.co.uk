@@ -462,7 +462,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'fibrewave',
     name: 'Fibrewave Networks',
-    aliases: ['Fibrewave Networks', 'Fibrewave Networks Ltd'],
+    aliases: ['Fibrewave Networks', 'Fibrewave Networks Ltd', 'Fibre Wave Installations'],
     category: 'Fixed broadband',
     icon: {
       text: 'FWAV',
