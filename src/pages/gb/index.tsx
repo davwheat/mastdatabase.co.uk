@@ -70,6 +70,11 @@ const Links: ILinkGroup[] = [
         description: 'Where bad mobile coverage meets UK railway infrastructure.',
         url: '/gb/railway-coverage-notspots',
       },
+      {
+        title: 'UK road coverage not-spots',
+        description: 'Every section of UK motorway and A-road marked as not having "indoor" 4G coverage.',
+        url: '/gb/road-coverage-notspots',
+      },
     ],
   },
   {

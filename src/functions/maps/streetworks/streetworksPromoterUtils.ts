@@ -87,6 +87,16 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
       type: 'mobile',
     },
   },
+  {
+    id: 'ctil',
+    name: 'CTIL (O2/VF)',
+    aliases: ['CTIL', 'Cornerstone Telecommunications Infrastructure Limited', 'Cornerstone Telecommunications Infrastru'],
+    category: 'Mobile network',
+    icon: {
+      text: 'CTIL',
+      type: 'mobile',
+    },
+  },
 
   // Fixed broadband
   {
@@ -452,7 +462,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'fibrewave',
     name: 'Fibrewave Networks',
-    aliases: ['Fibrewave Networks', 'Fibrewave Networks Ltd'],
+    aliases: ['Fibrewave Networks', 'Fibrewave Networks Ltd', 'Fibre Wave Installations'],
     category: 'Fixed broadband',
     icon: {
       text: 'FWAV',
@@ -626,7 +636,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'gtt',
     name: 'GTT Communications',
-    aliases: ['Hibernia Networks'],
+    aliases: ['Hibernia Networks', 'I-21 Holdings Ltd'],
     category: 'Telecoms infrastructure',
     icon: {
       text: 'GTT',
