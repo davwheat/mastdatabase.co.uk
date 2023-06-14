@@ -597,8 +597,8 @@ export function getStationCoverageInfo(sid: string): Readonly<OperatorConnectivi
   return StationCoverageInfo[sid]?.coverage
 }
 
-StationSegmentsWithCoverage.forEach((group, groupNum) => {
-  group.segments.forEach((segment, segmentNum) => {
+StationSegmentsWithCoverage.forEach((group) => {
+  group.segments.forEach((segment) => {
     const segments = [segment.startStationId, segment.endStationId]
     segments.sort()
 
