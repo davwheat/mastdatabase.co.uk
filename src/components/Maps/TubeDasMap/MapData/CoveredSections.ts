@@ -7,7 +7,7 @@ interface Connectivity {
   '5G'?: ('n1' | 'n3' | 'n7' | 'n8' | 'n20' | 'n28' | 'n38' | 'n40' | 'n77' | 'n78' | 'n258')[]
 }
 
-type OperatorConnectivity = {
+export type OperatorConnectivity = {
   [key in Networks]?: Connectivity
 }
 
@@ -35,11 +35,23 @@ const CoveragePresets: Record<'tunnels' | 'station', Record<Networks, Record<str
         '4G': ['B1', 'B3', 'B3', 'B20'],
         '5G': ['n28'],
       },
+      jle: {
+        '2G': ['G18'],
+        '3G': [],
+        '4G': ['B1', 'B3'],
+        '5G': [],
+      },
     },
     Three: {
       normal: {
         '2G': [],
         '3G': [],
+        '4G': ['B1', 'B3'],
+        '5G': [],
+      },
+      jle: {
+        '2G': [],
+        // '3G': [],
         '4G': ['B1', 'B3'],
         '5G': [],
       },
@@ -51,12 +63,25 @@ const CoveragePresets: Record<'tunnels' | 'station', Record<Networks, Record<str
         '4G': ['B1', 'B8', 'B20'],
         '5G': ['n28'],
       },
+      jle: {
+        // '2G': [],
+        '3G': ['U09'],
+        '4G': ['B20'],
+        '5G': [],
+      },
     },
     Vodafone: {
       normal: {
         '2G': ['G09'],
         '3G': ['U21'],
-        '4G': ['B1', 'B20'],
+        '4G': ['B1', 'B20', 'B8'],
+        '5G': ['n8'],
+      },
+      jle: {
+        // '2G': [],
+        // '3G': [],
+        '4G': ['B20', 'B8'],
+        '5G': [],
       },
     },
   },
@@ -74,6 +99,12 @@ const CoveragePresets: Record<'tunnels' | 'station', Record<Networks, Record<str
         '4G': ['B1', 'B3', 'B3', 'B7', 'B7'],
         '5G': ['n78', 'n78'],
       },
+      jle: {
+        '2G': ['G18'],
+        '3G': [],
+        '4G': ['B1', 'B3', 'B7', 'B7'],
+        '5G': [],
+      },
     },
     Three: {
       no_5g: {
@@ -88,6 +119,12 @@ const CoveragePresets: Record<'tunnels' | 'station', Record<Networks, Record<str
         '4G': ['B1', 'B3'],
         '5G': ['n78'],
       },
+      jle: {
+        '2G': [],
+        // '3G': [],
+        '4G': ['B1', 'B3'],
+        '5G': [],
+      },
     },
     O2: {
       normal: {
@@ -96,6 +133,12 @@ const CoveragePresets: Record<'tunnels' | 'station', Record<Networks, Record<str
         '4G': ['B1', 'B40', 'B40'],
         '5G': ['n78'],
       },
+      jle: {
+        // '2G': [],
+        '3G': [],
+        '4G': ['B1', 'B20', 'B40', 'B40'],
+        '5G': [],
+      },
     },
     Vodafone: {
       normal: {
@@ -103,8 +146,28 @@ const CoveragePresets: Record<'tunnels' | 'station', Record<Networks, Record<str
         '3G': ['U21'],
         '4G': ['B1', 'B3', 'B7'],
       },
+      jle: {
+        // '2G': [],
+        // '3G': [],
+        '4G': ['B1', 'B7', 'B8', 'B20'],
+        '5G': [],
+      },
     },
   },
+}
+
+const JleTunnels = {
+  EE: CoveragePresets.tunnels.EE.jle,
+  Three: CoveragePresets.tunnels.Three.jle,
+  O2: CoveragePresets.tunnels.O2.jle,
+  Vodafone: CoveragePresets.tunnels.Vodafone.jle,
+}
+
+const JleStations = {
+  EE: CoveragePresets.station.EE.jle,
+  Three: CoveragePresets.station.Three.jle,
+  O2: CoveragePresets.station.O2.jle,
+  Vodafone: CoveragePresets.station.Vodafone.jle,
 }
 
 const StationSegmentsWithCoverage: CoverageGroup[] = [
@@ -117,41 +180,49 @@ const StationSegmentsWithCoverage: CoverageGroup[] = [
         section: 'Canning Town to North Greenwich',
         startStationId: '940GZZLUCGT',
         endStationId: '940GZZLUNGW',
+        services: JleTunnels,
       },
       {
         section: 'North Greenwich to Canary Wharf',
         startStationId: '940GZZLUNGW',
         endStationId: '940GZZLUCYF',
+        services: JleTunnels,
       },
       {
         section: 'Canary Wharf to Canada Water',
         startStationId: '940GZZLUCYF',
         endStationId: '940GZZLUCWR',
+        services: JleTunnels,
       },
       {
         section: 'Canada Water to Bermondsey',
         startStationId: '940GZZLUCWR',
         endStationId: '940GZZLUBMY',
+        services: JleTunnels,
       },
       {
         section: 'Bermondsey to London Bridge',
         startStationId: '940GZZLUBMY',
         endStationId: '940GZZLULNB',
+        services: JleTunnels,
       },
       {
         section: 'London Bridge to Southwark',
         startStationId: '940GZZLULNB',
         endStationId: '940GZZLUSWK',
+        services: JleTunnels,
       },
       {
         section: 'Southwark to Waterloo',
         startStationId: '940GZZLUSWK',
         endStationId: '940GZZLUWLO',
+        services: JleTunnels,
       },
       {
         section: 'Waterloo to Westminster',
         startStationId: '940GZZLUWLO',
         endStationId: '940GZZLUWSM',
+        services: JleTunnels,
       },
     ],
   },
@@ -446,47 +517,47 @@ const StationCoverageInfo: Record<string, { state: 'live' | 'planned'; coverage:
   // Westminster
   '940GZZLUWSM': {
     state: 'live',
-    coverage: {},
+    coverage: JleStations,
   },
   // Waterloo
   '940GZZLUWLO': {
     state: 'live',
-    coverage: {},
+    coverage: JleStations,
   },
   // Southwark
   '940GZZLUSWK': {
     state: 'live',
-    coverage: {},
+    coverage: JleStations,
   },
   // London Bridge
   '940GZZLULNB': {
     state: 'live',
-    coverage: {},
+    coverage: JleStations,
   },
   // Bermondsey
   '940GZZLUBMY': {
     state: 'live',
-    coverage: {},
+    coverage: JleStations,
   },
   // Canada Water
   '940GZZLUCWR': {
     state: 'live',
-    coverage: {},
+    coverage: JleStations,
   },
   // Canary Wharf
   '940GZZLUCYF': {
     state: 'live',
-    coverage: {},
+    coverage: JleStations,
   },
   // North Greenwich
   '940GZZLUNGW': {
     state: 'live',
-    coverage: {},
+    coverage: JleStations,
   },
   // Canning Town
   '940GZZLUCGT': {
     state: 'live',
-    coverage: {},
+    coverage: JleStations,
   },
   // #endregion
 
