@@ -3277,29 +3277,29 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sentry-internal/tracing@npm:7.54.0":
-  version: 7.54.0
-  resolution: "@sentry-internal/tracing@npm:7.54.0"
+"@sentry-internal/tracing@npm:7.55.0":
+  version: 7.55.0
+  resolution: "@sentry-internal/tracing@npm:7.55.0"
   dependencies:
-    "@sentry/core": 7.54.0
-    "@sentry/types": 7.54.0
-    "@sentry/utils": 7.54.0
+    "@sentry/core": 7.55.0
+    "@sentry/types": 7.55.0
+    "@sentry/utils": 7.55.0
     tslib: ^1.9.3
-  checksum: 4adc923c7ab33465b5fdf3413699954d6091c6aa053e9bf2d3e799fa5ded753c1798d0d328fd65d1d49fadd1840ed4a7797b77f5714636dee3ee8526aafb90cc
+  checksum: 2600089c1eb6fe473e59eacaccc5d28d050431355564f6d6408e9efdb5511420b23d2500c80e45e783e04b1fdb6ef82bf9296c44f2b752ab86d93a760ace3bf8
   languageName: node
   linkType: hard
 
-"@sentry/browser@npm:7.54.0":
-  version: 7.54.0
-  resolution: "@sentry/browser@npm:7.54.0"
+"@sentry/browser@npm:7.55.0":
+  version: 7.55.0
+  resolution: "@sentry/browser@npm:7.55.0"
   dependencies:
-    "@sentry-internal/tracing": 7.54.0
-    "@sentry/core": 7.54.0
-    "@sentry/replay": 7.54.0
-    "@sentry/types": 7.54.0
-    "@sentry/utils": 7.54.0
+    "@sentry-internal/tracing": 7.55.0
+    "@sentry/core": 7.55.0
+    "@sentry/replay": 7.55.0
+    "@sentry/types": 7.55.0
+    "@sentry/utils": 7.55.0
     tslib: ^1.9.3
-  checksum: b466c069954b61aefd6b165937c0fc2055ac4dcb80e739b4f600224b008139232948dd1e1a67f4f660fa04b8c0fe29b33574709302ef825945721286b81da52a
+  checksum: f1631c0b2ce897cd4cf59bd50adfe636ff5e1644dbf431f740066cb381cd97ed1057f108af70b0421c97d0499626b2bdc2ca8f181f0ea0ac8b2f1094614ca01c
   languageName: node
   linkType: hard
 
@@ -3319,73 +3319,73 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sentry/core@npm:7.54.0":
-  version: 7.54.0
-  resolution: "@sentry/core@npm:7.54.0"
+"@sentry/core@npm:7.55.0":
+  version: 7.55.0
+  resolution: "@sentry/core@npm:7.55.0"
   dependencies:
-    "@sentry/types": 7.54.0
-    "@sentry/utils": 7.54.0
+    "@sentry/types": 7.55.0
+    "@sentry/utils": 7.55.0
     tslib: ^1.9.3
-  checksum: c80839ff98c1dce97d793531475d8223d4dc10f0eab34a76cef815467c73773162d5bb52ad043d5bcc19200206dbd41f87bc4e46cde7693884651c4c4cde3ad6
+  checksum: eab1b40aa50314af87cb04491ca43cee967d89b36a27fff9c8bd3bacae7273b90bafd1c97f3e3d3e3de7d43e29fe77abbdeb843cfa4e75bf66b5dcc6351fdafa
   languageName: node
   linkType: hard
 
-"@sentry/gatsby@npm:^7.54.0":
-  version: 7.54.0
-  resolution: "@sentry/gatsby@npm:7.54.0"
+"@sentry/gatsby@npm:^7.55.0":
+  version: 7.55.0
+  resolution: "@sentry/gatsby@npm:7.55.0"
   dependencies:
-    "@sentry/core": 7.54.0
-    "@sentry/react": 7.54.0
-    "@sentry/types": 7.54.0
-    "@sentry/utils": 7.54.0
+    "@sentry/core": 7.55.0
+    "@sentry/react": 7.55.0
+    "@sentry/types": 7.55.0
+    "@sentry/utils": 7.55.0
     "@sentry/webpack-plugin": 1.19.0
   peerDependencies:
     gatsby: ^2.0.0 || ^3.0.0 || ^4.0.0 || ^5.0.0
     react: 15.x || 16.x || 17.x || 18.x
-  checksum: afce3c52c6d308db757033b2fba970c554b43381e4ed2129100325aefe744ac46115be42aa8e1466870fe9bf3e6edd1f2d121e0c9505bca8b5a2b11f77c3c841
+  checksum: f639715bd5e3efd1a7f37dac09b165226ba07825a475f4e4fb888966bded32eb797e3178c4162948170d36a86407c6255179a63a9116fb2b31dc3db18623d1c2
   languageName: node
   linkType: hard
 
-"@sentry/react@npm:7.54.0":
-  version: 7.54.0
-  resolution: "@sentry/react@npm:7.54.0"
+"@sentry/react@npm:7.55.0":
+  version: 7.55.0
+  resolution: "@sentry/react@npm:7.55.0"
   dependencies:
-    "@sentry/browser": 7.54.0
-    "@sentry/types": 7.54.0
-    "@sentry/utils": 7.54.0
+    "@sentry/browser": 7.55.0
+    "@sentry/types": 7.55.0
+    "@sentry/utils": 7.55.0
     hoist-non-react-statics: ^3.3.2
     tslib: ^1.9.3
   peerDependencies:
     react: 15.x || 16.x || 17.x || 18.x
-  checksum: fa5ed9ec4e583f060ea099759ee5f4cdaa676ab1578d897e91a19a39cd1706a800fdd7db6169c182e51b711c798311ac104e35f324f9f8ed265693f25d0f327e
+  checksum: baeb98dbaaee8a3b2eeb702f76fe161e94be0829466719b7d19a56c25804294313179bb1d17582eeb0ce31b9b6c6ee1dcd0dc86a60e2d45aa8b6f7d674372b4c
   languageName: node
   linkType: hard
 
-"@sentry/replay@npm:7.54.0":
-  version: 7.54.0
-  resolution: "@sentry/replay@npm:7.54.0"
+"@sentry/replay@npm:7.55.0":
+  version: 7.55.0
+  resolution: "@sentry/replay@npm:7.55.0"
   dependencies:
-    "@sentry/core": 7.54.0
-    "@sentry/types": 7.54.0
-    "@sentry/utils": 7.54.0
-  checksum: ae6537fbe3a47993d247a92291ea0b70e53ee2289c648fef9ca1aca0c7cd841d2308240b9eb7df6f8e411eb602693e90b4f945f8e985c5f1e8047471cf2c3dfe
+    "@sentry/core": 7.55.0
+    "@sentry/types": 7.55.0
+    "@sentry/utils": 7.55.0
+  checksum: b4d62a7702f5c41f5c278970fd03cd990e5dd76fde5bb2d0a13e23503b6e58fae0d65e7fcf5b4d404375c602094313f23cb008e6d7f66817f2e7650e0beda2fd
   languageName: node
   linkType: hard
 
-"@sentry/types@npm:7.54.0":
-  version: 7.54.0
-  resolution: "@sentry/types@npm:7.54.0"
-  checksum: a2f37a9fcc283e6b9c27ec12163bbeded0e6c34d9e55ca6d3d96f5ce270cb287fa308c19358dda6ab8fa6f8bba3dabdbf58cc6ed31219d712a3306e5005e8a14
+"@sentry/types@npm:7.55.0":
+  version: 7.55.0
+  resolution: "@sentry/types@npm:7.55.0"
+  checksum: e966cb054de931630d8e7a37c8b29d22f65fea169d65769695b4b25b5a7a994231605ccd0cd6d14f7f9210350b6fa713fd5a32a48dd368dcdd06debb4b5f386a
   languageName: node
   linkType: hard
 
-"@sentry/utils@npm:7.54.0":
-  version: 7.54.0
-  resolution: "@sentry/utils@npm:7.54.0"
+"@sentry/utils@npm:7.55.0":
+  version: 7.55.0
+  resolution: "@sentry/utils@npm:7.55.0"
   dependencies:
-    "@sentry/types": 7.54.0
+    "@sentry/types": 7.55.0
     tslib: ^1.9.3
-  checksum: 8daadba6b0cbe3dc4c42284dbc14ada730f3dd75a050cb3827ef7e173a9f7e06cdbe52ab1e20941841320c6c4cc3d8c969f0da78650e8426e161707450087717
+  checksum: 35a3f4b2fe11cce60ee9640def0cfab6d0f4a46d497e186a13f3dad5dfd226c7486eb6eeb391dfda8ebfe836e3c5dc0bc1dc4f3c2568b944ff91b0e8934f3495
   languageName: node
   linkType: hard
 
@@ -12316,7 +12316,7 @@ __metadata:
     "@material-ui/styles": ^4.11.5
     "@mdx-js/react": ^2.3.0
     "@reach/tabs": ^0.18.0
-    "@sentry/gatsby": ^7.54.0
+    "@sentry/gatsby": ^7.55.0
     "@sentry/webpack-plugin": ^1.20.1
     "@slixites/gatsby-plugin-google-fonts": ^1.1.1
     "@types/color": ^3.0.3
