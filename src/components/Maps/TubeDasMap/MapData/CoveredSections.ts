@@ -74,7 +74,7 @@ const CoveragePresets: Record<'tunnels' | 'station', Record<Networks, Record<str
       normal: {
         '2G': ['G09'],
         '3G': ['U21'],
-        '4G': ['B1', 'B20', 'B8'],
+        '4G': ['B1', 'B20', 'B3', 'B8'],
         '5G': ['n8'],
       },
       jle: {
@@ -117,7 +117,7 @@ const CoveragePresets: Record<'tunnels' | 'station', Record<Networks, Record<str
         '2G': [],
         '3G': [],
         '4G': ['B1', 'B3'],
-        '5G': ['n78'],
+        '5G': ['n78', 'n78'],
       },
       jle: {
         '2G': [],
@@ -127,11 +127,17 @@ const CoveragePresets: Record<'tunnels' | 'station', Record<Networks, Record<str
       },
     },
     O2: {
-      normal: {
+      with_5g: {
         '2G': ['G18'],
         '3G': [],
-        '4G': ['B1', 'B40', 'B40'],
+        '4G': ['B1', 'B20', 'B40', 'B40'],
         '5G': ['n78'],
+      },
+      no_5g: {
+        '2G': ['G18'],
+        '3G': [],
+        '4G': ['B1', 'B20', 'B40', 'B40'],
+        '5G': [],
       },
       jle: {
         // '2G': [],
@@ -141,10 +147,17 @@ const CoveragePresets: Record<'tunnels' | 'station', Record<Networks, Record<str
       },
     },
     Vodafone: {
-      normal: {
+      no_5g: {
         '2G': ['G09'],
         '3G': ['U21'],
         '4G': ['B1', 'B3', 'B7'],
+        '5G': [],
+      },
+      with_5g: {
+        '2G': ['G09'],
+        '3G': ['U21'],
+        '4G': ['B1', 'B3', 'B7'],
+        '5G': ['n78', 'n78'],
       },
       jle: {
         // '2G': [],
@@ -597,8 +610,8 @@ export function getStationCoverageInfo(sid: string): Readonly<OperatorConnectivi
   return StationCoverageInfo[sid]?.coverage
 }
 
-StationSegmentsWithCoverage.forEach((group) => {
-  group.segments.forEach((segment) => {
+StationSegmentsWithCoverage.forEach(group => {
+  group.segments.forEach(segment => {
     const segments = [segment.startStationId, segment.endStationId]
     segments.sort()
 
