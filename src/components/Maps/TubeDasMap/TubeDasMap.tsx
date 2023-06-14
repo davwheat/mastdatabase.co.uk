@@ -7,7 +7,13 @@ import TflLines from './MapData/tfl_lines.geo.json'
 import TflStations from './MapData/tfl_stations.geo.json'
 import TflZones from './MapData/tfl_zones_1_to_6.geo.json'
 import Thames from './MapData/thames.geo.json'
-import { doesStationHaveCoverage, getLineSegmentCoverage, getStationCoverageInfo, isLineSegmentCovered } from './MapData/CoveredSections'
+import {
+  OperatorConnectivity,
+  doesStationHaveCoverage,
+  getLineSegmentCoverage,
+  getStationCoverageInfo,
+  isLineSegmentCovered,
+} from './MapData/CoveredSections'
 
 import useFixLeafletAssets from '@hooks/useFixLeafletAssets'
 import GeolocationButton from '@leaflet/GeolocationButton'
@@ -289,39 +295,43 @@ function generatePopupContentForLineSection(feature: geojson.Feature<geojson.Geo
   <p class="text-whisper">No coverage data available</p>
 `
       } else {
-        popupContent.innerHTML += `
-  <table>
-    <thead>
-      <tr>
-        <th>Network</th>
-        <th>2G</th>
-        <th>3G</th>
-        <th>4G</th>
-        <th>5G</th>
-      </tr>
-    </thead>
-    <tbody>
-      ${Object.entries(coverage)
-        .map(([network, networkCoverage]) => {
-          return `
-        <tr>
-          <td>${network}</td>
-          <td>${(networkCoverage?.['2G']?.join(', ') || 'N/A') ?? 'Unknown'}</td>
-          <td>${(networkCoverage?.['3G']?.join(', ') || 'N/A') ?? 'Unknown'}</td>
-          <td>${(networkCoverage?.['4G']?.join(', ') || 'N/A') ?? 'Unknown'}</td>
-          <td>${(networkCoverage?.['5G']?.join(', ') || 'N/A') ?? 'Unknown'}</td>
-        </tr>
-      `
-        })
-        .join('')}
-    </tbody>
-  </table>
-`
+        popupContent.innerHTML += generateCoverageTable(coverage)
       }
     }
   }
 
   return popupContent
+}
+
+function generateCoverageTable(coverage: OperatorConnectivity): string {
+  return `
+<table>
+  <thead>
+    <tr>
+      <th>Network</th>
+      <th>2G</th>
+      <th>3G</th>
+      <th>4G</th>
+      <th>5G</th>
+    </tr>
+  </thead>
+  <tbody>
+    ${Object.entries(coverage)
+      .map(([network, networkCoverage]) => {
+        return `
+      <tr>
+        <td>${network}</td>
+        <td>${(networkCoverage?.['2G']?.join(', ') ?? '?') || ''}</td>
+        <td>${(networkCoverage?.['3G']?.join(', ') ?? '?') || ''}</td>
+        <td>${(networkCoverage?.['4G']?.join(', ') ?? '?') || ''}</td>
+        <td>${(networkCoverage?.['5G']?.join(', ') ?? '?') || ''}</td>
+      </tr>
+    `
+      })
+      .join('')}
+  </tbody>
+</table>
+`
 }
 
 function generatePopupContentForStation(feature: geojson.Feature<geojson.GeometryObject, GeoJsonStationProperties>): HTMLDivElement {
@@ -340,34 +350,7 @@ function generatePopupContentForStation(feature: geojson.Feature<geojson.Geometr
   <p class="text-whisper">No coverage data available</p>
 `
   } else {
-    popupContent.innerHTML += `
-  <table>
-    <thead>
-      <tr>
-        <th>Network</th>
-        <th>2G</th>
-        <th>3G</th>
-        <th>4G</th>
-        <th>5G</th>
-      </tr>
-    </thead>
-    <tbody>
-      ${Object.entries(coverage)
-        .map(([network, networkCoverage]) => {
-          return `
-        <tr>
-          <td>${network}</td>
-          <td>${(networkCoverage?.['2G']?.join(', ') || 'N/A') ?? 'Unknown'}</td>
-          <td>${(networkCoverage?.['3G']?.join(', ') || 'N/A') ?? 'Unknown'}</td>
-          <td>${(networkCoverage?.['4G']?.join(', ') || 'N/A') ?? 'Unknown'}</td>
-          <td>${(networkCoverage?.['5G']?.join(', ') || 'N/A') ?? 'Unknown'}</td>
-        </tr>
-      `
-        })
-        .join('')}
-    </tbody>
-  </table>
-`
+    popupContent.innerHTML += generateCoverageTable(coverage)
   }
 
   return popupContent
