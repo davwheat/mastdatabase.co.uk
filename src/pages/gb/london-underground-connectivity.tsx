@@ -138,6 +138,11 @@ export default function TubeConnectivityMap({ location }: PageProps) {
             If you'd prefer, you can hide all sections of the network that don't have connectivity, or show and hide particular lines.
           </p>
 
+          <p className="text-speak">
+            You can also click or tap stations and sections of line on the map to reveal what services (2G/3G/4G/5G) are available in that area
+            for each mobile operator.
+          </p>
+
           <section className={classes.mapOptions}>
             <h3 className="text-loud">Options</h3>
 
