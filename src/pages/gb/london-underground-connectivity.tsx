@@ -16,8 +16,13 @@ import { makeStyles, NoSsr } from '@material-ui/core'
 import { ErrorBoundaryContext } from 'react-use-error-boundary'
 
 import type { PageProps } from 'gatsby'
+import LoadingSpinner from '@components/LoadingSpinner'
 
 const useStyles = makeStyles({
+  loading: {
+    margin: 'auto',
+    textAlign: 'center',
+  },
   mapSection: {
     '& .leaflet-popup-content': {
       '& dt': {
@@ -146,7 +151,14 @@ export default function TubeConnectivityMap({ location }: PageProps) {
           <section className={classes.mapOptions}>
             <h3 className="text-loud">Options</h3>
 
-            <NoSsr>
+            <NoSsr
+              fallback={
+                <div className={classes.loading}>
+                  <LoadingSpinner size={24} />
+                  <p className="text-speak">Loading options...</p>
+                </div>
+              }
+            >
               <Checkbox
                 label="Hide sections without connectivity"
                 checked={mapOptions.hideUnconnectedSegments}
@@ -181,7 +193,14 @@ export default function TubeConnectivityMap({ location }: PageProps) {
         </Section>
 
         <Section width="full" className={classes.mapSection}>
-          <NoSsr>
+          <NoSsr
+            fallback={
+              <div className={classes.loading}>
+                <LoadingSpinner />
+                <p className="text-speak">Loading map...</p>
+              </div>
+            }
+          >
             <TubeDasMap hideSectionsWithNoConnectivity={mapOptions.hideUnconnectedSegments} hiddenLines={mapOptions.hiddenLines} />
           </NoSsr>
         </Section>
