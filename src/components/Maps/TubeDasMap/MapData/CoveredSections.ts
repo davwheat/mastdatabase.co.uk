@@ -647,7 +647,7 @@ const StationCoverageMap: Record<string, StationCoverage[]> = {}
 const StationsWithCoverage: Map<string, 'live' | 'planned'> = new Map()
 
 export function getStationInfo(sid: string): Readonly<StationCoverageInfo> {
-  return StationCoverageInfo[sid]
+  return StationCoverageInfo[sid] ?? {}
 }
 
 StationSegmentsWithCoverage.forEach(group => {
