@@ -9,24 +9,39 @@ import TflZones from './MapData/tfl_zones_1_to_6.geo.json'
 import Thames from './MapData/thames.geo.json'
 import {
   OperatorConnectivity,
+  Networks,
   doesStationHaveCoverage,
   getLineSegmentCoverage,
   getStationInfo,
   isLineSegmentCovered,
 } from './MapData/CoveredSections'
 
+import EELogo from '@assets/icons/brands/ee.svg'
+import ThreeLogo from '@assets/icons/brands/three.svg'
+import VodafoneLogo from '@assets/icons/brands/vodafone.svg'
+import O2Logo from '@assets/icons/brands/o2.svg'
+
 import useFixLeafletAssets from '@hooks/useFixLeafletAssets'
 import GeolocationButton from '@leaflet/GeolocationButton'
 import MapCustomButtonsContainer from '@leaflet/MapCustomButtonsContainer'
+import Colors from '@data/colors.json'
 
 import { makeStyles } from '@material-ui/core'
 import clsx from 'clsx'
+import fontColorContrast from 'font-color-contrast'
 
 import type * as geojson from 'geojson'
 import type { PathOptions, Layer, LatLngExpression } from 'leaflet'
 
 const MULTI_LINE_STROKE_COLOUR_ALTERNATE = 8
 const LINE_WIDTH = 5
+
+const NetworkToLogo: Record<Networks, string> = {
+  EE: EELogo,
+  Three: ThreeLogo,
+  Vodafone: VodafoneLogo,
+  O2: O2Logo,
+}
 
 interface GeoJsonLineProperties {
   id: string
@@ -94,7 +109,7 @@ function styleThamesData(feature: geojson.Feature<geojson.GeometryObject, any> |
 function getLinesFromFeature(
   feature: geojson.Feature<geojson.GeometryObject, GeoJsonLineProperties> | undefined,
   hiddenLines: TubeDasMapProps['hiddenLines'],
-): { name: TubeDasMapProps['hiddenLines'][number] }[] {
+): (GeoJsonLineProperties['lines'] & { name: AllLines })[] {
   let lines = feature?.properties?.lines
 
   const BLACKLISTED_LINES = ['National Rail', 'Tramlink', 'IFS Cloud Cable Car', 'London Overground', ...(hiddenLines ?? [])]
@@ -110,10 +125,10 @@ function getLinesFromFeature(
     })
   }
 
-  return lines ?? []
+  return (lines as (GeoJsonLineProperties['lines'] & { name: AllLines })[]) ?? []
 }
 
-const lineAttrs = {
+const lineAttrs: Record<AllLines, { id: string; colour: string; network: 'Tube' | 'Rail' | 'DLR' | 'Tramlink' | 'IFS Cloud Cable Car' }> = {
   Bakerloo: { id: 'B', colour: '#B36305', network: 'Tube' },
   Central: { id: 'C', colour: '#E32017', network: 'Tube' },
   Circle: { id: 'I', colour: '#FFD300', network: 'Tube' },
@@ -187,6 +202,7 @@ const useStyles = makeStyles({
       filter: 'grayscale(100%)',
     },
     '& .leaflet-popup-content': {
+      margin: '10px 12px',
       '& p': {
         margin: 0,
         marginBottom: '0.5em',
@@ -194,6 +210,47 @@ const useStyles = makeStyles({
     },
     '& .leaflet-pane > svg path.leaflet-interactive': {
       pointerEvents: 'visiblePainted !important',
+    },
+    '& .stationName': {
+      fontSize: '1.25em',
+    },
+    '& .lineChip': {
+      display: 'inline-block',
+      padding: '4px 6px',
+      borderRadius: 4,
+      backgroundColor: Colors.lightGrey,
+      color: 'black',
+      margin: 2,
+      lineHeight: 1,
+    },
+    '& .tflCoverageTable': {
+      '& td, th': {
+        textAlign: 'center',
+        verticalAlign: 'middle',
+        padding: '6px 6px',
+        minWidth: 40,
+      },
+      '& .networkCell': {
+        lineHeight: 1,
+      },
+      '& .networkLogo': {
+        height: '1.75em',
+      },
+      '& .bandChip': {
+        display: 'inline-block',
+        padding: '4px 6px',
+        borderRadius: 4,
+        backgroundColor: Colors.success,
+        color: 'black',
+        margin: 2,
+      },
+      '& .unknownCoverage': {
+        fontWeight: 'bold',
+        color: Colors.darkGreen,
+      },
+      '& .noCoverage': {
+        color: Colors.error,
+      },
     },
   },
   hideNonConnectedAreas: {
@@ -203,23 +260,25 @@ const useStyles = makeStyles({
   },
 })
 
+type AllLines =
+  | 'Bakerloo'
+  | 'Central'
+  | 'Circle'
+  | 'District'
+  | 'Hammersmith & City'
+  | 'Jubilee'
+  | 'Metropolitan'
+  | 'Northern'
+  | 'Piccadilly'
+  | 'Victoria'
+  | 'Waterloo & City'
+  | 'DLR'
+  | 'Elizabeth line'
+  | 'IFS Cloud Cable Car'
+
 export interface TubeDasMapProps {
   hideSectionsWithNoConnectivity: boolean
-  hiddenLines: (
-    | 'Bakerloo'
-    | 'Central'
-    | 'Circle'
-    | 'District'
-    | 'Hammersmith & City'
-    | 'Jubilee'
-    | 'Metropolitan'
-    | 'Northern'
-    | 'Piccadilly'
-    | 'Victoria'
-    | 'Waterloo & City'
-    | 'DLR'
-    | 'Elizabeth line'
-  )[]
+  hiddenLines: AllLines[]
 }
 
 export default function TubeDasMap({ hideSectionsWithNoConnectivity, hiddenLines }: TubeDasMapProps) {
@@ -303,9 +362,17 @@ function generatePopupContentForLineSection(feature: geojson.Feature<geojson.Geo
   return popupContent
 }
 
-function generateCoverageTable(coverage: OperatorConnectivity): string {
+function generateCoverageTable(coverage: OperatorConnectivity, coverageNotes?: string[]): string {
+  function bandsToHtml(bands?: string[]) {
+    return (
+      (bands?.map(band => `<span class="bandChip">${band}</span>`).join('') ??
+        '<span class="unknownCoverage" aria-label="Coverage, but bands unknown" data-tooltip>✔</span>') ||
+      '<span class="noCoverage" aria-label="No coverage" data-tooltip>🗙</span>'
+    )
+  }
+
   return `
-<table>
+<table class="tflCoverageTable">
   <thead>
     <tr>
       <th>Network</th>
@@ -320,11 +387,11 @@ function generateCoverageTable(coverage: OperatorConnectivity): string {
       .map(([network, networkCoverage]) => {
         return `
       <tr>
-        <td>${network}</td>
-        <td>${(networkCoverage?.['2G']?.join(', ') ?? '?') || ''}</td>
-        <td>${(networkCoverage?.['3G']?.join(', ') ?? '?') || ''}</td>
-        <td>${(networkCoverage?.['4G']?.join(', ') ?? '?') || ''}</td>
-        <td>${(networkCoverage?.['5G']?.join(', ') ?? '?') || ''}</td>
+        <td class="networkCell"><img alt="${network}" class="networkLogo" src="${NetworkToLogo[network]}" /></td>
+        <td>${bandsToHtml(networkCoverage?.['2G'])}</td>
+        <td>${bandsToHtml(networkCoverage?.['3G'])}</td>
+        <td>${bandsToHtml(networkCoverage?.['4G'])}</td>
+        <td>${bandsToHtml(networkCoverage?.['5G'])}</td>
       </tr>
     `
       })
@@ -344,6 +411,17 @@ ${
 `
 }
 
+function lineToChip(line: AllLines | '???'): string {
+  const lineNameOverrides: Partial<Record<AllLines | '???', string>> = {
+    'Elizabeth line': 'Elizabeth',
+  }
+
+  const color = line in lineAttrs ? lineAttrs[line].colour : Colors.lightGrey
+  const textColor = fontColorContrast(color, 0.6)
+
+  return `<span class="lineChip" style="background-color: ${color}; color: ${textColor};">${lineNameOverrides[line] ?? line}</span>`
+}
+
 function generatePopupContentForStation(feature: geojson.Feature<geojson.GeometryObject, GeoJsonStationProperties>): HTMLDivElement {
   const popupContent = document.createElement('div')
 
@@ -351,8 +429,8 @@ function generatePopupContentForStation(feature: geojson.Feature<geojson.Geometr
   const { coverage, coverageNotes } = getStationInfo(feature.properties.id)
 
   popupContent.innerHTML = `
-  <p class="text-whisper"><strong>${feature.properties.name}</strong></p>
-  <p class="text-whisper">Served by ${lines.map(l => l?.name ?? '???').join(', ')}</p>
+  <p class="text-speak stationName"><strong>${feature.properties.name}</strong></p>
+  <p class="text-whisper">${lines.map(l => lineToChip(l?.name ?? '???')).join('')}</p>
 `
 
   if (!coverage || Object.keys(coverage).length === 0) {

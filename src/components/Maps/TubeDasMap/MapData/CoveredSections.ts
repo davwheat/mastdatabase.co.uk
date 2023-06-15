@@ -1,4 +1,4 @@
-type Networks = 'O2' | 'Vodafone' | 'EE' | 'Three'
+export type Networks = 'O2' | 'Vodafone' | 'EE' | 'Three'
 
 interface Connectivity {
   '2G'?: ('G09' | 'G18')[]
@@ -9,6 +9,12 @@ interface Connectivity {
 
 export type OperatorConnectivity = {
   [key in Networks]?: Connectivity
+}
+
+interface StationCoverageInfo {
+  state: 'live' | 'planned'
+  coverage: OperatorConnectivity
+  coverageNotes?: string[]
 }
 
 interface CoverageGroup {
