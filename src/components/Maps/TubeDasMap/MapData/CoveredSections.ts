@@ -418,32 +418,50 @@ const StationCoverageInfo: Record<string, StationCoverageInfo> = {
     state: 'live',
     coverage: {
       EE: CoveragePresets.station.EE.no_5g,
-      Three: CoveragePresets.station.Three.normal,
-      Vodafone: CoveragePresets.station.Vodafone.normal,
-      O2: CoveragePresets.station.O2.normal,
+      Three: CoveragePresets.station.Three.no_5g,
+      Vodafone: CoveragePresets.station.Vodafone.no_5g,
+      O2: CoveragePresets.station.O2.no_5g,
     },
   },
   // Tufnell Park
   '940GZZLUTFP': {
     state: 'live',
-    coverage: {},
+    coverage: {
+      EE: CoveragePresets.station.EE.with_5g,
+      Three: CoveragePresets.station.Three.with_5g,
+      Vodafone: CoveragePresets.station.Vodafone.with_5g,
+      O2: CoveragePresets.station.O2.with_5g,
+    },
   },
   // Archway
   '940GZZLUACY': {
     state: 'live',
-    coverage: {},
+    coverage: {
+      EE: CoveragePresets.station.EE.with_5g,
+      Three: CoveragePresets.station.Three.no_5g,
+      Vodafone: CoveragePresets.station.Vodafone.with_5g,
+      O2: CoveragePresets.station.O2.with_5g,
+    },
   },
   // #endregion
 
   // Camden Town
   '940GZZLUCTN': {
     state: 'live',
-    coverage: {},
+    coverage: {
+      EE: CoveragePresets.station.EE.no_5g,
+      Three: CoveragePresets.station.Three.no_5g,
+      Vodafone: CoveragePresets.station.Vodafone.no_5g,
+      O2: CoveragePresets.station.O2.no_5g,
+    },
   },
   // Mornington Crescent
   '940GZZLUMTC': {
     state: 'planned',
-    coverage: {},
+    coverage: {
+      Three: CoveragePresets.station.Three.with_5g,
+    },
+    coverageNotes: ['Three is present, but disabled to the public.'],
   },
   // Euston
   '940GZZLUEUS': {
@@ -488,17 +506,32 @@ const StationCoverageInfo: Record<string, StationCoverageInfo> = {
   // Queensway
   '940GZZLUQWY': {
     state: 'live',
-    coverage: {},
+    coverage: {
+      EE: CoveragePresets.station.EE.no_5g,
+      Three: CoveragePresets.station.Three.no_5g,
+      Vodafone: CoveragePresets.station.Vodafone.no_5g,
+      O2: CoveragePresets.station.O2.no_5g,
+    },
   },
   // Notting Hill Gate
   '940GZZLUNHG': {
     state: 'live',
-    coverage: {},
+    coverage: {
+      EE: CoveragePresets.station.EE.with_5g,
+      Three: CoveragePresets.station.Three.with_5g,
+      Vodafone: CoveragePresets.station.Vodafone.with_5g,
+      O2: CoveragePresets.station.O2.with_5g,
+    },
   },
   // Holland Park
   '940GZZLUHPK': {
     state: 'live',
-    coverage: {},
+    coverage: {
+      EE: CoveragePresets.station.EE.no_5g,
+      Three: CoveragePresets.station.Three.no_5g,
+      Vodafone: CoveragePresets.station.Vodafone.no_5g,
+      O2: CoveragePresets.station.O2.no_5g,
+    },
   },
 
   // Oxford Circus
