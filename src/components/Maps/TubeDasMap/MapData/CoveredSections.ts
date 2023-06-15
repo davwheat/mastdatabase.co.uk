@@ -1,4 +1,4 @@
-type Networks = 'O2' | 'Vodafone' | 'EE' | 'Three'
+export type Networks = 'O2' | 'Vodafone' | 'EE' | 'Three'
 
 interface Connectivity {
   '2G'?: ('G09' | 'G18')[]
@@ -7,8 +7,14 @@ interface Connectivity {
   '5G'?: ('n1' | 'n3' | 'n7' | 'n8' | 'n20' | 'n28' | 'n38' | 'n40' | 'n77' | 'n78' | 'n258')[]
 }
 
-type OperatorConnectivity = {
+export type OperatorConnectivity = {
   [key in Networks]?: Connectivity
+}
+
+interface StationCoverageInfo {
+  state: 'live' | 'planned'
+  coverage: OperatorConnectivity
+  coverageNotes?: string[]
 }
 
 interface CoverageGroup {
@@ -24,6 +30,7 @@ interface CoverageSegment {
   startStationId: string
   endStationId: string
   lineFilter?: string[]
+  coverageNotes?: string[]
 }
 
 const CoveragePresets: Record<'tunnels' | 'station', Record<Networks, Record<string, Connectivity>>> = {
@@ -35,11 +42,23 @@ const CoveragePresets: Record<'tunnels' | 'station', Record<Networks, Record<str
         '4G': ['B1', 'B3', 'B3', 'B20'],
         '5G': ['n28'],
       },
+      jle: {
+        '2G': ['G18'],
+        '3G': [],
+        '4G': ['B1', 'B3'],
+        '5G': [],
+      },
     },
     Three: {
       normal: {
         '2G': [],
         '3G': [],
+        '4G': ['B1', 'B3'],
+        '5G': [],
+      },
+      jle: {
+        '2G': [],
+        // '3G': [],
         '4G': ['B1', 'B3'],
         '5G': [],
       },
@@ -51,12 +70,25 @@ const CoveragePresets: Record<'tunnels' | 'station', Record<Networks, Record<str
         '4G': ['B1', 'B8', 'B20'],
         '5G': ['n28'],
       },
+      jle: {
+        // '2G': [],
+        '3G': ['U09'],
+        '4G': ['B20'],
+        '5G': [],
+      },
     },
     Vodafone: {
       normal: {
         '2G': ['G09'],
         '3G': ['U21'],
-        '4G': ['B1', 'B20'],
+        '4G': ['B1', 'B20', 'B3', 'B8'],
+        '5G': ['n8'],
+      },
+      jle: {
+        // '2G': [],
+        // '3G': [],
+        '4G': ['B20', 'B8'],
+        '5G': [],
       },
     },
   },
@@ -74,6 +106,12 @@ const CoveragePresets: Record<'tunnels' | 'station', Record<Networks, Record<str
         '4G': ['B1', 'B3', 'B3', 'B7', 'B7'],
         '5G': ['n78', 'n78'],
       },
+      jle: {
+        '2G': ['G18'],
+        '3G': [],
+        '4G': ['B1', 'B3', 'B7', 'B7'],
+        '5G': [],
+      },
     },
     Three: {
       no_5g: {
@@ -86,25 +124,70 @@ const CoveragePresets: Record<'tunnels' | 'station', Record<Networks, Record<str
         '2G': [],
         '3G': [],
         '4G': ['B1', 'B3'],
-        '5G': ['n78'],
+        '5G': ['n78', 'n78'],
+      },
+      jle: {
+        '2G': [],
+        // '3G': [],
+        '4G': ['B1', 'B3'],
+        '5G': [],
       },
     },
     O2: {
-      normal: {
+      with_5g: {
         '2G': ['G18'],
         '3G': [],
-        '4G': ['B1', 'B40', 'B40'],
+        '4G': ['B1', 'B20', 'B40', 'B40'],
         '5G': ['n78'],
+      },
+      no_5g: {
+        '2G': ['G18'],
+        '3G': [],
+        '4G': ['B1', 'B20', 'B40', 'B40'],
+        '5G': [],
+      },
+      jle: {
+        // '2G': [],
+        '3G': [],
+        '4G': ['B1', 'B20', 'B40', 'B40'],
+        '5G': [],
       },
     },
     Vodafone: {
-      normal: {
+      no_5g: {
         '2G': ['G09'],
         '3G': ['U21'],
         '4G': ['B1', 'B3', 'B7'],
+        '5G': [],
+      },
+      with_5g: {
+        '2G': ['G09'],
+        '3G': ['U21'],
+        '4G': ['B1', 'B3', 'B7'],
+        '5G': ['n78', 'n78'],
+      },
+      jle: {
+        // '2G': [],
+        // '3G': [],
+        '4G': ['B1', 'B7', 'B8', 'B20'],
+        '5G': [],
       },
     },
   },
+}
+
+const JleTunnels = {
+  EE: CoveragePresets.tunnels.EE.jle,
+  Three: CoveragePresets.tunnels.Three.jle,
+  O2: CoveragePresets.tunnels.O2.jle,
+  Vodafone: CoveragePresets.tunnels.Vodafone.jle,
+}
+
+const JleStations = {
+  EE: CoveragePresets.station.EE.jle,
+  Three: CoveragePresets.station.Three.jle,
+  O2: CoveragePresets.station.O2.jle,
+  Vodafone: CoveragePresets.station.Vodafone.jle,
 }
 
 const StationSegmentsWithCoverage: CoverageGroup[] = [
@@ -117,41 +200,49 @@ const StationSegmentsWithCoverage: CoverageGroup[] = [
         section: 'Canning Town to North Greenwich',
         startStationId: '940GZZLUCGT',
         endStationId: '940GZZLUNGW',
+        services: JleTunnels,
       },
       {
         section: 'North Greenwich to Canary Wharf',
         startStationId: '940GZZLUNGW',
         endStationId: '940GZZLUCYF',
+        services: JleTunnels,
       },
       {
         section: 'Canary Wharf to Canada Water',
         startStationId: '940GZZLUCYF',
         endStationId: '940GZZLUCWR',
+        services: JleTunnels,
       },
       {
         section: 'Canada Water to Bermondsey',
         startStationId: '940GZZLUCWR',
         endStationId: '940GZZLUBMY',
+        services: JleTunnels,
       },
       {
         section: 'Bermondsey to London Bridge',
         startStationId: '940GZZLUBMY',
         endStationId: '940GZZLULNB',
+        services: JleTunnels,
       },
       {
         section: 'London Bridge to Southwark',
         startStationId: '940GZZLULNB',
         endStationId: '940GZZLUSWK',
+        services: JleTunnels,
       },
       {
         section: 'Southwark to Waterloo',
         startStationId: '940GZZLUSWK',
         endStationId: '940GZZLUWLO',
+        services: JleTunnels,
       },
       {
         section: 'Waterloo to Westminster',
         startStationId: '940GZZLUWLO',
         endStationId: '940GZZLUWSM',
+        services: JleTunnels,
       },
     ],
   },
@@ -319,7 +410,7 @@ const StationSegmentsWithCoverage: CoverageGroup[] = [
   },
 ]
 
-const StationCoverageInfo: Record<string, { state: 'live' | 'planned'; coverage: OperatorConnectivity }> = {
+const StationCoverageInfo: Record<string, StationCoverageInfo> = {
   // #region Northern Line
   // #region Northern Line, Kentish Branch
   // Kentish Town
@@ -327,32 +418,50 @@ const StationCoverageInfo: Record<string, { state: 'live' | 'planned'; coverage:
     state: 'live',
     coverage: {
       EE: CoveragePresets.station.EE.no_5g,
-      Three: CoveragePresets.station.Three.normal,
-      Vodafone: CoveragePresets.station.Vodafone.normal,
-      O2: CoveragePresets.station.O2.normal,
+      Three: CoveragePresets.station.Three.no_5g,
+      Vodafone: CoveragePresets.station.Vodafone.no_5g,
+      O2: CoveragePresets.station.O2.no_5g,
     },
   },
   // Tufnell Park
   '940GZZLUTFP': {
     state: 'live',
-    coverage: {},
+    coverage: {
+      EE: CoveragePresets.station.EE.with_5g,
+      Three: CoveragePresets.station.Three.with_5g,
+      Vodafone: CoveragePresets.station.Vodafone.with_5g,
+      O2: CoveragePresets.station.O2.with_5g,
+    },
   },
   // Archway
   '940GZZLUACY': {
     state: 'live',
-    coverage: {},
+    coverage: {
+      EE: CoveragePresets.station.EE.with_5g,
+      Three: CoveragePresets.station.Three.no_5g,
+      Vodafone: CoveragePresets.station.Vodafone.with_5g,
+      O2: CoveragePresets.station.O2.with_5g,
+    },
   },
   // #endregion
 
   // Camden Town
   '940GZZLUCTN': {
     state: 'live',
-    coverage: {},
+    coverage: {
+      EE: CoveragePresets.station.EE.no_5g,
+      Three: CoveragePresets.station.Three.no_5g,
+      Vodafone: CoveragePresets.station.Vodafone.no_5g,
+      O2: CoveragePresets.station.O2.with_5g,
+    },
   },
   // Mornington Crescent
   '940GZZLUMTC': {
     state: 'planned',
-    coverage: {},
+    coverage: {
+      Three: CoveragePresets.station.Three.with_5g,
+    },
+    coverageNotes: ['Three is present, but disabled to the public.'],
   },
   // Euston
   '940GZZLUEUS': {
@@ -397,17 +506,32 @@ const StationCoverageInfo: Record<string, { state: 'live' | 'planned'; coverage:
   // Queensway
   '940GZZLUQWY': {
     state: 'live',
-    coverage: {},
+    coverage: {
+      EE: CoveragePresets.station.EE.no_5g,
+      Three: CoveragePresets.station.Three.no_5g,
+      Vodafone: CoveragePresets.station.Vodafone.no_5g,
+      O2: CoveragePresets.station.O2.no_5g,
+    },
   },
   // Notting Hill Gate
   '940GZZLUNHG': {
     state: 'live',
-    coverage: {},
+    coverage: {
+      EE: CoveragePresets.station.EE.with_5g,
+      Three: CoveragePresets.station.Three.with_5g,
+      Vodafone: CoveragePresets.station.Vodafone.with_5g,
+      O2: CoveragePresets.station.O2.with_5g,
+    },
   },
   // Holland Park
   '940GZZLUHPK': {
     state: 'live',
-    coverage: {},
+    coverage: {
+      EE: CoveragePresets.station.EE.no_5g,
+      Three: CoveragePresets.station.Three.no_5g,
+      Vodafone: CoveragePresets.station.Vodafone.no_5g,
+      O2: CoveragePresets.station.O2.no_5g,
+    },
   },
 
   // Oxford Circus
@@ -446,47 +570,47 @@ const StationCoverageInfo: Record<string, { state: 'live' | 'planned'; coverage:
   // Westminster
   '940GZZLUWSM': {
     state: 'live',
-    coverage: {},
+    coverage: JleStations,
   },
   // Waterloo
   '940GZZLUWLO': {
     state: 'live',
-    coverage: {},
+    coverage: JleStations,
   },
   // Southwark
   '940GZZLUSWK': {
     state: 'live',
-    coverage: {},
+    coverage: JleStations,
   },
   // London Bridge
   '940GZZLULNB': {
     state: 'live',
-    coverage: {},
+    coverage: JleStations,
   },
   // Bermondsey
   '940GZZLUBMY': {
     state: 'live',
-    coverage: {},
+    coverage: JleStations,
   },
   // Canada Water
   '940GZZLUCWR': {
     state: 'live',
-    coverage: {},
+    coverage: JleStations,
   },
   // Canary Wharf
   '940GZZLUCYF': {
     state: 'live',
-    coverage: {},
+    coverage: JleStations,
   },
   // North Greenwich
   '940GZZLUNGW': {
     state: 'live',
-    coverage: {},
+    coverage: JleStations,
   },
   // Canning Town
   '940GZZLUCGT': {
     state: 'live',
-    coverage: {},
+    coverage: JleStations,
   },
   // #endregion
 
@@ -522,12 +646,12 @@ interface StationCoverage {
 const StationCoverageMap: Record<string, StationCoverage[]> = {}
 const StationsWithCoverage: Map<string, 'live' | 'planned'> = new Map()
 
-export function getStationCoverageInfo(sid: string): Readonly<OperatorConnectivity> {
-  return StationCoverageInfo[sid]?.coverage
+export function getStationInfo(sid: string): Readonly<StationCoverageInfo> {
+  return StationCoverageInfo[sid] ?? {}
 }
 
-StationSegmentsWithCoverage.forEach((group, groupNum) => {
-  group.segments.forEach((segment, segmentNum) => {
+StationSegmentsWithCoverage.forEach(group => {
+  group.segments.forEach(segment => {
     const segments = [segment.startStationId, segment.endStationId]
     segments.sort()
 

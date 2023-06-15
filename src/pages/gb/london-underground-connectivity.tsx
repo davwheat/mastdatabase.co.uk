@@ -16,8 +16,13 @@ import { makeStyles, NoSsr } from '@material-ui/core'
 import { ErrorBoundaryContext } from 'react-use-error-boundary'
 
 import type { PageProps } from 'gatsby'
+import LoadingSpinner from '@components/LoadingSpinner'
 
 const useStyles = makeStyles({
+  loading: {
+    margin: 'auto',
+    textAlign: 'center',
+  },
   mapSection: {
     '& .leaflet-popup-content': {
       '& dt': {
@@ -138,10 +143,22 @@ export default function TubeConnectivityMap({ location }: PageProps) {
             If you'd prefer, you can hide all sections of the network that don't have connectivity, or show and hide particular lines.
           </p>
 
+          <p className="text-speak">
+            You can also click or tap stations and sections of line on the map to reveal what services (2G/3G/4G/5G) are available in that area
+            for each mobile operator.
+          </p>
+
           <section className={classes.mapOptions}>
             <h3 className="text-loud">Options</h3>
 
-            <NoSsr>
+            <NoSsr
+              fallback={
+                <div className={classes.loading}>
+                  <LoadingSpinner size={24} />
+                  <p className="text-speak">Loading options...</p>
+                </div>
+              }
+            >
               <Checkbox
                 label="Hide sections without connectivity"
                 checked={mapOptions.hideUnconnectedSegments}
@@ -176,7 +193,14 @@ export default function TubeConnectivityMap({ location }: PageProps) {
         </Section>
 
         <Section width="full" className={classes.mapSection}>
-          <NoSsr>
+          <NoSsr
+            fallback={
+              <div className={classes.loading}>
+                <LoadingSpinner />
+                <p className="text-speak">Loading map...</p>
+              </div>
+            }
+          >
             <TubeDasMap hideSectionsWithNoConnectivity={mapOptions.hideUnconnectedSegments} hiddenLines={mapOptions.hiddenLines} />
           </NoSsr>
         </Section>
