@@ -11,7 +11,7 @@ import {
   OperatorConnectivity,
   doesStationHaveCoverage,
   getLineSegmentCoverage,
-  getStationCoverageInfo,
+  getStationInfo,
   isLineSegmentCovered,
 } from './MapData/CoveredSections'
 
@@ -281,7 +281,7 @@ function generatePopupContentForLineSection(feature: geojson.Feature<geojson.Geo
       <p class="text-whisper">${segments.join('/')}</p>
 `
     } else {
-      const { group, section, coverage, opens, state } = data
+      const { group, section, coverage, coverageNotes, opens, state } = data
 
       popupContent.innerHTML = `
   <p class="text-whisper"><strong>${group}</strong></p>
@@ -295,7 +295,7 @@ function generatePopupContentForLineSection(feature: geojson.Feature<geojson.Geo
   <p class="text-whisper">No coverage data available</p>
 `
       } else {
-        popupContent.innerHTML += generateCoverageTable(coverage)
+        popupContent.innerHTML += generateCoverageTable(coverage, coverageNotes)
       }
     }
   }
@@ -331,6 +331,16 @@ function generateCoverageTable(coverage: OperatorConnectivity): string {
       .join('')}
   </tbody>
 </table>
+
+${
+  !coverageNotes
+    ? ''
+    : `
+<ul class="list" style="margin-top: 12px;">
+  ${coverageNotes.map(note => `<li>${note}</li>`).join('')}
+</ul>
+`
+}
 `
 }
 
@@ -338,7 +348,7 @@ function generatePopupContentForStation(feature: geojson.Feature<geojson.Geometr
   const popupContent = document.createElement('div')
 
   const lines = getLinesFromFeature(feature, [])
-  const coverage = getStationCoverageInfo(feature.properties.id)
+  const { coverage, coverageNotes } = getStationInfo(feature.properties.id)
 
   popupContent.innerHTML = `
   <p class="text-whisper"><strong>${feature.properties.name}</strong></p>
@@ -350,7 +360,7 @@ function generatePopupContentForStation(feature: geojson.Feature<geojson.Geometr
   <p class="text-whisper">No coverage data available</p>
 `
   } else {
-    popupContent.innerHTML += generateCoverageTable(coverage)
+    popupContent.innerHTML += generateCoverageTable(coverage, coverageNotes)
   }
 
   return popupContent
