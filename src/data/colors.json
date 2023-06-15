@@ -7,6 +7,9 @@
   "linkColor": "#00528a",
   "excessiveYellow": "#ffce1a",
   "cautioningAmber": "#fcc31e",
+  "success": "#8fd544",
+  "error": "#d05866",
+  "darkGreen": "#4e7d1c",
   "pale": {
     "primaryRed": "#fde7ea",
     "primaryBlue": "#e8f7fa",
@@ -15,6 +18,9 @@
     "lightGrey": "#fdfdfd",
     "linkColor": "#dde8ef",
     "excessiveYellow": "#fff8e0",
-    "cautioningAmber": "#fff7e1"
+    "cautioningAmber": "#fff7e1",
+    "success": "#eef8e2",
+    "error": "#fde7ea",
+    "darkGreen": "#eef8e2"
   }
 }
