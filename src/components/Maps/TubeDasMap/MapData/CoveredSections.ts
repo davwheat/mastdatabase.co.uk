@@ -30,6 +30,7 @@ interface CoverageSegment {
   startStationId: string
   endStationId: string
   lineFilter?: string[]
+  coverageNotes?: string[]
 }
 
 const CoveragePresets: Record<'tunnels' | 'station', Record<Networks, Record<string, Connectivity>>> = {
@@ -409,7 +410,7 @@ const StationSegmentsWithCoverage: CoverageGroup[] = [
   },
 ]
 
-const StationCoverageInfo: Record<string, { state: 'live' | 'planned'; coverage: OperatorConnectivity }> = {
+const StationCoverageInfo: Record<string, StationCoverageInfo> = {
   // #region Northern Line
   // #region Northern Line, Kentish Branch
   // Kentish Town
@@ -612,8 +613,8 @@ interface StationCoverage {
 const StationCoverageMap: Record<string, StationCoverage[]> = {}
 const StationsWithCoverage: Map<string, 'live' | 'planned'> = new Map()
 
-export function getStationCoverageInfo(sid: string): Readonly<OperatorConnectivity> {
-  return StationCoverageInfo[sid]?.coverage
+export function getStationInfo(sid: string): Readonly<StationCoverageInfo> {
+  return StationCoverageInfo[sid]
 }
 
 StationSegmentsWithCoverage.forEach(group => {
