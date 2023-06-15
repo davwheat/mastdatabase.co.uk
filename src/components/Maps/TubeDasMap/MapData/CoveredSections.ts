@@ -452,7 +452,7 @@ const StationCoverageInfo: Record<string, StationCoverageInfo> = {
       EE: CoveragePresets.station.EE.no_5g,
       Three: CoveragePresets.station.Three.no_5g,
       Vodafone: CoveragePresets.station.Vodafone.no_5g,
-      O2: CoveragePresets.station.O2.no_5g,
+      O2: CoveragePresets.station.O2.with_5g,
     },
   },
   // Mornington Crescent
