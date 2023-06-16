@@ -4,7 +4,7 @@ import Hero from '@components/Design/Hero'
 import Layout from '@components/Layout'
 import Breadcrumbs from '@components/Design/Breadcrumbs'
 import AllSpectrumMaps from '@components/MobileNetworking/AllSpectrumMaps'
-import SpectrumTotaller from '@components/MobileNetworking/SpectrumTotaller'
+import SpectrumTotallerSection from '@components/MobileNetworking/SpectrumTotallerSection'
 
 import Colors from '@data/colors.json'
 import BGAllBands from 'mobile-spectrum-data/BG'
@@ -33,7 +33,7 @@ function BGSpectrumAllocationPage({ location }: PageProps) {
         ]}
       />
 
-      <SpectrumTotaller countryCode="BG" bandsData={BGAllBands} />
+      <SpectrumTotallerSection countryCode="BG" bandsData={BGAllBands} />
 
       <AllSpectrumMaps locationName="Bulgaria" countryCode="BG" bandsData={BGAllBands} />
     </Layout>

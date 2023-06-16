@@ -4,7 +4,7 @@ import Hero from '@components/Design/Hero'
 import Layout from '@components/Layout'
 import Breadcrumbs from '@components/Design/Breadcrumbs'
 import AllSpectrumMaps from '@components/MobileNetworking/AllSpectrumMaps'
-import SpectrumTotaller from '@components/MobileNetworking/SpectrumTotaller'
+import SpectrumTotallerSection from '@components/MobileNetworking/SpectrumTotallerSection'
 import MinorAlert from '@components/Design/MinorAlert'
 
 import Colors from '@data/colors.json'
@@ -52,11 +52,11 @@ function GBSpectrumAllocationPage({ location }: PageProps) {
         </p>
       </Section> */}
 
-      <SpectrumTotaller countryCode="GB" bandsData={GBAllBands}>
+      <SpectrumTotallerSection countryCode="GB" bandsData={GBAllBands}>
         <MinorAlert color="primaryBlue" coloredBackground heading="Calculation info">
           <p className="text-speak">This total includes EE's B67 LTE allocation which is not supported by any known COTS UE.</p>
         </MinorAlert>
-      </SpectrumTotaller>
+      </SpectrumTotallerSection>
 
       <AllSpectrumMaps locationName="UK" countryCode="GB" bandsData={GBAllBands} />
     </Layout>

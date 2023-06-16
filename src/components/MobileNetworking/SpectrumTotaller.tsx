@@ -1,15 +1,16 @@
 import React from 'react'
 
-import type { SpectrumBlock, SpectrumData } from 'mobile-spectrum-data/@types'
-import Section from '@components/Design/Section'
 import { formatFrequency } from 'mobile-spectrum-data/utils'
 import { makeStyles } from '@material-ui/core'
 import { getOperatorInfoByNameOrAlias } from 'mobile-spectrum-data/OperatorInfo'
 
+import type { SpectrumBlock, SpectrumData } from 'mobile-spectrum-data/@types'
+
 export interface SpectrumTotallerProps {
   bandsData: SpectrumData[]
-  children?: React.ReactNode
   countryCode: string
+  style?: React.CSSProperties
+  hideMmwave?: boolean
 }
 
 const useStyles = makeStyles({
@@ -91,13 +92,12 @@ function aggregateBandsData(country: string, bandsData: SpectrumData[]): Record<
   return total
 }
 
-export default function SpectrumTotaller({ bandsData, children, countryCode }: SpectrumTotallerProps) {
+export default function SpectrumTotaller({ bandsData, countryCode, style, hideMmwave = false }: SpectrumTotallerProps) {
   const classes = useStyles()
 
   const data = Object.entries(aggregateBandsData(countryCode, bandsData))
 
   // sort by total
-
   data.sort((a, b) => {
     const aTotal = Object.values(a[1]).reduce((acc, val) => acc + val, 0)
     const bTotal = Object.values(b[1]).reduce((acc, val) => acc + val, 0)
@@ -106,34 +106,28 @@ export default function SpectrumTotaller({ bandsData, children, countryCode }: S
   })
 
   return (
-    <Section width="wider">
-      <h2 className="text-louder">Total spectrum</h2>
-
-      <p className="text-speak">This ignores any region-specific licenses that operators may have.</p>
-
-      {children}
-
-      <table className={classes.table}>
-        <thead>
-          <tr>
-            <th>Operator</th>
-            <th>&lt;1 GHz</th>
-            <th>1&ndash;3 GHz</th>
-            <th>3&ndash;6 GHz</th>
-            <th>&gt;6 GHz</th>
-            <th>Total</th>
-            <th>Total (Sub-6)</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data.map(([operator, totals]) => (
-            <tr key={operator}>
-              <td className={classes.boldCell}>{operator}</td>
-              <td>{formatFrequency(totals[0] ?? 0)}</td>
-              <td>{formatFrequency(totals[1] ?? 0)}</td>
-              <td>{formatFrequency(totals[2] ?? 0)}</td>
-              <td>{formatFrequency(totals[3] ?? 0)}</td>
-              <td className={classes.boldCell}>{formatFrequency(Object.values(totals).reduce((acc, val) => acc + val, 0))}</td>
+    <table className={classes.table} style={style}>
+      <thead>
+        <tr>
+          <th>Operator</th>
+          <th>&lt;1 GHz</th>
+          <th>1&ndash;3 GHz</th>
+          <th>3&ndash;6 GHz</th>
+          {!hideMmwave && <th>&gt;6 GHz</th>}
+          <th>Total</th>
+          {!hideMmwave && <th>Total (Sub-6)</th>}
+        </tr>
+      </thead>
+      <tbody>
+        {data.map(([operator, totals]) => (
+          <tr key={operator}>
+            <td className={classes.boldCell}>{operator}</td>
+            <td>{formatFrequency(totals[0] ?? 0)}</td>
+            <td>{formatFrequency(totals[1] ?? 0)}</td>
+            <td>{formatFrequency(totals[2] ?? 0)}</td>
+            {!hideMmwave && <td>{formatFrequency(totals[3] ?? 0)}</td>}
+            <td className={classes.boldCell}>{formatFrequency(Object.values(totals).reduce((acc, val) => acc + val, 0))}</td>
+            {!hideMmwave && (
               <td className={classes.boldCell}>
                 {formatFrequency(
                   Object.entries(totals)
@@ -142,10 +136,10 @@ export default function SpectrumTotaller({ bandsData, children, countryCode }: S
                     .reduce((acc, val) => acc + val, 0),
                 )}
               </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </Section>
+            )}
+          </tr>
+        ))}
+      </tbody>
+    </table>
   )
 }

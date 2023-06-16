@@ -4,7 +4,7 @@ import Hero from '@components/Design/Hero'
 import Layout from '@components/Layout'
 import Breadcrumbs from '@components/Design/Breadcrumbs'
 import AllSpectrumMaps from '@components/MobileNetworking/AllSpectrumMaps'
-import SpectrumTotaller from '@components/MobileNetworking/SpectrumTotaller'
+import SpectrumTotallerSection from '@components/MobileNetworking/SpectrumTotallerSection'
 
 import Colors from '@data/colors.json'
 import KRAllBands from 'mobile-spectrum-data/KR'
@@ -33,7 +33,7 @@ function KRSpectrumAllocationPage({ location }: PageProps) {
         ]}
       />
 
-      <SpectrumTotaller countryCode="KR" bandsData={KRAllBands} />
+      <SpectrumTotallerSection countryCode="KR" bandsData={KRAllBands} />
 
       <AllSpectrumMaps locationName="South Korea" countryCode="KR" bandsData={KRAllBands} />
     </Layout>

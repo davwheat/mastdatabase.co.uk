@@ -4,7 +4,7 @@ import Hero from '@components/Design/Hero'
 import Layout from '@components/Layout'
 import Breadcrumbs from '@components/Design/Breadcrumbs'
 import AllSpectrumMaps from '@components/MobileNetworking/AllSpectrumMaps'
-import SpectrumTotaller from '@components/MobileNetworking/SpectrumTotaller'
+import SpectrumTotallerSection from '@components/MobileNetworking/SpectrumTotallerSection'
 
 import Colors from '@data/colors.json'
 import PTAllBands from 'mobile-spectrum-data/PT'
@@ -33,7 +33,7 @@ function PTSpectrumAllocationPage({ location }: PageProps) {
         ]}
       />
 
-      <SpectrumTotaller countryCode="PT" bandsData={PTAllBands} />
+      <SpectrumTotallerSection countryCode="PT" bandsData={PTAllBands} />
 
       <AllSpectrumMaps locationName="Portugal" countryCode="PT" bandsData={PTAllBands} />
     </Layout>

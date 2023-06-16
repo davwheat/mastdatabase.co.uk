@@ -4,7 +4,7 @@ import Hero from '@components/Design/Hero'
 import Layout from '@components/Layout'
 import Breadcrumbs from '@components/Design/Breadcrumbs'
 import AllSpectrumMaps from '@components/MobileNetworking/AllSpectrumMaps'
-import SpectrumTotaller from '@components/MobileNetworking/SpectrumTotaller'
+import SpectrumTotallerSection from '@components/MobileNetworking/SpectrumTotallerSection'
 
 import Colors from '@data/colors.json'
 import RUAllBands from 'mobile-spectrum-data/RU'
@@ -33,7 +33,7 @@ function RSSpectrumAllocationPage({ location }: PageProps) {
         ]}
       />
 
-      <SpectrumTotaller countryCode="RU" bandsData={RUAllBands} />
+      <SpectrumTotallerSection countryCode="RU" bandsData={RUAllBands} />
 
       <AllSpectrumMaps locationName="Russia" countryCode="RU" bandsData={RUAllBands} />
     </Layout>

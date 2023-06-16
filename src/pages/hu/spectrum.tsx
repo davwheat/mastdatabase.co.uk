@@ -4,7 +4,7 @@ import Hero from '@components/Design/Hero'
 import Layout from '@components/Layout'
 import Breadcrumbs from '@components/Design/Breadcrumbs'
 import AllSpectrumMaps from '@components/MobileNetworking/AllSpectrumMaps'
-import SpectrumTotaller from '@components/MobileNetworking/SpectrumTotaller'
+import SpectrumTotallerSection from '@components/MobileNetworking/SpectrumTotallerSection'
 
 import Colors from '@data/colors.json'
 import HUAllBands from 'mobile-spectrum-data/HU'
@@ -33,7 +33,7 @@ function HUSpectrumAllocationPage({ location }: PageProps) {
         ]}
       />
 
-      <SpectrumTotaller countryCode="HU" bandsData={HUAllBands} />
+      <SpectrumTotallerSection countryCode="HU" bandsData={HUAllBands} />
 
       <AllSpectrumMaps locationName="Hungary" countryCode="HU" bandsData={HUAllBands} />
     </Layout>

@@ -4,7 +4,7 @@ import Hero from '@components/Design/Hero'
 import Layout from '@components/Layout'
 import Breadcrumbs from '@components/Design/Breadcrumbs'
 import AllSpectrumMaps from '@components/MobileNetworking/AllSpectrumMaps'
-import SpectrumTotaller from '@components/MobileNetworking/SpectrumTotaller'
+import SpectrumTotallerSection from '@components/MobileNetworking/SpectrumTotallerSection'
 
 import Colors from '@data/colors.json'
 import MKAllBands from 'mobile-spectrum-data/MK'
@@ -33,7 +33,7 @@ function MKSpectrumAllocationPage({ location }: PageProps) {
         ]}
       />
 
-      <SpectrumTotaller countryCode="MK" bandsData={MKAllBands} />
+      <SpectrumTotallerSection countryCode="MK" bandsData={MKAllBands} />
 
       <AllSpectrumMaps locationName="North Macedonia" countryCode="MK" bandsData={MKAllBands} />
     </Layout>

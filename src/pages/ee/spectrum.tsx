@@ -4,7 +4,7 @@ import Hero from '@components/Design/Hero'
 import Layout from '@components/Layout'
 import Breadcrumbs from '@components/Design/Breadcrumbs'
 import AllSpectrumMaps from '@components/MobileNetworking/AllSpectrumMaps'
-import SpectrumTotaller from '@components/MobileNetworking/SpectrumTotaller'
+import SpectrumTotallerSection from '@components/MobileNetworking/SpectrumTotallerSection'
 
 import Colors from '@data/colors.json'
 import EEAllBands from 'mobile-spectrum-data/EE'
@@ -33,7 +33,7 @@ function EESpectrumAllocationPage({ location }: PageProps) {
         ]}
       />
 
-      <SpectrumTotaller countryCode="EE" bandsData={EEAllBands} />
+      <SpectrumTotallerSection countryCode="EE" bandsData={EEAllBands} />
 
       <AllSpectrumMaps locationName="Estonia" countryCode="EE" bandsData={EEAllBands} />
     </Layout>
