@@ -457,11 +457,13 @@ const StationCoverageInfo: Record<string, StationCoverageInfo> = {
   },
   // Mornington Crescent
   '940GZZLUMTC': {
-    state: 'planned',
+    state: 'live',
     coverage: {
+      EE: CoveragePresets.station.EE.with_5g,
       Three: CoveragePresets.station.Three.with_5g,
+      Vodafone: CoveragePresets.station.Vodafone.with_5g,
+      O2: CoveragePresets.station.O2.with_5g,
     },
-    coverageNotes: ['Three is present, but disabled to the public.'],
   },
   // Euston
   '940GZZLUEUS': {
