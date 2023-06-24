@@ -148,6 +148,49 @@ export function TubeDeploymentInfo() {
           }}
         />
       </figure>
+
+      <h3 className="text-loud">Heathrow tunnels</h3>
+
+      <p className="text-speak">
+        The tunnels between the Great Western Mainline and Heathrow Airport are privately owned by Heathrow Airport Holdings rather than being
+        part of Network Rail's infrastructure. They were also some of the first railway tunnels to gain a specialist mobile phone coverage
+        solution.
+      </p>
+
+      <p className="text">
+        Stretching back as far as 2009 (or earlier), the Heathrow tunnels have had a mobile coverage solution of some form, starting with 2G only
+        for Orange, and moving up to today's 4G solution covering all four UK networks.
+      </p>
+
+      <figure className={classes.coverageTableFigure}>
+        <figcaption>
+          <p className="text-speak-up">Deployment in Heathrow tunnels</p>
+        </figcaption>
+
+        <CoverageTable
+          coverage={{
+            EE: CoveragePresets.tunnels.EE.hex,
+            Three: CoveragePresets.tunnels.Three.hex,
+            O2: CoveragePresets.tunnels.O2.hex,
+            Vodafone: CoveragePresets.tunnels.Vodafone.hex,
+          }}
+        />
+      </figure>
+
+      <figure className={classes.coverageTableFigure}>
+        <figcaption>
+          <p className="text-speak-up">Deployment in Heathrow stations</p>
+        </figcaption>
+
+        <CoverageTable
+          coverage={{
+            EE: CoveragePresets.station.EE.hex,
+            Three: CoveragePresets.station.Three.hex,
+            O2: CoveragePresets.station.O2.hex,
+            Vodafone: CoveragePresets.station.Vodafone.hex,
+          }}
+        />
+      </figure>
     </Section>
   )
 }
