@@ -251,9 +251,13 @@ const useStyles = makeStyles({
         margin: 2,
         fontSize: '13.5px !important',
       },
-      '& .unknownCoverage': {
+      '& .yesCoverage': {
         fontWeight: 'bold',
         color: Colors.darkGreen,
+      },
+      '& .unknownCoverage': {
+        fontWeight: 'bold',
+        color: Colors.darkGrey,
       },
       '& .noCoverage': {
         color: Colors.error,
@@ -370,12 +374,26 @@ function generatePopupContentForLineSection(feature: geojson.Feature<geojson.Geo
 }
 
 function generateCoverageTable(coverage: OperatorConnectivity, coverageNotes?: string[]): string {
-  function bandsToHtml(bands?: string[]) {
-    return (
-      (bands?.map(band => `<span class="bandChip">${band}</span>`).join('') ??
-        '<span class="unknownCoverage" aria-label="Coverage, but bands unknown" data-tooltip>✔</span>') ||
-      '<span class="noCoverage" aria-label="No coverage" data-tooltip>🗙</span>'
-    )
+  function bandsToHtml(bands?: string[] | null): string {
+    if (bands === null) {
+      return `<span class="noCoverage" aria-label="No coverage" data-tooltip>
+          🗙
+        </span>`
+    }
+
+    if (bands === undefined) {
+      return `<span class="unknownCoverage" aria-label="Coverage unknown" data-tooltip>
+          ?
+        </span>`
+    }
+
+    if (bands.length === 0) {
+      return `<span class="yesCoverage" aria-label="Coverage, but bands unknown" data-tooltip>
+          ✔
+        </span>`
+    }
+
+    return bands.map((band, i) => `<span class="bandChip">${band}</span>`).join('')
   }
 
   return `

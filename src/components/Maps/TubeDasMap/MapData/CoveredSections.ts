@@ -1,10 +1,10 @@
 export type Networks = 'O2' | 'Vodafone' | 'EE' | 'Three'
 
 interface Connectivity {
-  '2G'?: ('G09' | 'G18')[]
-  '3G'?: ('U09' | 'U21')[]
-  '4G'?: ('B1' | 'B3' | 'B7' | 'B8' | 'B20' | 'B32' | 'B38' | 'B40')[]
-  '5G'?: ('n1' | 'n3' | 'n7' | 'n8' | 'n20' | 'n28' | 'n38' | 'n40' | 'n77' | 'n78' | 'n258')[]
+  '2G'?: ('G09' | 'G18')[] | null
+  '3G'?: ('U09' | 'U21')[] | null
+  '4G'?: ('B1' | 'B3' | 'B7' | 'B8' | 'B20' | 'B32' | 'B38' | 'B40')[] | null
+  '5G'?: ('n1' | 'n3' | 'n7' | 'n8' | 'n20' | 'n28' | 'n38' | 'n40' | 'n77' | 'n78' | 'n258')[] | null
 }
 
 export type OperatorConnectivity = {
@@ -40,29 +40,29 @@ export const CoveragePresets: Record<'tunnels' | 'station', Record<Networks, Rec
     EE: {
       normal: {
         '2G': ['G18'],
-        '3G': [],
+        '3G': null,
         '4G': ['B1', 'B3', 'B3', 'B20'],
         '5G': ['n28'],
       },
       jle: {
         '2G': ['G18'],
-        '3G': [],
+        '3G': null,
         '4G': ['B1', 'B3'],
-        '5G': [],
+        '5G': null,
       },
     },
     Three: {
       normal: {
-        '2G': [],
-        '3G': [],
+        '2G': null,
+        '3G': null,
         '4G': ['B1', 'B3'],
-        '5G': [],
+        '5G': null,
       },
       jle: {
-        '2G': [],
-        // '3G': [],
+        '2G': null,
+        '3G': undefined,
         '4G': ['B1', 'B3'],
-        '5G': [],
+        '5G': null,
       },
     },
     O2: {
@@ -73,10 +73,10 @@ export const CoveragePresets: Record<'tunnels' | 'station', Record<Networks, Rec
         '5G': ['n28'],
       },
       jle: {
-        // '2G': [],
+        '2G': undefined,
         '3G': ['U09'],
         '4G': ['B20'],
-        '5G': [],
+        '5G': null,
       },
     },
     Vodafone: {
@@ -87,10 +87,10 @@ export const CoveragePresets: Record<'tunnels' | 'station', Record<Networks, Rec
         '5G': ['n8'],
       },
       jle: {
-        // '2G': [],
-        // '3G': [],
+        '2G': undefined,
+        '3G': undefined,
         '4G': ['B20', 'B8'],
-        '5G': [],
+        '5G': null,
       },
     },
   },
@@ -98,61 +98,61 @@ export const CoveragePresets: Record<'tunnels' | 'station', Record<Networks, Rec
     EE: {
       no_5g: {
         '2G': ['G18'],
-        '3G': [],
+        '3G': null,
         '4G': ['B1', 'B3', 'B3', 'B7', 'B7'],
-        '5G': [],
+        '5G': null,
       },
       with_5g: {
         '2G': ['G18'],
-        '3G': [],
+        '3G': null,
         '4G': ['B1', 'B3', 'B3', 'B7', 'B7'],
         '5G': ['n78', 'n78'],
       },
       jle: {
         '2G': ['G18'],
-        '3G': [],
+        '3G': null,
         '4G': ['B1', 'B3', 'B7', 'B7'],
-        '5G': [],
+        '5G': null,
       },
     },
     Three: {
       no_5g: {
-        '2G': [],
-        '3G': [],
+        '2G': null,
+        '3G': null,
         '4G': ['B1', 'B3'],
-        '5G': [],
+        '5G': null,
       },
       with_5g: {
-        '2G': [],
-        '3G': [],
+        '2G': null,
+        '3G': null,
         '4G': ['B1', 'B3'],
         '5G': ['n78', 'n78'],
       },
       jle: {
-        '2G': [],
-        // '3G': [],
+        '2G': null,
+        '3G': undefined,
         '4G': ['B1', 'B3'],
-        '5G': [],
+        '5G': null,
       },
     },
     O2: {
       with_5g: {
         '2G': ['G18'],
-        '3G': [],
+        '3G': null,
         '4G': ['B1', 'B20', 'B40', 'B40'],
         '5G': ['n78'],
       },
       no_5g: {
         '2G': ['G18'],
-        '3G': [],
+        '3G': null,
         '4G': ['B1', 'B20', 'B40', 'B40'],
-        '5G': [],
+        '5G': null,
       },
       jle: {
-        // '2G': [],
-        '3G': [],
+        '2G': undefined,
+        '3G': null,
         '4G': ['B1', 'B20', 'B40', 'B40'],
-        '5G': [],
+        '5G': null,
       },
     },
     Vodafone: {
@@ -160,7 +160,7 @@ export const CoveragePresets: Record<'tunnels' | 'station', Record<Networks, Rec
         '2G': ['G09'],
         '3G': ['U21'],
         '4G': ['B1', 'B3', 'B7'],
-        '5G': [],
+        '5G': null,
       },
       with_5g: {
         '2G': ['G09'],
@@ -169,10 +169,10 @@ export const CoveragePresets: Record<'tunnels' | 'station', Record<Networks, Rec
         '5G': ['n78', 'n78'],
       },
       jle: {
-        // '2G': [],
-        // '3G': [],
+        '2G': undefined,
+        '3G': undefined,
         '4G': ['B1', 'B7', 'B8', 'B20'],
-        '5G': [],
+        '5G': null,
       },
     },
   },

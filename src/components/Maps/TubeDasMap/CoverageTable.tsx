@@ -29,9 +29,13 @@ const useTableStyles = makeStyles({
     color: 'black',
     margin: 2,
   },
-  unknownCoverage: {
+  yesCoverage: {
     fontWeight: 'bold',
     color: Colors.darkGreen,
+  },
+  unknownCoverage: {
+    fontWeight: 'bold',
+    color: Colors.darkGrey,
   },
   noCoverage: {
     color: Colors.error,
@@ -45,19 +49,27 @@ interface CoverageTableProps {
 export function CoverageTable({ coverage }: CoverageTableProps): React.ReactNode {
   const classes = useTableStyles()
 
-  function bandsToHtml(bands?: string[]) {
+  function bandsToHtml(bands?: string[] | null) {
+    if (bands === null) {
+      return (
+        <span className={classes.noCoverage} aria-label="No coverage" data-tooltip>
+          🗙
+        </span>
+      )
+    }
+
     if (bands === undefined) {
       return (
-        <span className={classes.unknownCoverage} aria-label="Coverage, but bands unknown" data-tooltip>
-          ✔
+        <span className={classes.unknownCoverage} aria-label="Coverage unknown" data-tooltip>
+          ?
         </span>
       )
     }
 
     if (bands.length === 0) {
       return (
-        <span className={classes.noCoverage} aria-label="No coverage" data-tooltip>
-          🗙
+        <span className={classes.yesCoverage} aria-label="Coverage, but bands unknown" data-tooltip>
+          ✔
         </span>
       )
     }
