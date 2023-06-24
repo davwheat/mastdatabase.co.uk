@@ -173,7 +173,9 @@ function stationMarker(feature: geojson.Feature<geojson.GeometryObject, GeoJsonS
     color: '#000',
     weight: 2,
     className: `${hasConnectivity}-connectivity`,
-  }).bindPopup(generatePopupContentForStation(feature))
+  }).bindPopup(generatePopupContentForStation(feature), {
+    maxWidth: 500,
+  })
 }
 
 function coveredStationMarker(feature: geojson.Feature<geojson.GeometryObject, GeoJsonStationProperties>, latLng: LatLngExpression): Layer {
@@ -190,7 +192,9 @@ function coveredStationMarker(feature: geojson.Feature<geojson.GeometryObject, G
     fillOpacity: 1,
     stroke: false,
     pane: 'coveredStations',
-  }).bindPopup(generatePopupContentForStation(feature))
+  }).bindPopup(generatePopupContentForStation(feature), {
+    maxWidth: 500,
+  })
 }
 
 const useStyles = makeStyles({
@@ -201,17 +205,32 @@ const useStyles = makeStyles({
     '& .leaflet-base-pane': {
       filter: 'grayscale(100%)',
     },
-    '& .leaflet-popup-content': {
-      fontFamily:
-        "'Jost', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
-      fontSize: '14px',
-      margin: '10px 12px',
-      '& p': {
-        margin: 0,
-        marginBottom: '0.5em',
+    '& .leaflet-popup': {
+      '&-close-button': {
+        right: '16px !important',
       },
-      '& *': {
-        fontSize: '15px !important',
+
+      '&-content': {
+        fontFamily:
+          "'Jost', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
+        fontSize: '14px',
+        margin: 0,
+        padding: '10px 12px',
+        maxWidth: 'calc(90vw - 16px)',
+
+        '&-wrapper': {
+          maxHeight: 'calc(var(--map-height, 70vh) - 48px)',
+          overflowX: 'hidden',
+          overflowY: 'auto',
+        },
+
+        '& p': {
+          margin: 0,
+          marginBottom: '0.5em',
+        },
+        '& *': {
+          fontSize: '15px !important',
+        },
       },
     },
     '& .leaflet-pane > svg path.leaflet-interactive': {
@@ -300,7 +319,8 @@ export default function TubeDasMap({ hideSectionsWithNoConnectivity, hiddenLines
     <div className={clsx(classes.mapRoot)}>
       <MapContainer
         style={{
-          height: '40vh',
+          ['--map-height' as any]: '50vh',
+          height: 'var(--map-height)',
           backgroundColor: '#fff',
         }}
         center={[51.509865, -0.118092]}
@@ -558,7 +578,9 @@ function MapLayers({ hideSectionsWithNoConnectivity, hiddenLines }: TubeDasMapPr
 
   const onLineLayerMade = useCallback(
     (feature: geojson.Feature<geojson.GeometryObject, GeoJsonLineProperties>, layer) => {
-      layer.bindPopup(generatePopupContentForLineSection(feature))
+      layer.bindPopup(generatePopupContentForLineSection(feature), {
+        maxWidth: 500,
+      })
 
       const lines = getLinesFromFeature(feature, hiddenLines).map(l => l.name)
       if (lines.length <= 1) return
@@ -586,7 +608,9 @@ function MapLayers({ hideSectionsWithNoConnectivity, hiddenLines }: TubeDasMapPr
           weight: LINE_WIDTH,
           className: `${hasConnectivity}-connectivity`,
         })
-          .bindPopup(generatePopupContentForLineSection(feature))
+          .bindPopup(generatePopupContentForLineSection(feature), {
+            maxWidth: 500,
+          })
           .addTo(map)
       })
     },
