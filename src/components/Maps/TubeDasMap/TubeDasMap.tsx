@@ -289,7 +289,7 @@ export default function TubeDasMap({ hideSectionsWithNoConnectivity, hiddenLines
     <div className={clsx(classes.mapRoot)}>
       <MapContainer
         style={{
-          height: '60vh',
+          height: '40vh',
           backgroundColor: '#fff',
         }}
         center={[51.509865, -0.118092]}
