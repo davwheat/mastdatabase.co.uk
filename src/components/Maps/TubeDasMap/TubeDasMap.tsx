@@ -202,10 +202,16 @@ const useStyles = makeStyles({
       filter: 'grayscale(100%)',
     },
     '& .leaflet-popup-content': {
+      fontFamily:
+        "'Jost', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
+      fontSize: '14px',
       margin: '10px 12px',
       '& p': {
         margin: 0,
         marginBottom: '0.5em',
+      },
+      '& *': {
+        fontSize: '15px !important',
       },
     },
     '& .leaflet-pane > svg path.leaflet-interactive': {
@@ -243,6 +249,7 @@ const useStyles = makeStyles({
         backgroundColor: Colors.success,
         color: 'black',
         margin: 2,
+        fontSize: '13.5px !important',
       },
       '& .unknownCoverage': {
         fontWeight: 'bold',
