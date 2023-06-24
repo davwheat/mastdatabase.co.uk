@@ -6,7 +6,9 @@ created_at: 2023-06-16T15:00Z
 ---
 
 import AllSpectrumMaps from '@components/MobileNetworking/AllSpectrumMaps'
+import SpectrumTotaller from '@components/MobileNetworking/SpectrumTotaller'
 import MergerAllBands from './spectrum/VHUK-merger/base'
+import CurrentUKSpectrum from './spectrum/GB'
 
 # Background
 
@@ -202,6 +204,66 @@ comes at a time when all networks are attempting to monetise their existing grid
 each mast). Grid monetisation would mean that a nimbler approach, choosing the best of both major UK grids, may be the ideal way forward. The
 contracts underpinning tower monetisation, typically 15&ndash;20-year deals, may be a stumbling block in a quick decommission programme to
 realise the merger benefits, however the precise details are naturally commercially sensitive.
+
+## Spectrum
+
+For a mobile network, spectrum is critical. It is the radio waves that carry the data and voice traffic between the mobile phone and the network.
+Essentially, the more spectrum a network has, the higher peak speeds it can offer to customers, and the greater the capacity of the network.
+
+When the merger between T-Mobile and Orange began, it became clear that the combined network would have too much spectrum. This was reported by
+[The Register](https://www.theregister.com/2009/09/10/t_orange_spectrum/) before it became clear the merge-co didn't want to give up any of its
+valuable spectrum
+([ISPReview](https://www.ispreview.co.uk/story/2009/11/24/t-mobile-and-orange-uk-refuse-to-share-mobile-broadband-spectrum.html)).
+
+An [investigation](https://ec.europa.eu/competition/publications/cpn/2010_2_6.pdf) by the EU into the merger found that the merged company would
+hold almost 48% of the UK's mobile spectrum and "[the] merger could thus possibly have led the parties to have the only full-speed national LTE
+network in the short to medium term".
+
+In the end, the merged company opted to divest a quarter (15&nbsp;MHz paired) of their 1800&nbsp;MHz spectrum, as well as other concessions, to
+allow the merger to pass through competition regulators.
+
+### Current spectrum outlook
+
+We have a [full page on UK spectrum allocations](/gb/spectrum), but we can summarise total allocations per-network.
+
+<figure className="narrow" style={{ overflowX: 'auto', marginBottom: 16 }}>
+  <SpectrumTotaller
+    hideMmwave
+    bandsData={CurrentUKSpectrum}
+    countryCode="GB"
+    style={{ marginTop: '0 !important', marginBottom: '0 !important' }}
+  />
+</figure>
+
+#### Sub-6 5G
+
+Three is best-placed for 5G with 140&nbsp;MHz n78 currently deployed with 84&nbsp;MHz in the n77 band, although this is not currently suitable
+for 5G use due to license restrictions. Vodafone have the second-highest n78 allocation at 90&nbsp;MHz, split into two blocks of 40 and
+50&nbsp;MHz.
+
+A merger between the two with no intervention would result in significant Sub-6 5G spectrum holdings, maxing out a 2CA n78 configuration with
+30&nbsp;MHz left over spare.
+
+#### Low band
+
+Low band is critical to rural and indoor coverage. Currently, O2 has the greatest amount of low band spectrum, with holdings in 700, 800 and 900
+MHz totalling 37.4&nbsp;MHz, and EE trails just behind with 35&nbsp;MHz in 700 and 800 MHz.
+
+Three has the least low band spectrum out of all UK networks, which becomes clear when looking at their rural performance across the country.
+Since 700 MHz was only auctioned in 2021, Three's primary low band deployment for almost a decade has been a painful 5&nbsp;MHz of B20 LTE, with
+many locations being served by only B20 LTE coming from shared sites with EE.
+
+<figure>
+
+![Screenshot of Cellmapper showing the vast majority of sites on the map section to only have B20 LTE](./three-rural-b20.png)
+
+<figcaption>
+Cellmapper allows us to see crowdsourced data about sites for most mobile networks globally. [This area](https://www.cellmapper.net/map?MCC=234&MNC=20&type=LTE&latitude=50.94982855494183&longitude=0.21040556755178433&zoom=11.941842671632223&showTowers=true&showIcons=false&showTowerLabels=true&clusterEnabled=false&tilesEnabled=true&showOrphans=false&showNoFrequencyOnly=false&showFrequencyOnly=true&showBandwidthOnly=false&DateFilterType=Last&showHex=false&bands=20&showVerifiedOnly=false&showUnverifiedOnly=false&showLTECAOnly=false&showENDCOnly=false&showBand=20&showSectorColours=true&mapType=roadmap&darkMode=false&imperialUnits=false) of the map (East Sussex) shows how much of Three's rural coverage consists of only 5&nbsp;MHz B20 LTE.
+</figcaption>
+</figure>
+
+A merger of Vodafone and Three would provide a total of 42.4&nbsp;MHz of low band spectrum which, combined with the larger pool of infrastructure
+provided through Cornerstone, MBNL and Three's own portfolio, would offer a significant rural density upgrade on the current networks.
 
 <AllSpectrumMaps
   locationName="UK post-merger"
