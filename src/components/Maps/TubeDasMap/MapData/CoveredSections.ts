@@ -479,21 +479,25 @@ const StationCoverageInfo: Record<string, StationCoverageInfo> = {
   // Euston
   '940GZZLUEUS': {
     state: 'planned',
+    opens: 'Summer 2023',
     coverage: {},
   },
   // Warren Street
   '940GZZLUWRR': {
     state: 'planned',
+    opens: 'Summer 2023',
     coverage: {},
   },
   // Goodge Street
   '940GZZLUGDG': {
     state: 'planned',
+    opens: 'Summer 2023',
     coverage: {},
   },
   // Tottenham Court Road
   '940GZZLUTCR': {
     state: 'planned',
+    opens: 'Summer 2023',
     coverage: {},
   },
   // #endregion
@@ -502,16 +506,19 @@ const StationCoverageInfo: Record<string, StationCoverageInfo> = {
   // Chalk Farm
   '940GZZLUCFM': {
     state: 'planned',
+    opens: 'Summer 2023',
     coverage: {},
   },
   // Belsize Park
   '940GZZLUBZP': {
     state: 'planned',
+    opens: 'Summer 2023',
     coverage: {},
   },
   // Hampstead
   '940GZZLUHTD': {
     state: 'planned',
+    opens: 'Summer 2023',
     coverage: {},
   },
 
@@ -553,6 +560,7 @@ const StationCoverageInfo: Record<string, StationCoverageInfo> = {
   // Oxford Circus
   '940GZZLUOXC': {
     state: 'planned',
+    opens: 'Summer 2023',
     coverage: {},
   },
   // Tottenham Court Road
@@ -563,21 +571,25 @@ const StationCoverageInfo: Record<string, StationCoverageInfo> = {
   // Holborn
   '940GZZLUHBN': {
     state: 'planned',
+    opens: 'Summer 2023',
     coverage: {},
   },
   // Chancery Lane
   '940GZZLUCHL': {
     state: 'planned',
+    opens: 'Summer 2023',
     coverage: {},
   },
   // St Pauls
   '940GZZLUSPU': {
     state: 'planned',
+    opens: 'Summer 2023',
     coverage: {},
   },
   // Bank
   '940GZZLUBNK': {
     state: 'planned',
+    opens: 'Summer 2023',
     coverage: {},
   },
   // #endregion
