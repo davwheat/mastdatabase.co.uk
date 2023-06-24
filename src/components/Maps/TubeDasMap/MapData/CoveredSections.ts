@@ -15,6 +15,7 @@ interface StationCoverageInfo {
   state: 'live' | 'planned'
   coverage: OperatorConnectivity
   coverageNotes?: string[]
+  opens?: string
 }
 
 interface CoverageGroup {
@@ -31,6 +32,7 @@ interface CoverageSegment {
   endStationId: string
   lineFilter?: string[]
   coverageNotes?: string[]
+  opens?: string
 }
 
 const CoveragePresets: Record<'tunnels' | 'station', Record<Networks, Record<string, Connectivity>>> = {
@@ -272,6 +274,7 @@ const StationSegmentsWithCoverage: CoverageGroup[] = [
         section: 'Holland Park to Notting Hill Gate',
         startStationId: '940GZZLUHPK',
         endStationId: '940GZZLUNHG',
+        opens: 'December 2022',
         services: {
           EE: CoveragePresets.tunnels.EE.normal,
           Three: CoveragePresets.tunnels.Three.normal,
@@ -283,6 +286,7 @@ const StationSegmentsWithCoverage: CoverageGroup[] = [
         section: 'Notting Hill Gate to Queensway',
         startStationId: '940GZZLUNHG',
         endStationId: '940GZZLUQWY',
+        opens: 'December 2022',
         services: {
           EE: CoveragePresets.tunnels.EE.normal,
           Three: CoveragePresets.tunnels.Three.normal,
@@ -301,6 +305,7 @@ const StationSegmentsWithCoverage: CoverageGroup[] = [
         section: 'Kentish Town to Tufnell Park',
         startStationId: '940GZZLUKSH',
         endStationId: '940GZZLUTFP',
+        opens: 'January 2023',
         services: {
           EE: CoveragePresets.tunnels.EE.normal,
           Three: CoveragePresets.tunnels.Three.normal,
@@ -312,6 +317,7 @@ const StationSegmentsWithCoverage: CoverageGroup[] = [
         section: 'Tufnell Park to Archway',
         startStationId: '940GZZLUTFP',
         endStationId: '940GZZLUACY',
+        opens: 'January 2023',
         services: {
           EE: CoveragePresets.tunnels.EE.normal,
           Three: CoveragePresets.tunnels.Three.normal,
@@ -416,6 +422,7 @@ const StationCoverageInfo: Record<string, StationCoverageInfo> = {
   // Kentish Town
   '940GZZLUKSH': {
     state: 'live',
+    opens: 'January 2023',
     coverage: {
       EE: CoveragePresets.station.EE.no_5g,
       Three: CoveragePresets.station.Three.no_5g,
@@ -426,6 +433,7 @@ const StationCoverageInfo: Record<string, StationCoverageInfo> = {
   // Tufnell Park
   '940GZZLUTFP': {
     state: 'live',
+    opens: 'January 2023',
     coverage: {
       EE: CoveragePresets.station.EE.with_5g,
       Three: CoveragePresets.station.Three.with_5g,
@@ -436,6 +444,7 @@ const StationCoverageInfo: Record<string, StationCoverageInfo> = {
   // Archway
   '940GZZLUACY': {
     state: 'live',
+    opens: 'January 2023',
     coverage: {
       EE: CoveragePresets.station.EE.with_5g,
       Three: CoveragePresets.station.Three.no_5g,
@@ -448,6 +457,7 @@ const StationCoverageInfo: Record<string, StationCoverageInfo> = {
   // Camden Town
   '940GZZLUCTN': {
     state: 'live',
+    opens: '6 June 2023',
     coverage: {
       EE: CoveragePresets.station.EE.no_5g,
       Three: CoveragePresets.station.Three.no_5g,
@@ -458,6 +468,7 @@ const StationCoverageInfo: Record<string, StationCoverageInfo> = {
   // Mornington Crescent
   '940GZZLUMTC': {
     state: 'live',
+    opens: '20 June 2023',
     coverage: {
       EE: CoveragePresets.station.EE.with_5g,
       Three: CoveragePresets.station.Three.with_5g,
@@ -508,6 +519,7 @@ const StationCoverageInfo: Record<string, StationCoverageInfo> = {
   // Queensway
   '940GZZLUQWY': {
     state: 'live',
+    opens: 'December 2022',
     coverage: {
       EE: CoveragePresets.station.EE.no_5g,
       Three: CoveragePresets.station.Three.no_5g,
@@ -518,6 +530,7 @@ const StationCoverageInfo: Record<string, StationCoverageInfo> = {
   // Notting Hill Gate
   '940GZZLUNHG': {
     state: 'live',
+    opens: 'December 2022',
     coverage: {
       EE: CoveragePresets.station.EE.with_5g,
       Three: CoveragePresets.station.Three.with_5g,
@@ -528,6 +541,7 @@ const StationCoverageInfo: Record<string, StationCoverageInfo> = {
   // Holland Park
   '940GZZLUHPK': {
     state: 'live',
+    opens: 'December 2022',
     coverage: {
       EE: CoveragePresets.station.EE.no_5g,
       Three: CoveragePresets.station.Three.no_5g,
@@ -542,10 +556,10 @@ const StationCoverageInfo: Record<string, StationCoverageInfo> = {
     coverage: {},
   },
   // Tottenham Court Road
-  '940GZZLUTCR': {
-    state: 'planned',
-    coverage: {},
-  },
+  // '940GZZLUTCR': {
+  //   state: 'planned',
+  //   coverage: {},
+  // },
   // Holborn
   '940GZZLUHBN': {
     state: 'planned',
@@ -572,46 +586,55 @@ const StationCoverageInfo: Record<string, StationCoverageInfo> = {
   // Westminster
   '940GZZLUWSM': {
     state: 'live',
+    opens: 'March 2020',
     coverage: JleStations,
   },
   // Waterloo
   '940GZZLUWLO': {
     state: 'live',
+    opens: 'March 2020',
     coverage: JleStations,
   },
   // Southwark
   '940GZZLUSWK': {
     state: 'live',
+    opens: 'March 2020',
     coverage: JleStations,
   },
   // London Bridge
   '940GZZLULNB': {
     state: 'live',
+    opens: 'March 2020',
     coverage: JleStations,
   },
   // Bermondsey
   '940GZZLUBMY': {
     state: 'live',
+    opens: 'March 2020',
     coverage: JleStations,
   },
   // Canada Water
   '940GZZLUCWR': {
     state: 'live',
+    opens: 'March 2020',
     coverage: JleStations,
   },
   // Canary Wharf
   '940GZZLUCYF': {
     state: 'live',
+    opens: 'March 2020',
     coverage: JleStations,
   },
   // North Greenwich
   '940GZZLUNGW': {
     state: 'live',
+    opens: 'March 2020',
     coverage: JleStations,
   },
   // Canning Town
   '940GZZLUCGT': {
     state: 'live',
+    opens: 'March 2020',
     coverage: JleStations,
   },
   // #endregion
@@ -620,16 +643,19 @@ const StationCoverageInfo: Record<string, StationCoverageInfo> = {
   // Heathrow Terminals 2 & 3
   '940GZZLUHRC': {
     state: 'live',
+    opens: 'pre-2009',
     coverage: {},
   },
   // Heathrow Terminal 4
   '940GZZLUHR4': {
     state: 'live',
+    opens: 'pre-2009',
     coverage: {},
   },
   // Heathrow Terminal 5
   '940GZZLUHR5': {
     state: 'live',
+    opens: 'pre-2009',
     coverage: {},
   },
   // #endregion
@@ -643,6 +669,7 @@ interface StationCoverage {
   state?: 'live' | 'planned'
   opens: string
   lineFilter?: string[]
+  coverageNotes?: string[]
 }
 
 const StationCoverageMap: Record<string, StationCoverage[]> = {}
@@ -666,6 +693,7 @@ StationSegmentsWithCoverage.forEach(group => {
       state: group.state,
       opens: group.opens,
       lineFilter: segment.lineFilter,
+      coverageNotes: segment.coverageNotes,
     })
 
     if (StationsWithCoverage.get(segments[0]) !== 'live') {

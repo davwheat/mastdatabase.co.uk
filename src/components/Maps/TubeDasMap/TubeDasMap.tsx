@@ -387,7 +387,7 @@ function generateCoverageTable(coverage: OperatorConnectivity, coverageNotes?: s
       .map(([network, networkCoverage]) => {
         return `
       <tr>
-        <td class="networkCell"><img alt="${network}" class="networkLogo" src="${NetworkToLogo[network]}" /></td>
+        <td class="networkCell"><img alt="${network}" class="networkLogo" src="${NetworkToLogo[network as Networks]}" /></td>
         <td>${bandsToHtml(networkCoverage?.['2G'])}</td>
         <td>${bandsToHtml(networkCoverage?.['3G'])}</td>
         <td>${bandsToHtml(networkCoverage?.['4G'])}</td>
@@ -416,7 +416,7 @@ function lineToChip(line: AllLines | '???'): string {
     'Elizabeth line': 'Elizabeth',
   }
 
-  const color = line in lineAttrs ? lineAttrs[line].colour : Colors.lightGrey
+  const color = line in lineAttrs ? lineAttrs[line as AllLines].colour : Colors.lightGrey
   const textColor = fontColorContrast(color, 0.6)
 
   return `<span class="lineChip" style="background-color: ${color}; color: ${textColor};">${lineNameOverrides[line] ?? line}</span>`
@@ -426,12 +426,18 @@ function generatePopupContentForStation(feature: geojson.Feature<geojson.Geometr
   const popupContent = document.createElement('div')
 
   const lines = getLinesFromFeature(feature, [])
-  const { coverage, coverageNotes } = getStationInfo(feature.properties.id)
+  const { coverage, coverageNotes, opens } = getStationInfo(feature.properties.id)
 
   popupContent.innerHTML = `
   <p class="text-speak stationName"><strong>${feature.properties.name}</strong></p>
   <p class="text-whisper">${lines.map(l => lineToChip(l?.name ?? '???')).join('')}</p>
 `
+
+  if (opens) {
+    popupContent.innerHTML += `
+  <p class="text-whisper">Coverage from <strong>${opens}</strong></p>
+`
+  }
 
   if (!coverage || Object.keys(coverage).length === 0) {
     popupContent.innerHTML += `
