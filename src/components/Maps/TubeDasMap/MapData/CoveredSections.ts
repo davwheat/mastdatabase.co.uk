@@ -35,7 +35,7 @@ interface CoverageSegment {
   opens?: string
 }
 
-const CoveragePresets: Record<'tunnels' | 'station', Record<Networks, Record<string, Connectivity>>> = {
+export const CoveragePresets: Record<'tunnels' | 'station', Record<Networks, Record<string, Connectivity>>> = {
   tunnels: {
     EE: {
       normal: {

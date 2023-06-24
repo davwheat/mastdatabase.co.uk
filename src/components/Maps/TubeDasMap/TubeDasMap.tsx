@@ -36,7 +36,7 @@ import type { PathOptions, Layer, LatLngExpression } from 'leaflet'
 const MULTI_LINE_STROKE_COLOUR_ALTERNATE = 8
 const LINE_WIDTH = 5
 
-const NetworkToLogo: Record<Networks, string> = {
+export const NetworkToLogo: Record<Networks, string> = {
   EE: EELogo,
   Three: ThreeLogo,
   Vodafone: VodafoneLogo,
