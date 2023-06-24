@@ -50,6 +50,12 @@ export const CoveragePresets: Record<'tunnels' | 'station', Record<Networks, Rec
         '4G': ['B1', 'B3'],
         '5G': null,
       },
+      hex: {
+        '2G': ['G18'],
+        '3G': null,
+        '4G': ['B3', 'B20'],
+        '5G': null,
+      },
     },
     Three: {
       normal: {
@@ -62,6 +68,12 @@ export const CoveragePresets: Record<'tunnels' | 'station', Record<Networks, Rec
         '2G': null,
         '3G': null,
         '4G': ['B1', 'B3'],
+        '5G': null,
+      },
+      hex: {
+        '2G': null,
+        '3G': null,
+        '4G': ['B3'],
         '5G': null,
       },
     },
@@ -78,6 +90,12 @@ export const CoveragePresets: Record<'tunnels' | 'station', Record<Networks, Rec
         '4G': ['B20'],
         '5G': null,
       },
+      hex: {
+        '2G': ['G09'],
+        '3G': null,
+        '4G': ['B3', 'B20'],
+        '5G': null,
+      },
     },
     Vodafone: {
       normal: {
@@ -90,6 +108,12 @@ export const CoveragePresets: Record<'tunnels' | 'station', Record<Networks, Rec
         '2G': null,
         '3G': ['U09'],
         '4G': ['B20', 'B8'],
+        '5G': null,
+      },
+      hex: {
+        '2G': ['G09'],
+        '3G': null,
+        '4G': ['B3', 'B8', 'B20'],
         '5G': null,
       },
     },
@@ -114,6 +138,12 @@ export const CoveragePresets: Record<'tunnels' | 'station', Record<Networks, Rec
         '4G': ['B1', 'B3', 'B7', 'B7'],
         '5G': null,
       },
+      hex: {
+        '2G': ['G18'],
+        '3G': null,
+        '4G': ['B3', 'B20'],
+        '5G': null,
+      },
     },
     Three: {
       no_5g: {
@@ -132,6 +162,12 @@ export const CoveragePresets: Record<'tunnels' | 'station', Record<Networks, Rec
         '2G': null,
         '3G': null,
         '4G': ['B1', 'B3'],
+        '5G': null,
+      },
+      hex: {
+        '2G': null,
+        '3G': ['U21', 'U21'],
+        '4G': ['B3'],
         '5G': null,
       },
     },
@@ -154,6 +190,12 @@ export const CoveragePresets: Record<'tunnels' | 'station', Record<Networks, Rec
         '4G': ['B1', 'B20', 'B40', 'B40'],
         '5G': null,
       },
+      hex: {
+        '2G': ['G09'],
+        '3G': ['U21'],
+        '4G': ['B3', 'B20'],
+        '5G': null,
+      },
     },
     Vodafone: {
       no_5g: {
@@ -172,6 +214,12 @@ export const CoveragePresets: Record<'tunnels' | 'station', Record<Networks, Rec
         '2G': null,
         '3G': ['U09', 'U21'],
         '4G': ['B1', 'B7', 'B8', 'B20'],
+        '5G': null,
+      },
+      hex: {
+        '2G': ['G09'],
+        '3G': ['U21'],
+        '4G': ['B3', 'B7', 'B20'],
         '5G': null,
       },
     },
@@ -257,11 +305,23 @@ const StationSegmentsWithCoverage: CoverageGroup[] = [
         section: 'Hayes & Harlington to Heathrow Terminals 2 & 3/4',
         startStationId: '910GHAYESAH',
         endStationId: '910GHTRWTM4',
+        services: {
+          EE: CoveragePresets.tunnels.EE.hex,
+          Three: CoveragePresets.tunnels.Three.hex,
+          O2: CoveragePresets.tunnels.O2.hex,
+          Vodafone: CoveragePresets.tunnels.Vodafone.hex,
+        },
       },
       {
         section: 'Heathrow Terminals 2 & 3 to Heathrow Terminal 5',
         startStationId: '910GHTRWAPT',
         endStationId: '910GHTRWTM5',
+        services: {
+          EE: CoveragePresets.tunnels.EE.hex,
+          Three: CoveragePresets.tunnels.Three.hex,
+          O2: CoveragePresets.tunnels.O2.hex,
+          Vodafone: CoveragePresets.tunnels.Vodafone.hex,
+        },
       },
     ],
   },
@@ -656,19 +716,34 @@ const StationCoverageInfo: Record<string, StationCoverageInfo> = {
   '940GZZLUHRC': {
     state: 'live',
     opens: 'pre-2009',
-    coverage: {},
+    coverage: {
+      EE: CoveragePresets.station.EE.hex,
+      Three: CoveragePresets.station.Three.hex,
+      O2: CoveragePresets.station.O2.hex,
+      Vodafone: CoveragePresets.station.Vodafone.hex,
+    },
   },
   // Heathrow Terminal 4
   '940GZZLUHR4': {
     state: 'live',
     opens: 'pre-2009',
-    coverage: {},
+    coverage: {
+      EE: CoveragePresets.station.EE.hex,
+      Three: CoveragePresets.station.Three.hex,
+      O2: CoveragePresets.station.O2.hex,
+      Vodafone: CoveragePresets.station.Vodafone.hex,
+    },
   },
   // Heathrow Terminal 5
   '940GZZLUHR5': {
     state: 'live',
     opens: 'pre-2009',
-    coverage: {},
+    coverage: {
+      EE: CoveragePresets.station.EE.hex,
+      Three: CoveragePresets.station.Three.hex,
+      O2: CoveragePresets.station.O2.hex,
+      Vodafone: CoveragePresets.station.Vodafone.hex,
+    },
   },
   // #endregion
 }
