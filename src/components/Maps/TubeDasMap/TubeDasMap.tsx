@@ -36,7 +36,7 @@ import type { PathOptions, Layer, LatLngExpression } from 'leaflet'
 const MULTI_LINE_STROKE_COLOUR_ALTERNATE = 8
 const LINE_WIDTH = 5
 
-const NetworkToLogo: Record<Networks, string> = {
+export const NetworkToLogo: Record<Networks, string> = {
   EE: EELogo,
   Three: ThreeLogo,
   Vodafone: VodafoneLogo,
@@ -202,10 +202,16 @@ const useStyles = makeStyles({
       filter: 'grayscale(100%)',
     },
     '& .leaflet-popup-content': {
+      fontFamily:
+        "'Jost', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
+      fontSize: '14px',
       margin: '10px 12px',
       '& p': {
         margin: 0,
         marginBottom: '0.5em',
+      },
+      '& *': {
+        fontSize: '15px !important',
       },
     },
     '& .leaflet-pane > svg path.leaflet-interactive': {
@@ -243,10 +249,15 @@ const useStyles = makeStyles({
         backgroundColor: Colors.success,
         color: 'black',
         margin: 2,
+        fontSize: '13.5px !important',
+      },
+      '& .yesCoverage': {
+        fontWeight: 'bold',
+        color: Colors.darkGreen,
       },
       '& .unknownCoverage': {
         fontWeight: 'bold',
-        color: Colors.darkGreen,
+        color: Colors.darkGrey,
       },
       '& .noCoverage': {
         color: Colors.error,
@@ -289,7 +300,7 @@ export default function TubeDasMap({ hideSectionsWithNoConnectivity, hiddenLines
     <div className={clsx(classes.mapRoot)}>
       <MapContainer
         style={{
-          height: '60vh',
+          height: '40vh',
           backgroundColor: '#fff',
         }}
         center={[51.509865, -0.118092]}
@@ -363,12 +374,26 @@ function generatePopupContentForLineSection(feature: geojson.Feature<geojson.Geo
 }
 
 function generateCoverageTable(coverage: OperatorConnectivity, coverageNotes?: string[]): string {
-  function bandsToHtml(bands?: string[]) {
-    return (
-      (bands?.map(band => `<span class="bandChip">${band}</span>`).join('') ??
-        '<span class="unknownCoverage" aria-label="Coverage, but bands unknown" data-tooltip>✔</span>') ||
-      '<span class="noCoverage" aria-label="No coverage" data-tooltip>🗙</span>'
-    )
+  function bandsToHtml(bands?: string[] | null): string {
+    if (bands === null) {
+      return `<span class="noCoverage" aria-label="No coverage" data-tooltip>
+          🗙
+        </span>`
+    }
+
+    if (bands === undefined) {
+      return `<span class="unknownCoverage" aria-label="Coverage unknown" data-tooltip>
+          ?
+        </span>`
+    }
+
+    if (bands.length === 0) {
+      return `<span class="yesCoverage" aria-label="Coverage, but bands unknown" data-tooltip>
+          ✔
+        </span>`
+    }
+
+    return bands.map((band, i) => `<span class="bandChip">${band}</span>`).join('')
   }
 
   return `
@@ -387,7 +412,7 @@ function generateCoverageTable(coverage: OperatorConnectivity, coverageNotes?: s
       .map(([network, networkCoverage]) => {
         return `
       <tr>
-        <td class="networkCell"><img alt="${network}" class="networkLogo" src="${NetworkToLogo[network]}" /></td>
+        <td class="networkCell"><img alt="${network}" class="networkLogo" src="${NetworkToLogo[network as Networks]}" /></td>
         <td>${bandsToHtml(networkCoverage?.['2G'])}</td>
         <td>${bandsToHtml(networkCoverage?.['3G'])}</td>
         <td>${bandsToHtml(networkCoverage?.['4G'])}</td>
@@ -416,7 +441,7 @@ function lineToChip(line: AllLines | '???'): string {
     'Elizabeth line': 'Elizabeth',
   }
 
-  const color = line in lineAttrs ? lineAttrs[line].colour : Colors.lightGrey
+  const color = line in lineAttrs ? lineAttrs[line as AllLines].colour : Colors.lightGrey
   const textColor = fontColorContrast(color, 0.6)
 
   return `<span class="lineChip" style="background-color: ${color}; color: ${textColor};">${lineNameOverrides[line] ?? line}</span>`
@@ -426,12 +451,18 @@ function generatePopupContentForStation(feature: geojson.Feature<geojson.Geometr
   const popupContent = document.createElement('div')
 
   const lines = getLinesFromFeature(feature, [])
-  const { coverage, coverageNotes } = getStationInfo(feature.properties.id)
+  const { coverage, coverageNotes, opens } = getStationInfo(feature.properties.id)
 
   popupContent.innerHTML = `
   <p class="text-speak stationName"><strong>${feature.properties.name}</strong></p>
   <p class="text-whisper">${lines.map(l => lineToChip(l?.name ?? '???')).join('')}</p>
 `
+
+  if (opens) {
+    popupContent.innerHTML += `
+  <p class="text-whisper">Coverage from <strong>${opens}</strong></p>
+`
+  }
 
   if (!coverage || Object.keys(coverage).length === 0) {
     popupContent.innerHTML += `

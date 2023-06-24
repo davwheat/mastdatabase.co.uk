@@ -17,6 +17,7 @@ import { ErrorBoundaryContext } from 'react-use-error-boundary'
 
 import type { PageProps } from 'gatsby'
 import LoadingSpinner from '@components/LoadingSpinner'
+import { TubeDeploymentInfo } from '@components/Maps/TubeDasMap/TubeDeploymentInfo'
 
 const useStyles = makeStyles({
   loading: {
@@ -115,7 +116,7 @@ export default function TubeConnectivityMap({ location }: PageProps) {
         />
 
         <Section>
-          <h2 className="text-loud">Mobile connectivity on the Tube</h2>
+          <h2 className="text-louder">Mobile connectivity on the Tube</h2>
           <p className="text-speak">
             Mobile connectivity on the London Underground is provided by a combination of leaky feeders in tunnels and DAS units in stations. The
             programme is operated by Boldyn Networks (previously known as BAI Communications) as part of a{' '}
@@ -132,7 +133,7 @@ export default function TubeConnectivityMap({ location }: PageProps) {
         </Section>
 
         <Section>
-          <h2 className="text-loud">Using the map</h2>
+          <h2 className="text-louder">Using the map</h2>
 
           <p className="text-speak">
             Sections of the network that have mobile connectivity within stations and tunnels are highlighted in green. Sections highlighted in
@@ -204,6 +205,8 @@ export default function TubeConnectivityMap({ location }: PageProps) {
             <TubeDasMap hideSectionsWithNoConnectivity={mapOptions.hideUnconnectedSegments} hiddenLines={mapOptions.hiddenLines} />
           </NoSsr>
         </Section>
+
+        <TubeDeploymentInfo />
       </ErrorBoundaryContext>
     </Layout>
   )

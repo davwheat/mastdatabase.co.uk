@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 264.583 34.953">
+  <title>Drawing of two tube stations (A, B) with tunnels between, showing leaky feeders starting at the middle of each station, spanning out the tunnels either end of each station before meeting in the middle with a small gap.</title>
+  <path fill="gray" d="M92.605 14.063h79.374v10.583H92.605zM224.895 14.063h39.688v10.583h-39.688zM0 14.063h39.688v10.583H-.002z"/>
+  <path fill="#b3b3b3" d="M171.98 11.946h52.917v13.229H171.98zM39.688 11.946h52.916v13.229H39.689z"/>
+  <text xml:space="preserve" x="26.352" y="110.045" stroke-width=".794" font-family="Atkinson Hyperlegible" font-size="7.056" style="-inkscape-font-specification:&quot;Atkinson Hyperlegible&quot;;text-align:center" text-anchor="middle" transform="translate(39.688 -105)"><tspan x="26.352" y="110.045">Station A</tspan></text>
+  <text xml:space="preserve" x="158.743" y="110.045" stroke-width=".794" font-family="Atkinson Hyperlegible" font-size="7.056" style="-inkscape-font-specification:&quot;Atkinson Hyperlegible&quot;;text-align:center" text-anchor="middle" transform="translate(39.688 -105)"><tspan x="158.743" y="110.045">Station B</tspan></text>
+  <path stroke="#c55252" stroke-width=".945" d="M.646 27.766h131"/>
+  <path stroke="#c55252" stroke-width=".83" d="M66.146 7.448v20.026"/>
+  <path stroke="#55f" stroke-width=".945" d="M132.938 27.766h131"/>
+  <path stroke="#55f" stroke-width=".83" d="M198.438 7.448v20.026"/>
+  <text xml:space="preserve" x="92.59" y="116.487" stroke-width=".794" font-family="Atkinson Hyperlegible" font-size="5.644" style="-inkscape-font-specification:&quot;Atkinson Hyperlegible&quot;;text-align:center" text-anchor="middle" transform="translate(39.688 -105)"><tspan x="92.59" y="116.487">tunnel</tspan></text>
+  <text xml:space="preserve" x="26.437" y="139.157" stroke-width=".794" font-family="Atkinson Hyperlegible" font-size="4.939" style="-inkscape-font-specification:&quot;Atkinson Hyperlegible&quot;;text-align:center" text-anchor="middle" transform="translate(39.688 -105)"><tspan x="26.437" y="139.157">Station A-fed leaky feeders</tspan></text>
+  <text xml:space="preserve" x="158.729" y="139.061" stroke-width=".794" font-family="Atkinson Hyperlegible" font-size="4.939" style="-inkscape-font-specification:&quot;Atkinson Hyperlegible&quot;;text-align:center" text-anchor="middle" transform="translate(39.688 -105)"><tspan x="158.729" y="139.061">Station B-fed leaky feeders</tspan></text>
+</svg>
