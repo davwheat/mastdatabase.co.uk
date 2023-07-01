@@ -397,7 +397,7 @@ function generateCoverageTable(coverage: OperatorConnectivity, coverageNotes?: s
   function bandsToHtml(bands?: string[] | null): string {
     if (bands === null) {
       return `<span class="noCoverage" aria-label="No coverage" data-tooltip>
-          🗙
+          ╳
         </span>`
     }
 

@@ -49,7 +49,7 @@
     "gatsby-transformer-sharp": "^5.11.0",
     "get-best-contrast-color": "^0.3.1",
     "json-stable-stringify-without-jsonify": "^1.0.1",
-    "katex": "^0.16.7",
+    "katex": "^0.16.8",
     "leaflet": "^1.9.4",
     "leaflet.markercluster": "^1.5.3",
     "leaflet.sync": "^0.2.4",
