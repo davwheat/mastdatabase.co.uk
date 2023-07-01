@@ -53,7 +53,7 @@ export function CoverageTable({ coverage }: CoverageTableProps): React.ReactNode
     if (bands === null) {
       return (
         <span className={classes.noCoverage} aria-label="No coverage" data-tooltip>
-          🗙
+          ╳
         </span>
       )
     }
