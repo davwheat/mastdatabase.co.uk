@@ -19,7 +19,7 @@
     "active-resource": "^1.0.0-beta.7",
     "case-sensitive-paths-webpack-plugin": "^2.4.0",
     "clsx": "^1.2.1",
-    "dayjs": "^1.11.8",
+    "dayjs": "^1.11.9",
     "esri-leaflet": "^3.0.10",
     "file-saver": "^2.0.5",
     "font-color-contrast": "^11.1.0",
