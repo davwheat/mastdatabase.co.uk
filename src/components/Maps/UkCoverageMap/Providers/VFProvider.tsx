@@ -78,28 +78,28 @@ export default class VodafoneCoverageMapProvider extends CoverageProvider<true> 
         url: this.makeLayerUri('2g'),
       },
       {
-        label: '3G',
-        url: this.makeLayerUri('3g'),
-      },
-      {
-        label: '4G',
-        url: this.makeLayerUri('4g'),
-      },
-      {
-        label: '5G',
-        url: this.makeLayerUri('5g'),
-      },
-      {
         label: '2G (planned)',
         url: this.makeLayerUri('2g_planned'),
+      },
+      {
+        label: '3G',
+        url: this.makeLayerUri('3g'),
       },
       {
         label: '3G (planned)',
         url: this.makeLayerUri('3g_planned'),
       },
       {
+        label: '4G',
+        url: this.makeLayerUri('4g'),
+      },
+      {
         label: '4G (planned)',
         url: this.makeLayerUri('4g_planned'),
+      },
+      {
+        label: '5G',
+        url: this.makeLayerUri('5g'),
       },
       {
         label: '5G (planned)',
@@ -108,18 +108,19 @@ export default class VodafoneCoverageMapProvider extends CoverageProvider<true> 
       {
         label: 'Impact footprint',
         url: this.makeLayerUri('impact_footprint'),
+        hidden: true,
       },
       {
         label: 'IoT outdoor',
         url: this.makeLayerUri('iot_outdoor'),
       },
       {
-        label: 'IoT indoor',
-        url: this.makeLayerUri('iot_indoor'),
-      },
-      {
         label: 'IoT outdoor (planned)',
         url: this.makeLayerUri('iot_outdoor_planned'),
+      },
+      {
+        label: 'IoT indoor',
+        url: this.makeLayerUri('iot_indoor'),
       },
       {
         label: 'IoT indoor (planned)',
