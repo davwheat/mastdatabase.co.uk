@@ -154,17 +154,15 @@ async function createBlogArticles({ actions, graphql, reporter }) {
  */
 async function createBlogListing({ actions, graphql, reporter }) {
   const { createPage, createRedirect } = actions
-  const result = await graphql(
-    `
-      {
-        allMdx(sort: { frontmatter: { created_at: DESC } }, filter: { frontmatter: { archived: { ne: true } } }) {
-          nodes {
-            id
-          }
+  const result = await graphql(`
+    {
+      allMdx(sort: { frontmatter: { created_at: DESC } }, filter: { frontmatter: { archived: { ne: true } } }) {
+        nodes {
+          id
         }
       }
-    `,
-  )
+    }
+  `)
 
   if (result.errors) {
     reporter.panicOnBuild(`Error while running GraphQL query.`)

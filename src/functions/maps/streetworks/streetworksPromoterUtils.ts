@@ -897,20 +897,29 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
 
 export const promoterIds: string[] = AllStreetworksPromoters.map(x => x.id)
 
-export const promoterAliases: Record<string, string[]> = AllStreetworksPromoters.reduce((acc, promoter) => {
-  acc[promoter.id] = promoter.aliases
-  return acc
-}, {} as Record<string, string[]>)
+export const promoterAliases: Record<string, string[]> = AllStreetworksPromoters.reduce(
+  (acc, promoter) => {
+    acc[promoter.id] = promoter.aliases
+    return acc
+  },
+  {} as Record<string, string[]>,
+)
 
-export const promoterIcons: Record<string, L.DivIcon> = AllStreetworksPromoters.reduce((acc, promoter) => {
-  acc[promoter.id] = createPromoterIcon(promoter.icon.text, promoter.icon.type)!
-  return acc
-}, {} as Record<string, L.DivIcon>)
+export const promoterIcons: Record<string, L.DivIcon> = AllStreetworksPromoters.reduce(
+  (acc, promoter) => {
+    acc[promoter.id] = createPromoterIcon(promoter.icon.text, promoter.icon.type)!
+    return acc
+  },
+  {} as Record<string, L.DivIcon>,
+)
 
-export const promoterNames: Record<string, string> = AllStreetworksPromoters.reduce((acc, promoter) => {
-  acc[promoter.id] = promoter.name
-  return acc
-}, {} as Record<string, string>)
+export const promoterNames: Record<string, string> = AllStreetworksPromoters.reduce(
+  (acc, promoter) => {
+    acc[promoter.id] = promoter.name
+    return acc
+  },
+  {} as Record<string, string>,
+)
 
 function createPromoterIcon(
   iconText: IOneNetworkStreetworksPromoter['icon']['text'],
@@ -980,10 +989,13 @@ export function getPromoterStates(): Record<string, boolean> {
     localStorage.setItem(DISABLED_PROMOTERS_LS_KEY, '[]')
   }
 
-  return promoterIds.reduce((acc, curr) => {
-    acc[curr] = !arr.includes(curr)
-    return acc
-  }, {} as Record<string, boolean>)
+  return promoterIds.reduce(
+    (acc, curr) => {
+      acc[curr] = !arr.includes(curr)
+      return acc
+    },
+    {} as Record<string, boolean>,
+  )
 }
 
 export function setPromoterState(promoterId: string, state: boolean) {

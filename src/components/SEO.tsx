@@ -15,19 +15,17 @@ interface Props {
 }
 
 const SEO: React.FC<Props> = ({ description, meta, title }) => {
-  const { site } = useStaticQuery(
-    graphql`
-      {
-        site {
-          siteMetadata {
-            title
-            description
-            author
-          }
+  const { site } = useStaticQuery(graphql`
+    {
+      site {
+        siteMetadata {
+          title
+          description
+          author
         }
       }
-    `,
-  )
+    }
+  `)
 
   const metaDescription = description || site.siteMetadata.description
 
