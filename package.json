@@ -78,7 +78,7 @@
     "uuid": "^9.0.0"
   },
   "devDependencies": {
-    "@sentry/webpack-plugin": "^1.20.1",
+    "@sentry/webpack-plugin": "^2.4.0",
     "@types/color": "^3.0.3",
     "@types/esri-leaflet": "^2.1.9",
     "@types/file-saver": "^2.0.5",
