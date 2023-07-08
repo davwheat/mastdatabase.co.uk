@@ -13,9 +13,9 @@ export default class VodafoneCoverageMapProvider extends CoverageProvider<true> 
   readonly providerIcon = (<VodafoneLogo />)
 
   protected allVersions = {
-    '2023-06-28': '28 June 2023',
+    '2023-07-04': '4 July 2023',
   }
-  protected version = '2023-06-28'
+  protected version = '2023-07-04'
 
   getLayerKeys(): ICoverageLayerKey[] {
     const genericKey = [
