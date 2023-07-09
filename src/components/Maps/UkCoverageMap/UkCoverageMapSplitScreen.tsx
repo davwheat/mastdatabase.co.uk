@@ -143,14 +143,6 @@ const useStyles = makeStyles({
     justifyContent: 'center',
     padding: 16,
   },
-  performanceWarning: {
-    margin: 'auto',
-    maxWidth: 720,
-
-    '& > *': {
-      margin: '16px 0',
-    },
-  },
 })
 
 type ActiveProvidersState = { name: string; version: string; layerId: number }[]
@@ -415,15 +407,6 @@ export default function UkCoverageMapSplitScreen() {
         </Section>
 
         <Section width="full" className={classes.mapSection}>
-          <div className={classes.performanceWarning}>
-            <MinorAlert color="primaryBlue" coloredBackground>
-              <p className="text-speak">
-                Some map tiles may take up to 30 seconds to load, even on very fast connections. Please be patient. We expect this to speed up
-                significantly as more people use our tile service.
-              </p>
-            </MinorAlert>
-          </div>
-
           <NoSsr>
             <div className={classes.fullscreenButtonContainer}>
               <Button icon={<FullscreenIcon />} onClick={fullscreenHandle.enter}>
