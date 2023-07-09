@@ -215,13 +215,16 @@ export default function UkCoverageMapSplitScreen() {
 
     // multiple refs
     const mapRefs = React.useRef<Record<string, React.MutableRefObject<L.Map | null>>>(
-      AllProviders.reduce((acc, p) => {
-        const provider = new p()
+      AllProviders.reduce(
+        (acc, p) => {
+          const provider = new p()
 
-        acc[provider.providerName] = React.createRef()
+          acc[provider.providerName] = React.createRef()
 
-        return acc
-      }, {} as Record<string, React.MutableRefObject<L.Map | null>>),
+          return acc
+        },
+        {} as Record<string, React.MutableRefObject<L.Map | null>>,
+      ),
     )
 
     const allProviders = useMemo(

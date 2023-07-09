@@ -62,11 +62,7 @@ export function BenefitsTable({ columnHeadings, children }: IBenefitsTableProps)
   return (
     <table className={classes.table}>
       <thead>
-        <tr>
-          {columnHeadings?.map(heading => (
-            <th key={heading}>{heading}</th>
-          ))}
-        </tr>
+        <tr>{columnHeadings?.map(heading => <th key={heading}>{heading}</th>)}</tr>
       </thead>
       <tbody>
         {childrenByRow.map(benefits => (

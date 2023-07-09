@@ -43,11 +43,14 @@ export function PromoterSettingsDialog({ open, onClose }: { open: boolean; onClo
 
   const [promoterStates, setPromoterStates] = useState(getPromoterStates())
 
-  const promotersByCategory = AllStreetworksPromoters.reduce((acc, promoter) => {
-    acc[promoter.category] ||= []
-    acc[promoter.category].push(promoter)
-    return acc
-  }, {} as Record<string, IOneNetworkStreetworksPromoter[]>)
+  const promotersByCategory = AllStreetworksPromoters.reduce(
+    (acc, promoter) => {
+      acc[promoter.category] ||= []
+      acc[promoter.category].push(promoter)
+      return acc
+    },
+    {} as Record<string, IOneNetworkStreetworksPromoter[]>,
+  )
 
   function refreshPromoterStates() {
     setPromoterStates(getPromoterStates())

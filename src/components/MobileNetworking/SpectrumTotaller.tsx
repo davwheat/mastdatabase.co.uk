@@ -40,44 +40,53 @@ function aggregateBandsData(country: string, bandsData: SpectrumData[]): Record<
     }
   }
 
-  const blocksByOperator = bandsData.reduce((acc, band) => {
-    if (band.extraInfo?.excludeFromSpectrumTotal) {
-      return acc
-    }
+  const blocksByOperator = bandsData.reduce(
+    (acc, band) => {
+      if (band.extraInfo?.excludeFromSpectrumTotal) {
+        return acc
+      }
 
-    band.spectrumData.forEach(block => {
-      let accArr: SpectrumBlock[] = []
+      band.spectrumData.forEach(block => {
+        let accArr: SpectrumBlock[] = []
 
-      const operatorInfo =
-        getOperatorInfoByNameOrAlias(country, block.ownerLongName ?? '') ?? getOperatorInfoByNameOrAlias(country, block.owner ?? '')
+        const operatorInfo =
+          getOperatorInfoByNameOrAlias(country, block.ownerLongName ?? '') ?? getOperatorInfoByNameOrAlias(country, block.owner ?? '')
 
-      if (operatorInfo === null) return
+        if (operatorInfo === null) return
 
-      const name = operatorInfo.name
+        const name = operatorInfo.name
 
-      acc[name] ||= accArr
+        acc[name] ||= accArr
 
-      acc[name].push(block)
-    })
-
-    return acc
-  }, {} as Record<string, SpectrumBlock[]>)
-
-  const total = Object.entries(blocksByOperator).reduce((acc, [operator, blocks]) => {
-    const total = blocks.reduce((acc, block) => {
-      const category = getFreqCategory(block.startFreq)
-
-      acc[category] ||= 0
-
-      acc[category] += block.endFreq - block.startFreq
+        acc[name].push(block)
+      })
 
       return acc
-    }, {} as Record<number, number>)
+    },
+    {} as Record<string, SpectrumBlock[]>,
+  )
 
-    acc[operator] = total
+  const total = Object.entries(blocksByOperator).reduce(
+    (acc, [operator, blocks]) => {
+      const total = blocks.reduce(
+        (acc, block) => {
+          const category = getFreqCategory(block.startFreq)
 
-    return acc
-  }, {} as Record<string, Record<number, number>>)
+          acc[category] ||= 0
+
+          acc[category] += block.endFreq - block.startFreq
+
+          return acc
+        },
+        {} as Record<number, number>,
+      )
+
+      acc[operator] = total
+
+      return acc
+    },
+    {} as Record<string, Record<number, number>>,
+  )
 
   return total
 }
