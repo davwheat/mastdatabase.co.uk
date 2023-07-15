@@ -25,7 +25,7 @@ const useStyles = makeStyles({
     },
   },
   heading: {
-    margin: 0,
+    margin: '0 !important',
   },
   toggleButton: {
     '&&': {
