@@ -36,6 +36,8 @@ interface IHighlightedSpectrumFrequency {
 
 export type HighlightedSpectrum = IHighlightedSpectrumARFCN | IHighlightedSpectrumFrequency
 export interface ISpectrumMapProps {
+  dense?: boolean
+  hideDetails?: boolean
   caption?: string
   note?: string
   data: SpectrumBlock[]
@@ -46,6 +48,7 @@ export interface ISpectrumMapProps {
 }
 
 export interface ISpectrumMapItemProps {
+  unclickable?: boolean
   allocation: SpectrumBlock
   isSelected: boolean
   onClick: (allocation: SpectrumBlock) => void
@@ -78,13 +81,22 @@ function getSpectrumTypeDescription(type: ISpectrumAllocation['type'] | 'fddUp')
 const HERTZ_ACCURACY = 10_000
 
 const useSpectrumMapStyles = makeStyles({
+  dense: {
+    whiteSpace: 'nowrap',
+  },
   root: {
     border: '2px solid #000',
     marginTop: '1em',
     marginBottom: '1em',
+    '&$dense': {
+      border: 'none',
+    },
   },
   container: {
     padding: 16,
+    '$dense &': {
+      padding: 0,
+    },
   },
   map: {
     marginTop: 12,
@@ -147,6 +159,9 @@ const useSpectrumMapItemStyles = makeStyles({
     },
 
     cursor: 'pointer',
+    '&[role=figure]': {
+      cursor: 'default',
+    },
     backgroundColor: 'var(--owner-color)',
     color: 'var(--owner-color-front)',
     padding: 4,
@@ -197,7 +212,17 @@ const useSpectrumMapDetailsStyles = makeStyles({
   },
 })
 
-export function SpectrumMap({ caption, data, note, spectrumHighlight, countryCode, className, customColors }: ISpectrumMapProps) {
+export function SpectrumMap({
+  dense = false,
+  hideDetails = false,
+  caption,
+  data,
+  note,
+  spectrumHighlight,
+  countryCode,
+  className,
+  customColors,
+}: ISpectrumMapProps) {
   const classes = useSpectrumMapStyles()
 
   const descId = useId()
@@ -242,13 +267,14 @@ export function SpectrumMap({ caption, data, note, spectrumHighlight, countryCod
     })
 
   return (
-    <figure className={clsx(classes.root, className)} style={{ '--sections': gridColumns } as any}>
+    <figure className={clsx(classes.root, className, { [classes.dense]: dense })} style={{ '--sections': gridColumns } as any}>
       <div className={classes.container}>
         {caption && <figcaption className="text-loud text-center">{caption}</figcaption>}
 
         <div className={classes.map}>
           {sortedData.map(allocation => (
             <SpectrumMapItem
+              unclickable={hideDetails}
               key={`${allocation.owner}__${allocation.startFreq}`}
               isSelected={allocation === selectedSpectrumBlock}
               allocation={allocation}
@@ -258,7 +284,8 @@ export function SpectrumMap({ caption, data, note, spectrumHighlight, countryCod
               customColors={customColors}
             />
           ))}
-          {isSpectrumHighlighted &&
+          {!hideDetails &&
+            isSpectrumHighlighted &&
             appropriateHighlightedFrequencies!.map((r, i) => {
               if (r.startFreq === null || r.endFreq === null) return null
 
@@ -286,20 +313,26 @@ export function SpectrumMap({ caption, data, note, spectrumHighlight, countryCod
           </div>
         </div>
 
-        <NoSsr>
-          <div aria-live="polite" id={descId} className={classes.spectrumInfo}>
-            {!!selectedSpectrumBlock && <SpectrumMapDetails allocation={selectedSpectrumBlock} />}
-          </div>
-        </NoSsr>
+        {!hideDetails && (
+          <NoSsr>
+            <div aria-live="polite" id={descId} className={classes.spectrumInfo}>
+              {!!selectedSpectrumBlock && <SpectrumMapDetails allocation={selectedSpectrumBlock} />}
+            </div>
+          </NoSsr>
+        )}
       </div>
 
-      <footer className={clsx(classes.footer, 'softer-bg')}>
-        <p className="text-whisper-up">
-          Click on a spectrum block to view more information about it.{' '}
-          <span className={classes.smallDeviceNote}>On smaller devices, blocks above may not be shown to scale.</span>
-        </p>
-        {note && <p className={clsx('text-whisper-up', classes.note)}>{note}</p>}
-      </footer>
+      {(!hideDetails || note) && (
+        <footer className={clsx(classes.footer, 'softer-bg')}>
+          {!hideDetails && (
+            <p className="text-whisper-up">
+              Click on a spectrum block to view more information about it.{' '}
+              <span className={classes.smallDeviceNote}>On smaller devices, blocks above may not be shown to scale.</span>
+            </p>
+          )}
+          {note && <p className={clsx('text-whisper-up', classes.note)}>{note}</p>}
+        </footer>
+      )}
     </figure>
   )
 }
@@ -323,7 +356,7 @@ function getColour(countryCode: string | undefined, { owner, ownerLongName }: IS
   return color
 }
 
-function SpectrumMapItem({ allocation, onClick, isSelected, descId, countryCode, customColors }: ISpectrumMapItemProps) {
+function SpectrumMapItem({ unclickable = false, allocation, onClick, isSelected, descId, countryCode, customColors }: ISpectrumMapItemProps) {
   const classes = useSpectrumMapItemStyles()
   const { owner, startFreq, endFreq } = allocation
   const color = getColour(countryCode, allocation, customColors)
@@ -333,9 +366,11 @@ function SpectrumMapItem({ allocation, onClick, isSelected, descId, countryCode,
 
   return (
     <button
-      data-selected={isSelected}
-      aria-describedby={isSelected ? descId : undefined}
-      onClick={() => onClick(allocation)}
+      role={unclickable ? 'figure' : undefined}
+      aria-checked={unclickable ? undefined : isSelected}
+      data-selected={unclickable ? false : isSelected}
+      aria-describedby={!unclickable && isSelected ? descId : undefined}
+      onClick={unclickable ? undefined : () => onClick(allocation)}
       className={classes.itemRoot}
       style={
         {
@@ -347,7 +382,7 @@ function SpectrumMapItem({ allocation, onClick, isSelected, descId, countryCode,
     >
       <p className="text-center">{owner}</p>
       <p className="text-center text-whisper">{formatFrequency(bandwidthMhz)}</p>
-      <p className="sr-only">Click for more spectrum info</p>
+      {!unclickable && <p className="sr-only">Click for more spectrum info</p>}
     </button>
   )
 }

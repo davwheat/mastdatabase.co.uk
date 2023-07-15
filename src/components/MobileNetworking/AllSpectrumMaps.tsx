@@ -134,21 +134,33 @@ const useStyles = makeStyles({
 })
 
 interface IAllSpectrumMaps {
+  dense?: boolean
   bandsData: SpectrumData[]
   locationName: string
   countryCode: string
+  hideSectionHeading?: boolean
+  hideHeadings?: boolean
+  hideDetails?: boolean
   hideLicenseInfo?: boolean
   hideHighlighter?: boolean
   customColors?: Record<string, string[]>
+  customCaption(locationName: string, bandNames: string[]): string
+  dontWrapWithPageSection?: boolean
 }
 
 export default function AllSpectrumMaps({
+  dense = false,
   bandsData,
   locationName,
   countryCode,
+  hideDetails = false,
+  hideSectionHeading = false,
+  hideHeadings = false,
   hideLicenseInfo = false,
   hideHighlighter = false,
   customColors,
+  customCaption,
+  dontWrapWithPageSection = false,
 }: IAllSpectrumMaps) {
   const classes = useStyles()
 
@@ -232,9 +244,12 @@ export default function AllSpectrumMaps({
 
   const bandInstances: Record<string, number> = {}
 
+  const Wrapper = dontWrapWithPageSection ? React.Fragment : Section
+
   return (
-    <Section width="wider">
-      <h2 className="text-louder">Frequency deployment</h2>
+    <Wrapper width={!dontWrapWithPageSection ? 'wider' : undefined}>
+      {!hideSectionHeading && <h2 className="text-louder">Frequency deployment</h2>}
+
       {!hideLicenseInfo && (
         <p className="text-speak">
           All data below is{' '}
@@ -405,25 +420,34 @@ export default function AllSpectrumMaps({
 
         return (
           <React.Fragment key={JSON.stringify(bandData.names) + `__${bandInstances[bandNum]}`}>
-            <h3
-              id={bandHumanName ? generateIdSlug(bandHumanName, bandInstances[bandNum]) : undefined}
-              className={clsx('text-loud', classes.heading)}
-            >
-              {bandData.names.length === 1 ? 'Band' : 'Bands'} {bandData.names.join(', ')} {headingAddendum && `(${headingAddendum})`}
-            </h3>
+            {!hideHeadings && (
+              <>
+                <h3
+                  id={bandHumanName ? generateIdSlug(bandHumanName, bandInstances[bandNum]) : undefined}
+                  className={clsx('text-loud', classes.heading)}
+                >
+                  {bandData.names.length === 1 ? 'Band' : 'Bands'} {bandData.names.join(', ')} {headingAddendum && `(${headingAddendum})`}
+                </h3>
 
-            {description && <p className="text-speak">{description}</p>}
+                {description && <p className="text-speak">{description}</p>}
+              </>
+            )}
 
             <SpectrumMap
+              hideDetails={hideDetails}
+              dense={dense}
               data={bandData.spectrumData}
               spectrumHighlight={hideHighlighter ? undefined : spectrumHighlight}
-              caption={`${locationName} spectrum deployment for ${bandData.names.length === 1 ? 'Band' : 'Bands'} ${bandData.names.join(', ')}`}
+              caption={
+                customCaption?.(locationName, bandData.names) ??
+                `${locationName} spectrum deployment for ${bandData.names.length === 1 ? 'Band' : 'Bands'} ${bandData.names.join(', ')}`
+              }
               countryCode={countryCode}
               customColors={customColors}
             />
           </React.Fragment>
         )
       })}
-    </Section>
+    </Wrapper>
   )
 }

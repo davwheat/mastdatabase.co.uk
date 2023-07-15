@@ -2,7 +2,7 @@ import React from 'react'
 
 import { formatFrequency } from 'mobile-spectrum-data/utils'
 import { makeStyles } from '@material-ui/core'
-import { getOperatorInfoByNameOrAlias } from 'mobile-spectrum-data/OperatorInfo'
+import { IOperatorInfo, getOperatorInfoByNameOrAlias } from 'mobile-spectrum-data/OperatorInfo'
 
 import type { SpectrumBlock, SpectrumData } from 'mobile-spectrum-data/@types'
 
@@ -11,6 +11,12 @@ export interface SpectrumTotallerProps {
   countryCode: string
   style?: React.CSSProperties
   hideMmwave?: boolean
+  /**
+   * Custom operators to include in the total.
+   *
+   * The key is the operator name, and the value is an array of optional aliases to check for.
+   */
+  customOperators?: Record<string, string[]>
 }
 
 const useStyles = makeStyles({
@@ -28,7 +34,11 @@ const useStyles = makeStyles({
   },
 })
 
-function aggregateBandsData(country: string, bandsData: SpectrumData[]): Record<string, Record<number, number>> {
+function aggregateBandsData(
+  country: string,
+  bandsData: SpectrumData[],
+  customOperators: Record<string, string[]>,
+): Record<string, Record<number, number>> {
   function getFreqCategory(freq: number): number {
     if (freq < 1000) {
       return 0
@@ -38,6 +48,22 @@ function aggregateBandsData(country: string, bandsData: SpectrumData[]): Record<
       return 2
     } else {
       return 3
+    }
+  }
+
+  function getCustomOperator(name: string): IOperatorInfo | null {
+    const found = Object.entries(customOperators).find(([operator, aliases]) => {
+      if (aliases.includes(name)) {
+        return operator
+      }
+    })?.[0]
+
+    if (!found) return null
+
+    return {
+      name: found,
+      aliases: [],
+      color: '#000',
     }
   }
 
@@ -51,7 +77,10 @@ function aggregateBandsData(country: string, bandsData: SpectrumData[]): Record<
         let accArr: SpectrumBlock[] = []
 
         const operatorInfo =
-          getOperatorInfoByNameOrAlias(country, block.ownerLongName ?? '') ?? getOperatorInfoByNameOrAlias(country, block.owner ?? '')
+          getCustomOperator(block.ownerLongName ?? '') ??
+          getCustomOperator(block.owner ?? '') ??
+          getOperatorInfoByNameOrAlias(country, block.ownerLongName ?? '') ??
+          getOperatorInfoByNameOrAlias(country, block.owner ?? '')
 
         if (operatorInfo === null) return
 
@@ -92,10 +121,10 @@ function aggregateBandsData(country: string, bandsData: SpectrumData[]): Record<
   return total
 }
 
-export default function SpectrumTotaller({ bandsData, countryCode, style, hideMmwave = false }: SpectrumTotallerProps) {
+export default function SpectrumTotaller({ bandsData, countryCode, style, hideMmwave = false, customOperators = {} }: SpectrumTotallerProps) {
   const classes = useStyles()
 
-  const data = Object.entries(aggregateBandsData(countryCode, bandsData))
+  const data = Object.entries(aggregateBandsData(countryCode, bandsData, customOperators))
 
   // sort by total
   data.sort((a, b) => {
@@ -131,8 +160,8 @@ export default function SpectrumTotaller({ bandsData, countryCode, style, hideMm
               <td className={classes.boldCell}>
                 {formatFrequency(
                   Object.entries(totals)
-                    .filter(([key, data]) => key !== '3')
-                    .map(([key, data]) => data)
+                    .filter(([key, _]) => key !== '3')
+                    .map(([_, data]) => data)
                     .reduce((acc, val) => acc + val, 0),
                 )}
               </td>
