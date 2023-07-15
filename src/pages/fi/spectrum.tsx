@@ -18,7 +18,7 @@ function FISpectrumAllocationPage({ location }: PageProps) {
       title="Finnish mobile spectrum allocation"
       description="A visualisation of spectrum allocation across Finland, per operator and radio access technology."
     >
-      <Hero firstElement size="huge" color={Colors.primaryBlue}>
+      <Hero firstElement size="large" color={Colors.primaryBlue}>
         <h1 className="text-shout">Finnish mobile spectrum allocation</h1>
         <p role="doc-subtitle" className="text-loud">
           A visualisation of spectrum allocation across Finland, per operator and radio access technology.

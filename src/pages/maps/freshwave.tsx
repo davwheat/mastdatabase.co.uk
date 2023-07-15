@@ -71,7 +71,7 @@ export default function FreshwaveMapPage({ location }: PageProps) {
 
   return (
     <Layout location={location} title="Freshwave sites map" description="See all Freshwave-registered sites across the UK and Europe.">
-      <Hero firstElement size="huge" color={Colors.primaryRed}>
+      <Hero firstElement size="large" color={Colors.primaryRed}>
         <h1 className="text-shout">Freshwave sites map</h1>
         <p role="doc-subtitle" className="text-loud">
           See all registered site locations with Freshwave. This does not correspond to active sites, just possible&nbsp;locations.

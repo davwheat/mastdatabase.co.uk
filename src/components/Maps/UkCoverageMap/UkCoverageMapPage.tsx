@@ -95,7 +95,7 @@ export default function UkCoverageMapPage(Provider: { new (): CoverageProvider<b
         title={`${providerName} coverage map`}
         description={`See an interactive map of ${providerName}'s network coverage.`}
       >
-        <Hero firstElement size="huge" color={Colors.primaryRed}>
+        <Hero firstElement size="large" color={Colors.primaryRed}>
           <h1 className="text-shout">{providerName} coverage map</h1>
           <p role="doc-subtitle" className="text-loud">
             See an interactive map of {providerName}'s network coverage.

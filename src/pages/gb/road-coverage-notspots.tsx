@@ -47,7 +47,7 @@ export default function UKRailwayCoverageNotSpotMap({ location }: PageProps) {
       description='Every section of UK motorway and A-road marked as not having "indoor" 4G coverage.'
     >
       <ErrorBoundaryContext>
-        <Hero firstElement size="huge" color={Colors.primaryBlue}>
+        <Hero firstElement size="large" color={Colors.primaryBlue}>
           <h1 className="text-shout">Road coverage not-spots</h1>
           <p role="doc-subtitle" className="text-loud">
             Every section of UK motorway and A-road marked as not having "indoor" 4G coverage.

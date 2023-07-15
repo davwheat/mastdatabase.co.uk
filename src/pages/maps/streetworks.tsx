@@ -45,7 +45,7 @@ export default function StreetworksMapPage({ location }: PageProps) {
       description="See active and future telecoms streetworks across the United Kingdom."
     >
       <ErrorBoundaryContext>
-        <Hero firstElement size="huge" color={Colors.primaryRed}>
+        <Hero firstElement size="large" color={Colors.primaryRed}>
           <h1 className="text-shout">UK telecoms streetworks map</h1>
           <p role="doc-subtitle" className="text-loud">
             See active and future telecoms streetworks in the UK.

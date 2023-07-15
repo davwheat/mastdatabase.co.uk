@@ -16,7 +16,7 @@ import type { PageProps } from 'gatsby'
 function RSArfcnListPage({ location }: PageProps) {
   return (
     <Layout location={location} title="Serbian ARFCN list" description="A partial list of Serbian mobile networks' ARFCNs for 4G LTE and 5G NR.">
-      <Hero firstElement size="huge" color={Colors.primaryBlue}>
+      <Hero firstElement size="large" color={Colors.primaryBlue}>
         <h1 className="text-shout">Serbian ARFCN list</h1>
         <p role="doc-subtitle" className="text-loud">
           A partial dataset of Serbian mobile network frequencies by their NR/EARFCN.

@@ -18,7 +18,7 @@ function HUSpectrumAllocationPage({ location }: PageProps) {
       title="Hungarian mobile spectrum allocation"
       description="A visualisation of spectrum allocation across Hungary, per operator and radio access technology."
     >
-      <Hero firstElement size="huge" color={Colors.primaryBlue}>
+      <Hero firstElement size="large" color={Colors.primaryBlue}>
         <h1 className="text-shout">Hungarian mobile spectrum allocation</h1>
         <p role="doc-subtitle" className="text-loud">
           A visualisation of spectrum allocation across Hungary, per operator and radio access technology.
