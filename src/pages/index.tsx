@@ -5,6 +5,7 @@ import Hero from '@components/Design/Hero'
 import Breadcrumbs from '@components/Design/Breadcrumbs'
 import Section from '@components/Design/Section'
 import CardLink from '@components/Links/CardLink'
+import FeaturedBlogArticles from '@components/FeaturedBlogArticles/FeaturedBlogArticles'
 
 import countryCodeToFlag from '@functions/countryCodeToFlag'
 
@@ -13,9 +14,25 @@ import Breakpoints from '@data/breakpoints'
 
 import { makeStyles } from '@material-ui/core'
 
-import type { PageProps } from 'gatsby'
+import { type PageProps } from 'gatsby'
 
 const useStyles = makeStyles({
+  featuredBlogArticles: {
+    width: '100vw',
+    position: 'relative',
+    marginLeft: '-50vw',
+    left: '50%',
+    backgroundColor: Colors.pale.primaryRed,
+    padding: 24,
+    marginTop: 32,
+    marginBottom: 32,
+  },
+  featuredBlogArticlesInner: {
+    backgroundColor: 'white',
+    padding: 24,
+    margin: 'auto',
+    maxWidth: 700,
+  },
   linkList: {
     marginTop: 24,
     display: 'grid',
@@ -91,7 +108,7 @@ export default function IndexPage({ location }: PageProps) {
       <Hero firstElement size="huge" color={Colors.primaryBlue}>
         <h1 className="text-shout">Mast Database</h1>
         <p role="doc-subtitle" className="text-loud">
-          A collection of mobile networking tools and resources for the UK and around the &nbsp;world.
+          A collection of mobile networking tools and resources for the UK and around the&nbsp;world.
         </p>
       </Hero>
 
@@ -100,9 +117,24 @@ export default function IndexPage({ location }: PageProps) {
       <Section>
         <h2 className="text-louder">Welcome</h2>
         <p className="text-speak">
-          Mastdatabase.co.uk aims to provide a vast array of mobile networking tools and resources for the UK and rest of the&nbsp;world.
+          Mastdatabase.co.uk provides a vast array of mobile networking tools, information and resources for many countries across the world.
         </p>
-        <p className="text-speak">Choose a section below to get&nbsp;started.</p>
+
+        <aside className={classes.featuredBlogArticles}>
+          <div className={classes.featuredBlogArticlesInner}>
+            <FeaturedBlogArticles />
+          </div>
+        </aside>
+
+        <h2 className="text-loud">Quick links</h2>
+
+        <p className="text-speak">Shortcuts to commonly accessed pages by their categories.</p>
+
+        <p className="text-speak">
+          View various maps, including UK network coverage, streetworks, London Undergound mobile coverage, and more. Or, open the spectrum
+          editor to contribute data for your own country to this website. You can also read the blog, which contains articles about mobile
+          networking, such as new developments, technologies, and more.
+        </p>
 
         <div className={classes.linkList}>
           <CardLink title="Maps" description="Useful mobile networking maps, such as maps of upcoming works and registered sites." url="/maps" />
