@@ -8,6 +8,7 @@ export default class EECoverageMapProvider extends CoverageProvider<true> {
   defaultLayerId: number = this.getLayers().findIndex(layer => layer.label === '4G (all bands)')
   supportsSites: boolean = false
   readonly supportsVersionHistory = true
+  readonly maxZoom = 14
 
   readonly providerIcon = (<EELogo />)
 
