@@ -559,6 +559,16 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
       type: 'wildanet',
     },
   },
+  {
+    id: 'ogi',
+    name: 'Ogi',
+    aliases: ['Ogi', 'Ogi Limited'],
+    category: 'Fixed broadband',
+    icon: {
+      text: 'OGI',
+      type: 'ogi',
+    },
+  },
 
   // FWA
   {
