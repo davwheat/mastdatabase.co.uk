@@ -59,7 +59,7 @@ export default function PostcodeSearch({ map }: PostcodeSearchProps) {
         setPostcodeInput(json.result.postcode)
 
         if (map) {
-          map.setView([json.result.latitude, json.result.longitude], 14, {
+          map.setView([json.result.latitude, json.result.longitude], 15, {
             animate: true,
           })
         } else {
