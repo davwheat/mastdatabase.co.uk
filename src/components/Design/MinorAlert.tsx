@@ -5,7 +5,7 @@ import Colors from '@data/colors.json'
 import { makeStyles } from '@material-ui/core'
 import clsx from 'clsx'
 
-export interface IMinorAlertProps {
+export interface IMinorAlertProps extends React.HTMLProps<HTMLDivElement> {
   className?: string
   heading?: React.ReactNode
   children: React.ReactNode

@@ -1,6 +1,9 @@
-import React, { useState } from 'react'
-import Checkbox from '@components/Inputs/Checkbox'
+import React, { useState, useCallback } from 'react'
+
 import { ModalDialog, ModalDialogContent, ModalDialogHeaderAndTitle } from '@components/ModalDialog'
+import Checkbox from '@components/Inputs/Checkbox'
+import ButtonLink from '@components/Links/ButtonLink'
+
 import {
   getPromoterStates,
   IOneNetworkStreetworksPromoter,
@@ -8,13 +11,10 @@ import {
   setPromoterState,
   setAllPromotersState,
 } from '@functions/maps/streetworks/streetworksPromoterUtils'
+import Breakpoints from '@data/breakpoints'
 
 import { makeStyles } from '@material-ui/core'
-
 import clsx from 'clsx'
-import ButtonLink from '@components/Links/ButtonLink'
-import Breakpoints from '@data/breakpoints'
-import { useCallback } from 'react'
 
 const useStyles = makeStyles({
   categoryHeader: {

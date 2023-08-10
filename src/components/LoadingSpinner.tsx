@@ -33,6 +33,9 @@ const useStyles = makeStyles({
       transform: 'rotate(1turn)',
     },
   },
+  block: {
+    display: 'block',
+  },
 })
 
 interface IProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -48,7 +51,7 @@ export default function LoadingSpinner({ inline, style, size, className, ...prop
     <Tag
       role="status"
       aria-label="Loading spinner"
-      className={clsx(classes.root, className)}
+      className={clsx(classes.root, className, { [classes.block]: !inline })}
       style={
         {
           '--size': typeof size === 'number' ? `${size}px` : size,

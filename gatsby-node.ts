@@ -22,10 +22,6 @@ export const onCreateWebpackConfig = ({ stage, rules, loaders, plugins, actions 
             test: [/node_modules\/leaflet/, /node_modules\\leaflet/],
             use: loaders.null(),
           },
-          {
-            test: [/node_modules\/esri-leaflet/, /node_modules\\esri-leaflet/],
-            use: loaders.null(),
-          },
         ],
       },
     })
