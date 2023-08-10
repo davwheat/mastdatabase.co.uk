@@ -915,13 +915,7 @@ export const promoterAliases: Record<string, string[]> = AllStreetworksPromoters
   {} as Record<string, string[]>,
 )
 
-export const promoterIcons: Record<string, L.DivIcon> = AllStreetworksPromoters.reduce(
-  (acc, promoter) => {
-    acc[promoter.id] = createPromoterIcon(promoter.icon.text, promoter.icon.type)!
-    return acc
-  },
-  {} as Record<string, L.DivIcon>,
-)
+export let promoterIcons: Record<string, L.DivIcon> = {}
 
 export const promoterNames: Record<string, string> = AllStreetworksPromoters.reduce(
   (acc, promoter) => {
@@ -937,7 +931,7 @@ function createPromoterIcon(
 ): L.DivIcon | null {
   // Mess is to fix Gatsby SSR issues, as this function is called
   // during the build process
-  if (typeof window === 'undefined') return null
+  if (typeof window === 'undefined' || typeof window.L === 'undefined') return null
 
   const L = window.L as typeof import('leaflet')
 
@@ -979,6 +973,16 @@ export function isPromoterDataPoint(dataPoint: StreetworksDataPoint) {
 
 export function getPromoterStates(): Record<string, boolean> {
   const promoterIdsByCategory: Record<string, string[]> = {}
+
+  if (Object.keys(promoterIcons).length === 0) {
+    promoterIcons = AllStreetworksPromoters.reduce(
+      (acc, promoter) => {
+        acc[promoter.id] = createPromoterIcon(promoter.icon.text, promoter.icon.type)!
+        return acc
+      },
+      {} as Record<string, L.DivIcon>,
+    )
+  }
 
   AllStreetworksPromoters.forEach(promoter => {
     promoterIdsByCategory[promoter.category] ||= []
