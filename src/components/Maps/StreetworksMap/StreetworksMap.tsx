@@ -1,11 +1,22 @@
 import React, { useCallback, useState } from 'react'
 
+import { PromoterSettingsDialog } from './PromoterSettingsDialog'
+import { BaseMapSetup } from './BaseMapSetup'
+import { StreetworksMarkers } from './StreetworksMarkers'
+import ButtonLink from '@components/Links/ButtonLink'
+import Section from '@components/Design/Section'
+import { MapStatusMessages } from './MapStatusMessages'
+
 import useFixLeafletAssets from '@hooks/useFixLeafletAssets'
 import { useUserLocation } from '@hooks/useUserLocation'
 import useForceRender from '@hooks/useForceRerender'
 import { useErrorBoundary } from 'react-use-error-boundary'
 
 import { MapContainer, ScaleControl, useMap, useMapEvent } from 'react-leaflet'
+import { GeolocationMarker } from '@leaflet/GeolocationMarker'
+import GeolocationButton from '@leaflet/GeolocationButton'
+import MapCustomButtonsContainer from '@leaflet/MapCustomButtonsContainer'
+import MapCustomButton from '@leaflet/MapCustomButton'
 
 import dayjs from 'dayjs'
 import dayjs_tz from 'dayjs/plugin/timezone'
@@ -14,20 +25,10 @@ import dayjs_utc from 'dayjs/plugin/utc'
 dayjs.extend(dayjs_tz)
 dayjs.extend(dayjs_utc)
 
+import type { Map } from 'leaflet'
+
 import 'leaflet/dist/leaflet.css'
 import './StreetworksMap.less'
-
-import { GeolocationMarker } from '@leaflet/GeolocationMarker'
-import GeolocationButton from '@leaflet/GeolocationButton'
-
-import { PromoterSettingsDialog } from './PromoterSettingsDialog'
-import { BaseMapSetup } from './BaseMapSetup'
-import { StreetworksMarkers } from './StreetworksMarkers'
-import ButtonLink from '@components/Links/ButtonLink'
-import Section from '@components/Design/Section'
-import { MapStatusMessages } from './MapStatusMessages'
-import MapCustomButtonsContainer from '@leaflet/MapCustomButtonsContainer'
-import MapCustomButton from '@leaflet/MapCustomButton'
 
 export interface IStreetworksSitePoint {
   locationId: number
@@ -41,7 +42,7 @@ export interface IStreetworksMapProps {
   sites: React.ReactNode
 }
 
-export default function StreetworksMap() {
+const StreetworksMap = React.forwardRef<Map>(function StreetworksMap(props, ref) {
   useFixLeafletAssets()
 
   const [error] = useErrorBoundary()
@@ -71,6 +72,7 @@ export default function StreetworksMap() {
       center={[51.505, -0.09]}
       zoom={13}
       attributionControl={false}
+      ref={ref}
     >
       <GeolocationMarker />
       <CustomControlButtons />
@@ -83,7 +85,9 @@ export default function StreetworksMap() {
       <MapStatusMessages />
     </MapContainer>
   )
-}
+})
+
+export default StreetworksMap
 
 function CustomControlButtons() {
   const L = window.L as typeof import('leaflet')
