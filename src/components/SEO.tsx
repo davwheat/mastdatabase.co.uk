@@ -41,7 +41,10 @@ const SEO: React.FC<Props> = ({ description, meta, title }) => {
       <Meta name="twitter:card" content="summary" />
       <Meta name="twitter:title" content={title} />
       <Meta name="twitter:description" content={metaDescription} />
-      <Meta name="twitter:creator" content="@davwheat" />
+      <Meta name="twitter:creator" content="@davwheat_" />
+      <Meta name="twitter:creator:id" content="1033075771659747329" />
+      <Meta name="twitter:site" content="@davwheat_" />
+      <Meta name="twitter:site:id" content="1033075771659747329" />
 
       {meta && meta.map((m, i) => <Meta key={`${m.name}--${i}`} name={m.name} content={m.content} />)}
     </>
