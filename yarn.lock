@@ -3773,12 +3773,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/esri-leaflet@npm:^2.1.9":
-  version: 2.1.9
-  resolution: "@types/esri-leaflet@npm:2.1.9"
+"@types/esri-leaflet@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "@types/esri-leaflet@npm:3.0.0"
   dependencies:
     "@types/leaflet": "*"
-  checksum: 7e97eb314e5cad26cd4a7afe2a5329863f5753c643a5ce36e1bb86840fb115e1e26771cdcb6d65d1dddaa29d0c24507fbfaeb3ec27e6eb08681b8e2d9bb606d1
+  checksum: e5f2f94756e39bf9ae3018940e04c32caf71b2687a77575bd235496a8f67d21d5f5721dea87a12ab104e7455c61bdc1bcd90a05d859bb8dcae39d0a01181a0de
   languageName: node
   linkType: hard
 
@@ -8145,15 +8145,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"esri-leaflet@npm:^3.0.10":
-  version: 3.0.10
-  resolution: "esri-leaflet@npm:3.0.10"
+"esri-leaflet@npm:^3.0.11":
+  version: 3.0.11
+  resolution: "esri-leaflet@npm:3.0.11"
   dependencies:
     "@terraformer/arcgis": ^2.1.0
     tiny-binary-search: ^1.0.3
   peerDependencies:
     leaflet: ^1.0.0
-  checksum: d5eef42255ba8808349e7279d06bae3dede532e040c1c012397f315579da1660f2f7040b3d90e40d52130fcffeea4a2478144def61a434d65105936566dfaa5e
+  checksum: 558d49def5439f6d6939acea86558263262b39f9489f34effd12bb96f64a7c0742d3e23430bb463d27fade547c711e607eac025f4e4e33ed34a8ab7fbbf0bc5b
   languageName: node
   linkType: hard
 
@@ -12366,7 +12366,7 @@ __metadata:
     "@sentry/webpack-plugin": ^1.20.1
     "@slixites/gatsby-plugin-google-fonts": ^1.1.1
     "@types/color": ^3.0.3
-    "@types/esri-leaflet": ^2.1.9
+    "@types/esri-leaflet": ^3.0.0
     "@types/file-saver": ^2.0.5
     "@types/leaflet": ^1.9.3
     "@types/leaflet.markercluster": ^1.5.1
@@ -12384,7 +12384,7 @@ __metadata:
     dayjs: ^1.11.9
     eslint: ^8.46.0
     eslint-plugin-mdx: ^2.1.0
-    esri-leaflet: ^3.0.10
+    esri-leaflet: ^3.0.11
     file-saver: ^2.0.5
     font-color-contrast: ^11.1.0
     fuse.js: ^6.6.2
