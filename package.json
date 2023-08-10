@@ -93,7 +93,7 @@
     "babel-plugin-transform-remove-console": "^6.9.4",
     "cross-env": "^7.0.3",
     "eslint": "^8.46.0",
-    "eslint-plugin-mdx": "^2.1.0",
+    "eslint-plugin-mdx": "^2.2.0",
     "gatsby-plugin-perf-budgets": "^0.0.18",
     "gatsby-plugin-webpack-bundle-analyser-v2": "^1.1.31",
     "prettier": "^3.0.0",

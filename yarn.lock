@@ -7766,19 +7766,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-mdx@npm:^2.1.0":
-  version: 2.1.0
-  resolution: "eslint-mdx@npm:2.1.0"
+"eslint-mdx@npm:^2.2.0":
+  version: 2.2.0
+  resolution: "eslint-mdx@npm:2.2.0"
   dependencies:
-    acorn: ^8.8.2
+    acorn: ^8.10.0
     acorn-jsx: ^5.3.2
-    espree: ^9.5.1
+    espree: ^9.6.1
     estree-util-visit: ^1.2.1
     remark-mdx: ^2.3.0
-    remark-parse: ^10.0.1
-    remark-stringify: ^10.0.2
+    remark-parse: ^10.0.2
+    remark-stringify: ^10.0.3
     synckit: ^0.8.5
-    tslib: ^2.5.0
+    tslib: ^2.6.1
     unified: ^10.1.2
     unified-engine: ^10.1.0
     unist-util-visit: ^4.1.2
@@ -7786,7 +7786,7 @@ __metadata:
     vfile: ^5.3.7
   peerDependencies:
     eslint: ">=8.0.0"
-  checksum: 9c73e92a3d5c2275a335e92321aa04f9c437acbd015ff51eaf0f630c26fde659d38dd0cc471bf7812b47e26f34de18908dc237c8f3fc3deda1dbeef76f3d33c2
+  checksum: cd284f42a1edd0e9f1a5d8b740281cc26a1e675496f3a708da87796797681fda15b850e165dba153cca0ce6b18e308bc83e485f10bc706e032627d3f2e1789b1
   languageName: node
   linkType: hard
 
@@ -7868,7 +7868,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-markdown@npm:^3.0.0":
+"eslint-plugin-markdown@npm:^3.0.1":
   version: 3.0.1
   resolution: "eslint-plugin-markdown@npm:3.0.1"
   dependencies:
@@ -7879,21 +7879,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-mdx@npm:^2.1.0":
-  version: 2.1.0
-  resolution: "eslint-plugin-mdx@npm:2.1.0"
+"eslint-plugin-mdx@npm:^2.2.0":
+  version: 2.2.0
+  resolution: "eslint-plugin-mdx@npm:2.2.0"
   dependencies:
-    eslint-mdx: ^2.1.0
-    eslint-plugin-markdown: ^3.0.0
+    eslint-mdx: ^2.2.0
+    eslint-plugin-markdown: ^3.0.1
     remark-mdx: ^2.3.0
-    remark-parse: ^10.0.1
-    remark-stringify: ^10.0.2
-    tslib: ^2.5.0
+    remark-parse: ^10.0.2
+    remark-stringify: ^10.0.3
+    tslib: ^2.6.1
     unified: ^10.1.2
     vfile: ^5.3.7
   peerDependencies:
     eslint: ">=8.0.0"
-  checksum: 05734fb7237ae0b41979ecda634af4b5fb0dcd7792995d74acfa06b73a4a50dda17eb4d99424185998005fee8c2f351fd08bc58574c61fc33172247bee869a6e
+  checksum: a210a45dcee6046231cf3a959e6e0be8c3787f56f30479393f5ead633868e915f4c32d6a68d3cb4a4f276cf9802e9cc3bc541cff28ab06daa13b867000b574fd
   languageName: node
   linkType: hard
 
@@ -8106,7 +8106,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"espree@npm:^9.5.1, espree@npm:^9.6.0, espree@npm:^9.6.1":
+"espree@npm:^9.6.0, espree@npm:^9.6.1":
   version: 9.6.1
   resolution: "espree@npm:9.6.1"
   dependencies:
@@ -12383,7 +12383,7 @@ __metadata:
     cross-env: ^7.0.3
     dayjs: ^1.11.9
     eslint: ^8.46.0
-    eslint-plugin-mdx: ^2.1.0
+    eslint-plugin-mdx: ^2.2.0
     esri-leaflet: ^3.0.10
     file-saver: ^2.0.5
     font-color-contrast: ^11.1.0
@@ -15910,7 +15910,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"remark-parse@npm:^10.0.0, remark-parse@npm:^10.0.1":
+"remark-parse@npm:^10.0.0, remark-parse@npm:^10.0.2":
   version: 10.0.2
   resolution: "remark-parse@npm:10.0.2"
   dependencies:
@@ -15933,7 +15933,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"remark-stringify@npm:^10.0.2":
+"remark-stringify@npm:^10.0.3":
   version: 10.0.3
   resolution: "remark-stringify@npm:10.0.3"
   dependencies:
@@ -17674,7 +17674,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tslib@npm:^2.0.3, tslib@npm:^2.1.0, tslib@npm:^2.2.0, tslib@npm:^2.4.0, tslib@npm:^2.4.1 || ^1.9.3, tslib@npm:^2.5.0, tslib@npm:^2.6.0":
+"tslib@npm:^2.0.3, tslib@npm:^2.1.0, tslib@npm:^2.2.0, tslib@npm:^2.4.0, tslib@npm:^2.4.1 || ^1.9.3, tslib@npm:^2.5.0, tslib@npm:^2.6.0, tslib@npm:^2.6.1":
   version: 2.6.1
   resolution: "tslib@npm:2.6.1"
   checksum: b0d176d176487905b66ae4d5856647df50e37beea7571c53b8d10ba9222c074b81f1410fb91da13debaf2cbc970663609068bdebafa844ea9d69b146527c38fe
