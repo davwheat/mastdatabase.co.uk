@@ -96,7 +96,7 @@
     "eslint-plugin-mdx": "^2.1.0",
     "gatsby-plugin-perf-budgets": "^0.0.18",
     "gatsby-plugin-webpack-bundle-analyser-v2": "^1.1.31",
-    "prettier": "^3.0.0",
+    "prettier": "^3.0.1",
     "typescript": "^5.1.6",
     "wrangler": "^3.4.0"
   },
