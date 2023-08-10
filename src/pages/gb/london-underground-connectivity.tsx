@@ -194,16 +194,7 @@ export default function TubeConnectivityMap({ location }: PageProps) {
         </Section>
 
         <Section width="full" className={classes.mapSection}>
-          <NoSsr
-            fallback={
-              <div className={classes.loading}>
-                <LoadingSpinner />
-                <p className="text-speak">Loading map...</p>
-              </div>
-            }
-          >
-            <TubeDasMap hideSectionsWithNoConnectivity={mapOptions.hideUnconnectedSegments} hiddenLines={mapOptions.hiddenLines} />
-          </NoSsr>
+          <TubeDasMap hideSectionsWithNoConnectivity={mapOptions.hideUnconnectedSegments} hiddenLines={mapOptions.hiddenLines} />
         </Section>
 
         <TubeDeploymentInfo />

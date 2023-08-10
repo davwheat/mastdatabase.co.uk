@@ -68,9 +68,7 @@ export default function StreetworksMapPage({ location }: PageProps) {
         {/* <StreetworksMapSettings /> */}
 
         <Section width="full" className={classes.mapSection}>
-          <NoSsr>
-            <StreetworksMap />
-          </NoSsr>
+          <StreetworksMap />
         </Section>
       </ErrorBoundaryContext>
     </Layout>
