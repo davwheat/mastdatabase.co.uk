@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import { LayerGroup, useMap, useMapEvent } from 'react-leaflet'
 
-import { useRecoilValue, useSetRecoilState } from 'recoil'
+import { useSetRecoilState } from 'recoil'
 
 import { getPromoterIcon, getPromoterName, isPromoterDataPoint } from '@functions/maps/streetworks/streetworksPromoterUtils'
 import getStreetworksDataPoints, { StreetworksDataPoint } from '@functions/maps/streetworks/getStreetworksDataPoints'
@@ -9,7 +9,7 @@ import getStreetworksDataPointDetails from '@functions/maps/streetworks/getStree
 
 import { StatusMessages } from './MapStatusMessages'
 import DataMarker from '@leaflet/DataMarker'
-import { StreetworksMapPersistentSettingsAtom, StreetworksMapStatusMessagesAtom } from '@atoms'
+import { StreetworksMapStatusMessagesAtom } from '@atoms'
 
 import dayjs from 'dayjs'
 import dayjs_tz from 'dayjs/plugin/timezone'
