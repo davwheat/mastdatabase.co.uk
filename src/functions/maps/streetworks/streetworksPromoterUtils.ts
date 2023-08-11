@@ -799,6 +799,16 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
       type: 'digitalinfra',
     },
   },
+  {
+    id: 'railsite',
+    name: 'Railsite Telecom',
+    aliases: ['Railsite Telecom', 'Railsite Telecom Ltd', 'Railsite Telecom Limited'],
+    category: 'Telecoms infrastructure',
+    icon: {
+      text: 'RAIL',
+      type: 'railsite',
+    },
+  },
 
   // Business broadband solutions
   {
