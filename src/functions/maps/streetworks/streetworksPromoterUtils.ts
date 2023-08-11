@@ -569,6 +569,16 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
       type: 'ogi',
     },
   },
+  {
+    id: 'borderlink',
+    name: 'GoFibre (Borderlink Broadband)',
+    aliases: ['Borderlink Broadband (Go Fibre)'],
+    category: 'Fixed broadband',
+    icon: {
+      text: 'GO',
+      type: 'borderlink',
+    },
+  },
 
   // FWA
   {
