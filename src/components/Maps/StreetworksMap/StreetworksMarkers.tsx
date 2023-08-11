@@ -220,6 +220,15 @@ async function loadPoints(
     })
   })
 
+  // Iterate over all markers, and remove any outside map bounds
+  markerGroup.eachLayer(layer => {
+    if (layer instanceof DataMarker) {
+      const latlng = layer.getLatLng()
+
+      if (!bounds.contains(latlng)) markerGroup.removeLayer(layer)
+    }
+  })
+
   setStatusMessages({
     loading: false,
     fetchFail: false,
