@@ -4,7 +4,6 @@ import useFixLeafletAssets from '@hooks/useFixLeafletAssets'
 import { useErrorBoundary } from 'react-use-error-boundary'
 
 import { MapContainer, ScaleControl } from 'react-leaflet'
-import { makeStyles } from '@material-ui/core'
 
 import dayjs from 'dayjs'
 import dayjs_tz from 'dayjs/plugin/timezone'

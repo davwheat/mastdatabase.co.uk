@@ -928,6 +928,7 @@ export const promoterNames: Record<string, string> = AllStreetworksPromoters.red
 function createPromoterIcon(
   iconText: IOneNetworkStreetworksPromoter['icon']['text'],
   type: IOneNetworkStreetworksPromoter['icon']['type'],
+  promoterName: IOneNetworkStreetworksPromoter['name'],
 ): L.DivIcon | null {
   // Mess is to fix Gatsby SSR issues, as this function is called
   // during the build process
@@ -936,7 +937,7 @@ function createPromoterIcon(
   const L = window.L as typeof import('leaflet')
 
   return L.divIcon({
-    html: `<b>${iconText.toUpperCase()}</b><span></span>`,
+    html: `<span class="sr-only">${promoterName}</span><b aria-hidden="true">${iconText.toUpperCase()}</b><span></span>`,
     className: `network-icon network-icon__${type}`,
     iconSize: undefined,
     iconAnchor: [25, 28],
@@ -953,7 +954,7 @@ function getPromoterId(dataPoint: StreetworksDataPoint): string | undefined {
 }
 
 export function getPromoterIcon(dataPoint: StreetworksDataPoint) {
-  return promoterIcons[getPromoterId(dataPoint)!] ?? createPromoterIcon('??', 'unknown')!
+  return promoterIcons[getPromoterId(dataPoint)!] ?? createPromoterIcon('??', 'unknown', 'Unknown')!
 }
 
 export function getPromoterName(dataPoint: StreetworksDataPoint) {
@@ -977,7 +978,7 @@ export function getPromoterStates(): Record<string, boolean> {
   if (Object.keys(promoterIcons).length === 0) {
     promoterIcons = AllStreetworksPromoters.reduce(
       (acc, promoter) => {
-        acc[promoter.id] = createPromoterIcon(promoter.icon.text, promoter.icon.type)!
+        acc[promoter.id] = createPromoterIcon(promoter.icon.text, promoter.icon.type, promoter.name)!
         return acc
       },
       {} as Record<string, L.DivIcon>,

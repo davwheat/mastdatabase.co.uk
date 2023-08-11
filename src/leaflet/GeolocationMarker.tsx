@@ -16,6 +16,8 @@ export function GeolocationMarker() {
   return (
     <Marker
       position={location}
+      keyboard={false}
+      alt="Your geolocation"
       icon={L.icon({
         iconUrl: require('@assets/icons/geolocation.svg').default,
         iconSize: [18, 18],

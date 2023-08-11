@@ -63,7 +63,7 @@ export function MapStatusMessages() {
   const messages = useRecoilValue(StreetworksMapStatusMessagesAtom)
 
   return (
-    <div role="status" aria-live="polite" className={classes.root}>
+    <div role="status" aria-live="assertive" className={classes.root}>
       {Object.entries(StatusMessagesText)
         .filter(([messageKey]) => messages[messageKey as StatusMessageKey])
         .map(([messageKey, message]) => {

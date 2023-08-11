@@ -1,6 +1,6 @@
 import React, { useEffect, useCallback } from 'react'
 
-import { AttributionControl, MapContainer, TileLayer, useMap, GeoJSON, Pane, useMapEvents } from 'react-leaflet'
+import { AttributionControl, MapContainer, TileLayer, useMap, GeoJSON, Pane } from 'react-leaflet'
 
 import 'leaflet/dist/leaflet.css'
 import TflLines from './MapData/tfl_lines.geo.json'
@@ -173,9 +173,31 @@ function stationMarker(feature: geojson.Feature<geojson.GeometryObject, GeoJsonS
     color: '#000',
     weight: 2,
     className: `${hasConnectivity}-connectivity`,
-  }).bindPopup(generatePopupContentForStation(feature), {
-    maxWidth: 500,
   })
+    .bindPopup(generatePopupContentForStation(feature), {
+      maxWidth: 500,
+    })
+    .on('add', e => {
+      const m: L.CircleMarker = e.target
+      const el: SVGPathElement = (m as any)._path
+
+      el.setAttribute('tabindex', '0')
+      el.setAttribute('role', 'button')
+      el.setAttribute('aria-label', `${feature.properties.name} details`)
+      el.setAttribute('aria-expanded', 'false')
+    })
+    .on('popupopen', e => {
+      const m: L.CircleMarker = e.target
+      const el: SVGPathElement = (m as any)._path
+
+      el.setAttribute('aria-expanded', 'true')
+    })
+    .on('popupclose', e => {
+      const m: L.CircleMarker = e.target
+      const el: SVGPathElement = (m as any)._path
+
+      el.setAttribute('aria-expanded', 'false')
+    })
 }
 
 function coveredStationMarker(feature: geojson.Feature<geojson.GeometryObject, GeoJsonStationProperties>, latLng: LatLngExpression): Layer {
@@ -413,7 +435,7 @@ function generateCoverageTable(coverage: OperatorConnectivity, coverageNotes?: s
         </span>`
     }
 
-    return bands.map((band, i) => `<span class="bandChip">${band}</span>`).join('')
+    return bands.map((band, i) => `<span class="bandChip">${band}</span>`).join('<span class="sr-only">,</span>')
   }
 
   return `
@@ -474,8 +496,8 @@ function generatePopupContentForStation(feature: geojson.Feature<geojson.Geometr
   const { coverage, coverageNotes, opens } = getStationInfo(feature.properties.id)
 
   popupContent.innerHTML = `
-  <p class="text-speak stationName"><strong>${feature.properties.name}</strong></p>
-  <p class="text-whisper">${lines.map(l => lineToChip(l?.name ?? '???')).join('')}</p>
+  <h3 class="text-speak stationName"><strong>${feature.properties.name}</strong></h3>
+  <p class="text-whisper"><span class="sr-only">Served by</span>${lines.map(l => lineToChip(l?.name ?? '???')).join('')}</p>
 `
 
   if (opens) {

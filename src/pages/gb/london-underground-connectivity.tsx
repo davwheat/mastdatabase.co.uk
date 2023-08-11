@@ -8,6 +8,8 @@ import Link from '@components/Links/Link'
 import TubeDasMap, { TubeDasMapProps } from '@components/Maps/TubeDasMap/TubeDasMap'
 import Checkbox from '@components/Inputs/Checkbox'
 import Accordion from '@components/Design/Accordion'
+import LoadingSpinner from '@components/LoadingSpinner'
+import { TubeDeploymentInfo } from '@components/Maps/TubeDasMap/TubeDeploymentInfo'
 
 import Colors from '@data/colors.json'
 import useStateWithLocalStorage from '@hooks/useStateWithLocalStorage'
@@ -16,8 +18,6 @@ import { makeStyles, NoSsr } from '@material-ui/core'
 import { ErrorBoundaryContext } from 'react-use-error-boundary'
 
 import type { PageProps } from 'gatsby'
-import LoadingSpinner from '@components/LoadingSpinner'
-import { TubeDeploymentInfo } from '@components/Maps/TubeDasMap/TubeDeploymentInfo'
 
 const useStyles = makeStyles({
   loading: {
