@@ -609,6 +609,16 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
       type: 'ms3',
     },
   },
+  {
+    id: 'connexin',
+    name: 'Connexin',
+    aliases: ['Connexin Ltd'],
+    category: 'Fixed broadband',
+    icon: {
+      text: 'CNXN',
+      type: 'connexin',
+    },
+  },
 
   // FWA
   {
