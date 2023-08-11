@@ -599,6 +599,16 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
       type: 'quickline',
     },
   },
+  {
+    id: 'ms3',
+    name: 'MS3 Networks',
+    aliases: ['MS3 NETWORKS LIMITED'],
+    category: 'Fixed broadband',
+    icon: {
+      text: 'MS3',
+      type: 'ms3',
+    },
+  },
 
   // FWA
   {
