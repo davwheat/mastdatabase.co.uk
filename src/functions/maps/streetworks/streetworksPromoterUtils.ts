@@ -619,6 +619,16 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
       type: 'connexin',
     },
   },
+  {
+    id: 'fibre-me',
+    name: 'Upp (Fibre Me)',
+    aliases: ['FIBRE ME LIMITED'],
+    category: 'Fixed broadband',
+    icon: {
+      text: 'UPP',
+      type: 'fibre-me',
+    },
+  },
 
   // FWA
   {
