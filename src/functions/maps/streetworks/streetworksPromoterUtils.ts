@@ -579,6 +579,16 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
       type: 'borderlink',
     },
   },
+  {
+    id: 'b4rn',
+    name: 'B4RN',
+    aliases: ['Broadband for the Rural North Limited'],
+    category: 'Fixed broadband',
+    icon: {
+      text: 'B4RN',
+      type: 'b4rn',
+    },
+  },
 
   // FWA
   {
