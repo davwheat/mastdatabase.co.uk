@@ -122,7 +122,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'virgin',
     name: 'Virgin Media',
-    aliases: ['Virgin Media'],
+    aliases: ['Virgin Media', 'Virgin Media.__149'],
     category: 'Fixed broadband',
     icon: {
       text: 'VMED',
