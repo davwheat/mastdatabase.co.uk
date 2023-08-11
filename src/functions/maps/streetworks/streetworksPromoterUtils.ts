@@ -122,7 +122,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'virgin',
     name: 'Virgin Media',
-    aliases: ['Virgin Media'],
+    aliases: ['Virgin Media', 'Virgin Media.__149'],
     category: 'Fixed broadband',
     icon: {
       text: 'VMED',
@@ -569,6 +569,66 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
       type: 'ogi',
     },
   },
+  {
+    id: 'borderlink',
+    name: 'GoFibre (Borderlink Broadband)',
+    aliases: ['Borderlink Broadband (Go Fibre)'],
+    category: 'Fixed broadband',
+    icon: {
+      text: 'GO',
+      type: 'borderlink',
+    },
+  },
+  {
+    id: 'b4rn',
+    name: 'B4RN',
+    aliases: ['Broadband for the Rural North Limited'],
+    category: 'Fixed broadband',
+    icon: {
+      text: 'B4RN',
+      type: 'b4rn',
+    },
+  },
+  {
+    id: 'quickline',
+    name: 'Quickline Communications',
+    aliases: ['Quickline Communications Ltd'],
+    category: 'Fixed broadband',
+    icon: {
+      text: 'QLNE',
+      type: 'quickline',
+    },
+  },
+  {
+    id: 'ms3',
+    name: 'MS3 Networks',
+    aliases: ['MS3 NETWORKS LIMITED'],
+    category: 'Fixed broadband',
+    icon: {
+      text: 'MS3',
+      type: 'ms3',
+    },
+  },
+  {
+    id: 'connexin',
+    name: 'Connexin',
+    aliases: ['Connexin Ltd'],
+    category: 'Fixed broadband',
+    icon: {
+      text: 'CNXN',
+      type: 'connexin',
+    },
+  },
+  {
+    id: 'fibre-me',
+    name: 'Upp (Fibre Me)',
+    aliases: ['FIBRE ME LIMITED'],
+    category: 'Fixed broadband',
+    icon: {
+      text: 'UPP',
+      type: 'fibre-me',
+    },
+  },
 
   // FWA
   {
@@ -797,6 +857,16 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
     icon: {
       text: 'DNFR',
       type: 'digitalinfra',
+    },
+  },
+  {
+    id: 'railsite',
+    name: 'Railsite Telecom',
+    aliases: ['Railsite Telecom', 'Railsite Telecom Ltd', 'Railsite Telecom Limited'],
+    category: 'Telecoms infrastructure',
+    icon: {
+      text: 'RAIL',
+      type: 'railsite',
     },
   },
 
