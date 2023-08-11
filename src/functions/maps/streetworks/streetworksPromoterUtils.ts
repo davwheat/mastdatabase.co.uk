@@ -589,6 +589,16 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
       type: 'b4rn',
     },
   },
+  {
+    id: 'quickline',
+    name: 'Quickline Communications',
+    aliases: ['Quickline Communications Ltd'],
+    category: 'Fixed broadband',
+    icon: {
+      text: 'QLNE',
+      type: 'quickline',
+    },
+  },
 
   // FWA
   {
