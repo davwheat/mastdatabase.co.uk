@@ -362,6 +362,30 @@ const StationSegmentsWithCoverage: CoverageGroup[] = [
     opens: 'January 2023',
     segments: [
       {
+        section: 'Mornington Crescent to Camden Town',
+        startStationId: '940GZZLUMTC',
+        endStationId: '940GZZLUCTN',
+        opens: 'late July 2023',
+        services: {
+          EE: CoveragePresets.tunnels.EE.normal,
+          Three: CoveragePresets.tunnels.Three.normal,
+          O2: CoveragePresets.tunnels.O2.normal,
+          Vodafone: CoveragePresets.tunnels.Vodafone.normal,
+        },
+      },
+      {
+        section: 'Camden Town to Kentish Town',
+        startStationId: '940GZZLUCTN',
+        endStationId: '940GZZLUKSH',
+        opens: 'late July 2023',
+        services: {
+          EE: CoveragePresets.tunnels.EE.normal,
+          Three: CoveragePresets.tunnels.Three.normal,
+          O2: CoveragePresets.tunnels.O2.normal,
+          Vodafone: CoveragePresets.tunnels.Vodafone.normal,
+        },
+      },
+      {
         section: 'Kentish Town to Tufnell Park',
         startStationId: '940GZZLUKSH',
         endStationId: '940GZZLUTFP',
