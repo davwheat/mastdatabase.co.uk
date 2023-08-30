@@ -6,6 +6,7 @@ export default class O2CoverageMapProvider extends CoverageProvider<true> {
   providerName: string = 'O2 UK'
   defaultLayerId: number = this.getLayers().findIndex(layer => layer.label === '4G LTE')
   supportsSites: boolean = false
+  maxZoom: number = 14
   readonly supportsVersionHistory = true
 
   readonly providerIcon = (<O2Logo />)
