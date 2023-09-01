@@ -13,6 +13,7 @@ export interface AccordionProps {
   children: React.ReactNode
   headingComponent?: React.ElementType
   className?: string
+  style?: React.CSSProperties
 }
 
 const useStyles = makeStyles({
@@ -49,7 +50,7 @@ const useStyles = makeStyles({
   },
 })
 
-export default function Accordion({ heading, children, headingComponent: HeadingComponent = 'h2', className }: AccordionProps) {
+export default function Accordion({ heading, children, headingComponent: HeadingComponent = 'h2', className, style }: AccordionProps) {
   const rootId = useId()
   const classes = useStyles()
 
@@ -63,7 +64,7 @@ export default function Accordion({ heading, children, headingComponent: Heading
   }
 
   return (
-    <div className={clsx(classes.accordion, className)}>
+    <div className={clsx(classes.accordion, className)} style={style}>
       <HeadingComponent className={classes.heading}>
         <button
           type="button"
