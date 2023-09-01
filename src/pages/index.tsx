@@ -22,7 +22,7 @@ const useStyles = makeStyles({
     position: 'relative',
     marginLeft: '-50vw',
     left: '50%',
-    backgroundColor: Colors.pale.primaryRed,
+    backgroundColor: Colors.pale.primaryBlue,
     padding: 24,
     marginTop: 32,
     marginBottom: 32,
