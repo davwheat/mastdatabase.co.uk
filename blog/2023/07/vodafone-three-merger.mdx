@@ -9,6 +9,7 @@ import AllSpectrumMaps from '@components/MobileNetworking/AllSpectrumMaps'
 import SpectrumTotaller from '@components/MobileNetworking/SpectrumTotaller'
 import Accordion from '@components/Design/Accordion'
 import MergerAllBands from './spectrum/VHUK-merger/base'
+import MergerAllBandsPostCma, { changesOnly as MergerAllBandsPostCmaChangesOnly } from './spectrum/VHUK-merger-adjusted/base'
 import CurrentUKSpectrum from './spectrum/GB'
 
 <TableOfContents {...props} />
@@ -111,7 +112,7 @@ Three's merger talks with Vodafone are not Hutchison's first attempt at a merger
 had been struck with O2 to acquire its UK-based operations for a total of £10.25 billion. This purchase was blocked by the EU Commission on the
 grounds it would significantly affect competition within the UK market.
 
-## Merger with Vodafone
+# Merger with Vodafone
 
 Three's latest merger talks are with Vodafone, for which rumours first began circulating around May 2022. These talks were potentially sparked by
 Liberty Global and Telefónica UK's merger of their respective businesses (Virgin Media and O2) in 2021, but had likely been considered prior to
@@ -267,10 +268,24 @@ Cellmapper allows us to see crowdsourced data about sites for most mobile networ
 
 ### Post-merger spectrum outlook
 
-A merger of Vodafone and Three would provide a total of 42.4&nbsp;MHz of low band spectrum which, combined with the larger pool of infrastructure
-provided through Cornerstone, MBNL and Three's own portfolio, would offer a significant rural density upgrade on the current networks.
+A merger of Vodafone and Three would result in a monopoly on spectrum assets, with the combined entity holding 496.7&nbsp;MHz of spectrum, which
+is over two times the amount of spectrum held by the next network, EE, at 230&nbsp;MHz.
 
-#### Overall outlook
+The joint-venture would hold a total of 42.4&nbsp;MHz of paired low band spectrum which, combined with the significant pool of physical network
+infrastructure provided through both Cornerstone, MBNL, and Three's own portfolio, would offer a significant rural coverage and performance
+upgrade on the current networks.
+
+Furthermore, considering the current push for C-band 5G deployments, the merged business would hold two contiguous chunks of n78 spectrum,
+totalling 230&nbsp;MHz, on top of Three's 84&nbsp;MHz n77 allocation (usage not currently permitted for mobile coverage).
+
+Using [Robyn (Undersc0re)'s 5G throughput calculator](https://tools.pedroc.co.uk/5g-speed/), we could see that, even excluding LTE which would be
+used in 5G NSA, 230&nbsp;MHz n78 spectrum could facilitate peak theoretical downlink speeds of over 4&nbsp;Gbps. Who needs mmWave if you can have
+anti-competitive spectrum holdings?
+
+#### Full spectrum allocations
+
+Provided the CMA and Ofcom do not opt to enforce a spectrum trade between the merged entity and the other UK networks, the combined joint-venture
+would have the following spectrum holdings:
 
 <figure className="narrow" style={{ overflowX: 'auto', marginBottom: 16 }}>
   <SpectrumTotaller
@@ -282,11 +297,88 @@ provided through Cornerstone, MBNL and Three's own portfolio, would offer a sign
   />
 </figure>
 
-<Accordion heading="View spectrum holdings">
+<Accordion heading="View unadjusted spectrum holding diagrams" style={{ marginBottom: 24 }}>
   <AllSpectrumMaps
     locationName="UK post-merger"
     countryCode="GB"
     bandsData={MergerAllBands}
+    dense
+    dontWrapWithPageSection
+    hideSectionHeading
+    hideHeadings
+    hideDetails
+    hideLicenseInfo
+    hideHighlighter
+    customColors={{ '#c42b1e': ['VHUK', 'Vodafone Hutchison UK'] }}
+    customCaption={(_, bandNames) => `Band${bandNames.length !== 1 ? 's' : ''} ${bandNames.join(', ')}`}
+  />
+</Accordion>
+
+#### Being realistic
+
+In reality, it's extremely unlikely that a single network would be permitted to hold a monopoly on spectrum to this extent.
+
+It's almost certain that the CMA would require the merged entity to divest some of its spectrum holdings, particularly within the 800, 1500,
+1800/2100 and 3500&nbsp;MHz bands. It's hard to say exactly what will happen, as that depends on other operators' long-term plans and strategies
+and how they opt to lobby the CMA, alongside the CMA's decisions.
+
+In my opinion, 1800/2100 is the most difficult decision. On one hand, VHUK having almost 30&nbsp;MHz of spectrum within the 2100&nbsp;MHz band is
+a big advantage, so they may be required to sell some of this spectrum. On the other hand, O2's investment in a dense 1800&nbsp;MHz small cell
+network across major urban areas, but expecially within London. The ability to expand this from 5&nbsp;MHz to 10&nbsp;MHz would significantly
+improve O2's network capacity.
+
+<figure>
+
+![Two O2 Nokia small cells](./o2-small-cells.jpg)
+
+<figcaption>
+Two O2 Nokia small cells on Abingdon Street near the Palace of Westminster, London.
+</figcaption>
+</figure>
+
+My predictions:
+
+- 5&nbsp; MHz block of B20 (800&nbsp;MHz) transferred to EE
+  - This results in an even 10&nbsp;MHz per operator
+- 20&nbsp;MHz block of B32 (1500&nbsp;MHz) transferred to O2
+  - Most devices do not support B32+B32 aggregation, so having 40&nbsp;MHz of B32 would be pointless for VHUK
+  - O2's capacity in urban areas can be an issue, so this would help alleviate that
+- Sale of 40&nbsp;MHz n78 (3500&nbsp;MHz) from 130&nbsp;MHz block to EE, and sale of 40&nbsp;MHz n78 (3500&nbsp;MHz) from 100&nbsp;MHz block to
+  O2
+
+  - This would result in 90+60&nbsp;MHz n78 for VHUK
+  - EE and O2 would have 120&nbsp;MHz n78 each, while optimising contiguous spectrum holdings for all operators without a full reshuffle
+
+<AllSpectrumMaps
+  locationName="UK post-merger"
+  countryCode="GB"
+  bandsData={MergerAllBandsPostCmaChangesOnly}
+  dense
+  dontWrapWithPageSection
+  hideSectionHeading
+  hideHeadings
+  hideDetails
+  hideLicenseInfo
+  hideHighlighter
+  customColors={{ '#c42b1e': ['VHUK', 'Vodafone Hutchison UK'] }}
+  customCaption={(_, bandNames) => `Band${bandNames.length !== 1 ? 's' : ''} ${bandNames.join(', ')}`}
+/>
+
+<figure className="narrow" style={{ overflowX: 'auto', marginBottom: 16 }}>
+  <SpectrumTotaller
+    hideMmwave
+    bandsData={MergerAllBandsPostCma}
+    countryCode="GB"
+    style={{ marginTop: '0 !important', marginBottom: '0 !important' }}
+    customOperators={{ VHUK: ['Vodafone Hutchison UK'] }}
+  />
+</figure>
+
+<Accordion heading="View unadjusted spectrum holding diagrams" style={{ marginBottom: 24 }}>
+  <AllSpectrumMaps
+    locationName="UK post-merger"
+    countryCode="GB"
+    bandsData={MergerAllBandsPostCma}
     dense
     dontWrapWithPageSection
     hideSectionHeading
