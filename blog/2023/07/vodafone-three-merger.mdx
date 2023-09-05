@@ -8,6 +8,7 @@ created_at: 2023-07-15T15:00Z
 import AllSpectrumMaps from '@components/MobileNetworking/AllSpectrumMaps'
 import SpectrumTotaller from '@components/MobileNetworking/SpectrumTotaller'
 import Accordion from '@components/Design/Accordion'
+import MinorAlert from '@components/Design/MinorAlert'
 import MergerAllBands from './spectrum/VHUK-merger/base'
 import MergerAllBandsPostCma, { changesOnly as MergerAllBandsPostCmaChangesOnly } from './spectrum/VHUK-merger-adjusted/base'
 import CurrentUKSpectrum from './spectrum/GB'
@@ -211,6 +212,14 @@ realise the merger benefits, however the precise details are naturally commercia
 
 ## Spectrum
 
+<aside style={{ marginBottom: 16 }}>
+<MinorAlert color="neutralGrey" coloredBackground>
+<p>For spectrum totals in this section, I have excluded holdings within B67 supplemental uplink and n77 C-band.</p>
+
+<p style={{ marginBottom: 0 }}>B67 is not supported by any consumer devices and Three's n77 license does not permit usage for mobile coverage.</p>
+</MinorAlert>
+</aside>
+
 For a mobile network, spectrum is critical. It is the radio waves that carry the data and voice traffic between the mobile phone and the network.
 Essentially, the more spectrum a network has, the higher peak speeds it can offer to customers, and the greater the capacity of the network.
 
@@ -231,11 +240,15 @@ allow the merger to pass through competition regulators.
 We have a [full page on UK spectrum allocations](/gb/spectrum), but we can summarise total allocations per-network at the time of publishing.
 
 <figure className="narrow" style={{ overflowX: 'auto', marginBottom: 16 }}>
+  <figcaption>Current spectrum allocations per-operator, excluding n77 and B67</figcaption>
+
   <SpectrumTotaller
     hideMmwave
     bandsData={CurrentUKSpectrum}
     countryCode="GB"
     style={{ marginTop: '0 !important', marginBottom: '0 !important' }}
+    omitOperators={['ESN']}
+    omitBandNames={['n77', 'B67']}
   />
 </figure>
 
@@ -269,14 +282,14 @@ Cellmapper allows us to see crowdsourced data about sites for most mobile networ
 ### Post-merger spectrum outlook
 
 A merger of Vodafone and Three would result in a monopoly on spectrum assets, with the combined entity holding 496.7&nbsp;MHz of spectrum, which
-is over two times the amount of spectrum held by the next network, EE, at 230&nbsp;MHz.
+is over two times the amount of spectrum held by the next network, EE, at 210&nbsp;MHz (plus 20&nbsp;MHz B67 SUL).
 
 The joint-venture would hold a total of 42.4&nbsp;MHz of paired low band spectrum which, combined with the significant pool of physical network
 infrastructure provided through both Cornerstone, MBNL, and Three's own portfolio, would offer a significant rural coverage and performance
 upgrade on the current networks.
 
 Furthermore, considering the current push for C-band 5G deployments, the merged business would hold two contiguous chunks of n78 spectrum,
-totalling 230&nbsp;MHz, on top of Three's 84&nbsp;MHz n77 allocation (usage not currently permitted for mobile coverage).
+totalling 230&nbsp;MHz, on top of Three's 84&nbsp;MHz n77 allocation not currently permitted for mobile coverage.
 
 Using [Robyn (Undersc0re)'s 5G throughput calculator](https://tools.pedroc.co.uk/5g-speed/), we could see that, even excluding LTE which would be
 used in 5G NSA, 230&nbsp;MHz n78 spectrum could facilitate peak theoretical downlink speeds of over 4&nbsp;Gbps. Who needs mmWave if you can have
@@ -288,18 +301,22 @@ Provided the CMA and Ofcom do not opt to enforce a spectrum trade between the me
 would have the following spectrum holdings:
 
 <figure className="narrow" style={{ overflowX: 'auto', marginBottom: 16 }}>
+  <figcaption>Spectrum allocations per-operator assuming no spectrum sales, excluding n77 and B67</figcaption>
+
   <SpectrumTotaller
     hideMmwave
     bandsData={MergerAllBands}
     countryCode="GB"
     style={{ marginTop: '0 !important', marginBottom: '0 !important' }}
     customOperators={{ VHUK: ['Vodafone Hutchison UK'] }}
+    omitOperators={['ESN']}
+    omitBandNames={['n77', 'B67']}
   />
 </figure>
 
 <Accordion heading="View unadjusted spectrum holding diagrams" style={{ marginBottom: 24 }}>
   <AllSpectrumMaps
-    locationName="UK post-merger"
+    locationName=""
     countryCode="GB"
     bandsData={MergerAllBands}
     dense
@@ -336,21 +353,22 @@ Two O2 Nokia small cells on Abingdon Street near the Palace of Westminster, Lond
 </figcaption>
 </figure>
 
-My predictions:
+My predictions for any spectrum sales are:
 
 - 5&nbsp; MHz block of B20 (800&nbsp;MHz) transferred to EE
-  - This results in an even 10&nbsp;MHz per operator
+  - This results in an even 10&nbsp;MHz per operator, and is an obvious no-brainer for the UK market
+  - The loss of B20 capacity per customer is made up for by the gain of 10 MHz B28 through Three's holdings
 - 20&nbsp;MHz block of B32 (1500&nbsp;MHz) transferred to O2
-  - Most devices do not support B32+B32 aggregation, so having 40&nbsp;MHz of B32 would be pointless for VHUK
+  - No known devices support B32+B32 aggregation, so having 40&nbsp;MHz of B32 would be pointless for VHUK except for load balancing
   - O2's capacity in urban areas can be an issue, so this would help alleviate that
+  - Main concern is whether O2 would actually consider deploying this spectrum
 - Sale of 40&nbsp;MHz n78 (3500&nbsp;MHz) from 130&nbsp;MHz block to EE, and sale of 40&nbsp;MHz n78 (3500&nbsp;MHz) from 100&nbsp;MHz block to
   O2
-
   - This would result in 90+60&nbsp;MHz n78 for VHUK
   - EE and O2 would have 120&nbsp;MHz n78 each, while optimising contiguous spectrum holdings for all operators without a full reshuffle
 
 <AllSpectrumMaps
-  locationName="UK post-merger"
+  locationName=""
   countryCode="GB"
   bandsData={MergerAllBandsPostCmaChangesOnly}
   dense
@@ -365,12 +383,16 @@ My predictions:
 />
 
 <figure className="narrow" style={{ overflowX: 'auto', marginBottom: 16 }}>
+  <figcaption>Spectrum allocations per-operator based on my predictions, excluding n77 and B67</figcaption>
+
   <SpectrumTotaller
     hideMmwave
     bandsData={MergerAllBandsPostCma}
     countryCode="GB"
     style={{ marginTop: '0 !important', marginBottom: '0 !important' }}
     customOperators={{ VHUK: ['Vodafone Hutchison UK'] }}
+    omitOperators={['ESN']}
+    omitBandNames={['n77', 'B67']}
   />
 </figure>
 
