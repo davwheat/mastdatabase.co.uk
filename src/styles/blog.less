@@ -155,8 +155,15 @@
       display: block;
       padding: 0 32px;
 
-      margin-top: -0.5em;
-      margin-bottom: 0.5em;
+      &:not(:first-child) {
+        margin-top: -0.5em;
+        margin-bottom: 0.5em;
+      }
+
+      &:first-child {
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
+      }
 
       // .text-whisper-up
       font-size: 15px;
