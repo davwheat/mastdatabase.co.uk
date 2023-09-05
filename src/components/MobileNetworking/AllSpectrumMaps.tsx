@@ -245,9 +245,10 @@ export default function AllSpectrumMaps({
   const bandInstances: Record<string, number> = {}
 
   const Wrapper = dontWrapWithPageSection ? React.Fragment : Section
+  const wrapperAttrs: any = dontWrapWithPageSection ? {} : { width: 'wider' }
 
   return (
-    <Wrapper width={dontWrapWithPageSection ? 'wider' : undefined}>
+    <Wrapper {...wrapperAttrs}>
       {!hideSectionHeading && <h2 className="text-louder">Frequency deployment</h2>}
 
       {!hideLicenseInfo && (
