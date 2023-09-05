@@ -17,6 +17,14 @@ export interface SpectrumTotallerProps {
    * The key is the operator name, and the value is an array of optional aliases to check for.
    */
   customOperators?: Record<string, string[]>
+  /**
+   * An array of operators and aliases to omit from the total.
+   */
+  omitOperators?: string[]
+  /**
+   * An array of band names to omit from the total.
+   */
+  omitBandNames?: string[]
 }
 
 const useStyles = makeStyles({
@@ -38,6 +46,8 @@ function aggregateBandsData(
   country: string,
   bandsData: SpectrumData[],
   customOperators: Record<string, string[]>,
+  omitOperators: string[] = [],
+  omitBandNames: string[] = [],
 ): Record<string, Record<number, number>> {
   function getFreqCategory(freq: number): number {
     if (freq < 1000) {
@@ -69,12 +79,13 @@ function aggregateBandsData(
 
   const blocksByOperator = bandsData.reduce(
     (acc, band) => {
-      if (band.extraInfo?.excludeFromSpectrumTotal) {
-        return acc
-      }
+      if (band.extraInfo?.excludeFromSpectrumTotal) return acc
+      if (band.names.some(name => omitBandNames.includes(name))) return acc
 
       band.spectrumData.forEach(block => {
         let accArr: SpectrumBlock[] = []
+
+        if (omitOperators.includes(block.ownerLongName ?? '') || omitOperators.includes(block.owner ?? '')) return
 
         const operatorInfo =
           getCustomOperator(block.ownerLongName ?? '') ??
@@ -121,10 +132,18 @@ function aggregateBandsData(
   return total
 }
 
-export default function SpectrumTotaller({ bandsData, countryCode, style, hideMmwave = false, customOperators = {} }: SpectrumTotallerProps) {
+export default function SpectrumTotaller({
+  bandsData,
+  countryCode,
+  style,
+  hideMmwave = false,
+  customOperators = {},
+  omitOperators = [],
+  omitBandNames = [],
+}: SpectrumTotallerProps) {
   const classes = useStyles()
 
-  const data = Object.entries(aggregateBandsData(countryCode, bandsData, customOperators))
+  const data = Object.entries(aggregateBandsData(countryCode, bandsData, customOperators, omitOperators, omitBandNames))
 
   // sort by total
   data.sort((a, b) => {
