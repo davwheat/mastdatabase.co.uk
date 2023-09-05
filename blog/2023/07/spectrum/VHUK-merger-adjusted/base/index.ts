@@ -71,8 +71,6 @@ const data: SpectrumData[] = [
 
 export default data
 
-
-
 export const changesOnly: SpectrumData[] = [
   {
     names: ['B1', 'n1'],
