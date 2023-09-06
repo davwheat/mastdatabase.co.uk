@@ -8974,9 +8974,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-cli@npm:^5.12.0":
-  version: 5.12.0
-  resolution: "gatsby-cli@npm:5.12.0"
+"gatsby-cli@npm:^5.12.1":
+  version: 5.12.1
+  resolution: "gatsby-cli@npm:5.12.1"
   dependencies:
     "@babel/code-frame": ^7.18.6
     "@babel/core": ^7.20.12
@@ -9021,7 +9021,7 @@ __metadata:
     yurnalist: ^2.1.0
   bin:
     gatsby: cli.js
-  checksum: 1c00854b4d89f0a7a54dd1883b355b6475f99673d24ed679cb864dc6d2b898ac9802296e03dc1c00d533e71f8bcdc26ff016b0e376e7d360151047e04556ff01
+  checksum: 0171035815a99f9d0006f96635edac530ff397d2d58ce622fda081bd045cca5513ab7227f2d309374aaea6859d7b6fd1f4040fbf9cbeb4bf43c26d32af2ccc49
   languageName: node
   linkType: hard
 
@@ -9643,9 +9643,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby@npm:^5.12.3":
-  version: 5.12.3
-  resolution: "gatsby@npm:5.12.3"
+"gatsby@npm:^5.12.4":
+  version: 5.12.4
+  resolution: "gatsby@npm:5.12.4"
   dependencies:
     "@babel/code-frame": ^7.18.6
     "@babel/core": ^7.20.12
@@ -9728,7 +9728,7 @@ __metadata:
     find-cache-dir: ^3.3.2
     fs-exists-cached: 1.0.0
     fs-extra: ^11.1.1
-    gatsby-cli: ^5.12.0
+    gatsby-cli: ^5.12.1
     gatsby-core-utils: ^4.12.0
     gatsby-graphiql-explorer: ^3.12.0
     gatsby-legacy-polyfills: ^3.12.0
@@ -9822,7 +9822,7 @@ __metadata:
       optional: true
   bin:
     gatsby: ./cli.js
-  checksum: 3d8ca07f53d2e8613b249360b339e4f9bc096dd1e08deea7635c506a3ab20df2576063adec6725d0c44c59eac4587bbcdc503a57fbd54567a345535344796191
+  checksum: 7c4b27b6c1f4306854c85f62d7f9af4ee81ec98fa2a4063cd6bb1fc3cb8be7547277cf1fb06dc09c14ab3ccb247233bc42aa2a43a5848b89b8840445115d8407
   languageName: node
   linkType: hard
 
@@ -12501,7 +12501,7 @@ __metadata:
     file-saver: ^2.0.5
     font-color-contrast: ^11.1.0
     fuse.js: ^6.6.2
-    gatsby: ^5.12.3
+    gatsby: ^5.12.4
     gatsby-plugin-canonical-urls: ^5.12.0
     gatsby-plugin-csp: ^1.1.4
     gatsby-plugin-image: ^3.12.0

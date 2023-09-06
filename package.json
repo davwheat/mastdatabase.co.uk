@@ -23,7 +23,7 @@
     "file-saver": "^2.0.5",
     "font-color-contrast": "^11.1.0",
     "fuse.js": "^6.6.2",
-    "gatsby": "^5.12.3",
+    "gatsby": "^5.12.4",
     "gatsby-plugin-canonical-urls": "^5.12.0",
     "gatsby-plugin-csp": "^1.1.4",
     "gatsby-plugin-image": "^3.12.0",
