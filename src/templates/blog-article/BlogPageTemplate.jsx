@@ -60,8 +60,33 @@ const useStyles = makeStyles({
   },
 })
 
-export default function BlogPageTemplate({ pageContext, location, data: { mdx: data }, children }) {
-  const context = data
+// Define props
+/**
+ * @typedef {object} BlogPageTemplatePageContext
+ * @property {string} id
+ * @property {number} page
+ */
+
+/**
+ * @typedef {object} BlogPageTemplateProps
+ * @extends {import('gatsby').PageProps}
+ *
+ * @property {BlogPageTemplatePageContext} pageContext
+ * @property {Queries.BlogPageTemplateQuery} data
+ * @property {React.ReactNode} children
+ */
+
+/**
+ * @param {BlogPageTemplateProps} props
+ * @returns
+ */
+export default function BlogPageTemplate({ pageContext, location, data, children }) {
+  if (data.errors) {
+    console.error(data.errors)
+    throw new Error('Error loading blog article data in template.')
+  }
+
+  const context = data.mdx
   const classes = useStyles()
 
   // ||= not supported with acorn?
@@ -158,7 +183,7 @@ export default function BlogPageTemplate({ pageContext, location, data: { mdx: d
 }
 
 export const query = graphql`
-  query ($id: String!) {
+  query BlogPageTemplate($id: String!) {
     mdx(id: { eq: $id }) {
       frontmatter {
         title

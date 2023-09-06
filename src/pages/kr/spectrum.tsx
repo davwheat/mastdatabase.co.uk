@@ -4,7 +4,7 @@ import Hero from '@components/Design/Hero'
 import Layout from '@components/Layout'
 import Breadcrumbs from '@components/Design/Breadcrumbs'
 import AllSpectrumMaps from '@components/MobileNetworking/AllSpectrumMaps'
-import SpectrumTotaller from '@components/MobileNetworking/SpectrumTotaller'
+import SpectrumTotallerSection from '@components/MobileNetworking/SpectrumTotallerSection'
 
 import Colors from '@data/colors.json'
 import KRAllBands from 'mobile-spectrum-data/KR'
@@ -18,7 +18,7 @@ function KRSpectrumAllocationPage({ location }: PageProps) {
       title="South Korean mobile spectrum allocation"
       description="A visualisation of spectrum allocation across South Korea, per operator and radio access technology."
     >
-      <Hero firstElement size="huge" color={Colors.primaryBlue}>
+      <Hero firstElement size="large" color={Colors.primaryBlue}>
         <h1 className="text-shout">South Korean mobile spectrum allocation</h1>
         <p role="doc-subtitle" className="text-loud">
           A visualisation of spectrum allocation across South Korea, per operator and radio access technology.
@@ -33,7 +33,7 @@ function KRSpectrumAllocationPage({ location }: PageProps) {
         ]}
       />
 
-      <SpectrumTotaller countryCode="KR" bandsData={KRAllBands} />
+      <SpectrumTotallerSection countryCode="KR" bandsData={KRAllBands} />
 
       <AllSpectrumMaps locationName="South Korea" countryCode="KR" bandsData={KRAllBands} />
     </Layout>

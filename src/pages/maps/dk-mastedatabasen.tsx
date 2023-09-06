@@ -31,7 +31,7 @@ export default function MastedatabasenMapPage({ location }: PageProps) {
       description="A reimplementation of Denmark's mastedatabasen with new filtering and display options."
     >
       <ErrorBoundaryContext>
-        <Hero firstElement size="huge" color={Colors.primaryRed}>
+        <Hero firstElement size="large" color={Colors.primaryRed}>
           <h1 className="text-shout">Danish Mastedatabasen</h1>
           <p role="doc-subtitle" className="text-loud">
             A reimplementation of Denmark's mastedatabasen with new filtering and display options.

@@ -16,7 +16,7 @@ import { PageProps } from 'gatsby'
 function DKArfcnListPage({ location }: PageProps) {
   return (
     <Layout location={location} title="Danish ARFCN list" description="A partial list of Danish mobile networks' ARFCNs for 4G LTE and 5G NR.">
-      <Hero firstElement size="huge" color={Colors.primaryBlue}>
+      <Hero firstElement size="large" color={Colors.primaryBlue}>
         <h1 className="text-shout">Danish ARFCN list</h1>
         <p role="doc-subtitle" className="text-loud">
           A partial dataset of Danish mobile network frequencies by their NR/EARFCN.

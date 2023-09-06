@@ -16,7 +16,7 @@ import type { PageProps } from 'gatsby'
 function IEArfcnListPage({ location }: PageProps) {
   return (
     <Layout location={location} title="Irish ARFCN list" description="A partial list of Irish mobile networks' ARFCNs for 4G LTE and 5G NR.">
-      <Hero firstElement size="huge" color={Colors.primaryBlue}>
+      <Hero firstElement size="large" color={Colors.primaryBlue}>
         <h1 className="text-shout">Irish ARFCN list</h1>
         <p role="doc-subtitle" className="text-loud">
           A partial dataset of Irish mobile network frequencies by their NR/EARFCN.

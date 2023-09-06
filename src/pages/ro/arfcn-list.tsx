@@ -21,7 +21,7 @@ function ROArfcnListPage({ location }: PageProps) {
       title="Romanian ARFCN list"
       description="A mostly complete list of Romanian mobile networks' ARFCNs for 4G LTE and 5G NR."
     >
-      <Hero firstElement size="huge" color={Colors.primaryBlue}>
+      <Hero firstElement size="large" color={Colors.primaryBlue}>
         <h1 className="text-shout">Romanian ARFCN list</h1>
         <p role="doc-subtitle" className="text-loud">
           A mostly complete dataset of Romanian mobile network data carriers by their NR/EARFCN.

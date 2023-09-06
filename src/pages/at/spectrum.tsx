@@ -4,7 +4,7 @@ import Hero from '@components/Design/Hero'
 import Layout from '@components/Layout'
 import Breadcrumbs from '@components/Design/Breadcrumbs'
 import AllSpectrumMaps from '@components/MobileNetworking/AllSpectrumMaps'
-import SpectrumTotaller from '@components/MobileNetworking/SpectrumTotaller'
+import SpectrumTotallerSection from '@components/MobileNetworking/SpectrumTotallerSection'
 
 import Colors from '@data/colors.json'
 import ATAllBands from 'mobile-spectrum-data/AT'
@@ -18,7 +18,7 @@ function ATSpectrumAllocationPage({ location }: PageProps) {
       title="Austrian mobile spectrum allocation"
       description="A visualisation of spectrum allocation across Austria, per operator and radio access technology."
     >
-      <Hero firstElement size="huge" color={Colors.primaryBlue}>
+      <Hero firstElement size="large" color={Colors.primaryBlue}>
         <h1 className="text-shout">Austrian mobile spectrum allocation</h1>
         <p role="doc-subtitle" className="text-loud">
           A visualisation of spectrum allocation across Austria, per operator and radio access technology.
@@ -33,7 +33,7 @@ function ATSpectrumAllocationPage({ location }: PageProps) {
         ]}
       />
 
-      <SpectrumTotaller countryCode="AT" bandsData={ATAllBands} />
+      <SpectrumTotallerSection countryCode="AT" bandsData={ATAllBands} />
 
       <AllSpectrumMaps locationName="Austria" countryCode="AT" bandsData={ATAllBands} />
     </Layout>

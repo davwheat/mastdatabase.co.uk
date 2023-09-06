@@ -12,7 +12,7 @@ import ThreeRanStatusForm from '@components/MobileNetworking/UK/ThreeRanStatusFo
 function ThreeRanStatus({ location }: PageProps) {
   return (
     <Layout location={location} title="Three UK RAN status" description="A helper for accessing Three UK's RAN status private API endpoints.">
-      <Hero firstElement size="huge" color={Colors.primaryBlue}>
+      <Hero firstElement size="large" color={Colors.primaryBlue}>
         <h1 className="text-shout">Three UK RAN status</h1>
         <p role="doc-subtitle" className="text-loud">
           A helper for accessing Three UK's RAN status private API endpoints.

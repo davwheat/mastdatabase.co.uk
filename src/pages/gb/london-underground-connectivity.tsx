@@ -100,7 +100,7 @@ export default function TubeConnectivityMap({ location }: PageProps) {
       description="Interactive map of mobile network deployments on the London Underground."
     >
       <ErrorBoundaryContext>
-        <Hero firstElement size="huge" color={Colors.primaryRed}>
+        <Hero firstElement size="large" color={Colors.primaryRed}>
           <h1 className="text-shout">London Underground mobile connectivity</h1>
           <p role="doc-subtitle" className="text-loud">
             Interactive map of mobile network deployments on the London Underground.

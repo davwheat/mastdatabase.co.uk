@@ -62,7 +62,7 @@ export default function MobileNetworkingPage({ location }: PageProps) {
       title="Mobile networking in South Korea"
       description="A collection of South Korean mobile networking tools and datasets compiled by the community."
     >
-      <Hero firstElement size="huge" color={Colors.primaryBlue}>
+      <Hero firstElement size="large" color={Colors.primaryBlue}>
         <h1 className="text-shout">Mobile networking in South Korea</h1>
         <p role="doc-subtitle" className="text-loud">
           A collection of South Korean mobile networking tools and datasets compiled by the community.
