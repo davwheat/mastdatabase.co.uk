@@ -157,7 +157,7 @@ That being said, many major UK cities (including London, Birmingham, Brighton, C
 another project named Beacon 3. In these areas, shared infrastructure is being separated into two networks, with Vodafone and O2 each taking
 responsibility for their own infrastructure and, hence, network coverage.
 
-### Three's rapid 5G expansion
+### Three's rapid network expansion
 
 <figure>
 
@@ -175,10 +175,10 @@ programme consists of slimline monopoles across towns, cities and the countrysid
 
 Three's rapid deployment programme is a huge success, with the networking having over 4,250 live 5G sites as of May 2023, up from 2,200 in 2022.
 This rollout is shown by Three taking the crown for fastest median and peak 5G speeds in the UK
-[according to Ookla](https://www.ookla.com/articles/three-5g-performance-uk-ireland-austria-q2-2023). Three have also been working on upgrading
-backhaul to all their sites to 10 Gbps to maximise 5G performance. We have seen single user
-[peaks of up to 2.1 Gbps on Three 5G](https://twitter.com/davwheat_/status/1649699563530334208) which is near impossible to achieve on other UK
-networks.
+[according to Ookla](https://www.ookla.com/articles/three-5g-performance-uk-ireland-austria-q2-2023). Three have also been
+[upgrading backhaul to their sites to 10 Gbps](https://www.threemediacentre.co.uk/content/three-uk-network-and-it-update-3/) to maximise 4G and
+5G performance. We have seen single-user [peaks of up to 2.1 Gbps on Three 5G](https://twitter.com/davwheat_/status/1649699563530334208) which is
+near impossible to achieve on other UK networks.
 
 <div className="narrow">
 
@@ -190,6 +190,19 @@ networks.
 | O2 UK       |   70.63 Mbps    |
 
 </div>
+
+Three's 5G upgrade works are a slice of a full network transformation. Site upgrades are typically phased, with the company usually upgrading
+physical infrastructure (radios, antennas, etc.) before upgrading the backhaul to the site. While some argue that both should be upgraded
+simultaneously, the separation of these two tasks allows for upgrades overall to be performed faster as delays in one process does not hold up
+the other. Furthermore, in the case of some sites, upgrading backhaul without upgrading the physical infrastructure is another approach Three
+have taken in order to facilitate future site upgrades while minimising the need for additional works.
+
+Additionally, Three
+[partnered with SSE Enterprise Telecoms](https://www.commsupdate.com/articles/2018/07/10/sse-enterprise-telecoms-unbundling-177-bt-exchanges-announces-deal-with-three-uk/)
+to unbundle<sup id="note-1-link">[\[1\]](#note-1)</sup> 177 BT exchanges to facilitate backhaul connectivity between sites and the core network.
+Three and SSE claim that these works will futureproof the network and provide the ability to deliver a network with up to 100 Gbps speeds in the
+future. It was also noted that these 177 exchanges are the "first of several potential unbundling phases", so we may see more exchanges unbundled
+in the future.
 
 ### Post-merger infrastructure
 
@@ -214,9 +227,9 @@ realise the merger benefits, however the precise details are naturally commercia
 
 <aside style={{ marginBottom: 16 }}>
 <MinorAlert color="neutralGrey" coloredBackground>
-<p>For spectrum totals in this section, I have excluded holdings within B67 supplemental uplink and n77 C-band.</p>
+<p>For spectrum totals in this section, I have excluded holdings within B67 supplemental downlink and n77 C-band not already included in n78.</p>
 
-<p style={{ marginBottom: 0 }}>B67 is not supported by any consumer devices and Three's n77 license does not permit usage for mobile coverage.</p>
+<p style={{ marginBottom: 0 }}>B67 is not supported by any consumer devices and Three's n77 license (3925&ndash;4009&nbsp;MHz) does not permit usage for mobile coverage.</p>
 </MinorAlert>
 </aside>
 
@@ -282,7 +295,7 @@ Cellmapper allows us to see crowdsourced data about sites for most mobile networ
 ### Post-merger spectrum outlook
 
 A merger of Vodafone and Three would result in a monopoly on spectrum assets, with the combined entity holding 496.7&nbsp;MHz of spectrum, which
-is over two times the amount of spectrum held by the next network, EE, at 210&nbsp;MHz (plus 20&nbsp;MHz B67 SUL).
+is over two times the amount of spectrum held by the next network, EE, at 210&nbsp;MHz (plus 20&nbsp;MHz B67 SDL).
 
 The joint-venture would hold a total of 42.4&nbsp;MHz of paired low band spectrum which, combined with the significant pool of physical network
 infrastructure provided through both Cornerstone, MBNL, and Three's own portfolio, would offer a significant rural coverage and performance
@@ -399,7 +412,7 @@ My predictions for any spectrum sales are:
 # Overall impact on the UK market
 
 Looking into the future with 5G and especially 5G SA, C-band spectrum holdings are looking to be the most important for network capacity and
-performance. Looking at other three-network markets, such as Denmark<sup id="note-1-link">[\[1\]](#note-1)</sup>, we can see spectrum holdings
+performance. Looking at other three-network markets, such as Denmark<sup id="note-2-link">[\[2\]](#note-2)</sup>, we can see spectrum holdings
 are often split relatively evenly between all networks, as well as in contiguous chunks. This is where the UK spectrum market falls short, with
 all three networks' n78 C-band holdings being split into two chunks. Without an entire reshuffle of spectrum holdings, which networks may not be
 keen on due to radio network investments, or an extremely unfair advantage for one network, it's hard to see how the UK can fix this.
@@ -410,22 +423,27 @@ infrastructure may allow the network to provide more competitively priced offeri
 providing consumers with fewer options, and create a lack of pricing competition.
 
 The Competition and Markets Authority (CMA) is currently investigating the merger, and their recent history of preventing mergers is not a
-promising outlook for Vodafone and Three. A similar merger in the USA between T-Mobile and Sprint is wellknown as a failure, resulting in
+promising outlook for Vodafone and Three. A similar merger in the USA between T-Mobile and Sprint is well known as a failure, resulting in
 price-jacking and skimping on investment. The CMA also blocked a £54 billion merger between Microsoft and Activision Blizzard earlier in 2023,
 before the companies submitted a new bid in August 2023 with the hope to win over the regulator.
 
 Vodafone UK and Vodafone Group as a whole appear to be entering some rough times. The company's share price has dropped almost 40% within the
-last year alone (Sep 2022: 113p; Sep 2023: 73p), despite improving annual operating profits since at least 2019. Compared to the Group's other
-European markets, the UK is one of the least successful and least profitable. It may be the case that without this merger, Vodafone UK may not be
-able to survive in the long-term, or will require substantial "bank of mum and dad" funding from the Group's more profitable sectors.
+last year alone (Sep 2022: 113p; Sep 2023: 73p) and, in
+[Ofcom's published return on capital employed figures](https://www.ofcom.org.uk/__data/assets/excel_doc/0032/233699/mno-roce-calculations.xlsx),
+Vodafone is the only network whose ROCE is negative, and it has been negative for at least 3 years before 2020, indicating there are significant
+inefficiencies in Vodafone UK that require attention. In comparison, Three's ROCE was 3% and Virgin Media O2's was 11.6% is 2020. On the other
+hand, it is likely that upon a successful merger, the joint-venture business will be much more efficient and more profitable.
 
-Noone will be able to say for certain the effects of a merger between the two mobile networks. It could be a huge success, or it could be a
+No-one will be able to say for certain the effects of a merger between the two mobile networks. It could be a huge success, or it could be a
 complete flop for the UK telecoms market. And, if the merger does proceed, it will almost certainly be with some very big 'ifs' and 'buts'.
 
 ---
 
 # Notes
 
-<sup id="note-1">[\[1\]](#note-1-link)</sup> While Denmark has four networks, Telia and Telenor share all spectrum holdings and infrastructure, and
+<sup id="note-1">[\[1\]](#note-1-link)</sup> Unbundling, or its full term "local loop unbundling", is the process of allowing multiple telecoms networks
+to utilise connections from a telephone exchange to a customer's premises.
+
+<sup id="note-2">[\[2\]](#note-2-link)</sup> While Denmark has four networks, Telia and Telenor share all spectrum holdings and infrastructure, and
 operate a single MOCN network under the joint-venture TT-Netværket. They, too, attempted a merger in 2014-15, but failed to agree conditions with
 EU regulators.
