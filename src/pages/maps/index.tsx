@@ -38,7 +38,7 @@ export default function MapsPage({ location }: PageProps) {
 
   return (
     <Layout location={location} title="Maps">
-      <Hero firstElement size="huge" color={Colors.primaryRed}>
+      <Hero firstElement size="large" color={Colors.primaryRed}>
         <h1 className="text-shout">Maps</h1>
         <p role="doc-subtitle" className="text-loud">
           Useful mobile-networking maps, such as maps of upcoming works and registered&nbsp;sites.

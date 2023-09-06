@@ -4,10 +4,30 @@ import readingTime from 'reading-time'
 
 const BlogArticlesPerPage = 16
 
+import { GatsbyNode } from 'gatsby'
+
+export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] = ({ actions }) => {
+  actions.createTypes(`
+    type Mdx {
+      frontmatter: MdxFrontmatter!
+    }
+    
+    type MdxFrontmatter {
+      title: String!
+      description: String!
+      path: String!
+      archived: Boolean
+      redirect_from: [String]
+      created_at: Date! @dateformat
+      updated_at: Date @dateformat
+    }
+  `)
+}
+
 /**
  * Customise webpack config.
  */
-export const onCreateWebpackConfig = ({ stage, rules, loaders, plugins, actions }) => {
+export const onCreateWebpackConfig: GatsbyNode['onCreateWebpackConfig'] = ({ stage, rules, loaders, plugins, actions }) => {
   if (stage === 'develop' || stage === 'build-javascript') {
     actions.setWebpackConfig({
       plugins: [new CaseSensitivePathsPlugin()],
@@ -70,19 +90,18 @@ export const onCreateWebpackConfig = ({ stage, rules, loaders, plugins, actions 
   })
 }
 
-export const createPages = async inp => {
-  await createBlogArticles(inp)
-  await createBlogListing(inp)
+export const createPages: GatsbyNode['createPages'] = async inp => {
+  await Promise.all([createBlogArticles(inp), createBlogListing(inp)])
 }
 
-export const onCreateNode = ({ node, actions }) => {
+export const onCreateNode: GatsbyNode<Queries.Mdx>['onCreateNode'] = ({ node, actions }) => {
   const { createNodeField } = actions
 
   if (node.internal.type === `Mdx`) {
     createNodeField({
       node,
       name: `timeToRead`,
-      value: readingTime(node.body),
+      value: readingTime(node.body!),
     })
   }
 }
@@ -90,11 +109,11 @@ export const onCreateNode = ({ node, actions }) => {
 /**
  * Create blog article pages.
  */
-async function createBlogArticles({ actions, graphql, reporter }) {
+const createBlogArticles: GatsbyNode['createPages'] = async ({ actions, graphql, reporter }) => {
   const { createRedirect } = actions
 
-  const result = await graphql(`
-    {
+  const result = await graphql<Queries.createBlogArticlesQuery>(`
+    query createBlogArticles {
       allMdx {
         nodes {
           frontmatter {
@@ -112,11 +131,7 @@ async function createBlogArticles({ actions, graphql, reporter }) {
     }
   `)
 
-  if (result.errors) {
-    reporter.panic('failed to create posts ', result.errors)
-  }
-
-  const pages = result.data.allMdx.nodes
+  const pages = result.data!.allMdx.nodes
 
   pages.forEach((page, i) => {
     const { frontmatter, id, internal } = page
@@ -148,10 +163,10 @@ async function createBlogArticles({ actions, graphql, reporter }) {
 /**
  * Create blog listings.
  */
-async function createBlogListing({ actions, graphql, reporter }) {
+const createBlogListing: GatsbyNode['createPages'] = async ({ actions, graphql, reporter }) => {
   const { createPage, createRedirect } = actions
-  const result = await graphql(`
-    {
+  const result = await graphql<Queries.createBlogListingQuery>(`
+    query createBlogListing {
       allMdx(sort: { frontmatter: { created_at: DESC } }, filter: { frontmatter: { archived: { ne: true } } }) {
         nodes {
           id
@@ -165,7 +180,7 @@ async function createBlogListing({ actions, graphql, reporter }) {
     return
   }
 
-  const posts = result.data.allMdx.nodes
+  const posts = result.data!.allMdx.nodes
   const numPages = Math.ceil(posts.length / BlogArticlesPerPage)
 
   createRedirect({

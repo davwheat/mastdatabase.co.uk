@@ -17,7 +17,7 @@ export default function VirginMediaDeploymentInfoPage({ location }: PageProps) {
       title="Virgin Media deployment info"
       description="Discover hidden information about Virgin Media deployments in your local area with just a house number and postcode."
     >
-      <Hero firstElement size="huge" color={Colors.primaryBlue}>
+      <Hero firstElement size="large" color={Colors.primaryBlue}>
         <h1 className="text-shout">Virgin Media deployment info</h1>
         <p role="doc-subtitle" className="text-loud">
           Discover hidden information about Virgin Media deployments in your local area with just a house number and postcode.

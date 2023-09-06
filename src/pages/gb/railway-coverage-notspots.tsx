@@ -47,7 +47,7 @@ export default function UKRailwayCoverageNotSpotMap({ location }: PageProps) {
       description='Everywhere on the British railway network marked as not having "indoor" 4G coverage.'
     >
       <ErrorBoundaryContext>
-        <Hero firstElement size="huge" color={Colors.primaryBlue}>
+        <Hero firstElement size="large" color={Colors.primaryBlue}>
           <h1 className="text-shout">Railway coverage not-spots</h1>
           <p role="doc-subtitle" className="text-loud">
             Everywhere on the British railway network marked as not having "indoor" 4G coverage.

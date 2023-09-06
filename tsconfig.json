@@ -1,5 +1,5 @@
 {
-  "include": ["./src/**/*"],
+  "include": ["./src/**/*", "./gatsby-node.ts", "./gatsby-config.ts", "./plugins/**/*"],
   "compilerOptions": {
     "target": "ESNext" /* or at least ES2015 */,
     "module": "ESNext" /* or at least ES2015 */,

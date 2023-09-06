@@ -94,7 +94,7 @@ function CoverageMapsPage({ location }: PageProps) {
 
   return (
     <Layout location={location} title="Coverage maps for the UK" description="Official mobile network coverage maps for the UK.">
-      <Hero firstElement size="huge" color={Colors.primaryBlue}>
+      <Hero firstElement size="large" color={Colors.primaryBlue}>
         <h1 className="text-shout">Coverage maps for the UK</h1>
         <p role="doc-subtitle" className="text-loud">
           Official mobile network coverage maps for the UK.

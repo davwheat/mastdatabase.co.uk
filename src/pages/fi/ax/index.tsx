@@ -66,7 +66,7 @@ function MobileNetworkingPage({ location }: PageProps) {
       title="Mobile networking in the Åland Islands"
       description="A collection of Åland Islands mobile networking tools and datasets compiled by the community."
     >
-      <Hero firstElement size="huge" color={Colors.primaryBlue}>
+      <Hero firstElement size="large" color={Colors.primaryBlue}>
         <h1 className="text-shout">Mobile networking in the Åland Islands</h1>
         <p role="doc-subtitle" className="text-loud">
           A collection of mobile networking tools and datasets from the Åland Islands compiled by the community.

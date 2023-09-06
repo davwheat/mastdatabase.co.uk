@@ -67,7 +67,7 @@ export default function MobileNetworkingPage({ location }: PageProps) {
       title="Mobile networking in Italy"
       description="A collection of Italian mobile networking tools and datasets compiled by the community."
     >
-      <Hero firstElement size="huge" color={Colors.primaryBlue}>
+      <Hero firstElement size="large" color={Colors.primaryBlue}>
         <h1 className="text-shout">Mobile networking in Italy</h1>
         <p role="doc-subtitle" className="text-loud">
           A collection of Italian mobile networking tools and datasets compiled by the community.

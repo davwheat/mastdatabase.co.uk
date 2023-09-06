@@ -15,7 +15,7 @@ import { PageProps } from 'gatsby'
 function DEArfcnListPage({ location }: PageProps) {
   return (
     <Layout location={location} title="German ARFCN list" description="A mostly complete list of German mobile networks' ARFCNs for 4G LTE.">
-      <Hero firstElement size="huge" color={Colors.primaryBlue}>
+      <Hero firstElement size="large" color={Colors.primaryBlue}>
         <h1 className="text-shout">German ARFCN list</h1>
         <p role="doc-subtitle" className="text-loud">
           A mostly complete dataset of German mobile network data carriers by their NR/EARFCN.

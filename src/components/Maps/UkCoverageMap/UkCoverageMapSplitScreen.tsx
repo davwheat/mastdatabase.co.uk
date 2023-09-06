@@ -315,7 +315,7 @@ export default function UkCoverageMapSplitScreen() {
 
     return (
       <Layout location={location} title="All UK networks coverage map" description="See an interactive coverage map for all UK networks.">
-        <Hero firstElement size="huge" color={Colors.primaryRed}>
+        <Hero firstElement size="large" color={Colors.primaryRed}>
           <h1 className="text-shout">All networks coverage map</h1>
           <p role="doc-subtitle" className="text-loud">
             See an interactive coverage map for all UK networks.

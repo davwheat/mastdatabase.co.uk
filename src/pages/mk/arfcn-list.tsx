@@ -21,7 +21,7 @@ function MKArfcnListPage({ location }: PageProps) {
       title="North Macedonian ARFCN list"
       description="A mostly complete list of North Macedonian mobile networks' ARFCNs for 4G LTE and 5G NR."
     >
-      <Hero firstElement size="huge" color={Colors.primaryBlue}>
+      <Hero firstElement size="large" color={Colors.primaryBlue}>
         <h1 className="text-shout">North Macedonian ARFCN list</h1>
         <p role="doc-subtitle" className="text-loud">
           A mostly complete dataset of North Macedonian mobile network data carriers by their NR/EARFCN.

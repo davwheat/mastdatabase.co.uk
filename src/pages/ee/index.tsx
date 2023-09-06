@@ -61,7 +61,7 @@ function MobileNetworkingPage({ location }: PageProps) {
       title="Mobile networking in Estonia"
       description="A collection of Estonian mobile networking tools and datasets compiled by the community."
     >
-      <Hero firstElement size="huge" color={Colors.primaryBlue}>
+      <Hero firstElement size="large" color={Colors.primaryBlue}>
         <h1 className="text-shout">Mobile networking in Estonia</h1>
         <p role="doc-subtitle" className="text-loud">
           A collection of Estonian mobile networking tools and datasets compiled by the community.

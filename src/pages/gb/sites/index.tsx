@@ -35,7 +35,7 @@ export default function UkTelcoSitesMapPage({ location }: PageProps) {
   return (
     <Layout location={location} title="UK telecom sites map" description="View an incomplete map of telecoms sites across the UK.">
       <ErrorBoundaryContext>
-        <Hero firstElement size="huge" color={Colors.primaryRed}>
+        <Hero firstElement size="large" color={Colors.primaryRed}>
           <h1 className="text-shout">UK telecom sites map</h1>
           <p role="doc-subtitle" className="text-loud">
             View an incomplete map of telecoms sites across the UK compiled from government data.

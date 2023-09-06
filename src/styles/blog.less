@@ -17,6 +17,18 @@
       list-style: decimal outside;
     }
 
+    ol,
+    ul {
+      li {
+        margin-top: 4px;
+        margin-bottom: 4px;
+
+        > p:last-of-type {
+          margin-bottom: 0;
+        }
+      }
+    }
+
     h1,
     h2,
     h3,
@@ -143,8 +155,15 @@
       display: block;
       padding: 0 32px;
 
-      margin-top: -0.5em;
-      margin-bottom: 0.5em;
+      &:not(:first-child) {
+        margin-top: -0.5em;
+        margin-bottom: 0.5em;
+      }
+
+      &:first-child {
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
+      }
 
       // .text-whisper-up
       font-size: 15px;
