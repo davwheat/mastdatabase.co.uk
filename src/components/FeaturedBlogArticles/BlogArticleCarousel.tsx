@@ -8,6 +8,7 @@ import ForwardChevron from 'mdi-react/ChevronRightIcon'
 
 import type { Query } from './FeaturedBlogArticles'
 import { makeStyles } from '@material-ui/core'
+import Breakpoints from '@data/breakpoints'
 
 type ArticleData = Query['allMdx']['nodes'][number]
 
@@ -17,6 +18,17 @@ const useStyles = makeStyles({
     gridTemplateColumns: 'auto 1fr auto',
     gap: 24,
     alignItems: 'center',
+
+    gridTemplateAreas: `"prev list next"`,
+
+    [Breakpoints.upTo.tablet]: {
+      gridTemplateAreas: `
+      "list list list"
+      "prev . next"
+      `,
+      gap: 16,
+      marginTop: 16,
+    },
   },
   list: {
     margin: 0,
@@ -25,6 +37,7 @@ const useStyles = makeStyles({
     gridTemplateColumns: 'repeat(3, 100%)',
     overflow: 'hidden',
     alignItems: 'center',
+    gridArea: 'list',
 
     '& > li': {
       transform: 'translateX(calc(var(--shown-item) * -100%))',
@@ -33,6 +46,12 @@ const useStyles = makeStyles({
         transition: 'none',
       },
     },
+  },
+  previous: {
+    gridArea: 'prev',
+  },
+  next: {
+    gridArea: 'next',
   },
 })
 
@@ -60,7 +79,7 @@ export default function BlogArticleCarousel({ articles }: { articles: readonly A
 
   return (
     <div className={classes.root}>
-      <Button onClick={prev} aria-label="See previous">
+      <Button className={classes.previous} onClick={prev} aria-label="See previous">
         <BackChevron />
       </Button>
       <ul className={classes.list} style={{ '--shown-item': shownIndex } as any}>
@@ -68,7 +87,7 @@ export default function BlogArticleCarousel({ articles }: { articles: readonly A
           <BlogArticleCarouselItem article={article} shown={shownIndex === i} />
         ))}
       </ul>
-      <Button onClick={next} aria-label="See next">
+      <Button className={classes.next} onClick={next} aria-label="See next">
         <ForwardChevron />
       </Button>
     </div>
