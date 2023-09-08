@@ -628,6 +628,7 @@ const StationSegmentsWithCoverage: CoverageGroup[] = [
       },
       {
         section: 'Warren Street to Euston',
+        lineFilter: ['Victoria'],
         startStationId: '940GZZLUWRR',
         endStationId: '940GZZLUEUS',
       },
