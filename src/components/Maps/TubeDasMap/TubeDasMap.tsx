@@ -491,6 +491,7 @@ function lineToChip(line: AllLines | '???'): string {
 
 function generatePopupContentForStation(feature: geojson.Feature<geojson.GeometryObject, GeoJsonStationProperties>): HTMLDivElement {
   const popupContent = document.createElement('div')
+  popupContent.setAttribute('data-station-id', feature.properties.id)
 
   const lines = getLinesFromFeature(feature, [])
   const { coverage, coverageNotes, opens } = getStationInfo(feature.properties.id)
