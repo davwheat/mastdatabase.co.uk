@@ -8666,7 +8666,7 @@
         "cartography": {
           "labelX": -25,
           "labelY": -20,
-          "display_name": "Stratford\nInternational"
+          "display_name": "Stratford International"
         },
         "zone": "2/3"
       },
@@ -10992,7 +10992,7 @@
         "cartography": {
           "labelX": 1,
           "labelY": -45,
-          "display_name": "Custom\nHouse"
+          "display_name": "Custom House"
         },
         "zone": "3"
       },
@@ -11024,7 +11024,7 @@
         "cartography": {
           "labelX": 20,
           "labelY": 45,
-          "display_name": "Dalston\nJunction"
+          "display_name": "Dalston Junction"
         },
         "zone": "2"
       },
@@ -11358,12 +11358,12 @@
       "type": "Feature",
       "properties": {
         "id": "910GFNTLSR",
-        "name": "Farringdon (Rail)",
+        "name": "Farringdon (Elizabeth Line)",
         "nlc_id": "9509",
         "lines": [
           {
             "name": "Elizabeth line",
-            "opened": 2019
+            "opened": 2022
           },
           {
             "name": "National Rail"
@@ -14571,8 +14571,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          0.070810011273918,
-          51.491789996747343
+          0.07081,
+          51.49179
         ]
       }
     },
