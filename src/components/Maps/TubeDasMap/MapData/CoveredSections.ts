@@ -354,6 +354,18 @@ const StationSegmentsWithCoverage: CoverageGroup[] = [
           Vodafone: CoveragePresets.tunnels.Vodafone.normal,
         },
       },
+      {
+        section: 'Oxford Circus to Tottenham Court Road',
+        startStationId: '940GZZLUOXC',
+        endStationId: '940GZZLUTCR',
+        opens: '8 September 2023',
+        services: {
+          EE: CoveragePresets.tunnels.EE.normal,
+          Three: CoveragePresets.tunnels.Three.normal,
+          O2: CoveragePresets.tunnels.O2.normal,
+          Vodafone: CoveragePresets.tunnels.Vodafone.normal,
+        },
+      },
     ],
   },
   {
@@ -416,12 +428,37 @@ const StationSegmentsWithCoverage: CoverageGroup[] = [
   {
     groupName: 'Central Line',
     state: 'planned',
-    opens: 'Summer 2023',
+    opens: 'by end of Spring 2024',
     segments: [
       {
-        section: 'Oxford Circus to Tottenham Court Road',
-        startStationId: '940GZZLUOXC',
-        endStationId: '940GZZLUTCR',
+        section: "White City to Shepherd's Bush",
+        startStationId: '940GZZLUWCY',
+        endStationId: '940GZZLUSBC',
+      },
+      {
+        section: "Shepherd's Bush to Holland Park",
+        startStationId: '940GZZLUSBC',
+        endStationId: '940GZZLUHPK',
+      },
+      {
+        section: 'Queensway to Lancaster Gate',
+        startStationId: '940GZZLUQWY',
+        endStationId: '940GZZLULGT',
+      },
+      {
+        section: 'Lancaster Gate to Marble Arch',
+        startStationId: '940GZZLULGT',
+        endStationId: '940GZZLUMBA',
+      },
+      {
+        section: 'Marble Arch to Bond Street',
+        startStationId: '940GZZLUMBA',
+        endStationId: '940GZZLUBND',
+      },
+      {
+        section: 'Bond Street to Oxford Circus',
+        startStationId: '940GZZLUBND',
+        endStationId: '940GZZLUOXC',
       },
       {
         section: 'Tottenham Court Road to Holborn',
@@ -448,8 +485,9 @@ const StationSegmentsWithCoverage: CoverageGroup[] = [
   {
     groupName: 'Northern Line',
     state: 'planned',
-    opens: 'Summer 2023',
+    opens: 'by end of Spring 2024',
     segments: [
+      // Charing Cross branch
       {
         section: 'Tottenham Court Road to Goodge Street',
         startStationId: '940GZZLUTCR',
@@ -467,6 +505,13 @@ const StationSegmentsWithCoverage: CoverageGroup[] = [
         endStationId: '940GZZLUEUS',
       },
       {
+        section: 'Euston to Camden Town',
+        startStationId: '940GZZLUEUS',
+        endStationId: '940GZZLUCTN',
+      },
+
+      // Bank branch
+      {
         section: 'Euston to Mornington Crescent',
         startStationId: '940GZZLUEUS',
         endStationId: '940GZZLUMTC',
@@ -476,11 +521,8 @@ const StationSegmentsWithCoverage: CoverageGroup[] = [
         startStationId: '940GZZLUMTC',
         endStationId: '940GZZLUCTN',
       },
-      {
-        section: 'Camden Town to Kentish Town',
-        startStationId: '940GZZLUCTN',
-        endStationId: '940GZZLUKSH',
-      },
+
+      // Edgware branch
       {
         section: 'Camden Town to Chalk Farm',
         startStationId: '940GZZLUCTN',
@@ -496,13 +538,123 @@ const StationSegmentsWithCoverage: CoverageGroup[] = [
         startStationId: '940GZZLUBZP',
         endStationId: '940GZZLUHTD',
       },
+      {
+        section: 'Hampstead to Golders Green',
+        startStationId: '940GZZLUHTD',
+        endStationId: '940GZZLUGGN',
+      },
+
+      // High Barnet branch
+      {
+        section: 'Archway to Highgate',
+        startStationId: '940GZZLUACY',
+        endStationId: '940GZZLUHGT',
+      },
+      {
+        section: 'Highgate to East Finchley',
+        startStationId: '940GZZLUHGT',
+        endStationId: '940GZZLUEFY',
+      },
+    ],
+  },
+  {
+    groupName: 'Elizabeth line',
+    state: 'planned',
+    opens: 'by end of Spring 2024',
+    segments: [
+      // #region Core
+      {
+        section: 'Paddington to Bond Street',
+        startStationId: '910GPADTLL',
+        endStationId: '910GBONDST',
+      },
+      {
+        section: 'Bond Street to Tottenham Court Road',
+        startStationId: '910GBONDST',
+        endStationId: '910GTOTCTRD',
+      },
+      {
+        section: 'Tottenham Court Road to Farringdon',
+        startStationId: '910GTOTCTRD',
+        endStationId: '910GFNTLSR',
+      },
+      {
+        section: 'Farringdon to Liverpool Street',
+        startStationId: '910GFNTLSR',
+        endStationId: '910GLIVSTLL',
+      },
+      {
+        section: 'Liverpool Street to Whitechapel',
+        startStationId: '910GLIVSTLL',
+        endStationId: '910GWCHAPEL',
+      },
+      // #endregion
+
+      // #region Shenfield branch
+      {
+        section: 'Whitechapel to Stratford',
+        startStationId: '910GWCHAPEL',
+        endStationId: '910GSTFD',
+      },
+      // #endregion
+
+      // #region Abbey Wood branch
+      {
+        section: 'Whitechapel to Canary Wharf',
+        startStationId: '910GWCHAPEL',
+        endStationId: '910G950',
+      },
+      {
+        section: 'Canary Wharf to Custom House',
+        startStationId: '910G950',
+        endStationId: '910GCUSTMHS',
+      },
+      {
+        section: 'Custom House to Woolwich',
+        startStationId: '910GCUSTMHS',
+        endStationId: '910GWOLWXR',
+      },
+    ],
+  },
+  {
+    groupName: 'Victoria Line',
+    state: 'planned',
+    opens: 'by end of Spring 2024',
+    segments: [
+      {
+        section: 'Oxford Circus to Warren Street',
+        startStationId: '940GZZLUOXC',
+        endStationId: '940GZZLUWRR',
+      },
+      {
+        section: 'Warren Street to Euston',
+        startStationId: '940GZZLUWRR',
+        endStationId: '940GZZLUEUS',
+      },
+    ],
+  },
+  {
+    groupName: 'Piccadilly Line',
+    state: 'planned',
+    opens: 'by end of Spring 2024',
+    segments: [
+      {
+        section: 'Russell Square to Holborn',
+        startStationId: '940GZZLURSQ',
+        endStationId: '940GZZLUHBN',
+      },
+      {
+        section: 'Holborn to Covent Garden',
+        startStationId: '940GZZLUHBN',
+        endStationId: '940GZZLUCGN',
+      },
     ],
   },
 ]
 
 const StationCoverageInfo: Record<string, StationCoverageInfo> = {
   // #region Northern Line
-  // #region Northern Line, Kentish Branch
+  // #region Northern Line, High Barnet branch
   // Kentish Town
   '940GZZLUKSH': {
     state: 'live',
@@ -536,8 +688,21 @@ const StationCoverageInfo: Record<string, StationCoverageInfo> = {
       O2: CoveragePresets.station.O2.with_5g,
     },
   },
+  // Highgate
+  '940GZZLUHGT': {
+    state: 'planned',
+    opens: 'by end of Spring 2024',
+    coverage: {},
+  },
+  // East Finchley
+  '940GZZLUEFY': {
+    state: 'planned',
+    opens: 'by end of Spring 2024',
+    coverage: {},
+  },
   // #endregion
 
+  // #region Northern Line, Edgware/High Barnet meeting point
   // Camden Town
   '940GZZLUCTN': {
     state: 'live',
@@ -563,52 +728,80 @@ const StationCoverageInfo: Record<string, StationCoverageInfo> = {
   // Euston
   '940GZZLUEUS': {
     state: 'planned',
-    opens: 'Summer 2023',
+    opens: 'by end of Spring 2024',
     coverage: {},
   },
+  // #endregion
+
+  // #region Northern Line, Bank branch
   // Warren Street
   '940GZZLUWRR': {
     state: 'planned',
-    opens: 'Summer 2023',
+    opens: 'by end of Spring 2024',
     coverage: {},
   },
   // Goodge Street
   '940GZZLUGDG': {
     state: 'planned',
-    opens: 'Summer 2023',
+    opens: 'by end of Spring 2024',
     coverage: {},
   },
   // Tottenham Court Road
   '940GZZLUTCR': {
-    state: 'planned',
-    opens: 'Summer 2023',
-    coverage: {},
+    state: 'live',
+    opens: '8 September 2023',
+    coverage: {
+      EE: CoveragePresets.station.EE.with_5g,
+      Three: CoveragePresets.station.Three.with_5g,
+      Vodafone: CoveragePresets.station.Vodafone.with_5g,
+      O2: CoveragePresets.station.O2.with_5g,
+    },
   },
   // #endregion
 
-  // #region Chalk Farm branch
+  // #region Northern Line, Edgware branch
   // Chalk Farm
   '940GZZLUCFM': {
     state: 'planned',
-    opens: 'Summer 2023',
+    opens: 'by end of Spring 2024',
     coverage: {},
   },
   // Belsize Park
   '940GZZLUBZP': {
     state: 'planned',
-    opens: 'Summer 2023',
+    opens: 'by end of Spring 2024',
     coverage: {},
   },
   // Hampstead
   '940GZZLUHTD': {
     state: 'planned',
-    opens: 'Summer 2023',
+    opens: 'by end of Spring 2024',
     coverage: {},
   },
+  // Golders Green
+  '940GZZLUGGN': {
+    state: 'planned',
+    opens: 'by end of Spring 2024',
+    coverage: {},
+  },
+  // #endregion
+  // #endregion
 
   // #region Central Line
-  // Queensway
-  '940GZZLUQWY': {
+  // White City
+  '940GZZLUWCY': {
+    state: 'planned',
+    opens: 'by end of Spring 2024',
+    coverage: {},
+  },
+  // Shepherd's Bush
+  '940GZZLUSBC': {
+    state: 'planned',
+    opens: 'by end of Spring 2024',
+    coverage: {},
+  },
+  // Holland Park
+  '940GZZLUHPK': {
     state: 'live',
     opens: 'December 2022',
     coverage: {
@@ -629,8 +822,8 @@ const StationCoverageInfo: Record<string, StationCoverageInfo> = {
       O2: CoveragePresets.station.O2.with_5g,
     },
   },
-  // Holland Park
-  '940GZZLUHPK': {
+  // Queensway
+  '940GZZLUQWY': {
     state: 'live',
     opens: 'December 2022',
     coverage: {
@@ -640,40 +833,59 @@ const StationCoverageInfo: Record<string, StationCoverageInfo> = {
       O2: CoveragePresets.station.O2.no_5g,
     },
   },
+  // Lancaster Gate
+  '940GZZLULGT': {
+    state: 'planned',
+    opens: 'by end of Spring 2024',
+    coverage: {},
+  },
+  // Marble Arch
+  '940GZZLUMBA': {
+    state: 'planned',
+    opens: 'by end of Spring 2024',
+    coverage: {},
+  },
+  // Bond Street
+  '940GZZLUBND': {
+    state: 'planned',
+    opens: 'by end of Spring 2024',
+    coverage: {},
+  },
 
   // Oxford Circus
   '940GZZLUOXC': {
-    state: 'planned',
-    opens: 'Summer 2023',
-    coverage: {},
+    state: 'live',
+    opens: '8 September 2023',
+    coverage: {
+      EE: CoveragePresets.station.EE.with_5g,
+      Three: CoveragePresets.station.Three.with_5g,
+      Vodafone: CoveragePresets.station.Vodafone.with_5g,
+      O2: CoveragePresets.station.O2.with_5g,
+    },
   },
-  // Tottenham Court Road
-  // '940GZZLUTCR': {
-  //   state: 'planned',
-  //   coverage: {},
-  // },
+  // Tottenham Court Road included through Northern Line
   // Holborn
   '940GZZLUHBN': {
     state: 'planned',
-    opens: 'Summer 2023',
+    opens: 'by end of Spring 2024',
     coverage: {},
   },
   // Chancery Lane
   '940GZZLUCHL': {
     state: 'planned',
-    opens: 'Summer 2023',
+    opens: 'by end of Spring 2024',
     coverage: {},
   },
   // St Pauls
   '940GZZLUSPU': {
     state: 'planned',
-    opens: 'Summer 2023',
+    opens: 'by end of Spring 2024',
     coverage: {},
   },
   // Bank
   '940GZZLUBNK': {
     state: 'planned',
-    opens: 'Summer 2023',
+    opens: 'by end of Spring 2024',
     coverage: {},
   },
   // #endregion
@@ -735,6 +947,7 @@ const StationCoverageInfo: Record<string, StationCoverageInfo> = {
   },
   // #endregion
 
+  // #region Elizabeth Line
   // #region Elizabeth Line - Heathrow Branch
   // Heathrow Terminals 2 & 3
   '940GZZLUHRC': {
@@ -768,6 +981,97 @@ const StationCoverageInfo: Record<string, StationCoverageInfo> = {
       O2: CoveragePresets.station.O2.hex,
       Vodafone: CoveragePresets.station.Vodafone.hex,
     },
+  },
+  // #endregion
+
+  // #region Elizabeth Line core
+  // Paddington
+  '910GPADTLL': {
+    state: 'planned',
+    opens: 'by end of Spring 2024',
+    coverage: {},
+  },
+  // Bond Street
+  '910GBONDST': {
+    state: 'planned',
+    opens: 'by end of Spring 2024',
+    coverage: {},
+  },
+  // Tottenham Court Road
+  '910GTOTCTRD': {
+    state: 'planned',
+    opens: 'by end of Spring 2024',
+    coverage: {},
+  },
+  // Farringdon
+  '910GFNTLSR': {
+    state: 'planned',
+    opens: 'by end of Spring 2024',
+    coverage: {},
+  },
+  // Liverpool Street
+  '910GLIVSTLL': {
+    state: 'planned',
+    opens: 'by end of Spring 2024',
+    coverage: {},
+  },
+  // Whitechapel
+  '910GWCHAPEL': {
+    state: 'planned',
+    opens: 'by end of Spring 2024',
+    coverage: {},
+  },
+  // #endregion
+
+  // #region Elizabeth Line - Shenfield Branch
+  // Stratford
+  '910GSTFD': {
+    state: 'planned',
+    opens: 'by end of Spring 2024',
+    coverage: {},
+  },
+  // #endregion
+
+  // #region Elizabeth Line - Abbey Wood Branch
+  // Canary Wharf
+  '910G950': {
+    state: 'planned',
+    opens: 'by end of Spring 2024',
+    coverage: {},
+  },
+  // Custom House
+  '910GCUSTMHS': {
+    state: 'planned',
+    opens: 'by end of Spring 2024',
+    coverage: {},
+  },
+  // Woolwich
+  '910GWOLWXR': {
+    state: 'planned',
+    opens: 'by end of Spring 2024',
+    coverage: {},
+  },
+  // #endregion
+
+  // #region Victoria Line
+  // Oxford Circus included through Central Line
+  // Warren Street included through Northern Line
+  // Euston included through Northern Line
+  // #endregion
+
+  // #region Piccadilly Line
+  // Russell Square
+  '940GZZLURSQ': {
+    state: 'planned',
+    opens: 'by end of Spring 2024',
+    coverage: {},
+  },
+  // Holborn included through Central Line
+  // Covent Garden
+  '940GZZLUCGN': {
+    state: 'planned',
+    opens: 'by end of Spring 2024',
+    coverage: {},
   },
   // #endregion
 }
