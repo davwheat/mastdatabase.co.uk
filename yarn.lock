@@ -9169,6 +9169,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"gatsby-plugin-feed@npm:^5.12.0":
+  version: 5.12.0
+  resolution: "gatsby-plugin-feed@npm:5.12.0"
+  dependencies:
+    "@babel/runtime": ^7.20.13
+    common-tags: ^1.8.2
+    fs-extra: ^11.1.1
+    gatsby-plugin-utils: ^4.12.0
+    lodash.merge: ^4.6.2
+    rss: ^1.2.2
+  peerDependencies:
+    gatsby: ^5.0.0-next
+    react: ^18.0.0 || ^0.0.0
+    react-dom: ^18.0.0 || ^0.0.0
+  checksum: bcbd5c4424a51deb0b4b1ed915fd96edbf85557696bc1aae78992597320db8101703d33cbe3ade67dc46358374b4ee4f9c81e730a0c056b1672f41b987972ee1
+  languageName: node
+  linkType: hard
+
 "gatsby-plugin-image@npm:^3.12.0":
   version: 3.12.0
   resolution: "gatsby-plugin-image@npm:3.12.0"
@@ -12505,6 +12523,7 @@ __metadata:
     gatsby: ^5.12.3
     gatsby-plugin-canonical-urls: ^5.12.0
     gatsby-plugin-csp: ^1.1.4
+    gatsby-plugin-feed: ^5.12.0
     gatsby-plugin-image: ^3.12.0
     gatsby-plugin-less: ^7.12.0
     gatsby-plugin-manifest: ^5.12.0
@@ -13373,6 +13392,22 @@ __metadata:
   version: 1.52.0
   resolution: "mime-db@npm:1.52.0"
   checksum: 0d99a03585f8b39d68182803b12ac601d9c01abfa28ec56204fa330bc9f3d1c5e14beb049bafadb3dbdf646dfb94b87e24d4ec7b31b7279ef906a8ea9b6a513f
+  languageName: node
+  linkType: hard
+
+"mime-db@npm:~1.25.0":
+  version: 1.25.0
+  resolution: "mime-db@npm:1.25.0"
+  checksum: bf1c56d50cb5752c5495ddf2a1dd938015c58b3bc0c8d19c4cacb198322267d6fc1b944e70efec0d5215584cf1c57d58e2d4f609094ebe3e88bdf34028ca102d
+  languageName: node
+  linkType: hard
+
+"mime-types@npm:2.1.13":
+  version: 2.1.13
+  resolution: "mime-types@npm:2.1.13"
+  dependencies:
+    mime-db: ~1.25.0
+  checksum: 661db5db5900dcf8bc345d2aea9cc2bd38d53374c000e0d8d7b592230ff37ea173b9514f15bfd89efe46476f57f1785866d13060c71d12ca98c5b5a8f662ae04
   languageName: node
   linkType: hard
 
@@ -16316,6 +16351,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"rss@npm:^1.2.2":
+  version: 1.2.2
+  resolution: "rss@npm:1.2.2"
+  dependencies:
+    mime-types: 2.1.13
+    xml: 1.0.1
+  checksum: 9f823a6c1c807b4d9a800f74063d03eb188751c2e7fab36a50d5bdc33577a03562d5a610d8c809729f5a3721805a5495119c105237a87a6bb5a8a146df8b887a
+  languageName: node
+  linkType: hard
+
 "run-applescript@npm:^5.0.0":
   version: 5.0.0
   resolution: "run-applescript@npm:5.0.0"
@@ -19031,6 +19076,13 @@ __metadata:
     sax: ">=0.6.0"
     xmlbuilder: ^4.1.0
   checksum: c45e6c7f6566513453857967a036bc6c7c0c54925bc01f19ae50117139d32f30e3af4c6d5446c0020c67c57e51bb97dd56a62dffff50c90015877df1c62b8bb5
+  languageName: node
+  linkType: hard
+
+"xml@npm:1.0.1":
+  version: 1.0.1
+  resolution: "xml@npm:1.0.1"
+  checksum: 11b5545ef3f8fec3fa29ce251f50ad7b6c97c103ed4d851306ec23366f5fa4699dd6a942262df52313a0cd1840ab26256da253c023bad3309d8ce46fe6020ca0
   languageName: node
   linkType: hard
 

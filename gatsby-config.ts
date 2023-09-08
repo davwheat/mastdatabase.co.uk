@@ -4,6 +4,8 @@ const __IS_DEV__ = process.env.NODE_ENV !== 'production'
 
 import Colors from './src/data/colors.json'
 
+const graphql = String.raw
+
 const nonCiPlugins: any[] = !(process.env.CI || process.env.CF_PAGES)
   ? [`gatsby-plugin-webpack-bundle-analyser-v2`, `gatsby-plugin-webpack-size`, `gatsby-plugin-perf-budgets`]
   : []
@@ -36,7 +38,7 @@ const config: GatsbyConfig = {
   siteMetadata: {
     title: `Mast Database`,
     description: `A collection of mobile networking tools and resources for the UK.`,
-    author: `@davwheat`,
+    author: `David Wheatley`,
     siteUrl: `https://mastdatabase.co.uk`,
   },
   // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
@@ -147,6 +149,66 @@ const config: GatsbyConfig = {
           },
           `gatsby-remark-static-images`,
           `gatsby-remark-copy-linked-files`,
+        ],
+      },
+    },
+    {
+      resolve: `gatsby-plugin-feed`,
+      options: {
+        query: `
+          {
+            site {
+              siteMetadata {
+                title
+                description
+                siteUrl
+                site_url: siteUrl
+              }
+            }
+          }
+        `,
+        feeds: [
+          {
+            serialize: ({ query: { site, allMdx } }) => {
+              return allMdx.nodes.map(n => {
+                const url = new URL(n.frontmatter.path, site.siteMetadata.siteUrl + '/blog/').href
+
+                return {
+                  title: n.frontmatter.title,
+                  description: n.frontmatter.description ?? n.excerpt,
+                  author: n.frontmatter.author ?? 'David Wheatley',
+                  date: n.frontmatter.created_at,
+                  guid: url,
+                  url: url,
+                }
+              })
+            },
+            query: graphql`
+              query {
+                allMdx(sort: { frontmatter: { created_at: DESC } }, filter: { frontmatter: { archived: { ne: true } } }) {
+                  nodes {
+                    frontmatter {
+                      title
+                      description
+                      path
+                      created_at
+                    }
+                    id
+                    excerpt
+                  }
+                }
+              }
+            `,
+            managingEditor: 'blog@mastdatabase.co.uk (David Wheatley)',
+            copyright: `${new Date().getFullYear()} David Wheatley`,
+            language: 'en',
+            output: '/blog/rss.xml',
+            title: 'Mastdatabase.co.uk blog feed',
+            description: 'Various mobile networking related blog articles and market analyses from mastdatabase.co.uk.',
+            site_url: 'https://mastdatabase.co.uk',
+            feed_url: 'https://mastdatabase.co.uk/blog/rss.xml',
+            ttl: 60,
+          },
         ],
       },
     },

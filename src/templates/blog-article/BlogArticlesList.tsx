@@ -7,6 +7,8 @@ import Layout from '@components/Layout'
 import Hero from '@components/Design/Hero'
 import Section from '@components/Design/Section'
 import Breadcrumbs from '@components/Design/Breadcrumbs'
+import Link from '@components/Links/Link'
+import RSSIcon from 'mdi-react/RssIcon'
 
 import Colors from '@data/colors.json'
 
@@ -100,6 +102,13 @@ export default function BlogArticlesList({
       />
 
       <Section width="wider">
+        <p className="text-speak" style={{ textAlign: 'right', marginBottom: 16 }}>
+          Don't want to keep checking this page?{' '}
+          <Link href="/blog/rss.xml" internal={false} style={{ display: 'inline-flex', alignItems: 'center', verticalAlign: 'bottom' }}>
+            <RSSIcon style={{ fontSize: '1em' }} /> Use our RSS feed
+          </Link>
+        </p>
+
         <ul className={classes.list}>{Posts}</ul>
       </Section>
 
@@ -107,6 +116,19 @@ export default function BlogArticlesList({
         <PageNavigator currentPage={currentPage} maxPage={numPages} />
       </Section>
     </Layout>
+  )
+}
+
+export function Head() {
+  return (
+    <>
+      <link
+        rel="alternate"
+        type="application/rss+xml"
+        title="RSS Feed for mastdatabase.co.uk blog articles"
+        href="https://mastdatabase.co.uk/blog/rss.xml"
+      />
+    </>
   )
 }
 
