@@ -144,7 +144,7 @@ interface IAllSpectrumMaps {
   hideLicenseInfo?: boolean
   hideHighlighter?: boolean
   customColors?: Record<string, string[]>
-  customCaption(locationName: string, bandNames: string[]): string
+  customCaption?: (locationName: string, bandNames: string[]) => string
   dontWrapWithPageSection?: boolean
 }
 
