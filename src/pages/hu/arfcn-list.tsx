@@ -31,8 +31,8 @@ function HUArfcnListPage({ location }: PageProps) {
       <Breadcrumbs
         data={[
           { t: 'Home', url: '/' },
-          { t: 'Hungary', url: '/HU' },
-          { t: 'ARFCN list', url: '/HU/arfcn-list' },
+          { t: 'Hungary', url: '/hu' },
+          { t: 'ARFCN list', url: '/hu/arfcn-list' },
         ]}
       />
 
