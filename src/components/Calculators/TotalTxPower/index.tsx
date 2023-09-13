@@ -73,7 +73,7 @@ export default function LteTotalRadioPowerCalculator() {
 
   return (
     <div>
-      <h2 className="text-loud">Total LTE RRU/RFFU transmit power calculator</h2>
+      <h2 className="text-loud">Total LTE RRU/RFU transmit power calculator</h2>
 
       <p className="text-speak">
         Options other than total transmit power may be slightly inaccurate due to the nature of calculations involved.
