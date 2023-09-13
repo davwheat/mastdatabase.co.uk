@@ -54,6 +54,7 @@ export interface ITextBoxProps extends Omit<React.HTMLAttributes<HTMLInputElemen
    */
   pattern?: string
   disabled?: boolean
+  readOnly?: boolean
 }
 
 const useStyles = makeStyles({
