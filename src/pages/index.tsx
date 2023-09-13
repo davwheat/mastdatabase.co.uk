@@ -141,6 +141,7 @@ export default function IndexPage({ location }: PageProps) {
             url="/spectrum-editor"
           />
           <CardLink title="Blog" description="Mobile networking blog, explaining technologies, new developments and more." url="/blog" />
+          <CardLink title="Tools" description="Handy tools and calculators for networking values and parameters." url="/tools" />
         </div>
       </Section>
 
