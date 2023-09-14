@@ -14,7 +14,7 @@
     "@material-ui/styles": "^4.11.5",
     "@mdx-js/react": "^2.3.0",
     "@reach/tabs": "^0.18.0",
-    "@sentry/gatsby": "^7.66.0",
+    "@sentry/gatsby": "^7.69.0",
     "@slixites/gatsby-plugin-google-fonts": "^1.1.1",
     "active-resource": "^1.0.0-beta.7",
     "case-sensitive-paths-webpack-plugin": "^2.4.0",
