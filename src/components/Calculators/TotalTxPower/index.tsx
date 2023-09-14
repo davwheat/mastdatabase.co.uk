@@ -73,7 +73,7 @@ export default function LteTotalRadioPowerCalculator() {
 
   return (
     <div>
-      <h2 className="text-loud">Total LTE RRU/RFFU transmit power calculator</h2>
+      <h2 className="text-loud">Total LTE RRU/RFU transmit power calculator</h2>
 
       <p className="text-speak">
         Options other than total transmit power may be slightly inaccurate due to the nature of calculations involved.
@@ -156,7 +156,7 @@ export default function LteTotalRadioPowerCalculator() {
             <TextBox
               label="Total transmit power"
               value={maths
-                .calculateTotalPower(parseInt(state.rsp), state.txPorts, maths.getRbsForBandwidth(state.bandwidth), parseInt(state.pb))
+                .calculateTotalPower(parseFloat(state.rsp), state.txPorts, maths.getRbsForBandwidth(state.bandwidth), parseInt(state.pb))
                 .toFixed(4)}
               readOnly
               endAdornment="dBm"
@@ -166,7 +166,7 @@ export default function LteTotalRadioPowerCalculator() {
               label="Total transmit power"
               value={maths
                 .dBmToWatts(
-                  maths.calculateTotalPower(parseInt(state.rsp), state.txPorts, maths.getRbsForBandwidth(state.bandwidth), parseInt(state.pb)),
+                  maths.calculateTotalPower(parseFloat(state.rsp), state.txPorts, maths.getRbsForBandwidth(state.bandwidth), parseInt(state.pb)),
                 )
                 .toFixed(4)}
               readOnly
@@ -189,7 +189,7 @@ export default function LteTotalRadioPowerCalculator() {
           <TextBox
             label="Tx antenna ports"
             value={maths
-              .calculateTxPorts(state.txPower, parseInt(state.rsp), maths.getRbsForBandwidth(state.bandwidth), parseInt(state.pb))
+              .calculateTxPorts(state.txPower, parseFloat(state.rsp), maths.getRbsForBandwidth(state.bandwidth), parseInt(state.pb))
               .toString()}
             readOnly
             endAdornment="ports"
@@ -201,7 +201,7 @@ export default function LteTotalRadioPowerCalculator() {
           <div className={tbClasses.root}>
             <TextBox
               label="Carrier bandwidth"
-              value={maths.calculateRbCount(state.txPower, parseInt(state.rsp), state.txPorts, parseInt(state.pb)).toString()}
+              value={maths.calculateRbCount(state.txPower, parseFloat(state.rsp), state.txPorts, parseInt(state.pb)).toString()}
               readOnly
               endAdornment="RBs"
               onInput={() => {}}
@@ -209,7 +209,7 @@ export default function LteTotalRadioPowerCalculator() {
             <TextBox
               label="Carrier bandwidth"
               value={maths
-                .getBandwidthForRbs(maths.calculateRbCount(state.txPower, parseInt(state.rsp), state.txPorts, parseInt(state.pb)))
+                .getBandwidthForRbs(maths.calculateRbCount(state.txPower, parseFloat(state.rsp), state.txPorts, parseInt(state.pb)))
                 .toString()}
               readOnly
               endAdornment="MHz"
@@ -221,7 +221,7 @@ export default function LteTotalRadioPowerCalculator() {
         {outputType === 'pb' && (
           <TextBox
             label="p-b"
-            value={maths.calculatePb(state.txPower, parseInt(state.rsp), state.txPorts, maths.getRbsForBandwidth(state.bandwidth)).toString()}
+            value={maths.calculatePb(state.txPower, parseFloat(state.rsp), state.txPorts, maths.getRbsForBandwidth(state.bandwidth)).toString()}
             readOnly
             onInput={() => {}}
           />
