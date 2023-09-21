@@ -5347,17 +5347,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"better-sqlite3@npm:^8.1.0":
-  version: 8.6.0
-  resolution: "better-sqlite3@npm:8.6.0"
-  dependencies:
-    bindings: ^1.5.0
-    node-gyp: latest
-    prebuild-install: ^7.1.1
-  checksum: 9ebdfd675352347cda1ba30d620a3c512d9db827a1eba66460fd48203a7ad8138b0195893bbf47d40f704bcdd598710041271d4ed69779979b6f784c0d3579a1
-  languageName: node
-  linkType: hard
-
 "bfj@npm:^6.1.1":
   version: 6.1.2
   resolution: "bfj@npm:6.1.2"
@@ -5395,15 +5384,6 @@ __metadata:
   version: 2.2.0
   resolution: "binary-extensions@npm:2.2.0"
   checksum: ccd267956c58d2315f5d3ea6757cf09863c5fc703e50fbeb13a7dc849b812ef76e3cf9ca8f35a0c48498776a7478d7b4a0418e1e2b8cb9cb9731f2922aaad7f8
-  languageName: node
-  linkType: hard
-
-"bindings@npm:^1.5.0":
-  version: 1.5.0
-  resolution: "bindings@npm:1.5.0"
-  dependencies:
-    file-uri-to-path: 1.0.0
-  checksum: 65b6b48095717c2e6105a021a7da4ea435aa8d3d3cd085cb9e85bcb6e5773cf318c4745c3f7c504412855940b585bdf9b918236612a1c7a7942491de176f1ae7
   languageName: node
   linkType: hard
 
@@ -8566,13 +8546,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"file-uri-to-path@npm:1.0.0":
-  version: 1.0.0
-  resolution: "file-uri-to-path@npm:1.0.0"
-  checksum: b648580bdd893a008c92c7ecc96c3ee57a5e7b6c4c18a9a09b44fb5d36d79146f8e442578bc0e173dc027adf3987e254ba1dfd6e3ec998b7c282873010502144
-  languageName: node
-  linkType: hard
-
 "filename-reserved-regex@npm:^2.0.0":
   version: 2.0.0
   resolution: "filename-reserved-regex@npm:2.0.0"
@@ -10553,7 +10526,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"http-cache-semantics@npm:^4.0.0, http-cache-semantics@npm:^4.1.0, http-cache-semantics@npm:^4.1.1":
+"http-cache-semantics@npm:^4.0.0, http-cache-semantics@npm:^4.1.1":
   version: 4.1.1
   resolution: "http-cache-semantics@npm:4.1.1"
   checksum: 83ac0bc60b17a3a36f9953e7be55e5c8f41acc61b22583060e8dedc9dd5e3607c823a88d0926f9150e571f90946835c7fe150732801010845c72cd8bbff1a236
@@ -11866,7 +11839,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"kleur@npm:^4.0.3, kleur@npm:^4.1.5":
+"kleur@npm:^4.0.3":
   version: 4.1.5
   resolution: "kleur@npm:4.1.5"
   checksum: 1dc476e32741acf0b1b5b0627ffd0d722e342c1b0da14de3e8ae97821327ca08f9fb944542fb3c126d90ac5f27f9d804edbe7c585bf7d12ef495d115e0f22c12
@@ -12576,7 +12549,7 @@ __metadata:
     twemoji: ^14.0.2
     typescript: ^5.2.2
     uuid: ^9.0.0
-    wrangler: ^3.6.0
+    wrangler: ^3.9.0
   languageName: unknown
   linkType: soft
 
@@ -13493,18 +13466,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"miniflare@npm:3.20230904.0":
-  version: 3.20230904.0
-  resolution: "miniflare@npm:3.20230904.0"
+"miniflare@npm:3.20230918.0":
+  version: 3.20230918.0
+  resolution: "miniflare@npm:3.20230918.0"
   dependencies:
     acorn: ^8.8.0
     acorn-walk: ^8.2.0
-    better-sqlite3: ^8.1.0
     capnp-ts: ^0.7.0
     exit-hook: ^2.2.1
     glob-to-regexp: ^0.4.1
-    http-cache-semantics: ^4.1.0
-    kleur: ^4.1.5
     source-map-support: 0.5.21
     stoppable: ^1.1.0
     undici: ^5.22.1
@@ -13512,7 +13482,7 @@ __metadata:
     ws: ^8.11.0
     youch: ^3.2.2
     zod: ^3.20.6
-  checksum: 2011a5d684abe4f420c199ee87a94584a3a1dedf874ad54f46101c0d282a29fbc16fc25798ea9972183ec0335d790402c7f30e1b006de7a9bc9e846225a9d7cb
+  checksum: d43e1cd8a7d030bd73e364042ebb64314037341c088818cefd7e72d2c9f4db710c0d23d1320c5ffe25c1d6970277b8b57210df2aebaf2237edcf413566a47f3d
   languageName: node
   linkType: hard
 
@@ -17003,14 +16973,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"source-map@npm:^0.6.0, source-map@npm:^0.6.1, source-map@npm:~0.6.0, source-map@npm:~0.6.1":
+"source-map@npm:0.6.1, source-map@npm:^0.6.0, source-map@npm:^0.6.1, source-map@npm:~0.6.0, source-map@npm:~0.6.1":
   version: 0.6.1
   resolution: "source-map@npm:0.6.1"
   checksum: 59ce8640cf3f3124f64ac289012c2b8bd377c238e316fb323ea22fbfe83da07d81e000071d7242cad7a23cd91c7de98e4df8830ec3f133cb6133a5f6e9f67bc2
   languageName: node
   linkType: hard
 
-"source-map@npm:^0.7.0, source-map@npm:^0.7.3, source-map@npm:^0.7.4":
+"source-map@npm:^0.7.0, source-map@npm:^0.7.3":
   version: 0.7.4
   resolution: "source-map@npm:0.7.4"
   checksum: 01cc5a74b1f0e1d626a58d36ad6898ea820567e87f18dfc9d24a9843a351aaa2ec09b87422589906d6ff1deed29693e176194dc88bcae7c9a852dc74b311dbf5
@@ -18929,9 +18899,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"wrangler@npm:^3.6.0":
-  version: 3.7.0
-  resolution: "wrangler@npm:3.7.0"
+"wrangler@npm:^3.9.0":
+  version: 3.9.0
+  resolution: "wrangler@npm:3.9.0"
   dependencies:
     "@cloudflare/kv-asset-handler": ^0.2.0
     "@esbuild-plugins/node-globals-polyfill": ^0.2.3
@@ -18940,11 +18910,12 @@ __metadata:
     chokidar: ^3.5.3
     esbuild: 0.17.19
     fsevents: ~2.3.2
-    miniflare: 3.20230904.0
+    miniflare: 3.20230918.0
     nanoid: ^3.3.3
     path-to-regexp: ^6.2.0
     selfsigned: ^2.0.1
-    source-map: ^0.7.4
+    source-map: 0.6.1
+    source-map-support: 0.5.21
     xxhash-wasm: ^1.0.1
   dependenciesMeta:
     fsevents:
@@ -18952,7 +18923,7 @@ __metadata:
   bin:
     wrangler: bin/wrangler.js
     wrangler2: bin/wrangler.js
-  checksum: ae70bb2958d5f7d8d7b1d114b1cf11d81667b2f402821f44ec5662e74bfc42596cf0f84cf2a62c2a468542903bcd3f4dc7b37a32dcda5ac28bb7b91ee85af7aa
+  checksum: 643818793c1040d34492962371dc96648bdae28cdc00384be19075346d044d775bf2f2951c33f05a665170b656e42dfcd413254b0e2069a0023ef70454496609
   languageName: node
   linkType: hard
 
