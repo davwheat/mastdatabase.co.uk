@@ -55,7 +55,7 @@
     "leaflet.sync": "^0.2.4",
     "mdi-react": "^9.2.0",
     "mobile-spectrum-data": "^1.12.0",
-    "nanoid": "^4.0.2",
+    "nanoid": "^5.0.1",
     "prop-types": "^15.8.1",
     "rbush": "^3.0.1",
     "react": "^18.2.0",
