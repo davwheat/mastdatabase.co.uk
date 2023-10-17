@@ -12545,7 +12545,7 @@ __metadata:
     leaflet.sync: ^0.2.4
     mdi-react: ^9.2.0
     mobile-spectrum-data: ^1.12.0
-    nanoid: ^4.0.2
+    nanoid: ^5.0.2
     prettier: ^3.0.3
     prop-types: ^15.8.1
     rbush: ^3.0.1
@@ -13788,12 +13788,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nanoid@npm:^4.0.2":
-  version: 4.0.2
-  resolution: "nanoid@npm:4.0.2"
+"nanoid@npm:^5.0.2":
+  version: 5.0.2
+  resolution: "nanoid@npm:5.0.2"
   bin:
     nanoid: bin/nanoid.js
-  checksum: 747c399cea4664dd0be1d0ec498ffd1ef8f1f5221676fc8b577e3f46f66d9afcddb9595d63d19a2e78d0bc6cc33984f65e66bf1682c850b9e26288883d96b53f
+  checksum: fa6908c2c6a7a9e91e02b98cb0b9b829454d390a63f83c1798f0c504d07b536d99cad3e975e5014b176534e67e234ff66bccd4610bf3ffb2cf0d6d932a73f3a8
   languageName: node
   linkType: hard
 
