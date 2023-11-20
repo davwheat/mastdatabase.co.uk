@@ -374,6 +374,30 @@ const StationSegmentsWithCoverage: CoverageGroup[] = [
     opens: 'January 2023',
     segments: [
       {
+        section: 'Euston to Camden Town',
+        startStationId: '940GZZLUEUS',
+        endStationId: '940GZZLUCTN',
+        opens: 'September 2023',
+        services: {
+          EE: CoveragePresets.tunnels.EE.normal,
+          Three: CoveragePresets.tunnels.Three.normal,
+          O2: CoveragePresets.tunnels.O2.normal,
+          Vodafone: CoveragePresets.tunnels.Vodafone.normal,
+        },
+      },
+      {
+        section: 'Euston to Mornington Crescent',
+        startStationId: '940GZZLUEUS',
+        endStationId: '940GZZLUMTC',
+        opens: 'September 2023',
+        services: {
+          EE: CoveragePresets.tunnels.EE.normal,
+          Three: CoveragePresets.tunnels.Three.normal,
+          O2: CoveragePresets.tunnels.O2.normal,
+          Vodafone: CoveragePresets.tunnels.Vodafone.normal,
+        },
+      },
+      {
         section: 'Mornington Crescent to Camden Town',
         startStationId: '940GZZLUMTC',
         endStationId: '940GZZLUCTN',
@@ -414,6 +438,71 @@ const StationSegmentsWithCoverage: CoverageGroup[] = [
         startStationId: '940GZZLUTFP',
         endStationId: '940GZZLUACY',
         opens: 'January 2023',
+        services: {
+          EE: CoveragePresets.tunnels.EE.normal,
+          Three: CoveragePresets.tunnels.Three.normal,
+          O2: CoveragePresets.tunnels.O2.normal,
+          Vodafone: CoveragePresets.tunnels.Vodafone.normal,
+        },
+      },
+
+      // Edgware branch
+      {
+        section: 'Camden Town to Chalk Farm',
+        startStationId: '940GZZLUCTN',
+        endStationId: '940GZZLUCFM',
+        opens: 'October 2023',
+        services: {
+          EE: CoveragePresets.tunnels.EE.normal,
+          Three: CoveragePresets.tunnels.Three.normal,
+          O2: CoveragePresets.tunnels.O2.normal,
+          Vodafone: CoveragePresets.tunnels.Vodafone.normal,
+        },
+      },
+      {
+        section: 'Chalk Farm to Belsize Park',
+        startStationId: '940GZZLUCFM',
+        endStationId: '940GZZLUBZP',
+        opens: 'October 2023',
+        services: {
+          EE: CoveragePresets.tunnels.EE.normal,
+          Three: CoveragePresets.tunnels.Three.normal,
+          O2: CoveragePresets.tunnels.O2.normal,
+          Vodafone: CoveragePresets.tunnels.Vodafone.normal,
+        },
+      },
+
+      // Charing X branch
+      {
+        section: 'Tottenham Court Road to Goodge Street',
+        startStationId: '940GZZLUTCR',
+        endStationId: '940GZZLUGDG',
+        opens: 'September 2023',
+        services: {
+          EE: CoveragePresets.tunnels.EE.normal,
+          Three: CoveragePresets.tunnels.Three.normal,
+          O2: CoveragePresets.tunnels.O2.normal,
+          Vodafone: CoveragePresets.tunnels.Vodafone.normal,
+        },
+      },
+      {
+        section: 'Goodge Street to Warren Street',
+        startStationId: '940GZZLUGDG',
+        endStationId: '940GZZLUWRR',
+        opens: 'October 2023',
+        services: {
+          EE: CoveragePresets.tunnels.EE.normal,
+          Three: CoveragePresets.tunnels.Three.normal,
+          O2: CoveragePresets.tunnels.O2.normal,
+          Vodafone: CoveragePresets.tunnels.Vodafone.normal,
+        },
+      },
+      {
+        section: 'Warren Street to Euston',
+        lineFilter: ['Northern'],
+        startStationId: '940GZZLUWRR',
+        endStationId: '940GZZLUEUS',
+        opens: 'October 2023',
         services: {
           EE: CoveragePresets.tunnels.EE.normal,
           Three: CoveragePresets.tunnels.Three.normal,
@@ -488,51 +577,12 @@ const StationSegmentsWithCoverage: CoverageGroup[] = [
     opens: 'by end of Spring 2024',
     segments: [
       // Charing Cross branch
-      {
-        section: 'Tottenham Court Road to Goodge Street',
-        startStationId: '940GZZLUTCR',
-        endStationId: '940GZZLUGDG',
-      },
-      {
-        section: 'Goodge Street to Warren Street',
-        startStationId: '940GZZLUGDG',
-        endStationId: '940GZZLUWRR',
-      },
-      {
-        section: 'Warren Street to Euston',
-        lineFilter: ['Northern'],
-        startStationId: '940GZZLUWRR',
-        endStationId: '940GZZLUEUS',
-      },
-      {
-        section: 'Euston to Camden Town',
-        startStationId: '940GZZLUEUS',
-        endStationId: '940GZZLUCTN',
-      },
+      // ...
 
       // Bank branch
-      {
-        section: 'Euston to Mornington Crescent',
-        startStationId: '940GZZLUEUS',
-        endStationId: '940GZZLUMTC',
-      },
-      {
-        section: 'Mornington Crescent to Camden Town',
-        startStationId: '940GZZLUMTC',
-        endStationId: '940GZZLUCTN',
-      },
+      // ...
 
       // Edgware branch
-      {
-        section: 'Camden Town to Chalk Farm',
-        startStationId: '940GZZLUCTN',
-        endStationId: '940GZZLUCFM',
-      },
-      {
-        section: 'Chalk Farm to Belsize Park',
-        startStationId: '940GZZLUCFM',
-        endStationId: '940GZZLUBZP',
-      },
       {
         section: 'Belsize Park to Hampstead',
         startStationId: '940GZZLUBZP',
@@ -728,24 +778,39 @@ const StationCoverageInfo: Record<string, StationCoverageInfo> = {
   },
   // Euston
   '940GZZLUEUS': {
-    state: 'planned',
-    opens: 'by end of Spring 2024',
-    coverage: {},
+    state: 'live',
+    opens: 'September 2023',
+    coverage: {
+      EE: CoveragePresets.station.EE.with_5g,
+      Three: CoveragePresets.station.Three.with_5g,
+      Vodafone: CoveragePresets.station.Vodafone.with_5g,
+      O2: CoveragePresets.station.O2.with_5g,
+    },
   },
   // #endregion
 
   // #region Northern Line, Bank branch
   // Warren Street
   '940GZZLUWRR': {
-    state: 'planned',
-    opens: 'by end of Spring 2024',
-    coverage: {},
+    state: 'live',
+    opens: 'October 2023',
+    coverage: {
+      EE: CoveragePresets.station.EE.with_5g,
+      Three: CoveragePresets.station.Three.with_5g,
+      Vodafone: CoveragePresets.station.Vodafone.with_5g,
+      O2: CoveragePresets.station.O2.with_5g,
+    },
   },
   // Goodge Street
   '940GZZLUGDG': {
-    state: 'planned',
-    opens: 'by end of Spring 2024',
-    coverage: {},
+    state: 'live',
+    opens: 'October 2023',
+    coverage: {
+      EE: CoveragePresets.station.EE.with_5g,
+      Three: CoveragePresets.station.Three.with_5g,
+      Vodafone: CoveragePresets.station.Vodafone.with_5g,
+      O2: CoveragePresets.station.O2.with_5g,
+    },
   },
   // Tottenham Court Road
   '940GZZLUTCR': {
@@ -763,15 +828,25 @@ const StationCoverageInfo: Record<string, StationCoverageInfo> = {
   // #region Northern Line, Edgware branch
   // Chalk Farm
   '940GZZLUCFM': {
-    state: 'planned',
-    opens: 'by end of Spring 2024',
-    coverage: {},
+    state: 'live',
+    opens: 'October 2023',
+    coverage: {
+      EE: CoveragePresets.station.EE.with_5g,
+      Three: CoveragePresets.station.Three.with_5g,
+      Vodafone: CoveragePresets.station.Vodafone.with_5g,
+      O2: CoveragePresets.station.O2.with_5g,
+    },
   },
   // Belsize Park
   '940GZZLUBZP': {
-    state: 'planned',
-    opens: 'by end of Spring 2024',
-    coverage: {},
+    state: 'live',
+    opens: 'October 2023',
+    coverage: {
+      EE: CoveragePresets.station.EE.with_5g,
+      Three: CoveragePresets.station.Three.with_5g,
+      Vodafone: CoveragePresets.station.Vodafone.with_5g,
+      O2: CoveragePresets.station.O2.with_5g,
+    },
   },
   // Hampstead
   '940GZZLUHTD': {
