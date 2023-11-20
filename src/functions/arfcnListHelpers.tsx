@@ -138,8 +138,8 @@ export function getSortButton(
           ? NumericSortIconAsc
           : NumericSortIconDesc
         : sort.direction === 'asc'
-        ? AlphaSortIconAsc
-        : AlphaSortIconDesc
+          ? AlphaSortIconAsc
+          : AlphaSortIconDesc
   } else {
     Icon = type === 'num' ? NumericSortIcon : AlphaSortIcon
   }
