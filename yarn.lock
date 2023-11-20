@@ -18106,11 +18106,11 @@ __metadata:
   linkType: hard
 
 "undici@npm:^5.22.1":
-  version: 5.25.4
-  resolution: "undici@npm:5.25.4"
+  version: 5.27.2
+  resolution: "undici@npm:5.27.2"
   dependencies:
     "@fastify/busboy": "npm:^2.0.0"
-  checksum: fd3fe046ceec56783801025c0a48f2c1402c1b6f3140ab840903b731b2c95a31a84b140f1a8e552cc8d61980c8e6d61689de2254a51ce25c735e6c2060c3b995
+  checksum: 2bf96b102fb84568fb235bdf6e1e352e5d2bf99566b243cd1b13b41578bf9dd5c7c3d3d82192b20a3fec61fe7a528f9d80cd5b4555ce65405c06c69b023013de
   languageName: node
   linkType: hard
 
