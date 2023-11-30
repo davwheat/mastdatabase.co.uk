@@ -11,7 +11,6 @@ export default class O2CoverageMapProvider extends CoverageProvider<true> {
 
   readonly providerIcon = (<O2Logo />)
 
-  protected version = 'v189'
   protected allVersions: Record<string, string> = {
     v184: '25 Nov 2022',
     v185: '25 Jan 2023',
@@ -19,7 +18,9 @@ export default class O2CoverageMapProvider extends CoverageProvider<true> {
     v187: '10 July 2023',
     v188: '1 August 2023',
     v189: '30 August 2023',
+    v190: '14 November 2023',
   }
+  protected version = 'v190'
 
   getLayers(): ICoverageLayer[] {
     return [
