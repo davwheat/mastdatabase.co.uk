@@ -14,7 +14,7 @@
     "@material-ui/styles": "^4.11.5",
     "@mdx-js/react": "^2.3.0",
     "@reach/tabs": "^0.18.0",
-    "@sentry/gatsby": "^7.81.0",
+    "@sentry/gatsby": "^7.84.0",
     "@slixites/gatsby-plugin-google-fonts": "^1.1.1",
     "active-resource": "^1.0.0-beta.7",
     "case-sensitive-paths-webpack-plugin": "^2.4.0",
@@ -23,7 +23,7 @@
     "file-saver": "^2.0.5",
     "font-color-contrast": "^11.1.0",
     "fuse.js": "^6.6.2",
-    "gatsby": "^5.12.9",
+    "gatsby": "^5.12.11",
     "gatsby-plugin-canonical-urls": "^5.12.0",
     "gatsby-plugin-csp": "^1.1.4",
     "gatsby-plugin-feed": "^5.12.3",
@@ -83,8 +83,8 @@
     "@types/leaflet": "^1.9.8",
     "@types/leaflet.markercluster": "^1.5.4",
     "@types/material-ui": "^0.21.14",
-    "@types/rbush": "^3.0.2",
-    "@types/react": "^18.2.37",
+    "@types/rbush": "^3.0.3",
+    "@types/react": "^18.2.39",
     "@types/throttle-debounce": "^5.0.2",
     "@types/uuid": "^9.0.7",
     "@welldone-software/why-did-you-render": "^7.0.1",
@@ -96,7 +96,7 @@
     "gatsby-plugin-webpack-bundle-analyser-v2": "^1.1.32",
     "prettier": "^3.1.0",
     "typescript": "^5.3.2",
-    "wrangler": "^3.16.0"
+    "wrangler": "^3.17.1"
   },
   "license": "MIT",
   "scripts": {
