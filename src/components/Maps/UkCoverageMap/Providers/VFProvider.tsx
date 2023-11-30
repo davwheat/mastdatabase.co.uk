@@ -18,8 +18,9 @@ export default class VodafoneCoverageMapProvider extends CoverageProvider<true> 
     '2023-07-31': '31 July 2023',
     '2023-08-31': '31 August 2023',
     '2023-09-29': '29 September 2023',
+    '2023-11-28': '28 November 2023',
   }
-  protected version = '2023-09-29'
+  protected version = '2023-11-28'
 
   getLayerKeys(): ICoverageLayerKey[] {
     const genericKey = [
