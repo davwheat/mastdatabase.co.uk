@@ -7,37 +7,37 @@ import AllSpectrumMaps from '@components/MobileNetworking/AllSpectrumMaps'
 import SpectrumTotallerSection from '@components/MobileNetworking/SpectrumTotallerSection'
 
 import Colors from '@data/colors.json'
-import RUAllBands from 'mobile-spectrum-data/RU'
+import TTAllBands from 'mobile-spectrum-data/TT'
 
 import type { PageProps } from 'gatsby'
 
-function RUSpectrumAllocationPage({ location }: PageProps) {
+function TTSpectrumAllocationPage({ location }: PageProps) {
   return (
     <Layout
       location={location}
-      title="Russian mobile spectrum allocation"
+      title="Trinidadian and Tobagonian mobile spectrum allocation"
       description="A visualisation of spectrum allocation across Russia, per operator and radio access technology."
     >
       <Hero firstElement size="large" color={Colors.primaryBlue}>
-        <h1 className="text-shout">Russian mobile spectrum allocation</h1>
+        <h1 className="text-shout">Trinidadian and Tobagonian mobile spectrum allocation</h1>
         <p role="doc-subtitle" className="text-loud">
-          A visualisation of spectrum allocation across Russia, per operator and radio access technology.
+          A visualisation of spectrum allocation across Trinidad and Tobago, per operator and radio access technology.
         </p>
       </Hero>
 
       <Breadcrumbs
         data={[
           { t: 'Home', url: '/' },
-          { t: 'Russia', url: '/ru' },
-          { t: 'Mobile spectrum allocation', url: '/ru/spectrum' },
+          { t: 'Trinidad and Tobago', url: '/tt' },
+          { t: 'Mobile spectrum allocation', url: '/tt/spectrum' },
         ]}
       />
 
-      <SpectrumTotallerSection countryCode="RU" bandsData={RUAllBands} />
+      <SpectrumTotallerSection countryCode="TT" bandsData={TTAllBands} />
 
-      <AllSpectrumMaps locationName="Russia" countryCode="RU" bandsData={RUAllBands} />
+      <AllSpectrumMaps locationName="Trinidad and Tobago" countryCode="TT" bandsData={TTAllBands} />
     </Layout>
   )
 }
 
-export default RUSpectrumAllocationPage
+export default TTSpectrumAllocationPage
