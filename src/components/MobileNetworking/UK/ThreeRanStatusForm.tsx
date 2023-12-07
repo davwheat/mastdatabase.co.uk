@@ -55,7 +55,7 @@ const useStyles = makeStyles({
 
 interface IFormState {
   postcode: string
-  endpoint: 'coverage' | 'outages' | 'hbb'
+  client: 'coverage' | 'status'
   errorText: string | null
 }
 
@@ -64,7 +64,7 @@ export default function ThreeRanStatusForm() {
 
   const [formState, setFormState] = useState<IFormState>({
     postcode: '',
-    endpoint: 'coverage',
+    client: 'coverage',
     errorText: null,
   })
   const [formLoading, setFormLoading] = useState(false)
@@ -81,7 +81,7 @@ export default function ThreeRanStatusForm() {
 
     const params = new URLSearchParams()
     params.append('postcode', formState.postcode)
-    params.append('endpoint', formState.endpoint)
+    params.append('client', formState.client)
 
     let data
 
@@ -130,17 +130,17 @@ export default function ThreeRanStatusForm() {
       <Section>
         <h2 className="text-louder">Parameters</h2>
         <p className="text-speak">Please enter the postcode of the location to check, and the endpoint to access.</p>
+        <p className="text-speak">For client, the coverage option often provides more detailed responses than status despite its name.</p>
 
         <div className={classes.formGroup}>
           <RadioButtonGroup
-            groupLabel="API endpoint"
-            value={formState.endpoint}
+            groupLabel="Client"
+            value={formState.client}
             options={[
               { label: 'Coverage', value: 'coverage' },
-              { label: 'Outages', value: 'outages' },
-              { label: 'Home broadband', value: 'hbb' },
+              { label: 'Status', value: 'status' },
             ]}
-            onChange={s => setFormState(f => ({ ...f, endpoint: s }))}
+            onChange={s => setFormState(f => ({ ...f, client: s }))}
             disabled={formLoading}
           />
 
