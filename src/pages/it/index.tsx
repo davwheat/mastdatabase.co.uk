@@ -77,7 +77,7 @@ export default function MobileNetworkingPage({ location }: PageProps) {
       <Breadcrumbs
         data={[
           { t: 'Home', url: '/' },
-          { t: 'Italy', url: '/lt' },
+          { t: 'Italy', url: '/it' },
         ]}
       />
 

@@ -33,12 +33,12 @@ const Links: ILinkGroup[] = [
       // {
       //   title: 'NR/EARFCN list',
       //   description: 'A list of Latvian mobile network frequencies by their NRARFCNs and EARFCNs.',
-      //   url: '/lt/arfcn-list',
+      //   url: '/lv/arfcn-list',
       // },
       {
         title: 'Spectrum allocation',
         description: 'A visualisation of spectrum allocation for mobile networks within Latvia.',
-        url: '/lt/spectrum',
+        url: '/lv/spectrum',
       },
     ],
   },

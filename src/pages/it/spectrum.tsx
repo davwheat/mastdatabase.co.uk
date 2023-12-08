@@ -28,8 +28,8 @@ function LTSpectrumAllocationPage({ location }: PageProps) {
       <Breadcrumbs
         data={[
           { t: 'Home', url: '/' },
-          { t: 'Italy', url: '/lt' },
-          { t: 'Mobile spectrum allocation', url: '/lt/spectrum' },
+          { t: 'Italy', url: '/it' },
+          { t: 'Mobile spectrum allocation', url: '/it/spectrum' },
         ]}
       />
 
