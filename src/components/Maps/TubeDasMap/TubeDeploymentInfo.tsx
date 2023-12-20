@@ -138,7 +138,8 @@ export function TubeDeploymentInfo() {
 
       <p className="text-speak">
         Three does not have 5G service inside tunnels yet, but it is likely that they will deploy n28 in the future, similar to O2 and EE, as
-        they have spectrum holdings within this band.
+        they have spectrum holdings within this band. Elizabeth line tunnel coverage is not live yet, but it is possible they will not contain 5G
+        coverage shown below that is present on other TfL tunnels.
       </p>
 
       <figure className={classes.coverageTableFigure}>
