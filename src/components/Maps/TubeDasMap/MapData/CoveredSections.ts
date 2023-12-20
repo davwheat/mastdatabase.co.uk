@@ -44,6 +44,12 @@ export const CoveragePresets: Record<'tunnels' | 'station', Record<Networks, Rec
         '4G': ['B1', 'B3', 'B3', 'B20'],
         '5G': ['n28'],
       },
+      elizabeth: {
+        '2G': ['G18'],
+        '3G': null,
+        '4G': ['B1', 'B3', 'B3', 'B20'],
+        '5G': null,
+      },
       jle: {
         '2G': ['G18'],
         '3G': null,
@@ -59,6 +65,12 @@ export const CoveragePresets: Record<'tunnels' | 'station', Record<Networks, Rec
     },
     Three: {
       normal: {
+        '2G': null,
+        '3G': null,
+        '4G': ['B1', 'B3'],
+        '5G': null,
+      },
+      elizabeth: {
         '2G': null,
         '3G': null,
         '4G': ['B1', 'B3'],
@@ -84,6 +96,12 @@ export const CoveragePresets: Record<'tunnels' | 'station', Record<Networks, Rec
         '4G': ['B1', 'B8', 'B20'],
         '5G': ['n28'],
       },
+      elizabeth: {
+        '2G': ['G18'],
+        '3G': ['U09'],
+        '4G': ['B1', 'B8', 'B20'],
+        '5G': null,
+      },
       jle: {
         '2G': null,
         '3G': ['U09'],
@@ -103,6 +121,12 @@ export const CoveragePresets: Record<'tunnels' | 'station', Record<Networks, Rec
         '3G': ['U21'],
         '4G': ['B1', 'B20', 'B3', 'B8'],
         '5G': ['n8'],
+      },
+      elizabeth: {
+        '2G': ['G09'],
+        '3G': ['U21'],
+        '4G': ['B1', 'B20', 'B3', 'B8'],
+        '5G': null,
       },
       jle: {
         '2G': null,
