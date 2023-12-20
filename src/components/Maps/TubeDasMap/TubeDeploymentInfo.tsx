@@ -78,7 +78,14 @@ export function TubeDeploymentInfo() {
       <h3 className="text-loud">Wider rollout</h3>
 
       <p className="text-speak">
-        The wider mobile coverage rollout is unified across all tunnel segments, however stations have both 5G and non-5G configurations present.
+        The wider mobile coverage rollout is generally unified across all tunnel segments, however stations have both 5G and non-5G
+        configurations present.
+      </p>
+
+      <p className="text-speak">
+        The Elizabeth line will not have 5G coverage at any station or tunnel segment due to potential interference issues with the signalling
+        equipment on the line. It is unclear whether this means <em>any</em> 5G, or only mid-band 5G, such as n78. There would be no reason to
+        ban 5G connectivity as a whole as low-band (sub 3 GHz) frequencies are already used for 4G LTE coverage on this line.
       </p>
 
       <p className="text-speak">
