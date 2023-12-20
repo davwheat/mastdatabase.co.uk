@@ -1089,37 +1089,67 @@ const StationCoverageInfo: Record<string, StationCoverageInfo> = {
   '910GPADTLL': {
     state: 'planned',
     opens: 'by end of Spring 2024',
-    coverage: {},
+    coverage: {
+      EE: CoveragePresets.station.EE.no_5g,
+      Three: CoveragePresets.station.Three.no_5g,
+      O2: CoveragePresets.station.O2.no_5g,
+      Vodafone: CoveragePresets.station.Vodafone.no_5g,
+    },
   },
   // Bond Street
   '910GBONDST': {
-    state: 'planned',
-    opens: 'by end of Spring 2024',
-    coverage: {},
+    state: 'live',
+    opens: '16 December 2023',
+    coverage: {
+      EE: CoveragePresets.station.EE.no_5g,
+      Three: CoveragePresets.station.Three.no_5g,
+      O2: CoveragePresets.station.O2.no_5g,
+      Vodafone: CoveragePresets.station.Vodafone.no_5g,
+    },
   },
   // Tottenham Court Road
   '910GTOTCTRD': {
-    state: 'planned',
-    opens: 'by end of Spring 2024',
-    coverage: {},
+    state: 'live',
+    opens: '16 December 2023',
+    coverage: {
+      EE: CoveragePresets.station.EE.no_5g,
+      Three: CoveragePresets.station.Three.no_5g,
+      O2: CoveragePresets.station.O2.no_5g,
+      Vodafone: CoveragePresets.station.Vodafone.no_5g,
+    },
   },
   // Farringdon
   '910GFNTLSR': {
-    state: 'planned',
-    opens: 'by end of Spring 2024',
-    coverage: {},
+    state: 'live',
+    opens: '16 December 2023',
+    coverage: {
+      EE: CoveragePresets.station.EE.no_5g,
+      Three: CoveragePresets.station.Three.no_5g,
+      O2: CoveragePresets.station.O2.no_5g,
+      Vodafone: CoveragePresets.station.Vodafone.no_5g,
+    },
   },
   // Liverpool Street
   '910GLIVSTLL': {
-    state: 'planned',
-    opens: 'by end of Spring 2024',
-    coverage: {},
+    state: 'live',
+    opens: '16 December 2023',
+    coverage: {
+      EE: CoveragePresets.station.EE.no_5g,
+      Three: CoveragePresets.station.Three.no_5g,
+      O2: CoveragePresets.station.O2.no_5g,
+      Vodafone: CoveragePresets.station.Vodafone.no_5g,
+    },
   },
   // Whitechapel
   '910GWCHAPEL': {
     state: 'planned',
     opens: 'by end of Spring 2024',
-    coverage: {},
+    coverage: {
+      EE: CoveragePresets.station.EE.no_5g,
+      Three: CoveragePresets.station.Three.no_5g,
+      O2: CoveragePresets.station.O2.no_5g,
+      Vodafone: CoveragePresets.station.Vodafone.no_5g,
+    },
   },
   // #endregion
 
@@ -1128,7 +1158,12 @@ const StationCoverageInfo: Record<string, StationCoverageInfo> = {
   '910GSTFD': {
     state: 'planned',
     opens: 'by end of Spring 2024',
-    coverage: {},
+    coverage: {
+      EE: CoveragePresets.station.EE.no_5g,
+      Three: CoveragePresets.station.Three.no_5g,
+      O2: CoveragePresets.station.O2.no_5g,
+      Vodafone: CoveragePresets.station.Vodafone.no_5g,
+    },
   },
   // #endregion
 
@@ -1137,19 +1172,34 @@ const StationCoverageInfo: Record<string, StationCoverageInfo> = {
   '910G950': {
     state: 'planned',
     opens: 'by end of Spring 2024',
-    coverage: {},
+    coverage: {
+      EE: CoveragePresets.station.EE.no_5g,
+      Three: CoveragePresets.station.Three.no_5g,
+      O2: CoveragePresets.station.O2.no_5g,
+      Vodafone: CoveragePresets.station.Vodafone.no_5g,
+    },
   },
   // Custom House
   '910GCUSTMHS': {
     state: 'planned',
     opens: 'by end of Spring 2024',
-    coverage: {},
+    coverage: {
+      EE: CoveragePresets.station.EE.no_5g,
+      Three: CoveragePresets.station.Three.no_5g,
+      O2: CoveragePresets.station.O2.no_5g,
+      Vodafone: CoveragePresets.station.Vodafone.no_5g,
+    },
   },
   // Woolwich
   '910GWOLWXR': {
     state: 'planned',
     opens: 'by end of Spring 2024',
-    coverage: {},
+    coverage: {
+      EE: CoveragePresets.station.EE.no_5g,
+      Three: CoveragePresets.station.Three.no_5g,
+      O2: CoveragePresets.station.O2.no_5g,
+      Vodafone: CoveragePresets.station.Vodafone.no_5g,
+    },
   },
   // #endregion
 
