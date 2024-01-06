@@ -379,10 +379,46 @@ const StationSegmentsWithCoverage: CoverageGroup[] = [
         },
       },
       {
+        section: 'Bond Street to Oxford Circus',
+        startStationId: '940GZZLUBND',
+        endStationId: '940GZZLUOXC',
+        opens: 'November 2023',
+        services: {
+          EE: CoveragePresets.tunnels.EE.normal,
+          Three: CoveragePresets.tunnels.Three.normal,
+          O2: CoveragePresets.tunnels.O2.normal,
+          Vodafone: CoveragePresets.tunnels.Vodafone.normal,
+        },
+      },
+      {
         section: 'Oxford Circus to Tottenham Court Road',
         startStationId: '940GZZLUOXC',
         endStationId: '940GZZLUTCR',
         opens: '8 September 2023',
+        services: {
+          EE: CoveragePresets.tunnels.EE.normal,
+          Three: CoveragePresets.tunnels.Three.normal,
+          O2: CoveragePresets.tunnels.O2.normal,
+          Vodafone: CoveragePresets.tunnels.Vodafone.normal,
+        },
+      },
+      {
+        section: 'Tottenham Court Road to Holborn',
+        startStationId: '940GZZLUTCR',
+        endStationId: '940GZZLUHBN',
+        opens: 'November 2023',
+        services: {
+          EE: CoveragePresets.tunnels.EE.normal,
+          Three: CoveragePresets.tunnels.Three.normal,
+          O2: CoveragePresets.tunnels.O2.normal,
+          Vodafone: CoveragePresets.tunnels.Vodafone.normal,
+        },
+      },
+      {
+        section: 'Holborn to Chancery Lane',
+        startStationId: '940GZZLUHBN',
+        endStationId: '940GZZLUCHL',
+        opens: 'November 2023',
         services: {
           EE: CoveragePresets.tunnels.EE.normal,
           Three: CoveragePresets.tunnels.Three.normal,
@@ -567,21 +603,6 @@ const StationSegmentsWithCoverage: CoverageGroup[] = [
         section: 'Marble Arch to Bond Street',
         startStationId: '940GZZLUMBA',
         endStationId: '940GZZLUBND',
-      },
-      {
-        section: 'Bond Street to Oxford Circus',
-        startStationId: '940GZZLUBND',
-        endStationId: '940GZZLUOXC',
-      },
-      {
-        section: 'Tottenham Court Road to Holborn',
-        startStationId: '940GZZLUTCR',
-        endStationId: '940GZZLUHBN',
-      },
-      {
-        section: 'Holborn to Chancery Lane',
-        startStationId: '940GZZLUHBN',
-        endStationId: '940GZZLUCHL',
       },
       {
         section: 'Chancery Lane to St Pauls',
