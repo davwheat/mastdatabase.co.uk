@@ -968,11 +968,15 @@ const StationCoverageInfo: Record<string, StationCoverageInfo> = {
   },
   // Bond Street
   '940GZZLUBND': {
-    state: 'planned',
-    opens: 'by end of Spring 2024',
-    coverage: {},
+    state: 'live',
+    opens: 'November 2023',
+    coverage: {
+      EE: CoveragePresets.station.EE.with_5g,
+      Three: CoveragePresets.station.Three.with_5g,
+      Vodafone: CoveragePresets.station.Vodafone.with_5g,
+      O2: CoveragePresets.station.O2.with_5g,
+    },
   },
-
   // Oxford Circus
   '940GZZLUOXC': {
     state: 'live',
@@ -987,15 +991,25 @@ const StationCoverageInfo: Record<string, StationCoverageInfo> = {
   // Tottenham Court Road included through Northern Line
   // Holborn
   '940GZZLUHBN': {
-    state: 'planned',
-    opens: 'by end of Spring 2024',
-    coverage: {},
+    state: 'live',
+    opens: 'November 2023',
+    coverage: {
+      EE: CoveragePresets.station.EE.with_5g,
+      Three: CoveragePresets.station.Three.with_5g,
+      Vodafone: CoveragePresets.station.Vodafone.with_5g,
+      O2: CoveragePresets.station.O2.with_5g,
+    },
   },
   // Chancery Lane
   '940GZZLUCHL': {
-    state: 'planned',
-    opens: 'by end of Spring 2024',
-    coverage: {},
+    state: 'live',
+    opens: 'November 2023',
+    coverage: {
+      EE: CoveragePresets.station.EE.with_5g,
+      Three: CoveragePresets.station.Three.with_5g,
+      Vodafone: CoveragePresets.station.Vodafone.with_5g,
+      O2: CoveragePresets.station.O2.with_5g,
+    },
   },
   // St Pauls
   '940GZZLUSPU': {
