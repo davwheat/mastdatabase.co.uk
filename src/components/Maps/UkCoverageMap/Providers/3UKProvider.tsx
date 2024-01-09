@@ -4,9 +4,12 @@ import CoverageProvider, { ICoverageLayer, ICoverageLayerKey } from './CoverageP
 import ThreeLogo from '@assets/icons/brands/three.inline.svg'
 
 export default class ThreeUkCoverageMapProvider extends CoverageProvider<true> {
+  protected _version: string = '2024-01-09'
+
   providerName: string = 'Three UK'
-  defaultLayerId: number = this.getLayers().findIndex(layer => layer.label === '4G VoLTE')
+  defaultLayerIndex: number = this.getLayers().findIndex(layer => layer.label === '4G VoLTE')
   supportsSites: boolean = false
+
   readonly supportsVersionHistory = true
   readonly maxZoom = 14
 
@@ -19,11 +22,10 @@ export default class ThreeUkCoverageMapProvider extends CoverageProvider<true> {
     '2023-05-12': '12 May 2023',
     '2023-07-12': '12 July 2023',
     '2023-08-18': '18 August 2023',
+    '2024-01-09': '9 January 2024',
   }
 
-  protected version: string = '2023-08-18'
-
-  protected getTileUrl(layer: string, version: string = this.version): string {
+  protected getTileUrl(layer: string, version: string = this._version): string {
     return `https://234-20.coveragetiles.com/${version}/${layer}/{z}/{x}/{y}.png`
   }
 
@@ -34,7 +36,7 @@ export default class ThreeUkCoverageMapProvider extends CoverageProvider<true> {
     }
   }
 
-  getLayerKeys(): ICoverageLayerKey[] {
+  protected _getLayerKeys(version: string): ICoverageLayerKey[] {
     return [
       {
         key: [
@@ -42,12 +44,16 @@ export default class ThreeUkCoverageMapProvider extends CoverageProvider<true> {
           { color: '#db350e96', label: 'Good outdoors' },
         ],
       },
-      {
-        key: [
-          { color: '#dc350e', label: 'Good outdoors and indoors' },
-          { color: '#db350e96', label: 'Good outdoors' },
-        ],
-      },
+      ...(version < '2024-01-01'
+        ? [
+            {
+              key: [
+                { color: '#dc350e', label: 'Good outdoors and indoors' },
+                { color: '#db350e96', label: 'Good outdoors' },
+              ],
+            },
+          ]
+        : []),
       {
         key: [
           { color: '#dc350e', label: 'Good outdoors and indoors' },
@@ -64,10 +70,15 @@ export default class ThreeUkCoverageMapProvider extends CoverageProvider<true> {
   }
 
   getPageMessages(): string[] {
-    return []
+    return ['Since 2024, Three have removed their 4G non-VoLTE coverage layer. This layer will only be accessible on map versions before 2024.']
   }
 
-  getLayers(): ICoverageLayer[] {
+  protected _getLayers(version: string): ICoverageLayer[] {
+    // No VoLTE layer since this version
+    if (version >= '2024-01-09') {
+      return [this.getTileLayerEntry('3G', '3g'), this.getTileLayerEntry('4G VoLTE', '4g'), this.getTileLayerEntry('5G', '5g')]
+    }
+
     return [
       this.getTileLayerEntry('3G', '3g'),
       this.getTileLayerEntry('4G', '4g'),

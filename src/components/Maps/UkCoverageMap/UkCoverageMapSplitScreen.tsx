@@ -145,14 +145,14 @@ const useStyles = makeStyles({
   },
 })
 
-type ActiveProvidersState = { name: string; version: string; layerId: number }[]
+type ActiveProvidersState = { name: string; version: string; layerId: string }[]
 
 type ActiveProvidersStateAction =
   | {
       type: 'updateSelectedLayer'
       payload: {
         providerName: string
-        layerId: number
+        layerId: string
       }
     }
   | {
@@ -230,6 +230,7 @@ export default function UkCoverageMapSplitScreen() {
             provider.validate()
           } catch (e) {
             valid = false
+            console.warn(`Provider ${provider.providerName} is invalid: ${e}`)
           }
 
           return {
@@ -248,7 +249,7 @@ export default function UkCoverageMapSplitScreen() {
         .map(p => ({
           name: p.providerName,
           version: p.provider.getCurrentVersion(),
-          layerId: p.provider.defaultLayerId,
+          layerId: p.provider.getLayers()[p.provider.defaultLayerIndex].label,
         })),
     )
 
@@ -267,7 +268,7 @@ export default function UkCoverageMapSplitScreen() {
     function getTileLayersForProvider(provider: CoverageProvider<boolean>) {
       return provider
         .getLayers()
-        .map((layer, index) => ({ label: layer.label, value: index.toString() }))
+        .map(l => ({ label: l.label, value: l.label }))
         .filter((_, i) => !provider.isLayerHidden(i, filterHiddenLayers))
     }
 
@@ -275,8 +276,8 @@ export default function UkCoverageMapSplitScreen() {
       activeProviders.forEach(({ name, layerId }) => {
         const provider = allProviders.find(p => p.providerName === name)?.provider!
 
-        if (provider.isLayerHidden(layerId)) {
-          const firstNonHiddenLayer = provider.getLayers().findIndex(layer => !layer.hidden)
+        if (provider.isLayerHidden(getTileLayersForProvider(provider).findIndex(l => l.value === layerId))) {
+          const firstNonHiddenLayer = provider.getLayers().find(layer => !layer.hidden)!!.label
 
           dispatch({ type: 'updateSelectedLayer', payload: { providerName: name, layerId: firstNonHiddenLayer } })
         }
@@ -348,18 +349,36 @@ export default function UkCoverageMapSplitScreen() {
                 const tileVersions = getTileVersionsForProvider(provider)
                 const tileLayers = getTileLayersForProvider(provider)
 
-                const selectedVersionId = activeProviders.find(p => p.name === providerName)?.version!
-                const selectedLayerId = activeProviders.find(p => p.name === providerName)?.layerId!
+                if (!valid) {
+                  return (
+                    <li key={providerName}>
+                      <h3 className="text-loud">{providerName}</h3>
+
+                      {!valid && (
+                        <MinorAlert color="primaryRed" coloredBackground className={classes.providerUnavailable}>
+                          <p className="text-speak">
+                            There is an issue with this provider at the moment. We're looking into resolving this problem as quickly as possible.
+                          </p>
+                        </MinorAlert>
+                      )}
+                    </li>
+                  )
+                }
+
+                const selectedVersionId = activeProviders.find(p => p.name === providerName)!.version!
+                const selectedLayerId = activeProviders.find(p => p.name === providerName)!.layerId!
+
+                let selectedLayerIndex = tileLayers.findIndex(l => l.label === selectedLayerId)
+                if (selectedLayerIndex === -1) {
+                  dispatch({ type: 'updateSelectedLayer', payload: { providerName, layerId: tileLayers[provider.defaultLayerIndex].value } })
+                  console.log('updated selected layer to', tileLayers[provider.defaultLayerIndex].value)
+
+                  selectedLayerIndex = provider.defaultLayerIndex
+                }
 
                 return (
                   <li key={providerName}>
                     <h3 className="text-loud">{providerName}</h3>
-
-                    {!valid && (
-                      <MinorAlert color="primaryRed" coloredBackground className={classes.providerUnavailable}>
-                        <p className="text-speak">There is an issue with this provider at the moment.</p>
-                      </MinorAlert>
-                    )}
 
                     {provider.supportsVersionHistory && tileVersions && (
                       <div className={classes.mapSettingsSection}>
@@ -377,10 +396,10 @@ export default function UkCoverageMapSplitScreen() {
 
                     <div className={classes.mapSettingsSection}>
                       <SelectDropdown
-                        value={selectedLayerId.toString()}
+                        value={selectedLayerId}
                         label="Coverage type"
                         onChange={(value: string) => {
-                          dispatch({ type: 'updateSelectedLayer', payload: { providerName, layerId: parseInt(value) } })
+                          dispatch({ type: 'updateSelectedLayer', payload: { providerName, layerId: value } })
                         }}
                         options={tileLayers}
                       />
@@ -398,7 +417,7 @@ export default function UkCoverageMapSplitScreen() {
                       </p>
                     ))}
 
-                    <CoverageKey keyData={provider.getLayerKeys()[selectedLayerId]} />
+                    <CoverageKey keyData={provider.getLayerKeys()[selectedLayerIndex]} />
                   </li>
                 )
               })}
@@ -426,7 +445,7 @@ export default function UkCoverageMapSplitScreen() {
                     <UkCoverageMap
                       key={name}
                       provider={provider}
-                      selectedLayerId={layerId}
+                      selectedLayerId={provider.getLayers().findIndex(l => l.label === layerId)}
                       showAttribution={false}
                       showFullscreenButton={false}
                       showGeolocation={false}

@@ -5,7 +5,7 @@ import EELogo from '@assets/icons/brands/ee.inline.svg'
 
 export default class EECoverageMapProvider extends CoverageProvider<true> {
   providerName: string = 'EE'
-  defaultLayerId: number = this.getLayers().findIndex(layer => layer.label === '4G (all bands)')
+  defaultLayerIndex: number = this._getLayers().findIndex(layer => layer.label === '4G (all bands)')
   supportsSites: boolean = false
   readonly supportsVersionHistory = true
   readonly maxZoom = 14
@@ -17,10 +17,11 @@ export default class EECoverageMapProvider extends CoverageProvider<true> {
     '2023-07-25': '25 July 2023',
     '2023-09-30': '30 September 2023',
     '2023-11-28': '28 November 2023',
+    '2024-01-09': '9 January 2024',
   }
-  protected version = '2023-11-28'
+  protected _version = '2024-01-09'
 
-  getLayers(): ICoverageLayer[] {
+  _getLayers(): ICoverageLayer[] {
     return [
       {
         label: '2G',
@@ -96,10 +97,10 @@ export default class EECoverageMapProvider extends CoverageProvider<true> {
   }
 
   private makeLayerUri(layerName: string): string {
-    return `https://234-30.coveragetiles.com/${this.version}/${layerName}/{z}/{x}/{y}.png`
+    return `https://234-30.coveragetiles.com/${this._version}/${layerName}/{z}/{x}/{y}.png`
   }
 
-  getLayerKeys(): ICoverageLayerKey[] {
+  _getLayerKeys(): ICoverageLayerKey[] {
     return [
       {
         key: [...this.layerKey('2g')],
