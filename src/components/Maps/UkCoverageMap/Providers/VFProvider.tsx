@@ -5,7 +5,7 @@ import VodafoneLogo from '@assets/icons/brands/vodafone.inline.svg'
 
 export default class VodafoneCoverageMapProvider extends CoverageProvider<true> {
   providerName: string = 'Vodafone'
-  defaultLayerIndex: number = this._getLayers().findIndex(layer => layer.label === '4G')
+  defaultLayerIndex: number = this._getLayers(this.version).findIndex(layer => layer.label === '4G')
   supportsSites: boolean = false
   readonly supportsVersionHistory = true
   readonly maxZoom = 14
