@@ -5,7 +5,7 @@ import VodafoneLogo from '@assets/icons/brands/vodafone.inline.svg'
 
 export default class VodafoneCoverageMapProvider extends CoverageProvider<true> {
   providerName: string = 'Vodafone'
-  defaultLayerId: number = this.getLayers().findIndex(layer => layer.label === '4G')
+  defaultLayerIndex: number = this._getLayers(this.version).findIndex(layer => layer.label === '4G')
   supportsSites: boolean = false
   readonly supportsVersionHistory = true
   readonly maxZoom = 14
@@ -19,10 +19,11 @@ export default class VodafoneCoverageMapProvider extends CoverageProvider<true> 
     '2023-08-31': '31 August 2023',
     '2023-09-29': '29 September 2023',
     '2023-11-28': '28 November 2023',
+    '2024-01-09': '9 January 2024',
   }
-  protected version = '2023-11-28'
+  protected _version = '2024-01-09'
 
-  getLayerKeys(): ICoverageLayerKey[] {
+  protected _getLayerKeys(version: string): ICoverageLayerKey[] {
     const genericKey = [
       { color: '#e60000', label: 'Good outdoors and indoors' },
       { color: '#f57676', label: 'Good outdoors' },
@@ -76,7 +77,7 @@ export default class VodafoneCoverageMapProvider extends CoverageProvider<true> 
     return []
   }
 
-  getLayers(): ICoverageLayer[] {
+  protected _getLayers(version: string): ICoverageLayer[] {
     return [
       {
         label: '2G',
@@ -135,6 +136,6 @@ export default class VodafoneCoverageMapProvider extends CoverageProvider<true> 
   }
 
   private makeLayerUri(layerName: string): string {
-    return `https://234-15.coveragetiles.com/${this.version}/${layerName}/{z}/{x}/{y}.png`
+    return `https://234-15.coveragetiles.com/${this._version}/${layerName}/{z}/{x}/{y}.png`
   }
 }

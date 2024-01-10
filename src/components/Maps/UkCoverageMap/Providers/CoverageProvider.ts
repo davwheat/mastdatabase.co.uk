@@ -17,22 +17,26 @@ export interface ICoverageLayerKey {
 
 export default abstract class CoverageProvider<VersionHistorySupported extends boolean = false> {
   abstract providerName: string
-  abstract defaultLayerId: number
+  abstract defaultLayerIndex: number
   abstract supportsSites: boolean
   abstract readonly supportsVersionHistory: VersionHistorySupported
   readonly maxZoom: number = 15
 
-  abstract getLayers(): ICoverageLayer[]
-  abstract getLayerKeys(): ICoverageLayerKey[]
+  protected abstract _getLayers(version: VersionHistorySupported extends true ? string : undefined): ICoverageLayer[]
+  protected abstract _getLayerKeys(version: VersionHistorySupported extends true ? string : undefined): ICoverageLayerKey[]
   abstract getPageMessages(): string[]
 
   abstract readonly providerIcon: React.ReactNode
 
-  protected abstract version: VersionHistorySupported extends true ? string : undefined
+  protected abstract _version: VersionHistorySupported extends true ? string : undefined
   protected abstract readonly allVersions: VersionHistorySupported extends true ? Record<string, string> : undefined
 
+  get version() {
+    return this._version
+  }
+
   public getCurrentVersion(): string {
-    return this.version!
+    return this._version!
   }
 
   public getTilesVersions(): Record<string, string> {
@@ -48,18 +52,30 @@ export default abstract class CoverageProvider<VersionHistorySupported extends b
       return false
     }
 
-    ;(this.version as string) = version
+    ;(this._version as string) = version
     return true
   }
 
   validate() {
-    if (this.getLayers().length !== this.getLayerKeys().length) {
-      throw new Error('Number of layers and layer keys must match')
+    if (this.supportsVersionHistory) {
+      return Object.keys(this.getTilesVersions()).every(version => {
+        // @ts-expect-error
+        if (this._getLayers(version).length !== this._getLayerKeys(version).length) {
+          throw new Error(`Number of layers and layer keys do not match for version ${version}`)
+        }
+      })
+    } else {
+      // @ts-expect-error
+      if (this._getLayers(undefined).length !== this._getLayerKeys(undefined).length) {
+        throw new Error(`Number of layers and layer keys do not match`)
+      }
+
+      return true
     }
   }
 
   isLayerHidden(layerId: number, forceHideHidden: boolean = false): boolean {
-    if (!!this.getLayers()[layerId].hidden) {
+    if (!!this._getLayers(this._version)[layerId].hidden) {
       // Hidden
       if (forceHideHidden) return true
 
@@ -75,5 +91,13 @@ export default abstract class CoverageProvider<VersionHistorySupported extends b
 
   attributionTemplate(layerLabel: string): string {
     return `© ${layerLabel} coverage info from ${this.providerName}`
+  }
+
+  getLayers(): ICoverageLayer[] {
+    return this._getLayers(this._version)
+  }
+
+  getLayerKeys(): ICoverageLayerKey[] {
+    return this._getLayerKeys(this._version)
   }
 }

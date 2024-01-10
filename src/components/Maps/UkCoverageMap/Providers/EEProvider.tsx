@@ -3,9 +3,11 @@ import { TileLayer } from 'react-leaflet'
 import CoverageProvider, { ICoverageLayer, ICoverageLayerKey } from './CoverageProvider'
 import EELogo from '@assets/icons/brands/ee.inline.svg'
 
+import './EEProvider.css'
+
 export default class EECoverageMapProvider extends CoverageProvider<true> {
   providerName: string = 'EE'
-  defaultLayerId: number = this.getLayers().findIndex(layer => layer.label === '4G (all bands)')
+  defaultLayerIndex: number = this.getLayers().findIndex(layer => layer.label === '4G (all bands)')
   supportsSites: boolean = false
   readonly supportsVersionHistory = true
   readonly maxZoom = 14
@@ -17,10 +19,11 @@ export default class EECoverageMapProvider extends CoverageProvider<true> {
     '2023-07-25': '25 July 2023',
     '2023-09-30': '30 September 2023',
     '2023-11-28': '28 November 2023',
+    '2024-01-09': '9 January 2024',
   }
-  protected version = '2023-11-28'
+  protected _version = '2024-01-09'
 
-  getLayers(): ICoverageLayer[] {
+  _getLayers(version: string): ICoverageLayer[] {
     return [
       {
         label: '2G',
@@ -81,13 +84,33 @@ export default class EECoverageMapProvider extends CoverageProvider<true> {
       {
         label: '5G (n78 only)',
         hidden: true,
-        url: this.makeLayerUri('5g_3400'),
+        layers: (
+          <TileLayer
+            key={this.makeLayerUri('5g_3400')}
+            opacity={0.6}
+            url={this.makeLayerUri('5g_3400')}
+            attribution={this.attributionTemplate('5G (n78 only)')}
+            className="ee_5g_3400"
+          />
+        ),
       },
-      {
-        label: '5G (n1 only) [DEAD]',
-        hidden: true,
-        url: this.makeLayerUri('5g_2100'),
-      },
+      ...(version >= '2023-11-28'
+        ? ([
+            {
+              label: '5G (n1 only)',
+              hidden: true,
+              layers: (
+                <TileLayer
+                  key={this.makeLayerUri('5g_2100')}
+                  opacity={0.6}
+                  url={this.makeLayerUri('5g_2100')}
+                  attribution={this.attributionTemplate('5G (2100 MHz only)')}
+                  className="ee_5g_2100"
+                />
+              ),
+            },
+          ] as ICoverageLayer[])
+        : []),
       {
         label: '5G (all)',
         url: this.makeLayerUri('5g'),
@@ -96,10 +119,10 @@ export default class EECoverageMapProvider extends CoverageProvider<true> {
   }
 
   private makeLayerUri(layerName: string): string {
-    return `https://234-30.coveragetiles.com/${this.version}/${layerName}/{z}/{x}/{y}.png`
+    return `https://234-30.coveragetiles.com/${this._version}/${layerName}/{z}/{x}/{y}.png`
   }
 
-  getLayerKeys(): ICoverageLayerKey[] {
+  _getLayerKeys(version: string): ICoverageLayerKey[] {
     return [
       {
         key: [...this.layerKey('2g')],
@@ -129,18 +152,22 @@ export default class EECoverageMapProvider extends CoverageProvider<true> {
         key: [...this.layerKey('4g'), ...this.layerKey('5g')],
       },
       {
-        key: [...this.layerKey('5g')],
+        key: [...this.layerKey('5g_modified')],
       },
-      {
-        key: [...this.layerKey('5g')],
-      },
+      ...(version >= '2023-11-28'
+        ? [
+            {
+              key: [...this.layerKey('5g_modified')],
+            },
+          ]
+        : []),
       {
         key: [...this.layerKey('4g'), ...this.layerKey('5g')],
       },
     ]
   }
 
-  private layerKey(type: '2g' | '3g' | '4g' | '5g' | 'lteca') {
+  private layerKey(type: '2g' | '3g' | '4g' | '5g' | 'lteca' | '5g_modified') {
     switch (type) {
       case '2g':
         return [
@@ -165,6 +192,12 @@ export default class EECoverageMapProvider extends CoverageProvider<true> {
         return [
           { color: '#ffe600', label: '5G outdoors and indoors' },
           { color: '#fef7ba', label: '5G outdoors' },
+        ]
+
+      case '5g_modified':
+        return [
+          { color: '#cc69ac', label: '5G outdoors and indoors' },
+          { color: '#ccb0c3', label: '5G outdoors' },
         ]
 
       case 'lteca':

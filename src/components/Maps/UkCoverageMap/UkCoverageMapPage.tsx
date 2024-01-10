@@ -50,17 +50,16 @@ const useStyles = makeStyles({
 export default function UkCoverageMapPage(Provider: { new (): CoverageProvider<boolean> }) {
   return function CoverageMapPage({ location }: PageProps) {
     const classes = useStyles()
-
+    const filterHiddenLayers = useIsFirstRender()
     const provider = useMemo(() => new Provider(), [Provider])
-
     provider.validate()
 
     const { providerName } = provider
 
-    const [selectedLayerId, setSelectedLayerId] = useState(provider.defaultLayerId)
+    const [selectedLayerId, setSelectedLayerId] = useState(
+      provider.getLayers().map(l => ({ label: l.label, value: l.label }))[provider.defaultLayerIndex].value,
+    )
     const [selectedVersionId, setSelectedVersionId] = useState(provider.getCurrentVersion())
-
-    const filterHiddenLayers = useIsFirstRender()
 
     const tileVersions = useMemo(
       () =>
@@ -72,22 +71,38 @@ export default function UkCoverageMapPage(Provider: { new (): CoverageProvider<b
       [provider],
     )
 
-    const tileLayers = useMemo(
-      () =>
-        provider
-          .getLayers()
-          .map((layer, index) => ({ label: layer.label, value: index.toString() }))
-          .filter((_, i) => !provider.isLayerHidden(i, filterHiddenLayers)),
-      [provider, filterHiddenLayers],
-    )
+    const tileLayers = useMemo(() => {
+      const layers = provider.getLayers().map(layer => ({ label: layer.label, value: layer.label }))
+
+      if (!layers.some(l => l.value === selectedLayerId)) {
+        setSelectedLayerId(layers[provider.defaultLayerIndex].value)
+      }
+
+      return layers
+    }, [provider, provider.version, filterHiddenLayers])
 
     useEffect(() => {
-      if (provider.isLayerHidden(selectedLayerId)) {
-        const firstNonHiddenLayer = provider.getLayers().findIndex(layer => !layer.hidden)
+      if (provider.isLayerHidden(tileLayers.findIndex(l => l.value === selectedLayerId)!!)) {
+        const firstNonHiddenLayer = provider.getLayers().find(layer => !layer.hidden)?.label!!
 
         setSelectedLayerId(firstNonHiddenLayer)
       }
     }, [])
+
+    useEffect(() => {
+      if (tileLayers.findIndex(l => l.value === selectedLayerId) === -1) {
+        console.log('Resetting layer')
+
+        setSelectedLayerId(tileLayers[provider.defaultLayerIndex].value)
+      }
+    }, [provider.version])
+
+    const shownTileLayers = tileLayers.filter((_, i) => !provider.isLayerHidden(i, filterHiddenLayers))
+
+    let selectedLayerIndex = shownTileLayers.findIndex(l => l.value === selectedLayerId)
+    if (selectedLayerIndex === -1) {
+      selectedLayerIndex = provider.defaultLayerIndex
+    }
 
     return (
       <Layout
@@ -139,12 +154,12 @@ export default function UkCoverageMapPage(Provider: { new (): CoverageProvider<b
 
             <div className={classes.mapSettingsSection}>
               <SelectDropdown
-                value={selectedLayerId.toString()}
+                value={selectedLayerId}
                 label="Coverage type"
                 onChange={(value: string) => {
-                  setSelectedLayerId(parseInt(value))
+                  setSelectedLayerId(value)
                 }}
-                options={tileLayers}
+                options={shownTileLayers}
               />
             </div>
 
@@ -160,13 +175,13 @@ export default function UkCoverageMapPage(Provider: { new (): CoverageProvider<b
               </p>
             ))}
 
-            <CoverageKey keyData={provider.getLayerKeys()[selectedLayerId]} />
+            <CoverageKey keyData={provider.getLayerKeys()[selectedLayerIndex]} />
           </NoSsr>
         </Section>
 
         <Section width="full" className={classes.mapSection}>
           <NoSsr>
-            <UkCoverageMap provider={provider} selectedLayerId={selectedLayerId} />
+            <UkCoverageMap provider={provider} selectedLayerId={selectedLayerIndex} />
           </NoSsr>
         </Section>
       </Layout>

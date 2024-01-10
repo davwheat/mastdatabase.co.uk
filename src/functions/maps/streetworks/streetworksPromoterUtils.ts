@@ -629,6 +629,13 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
       type: 'fibre-me',
     },
   },
+  {
+    id: 'global-reach',
+    name: 'Global Reach Networks',
+    aliases: ['Global Reach Networks Limited'],
+    category: 'Fixed broadband',
+    icon: { text: 'GRN', type: 'global-reach' },
+  },
 
   // FWA
   {
