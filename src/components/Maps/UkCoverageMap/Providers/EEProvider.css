@@ -1,0 +1,5 @@
+.ee_5g_2100,
+.ee_5g_3400 {
+  /* Improve visibility of the 5G 2100MHz layer */
+  filter: hue-rotate(285deg) saturate(2) brightness(0.8);
+}
