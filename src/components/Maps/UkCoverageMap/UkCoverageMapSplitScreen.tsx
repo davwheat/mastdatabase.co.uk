@@ -253,6 +253,8 @@ export default function UkCoverageMapSplitScreen() {
         })),
     )
 
+    console.log(activeProviders)
+
     const filterHiddenLayers = useIsFirstRender()
 
     function getTileVersionsForProvider(provider: CoverageProvider<boolean>) {
@@ -269,14 +271,14 @@ export default function UkCoverageMapSplitScreen() {
       return provider
         .getLayers()
         .map(l => ({ label: l.label, value: l.label }))
-        .filter((_, i) => !provider.isLayerHidden(i, filterHiddenLayers))
+        .filter(l => !provider.isLayerHidden(l.value, filterHiddenLayers))
     }
 
     useEffect(() => {
       activeProviders.forEach(({ name, layerId }) => {
         const provider = allProviders.find(p => p.providerName === name)?.provider!
 
-        if (provider.isLayerHidden(getTileLayersForProvider(provider).findIndex(l => l.value === layerId))) {
+        if (provider.isLayerHidden(getTileLayersForProvider(provider).find(l => l.value === layerId)?.value!)) {
           const firstNonHiddenLayer = provider.getLayers().find(layer => !layer.hidden)!!.label
 
           dispatch({ type: 'updateSelectedLayer', payload: { providerName: name, layerId: firstNonHiddenLayer } })
@@ -404,12 +406,6 @@ export default function UkCoverageMapSplitScreen() {
                         options={tileLayers}
                       />
                     </div>
-
-                    {/* {provider.supportsSites && (
-                      <p className={clsx('text-speak', classes.sitesAvailable)}>
-                        This coverage map also shows the location of network sites. To see them, you must zoom in.
-                      </p>
-                    )} */}
 
                     {provider.getPageMessages().map((msg, i) => (
                       <p key={i} className={clsx('text-speak', classes.sitesAvailable)}>

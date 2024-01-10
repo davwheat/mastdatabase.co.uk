@@ -74,8 +74,8 @@ export default abstract class CoverageProvider<VersionHistorySupported extends b
     }
   }
 
-  isLayerHidden(layerId: number, forceHideHidden: boolean = false): boolean {
-    if (!!this._getLayers(this._version)[layerId].hidden) {
+  isLayerHidden(layerId: string, forceHideHidden: boolean = false): boolean {
+    if (!!this._getLayers(this._version).find(l => l.label === layerId)?.hidden) {
       // Hidden
       if (forceHideHidden) return true
 
@@ -83,10 +83,6 @@ export default abstract class CoverageProvider<VersionHistorySupported extends b
     }
 
     return false
-  }
-
-  async getSites(centreLat: number, centreLon: number, bbox: L.LatLngBounds): Promise<ISiteItem[]> {
-    return []
   }
 
   attributionTemplate(layerLabel: string): string {
