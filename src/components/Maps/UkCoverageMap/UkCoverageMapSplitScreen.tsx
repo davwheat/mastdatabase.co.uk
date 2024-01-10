@@ -253,8 +253,6 @@ export default function UkCoverageMapSplitScreen() {
         })),
     )
 
-    console.log(activeProviders)
-
     const filterHiddenLayers = useIsFirstRender()
 
     function getTileVersionsForProvider(provider: CoverageProvider<boolean>) {
