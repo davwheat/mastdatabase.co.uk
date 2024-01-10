@@ -445,7 +445,7 @@ export default function UkCoverageMapSplitScreen() {
                     <UkCoverageMap
                       key={name}
                       provider={provider}
-                      selectedLayerId={provider.getLayers().findIndex(l => l.label === layerId)}
+                      selectedLayerId={layerId}
                       showAttribution={false}
                       showFullscreenButton={false}
                       showGeolocation={false}

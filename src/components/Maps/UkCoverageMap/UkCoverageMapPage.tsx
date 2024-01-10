@@ -99,10 +99,12 @@ export default function UkCoverageMapPage(Provider: { new (): CoverageProvider<b
 
     const shownTileLayers = tileLayers.filter((_, i) => !provider.isLayerHidden(i, filterHiddenLayers))
 
-    let selectedLayerIndex = shownTileLayers.findIndex(l => l.value === selectedLayerId)
-    if (selectedLayerIndex === -1) {
-      selectedLayerIndex = provider.defaultLayerIndex
+    let selectedShownLayerIndex = shownTileLayers.findIndex(l => l.value === selectedLayerId)
+    if (selectedShownLayerIndex === -1) {
+      selectedShownLayerIndex = provider.defaultLayerIndex
     }
+
+    const layerIndex = tileLayers.findIndex(l => l.value === selectedLayerId)
 
     return (
       <Layout
@@ -175,13 +177,13 @@ export default function UkCoverageMapPage(Provider: { new (): CoverageProvider<b
               </p>
             ))}
 
-            <CoverageKey keyData={provider.getLayerKeys()[selectedLayerIndex]} />
+            <CoverageKey keyData={provider.getLayerKeys()[layerIndex]} />
           </NoSsr>
         </Section>
 
         <Section width="full" className={classes.mapSection}>
           <NoSsr>
-            <UkCoverageMap provider={provider} selectedLayerId={selectedLayerIndex} />
+            <UkCoverageMap provider={provider} selectedLayerId={selectedLayerId} />
           </NoSsr>
         </Section>
       </Layout>

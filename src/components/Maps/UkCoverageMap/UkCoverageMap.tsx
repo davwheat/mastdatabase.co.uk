@@ -16,7 +16,7 @@ import type { Map } from 'leaflet'
 
 export interface IUkCoverageMapProps {
   provider: CoverageProvider<boolean>
-  selectedLayerId: number
+  selectedLayerId: string
   showAttribution?: boolean
   showFullscreenButton?: boolean
   showGeolocation?: boolean
@@ -38,7 +38,7 @@ export default React.forwardRef<Map, IUkCoverageMapProps>(function UkCoverageMap
 ) {
   useFixLeafletAssets()
 
-  const layer = provider.getLayers()?.[selectedLayerId]
+  const layer = provider.getLayers().find(l => l.label === selectedLayerId)
 
   return (
     <MapContainer
