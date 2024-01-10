@@ -22,14 +22,6 @@ const prodPlugins: any[] = !__IS_DEV__
     ]
   : []
 
-if (__IS_DEV__) {
-  if (process.env.SENTRY_AUTH_TOKEN) {
-    prodPlugins.push({
-      resolve: '@sentry/gatsby',
-    })
-  }
-}
-
 const config: GatsbyConfig = {
   flags: {
     // FAST_DEV: true,
@@ -211,6 +203,9 @@ const config: GatsbyConfig = {
           },
         ],
       },
+    },
+    {
+      resolve: '@sentry/gatsby',
     },
     ...nonCiPlugins,
   ],
