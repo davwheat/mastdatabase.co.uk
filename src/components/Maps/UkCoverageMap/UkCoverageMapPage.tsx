@@ -57,10 +57,7 @@ export default function UkCoverageMapPage(Provider: { new (): CoverageProvider<b
     const { providerName } = provider
 
     const [selectedLayerId, setSelectedLayerId] = useState(
-      provider
-        .getLayers()
-        .map(l => ({ label: l.label, value: l.label }))
-        .filter((_, i) => !provider.isLayerHidden(i, filterHiddenLayers))[provider.defaultLayerIndex].value,
+      provider.getLayers().map(l => ({ label: l.label, value: l.label }))[provider.defaultLayerIndex].value,
     )
     const [selectedVersionId, setSelectedVersionId] = useState(provider.getCurrentVersion())
 
@@ -75,10 +72,7 @@ export default function UkCoverageMapPage(Provider: { new (): CoverageProvider<b
     )
 
     const tileLayers = useMemo(() => {
-      const layers = provider
-        .getLayers()
-        .map(layer => ({ label: layer.label, value: layer.label }))
-        .filter((_, i) => !provider.isLayerHidden(i, filterHiddenLayers))
+      const layers = provider.getLayers().map(layer => ({ label: layer.label, value: layer.label }))
 
       if (!layers.some(l => l.value === selectedLayerId)) {
         setSelectedLayerId(layers[provider.defaultLayerIndex].value)
@@ -97,11 +91,15 @@ export default function UkCoverageMapPage(Provider: { new (): CoverageProvider<b
 
     useEffect(() => {
       if (tileLayers.findIndex(l => l.value === selectedLayerId) === -1) {
+        console.log('Resetting layer')
+
         setSelectedLayerId(tileLayers[provider.defaultLayerIndex].value)
       }
     }, [provider.version])
 
-    let selectedLayerIndex = tileLayers.findIndex(l => l.value === selectedLayerId)
+    const shownTileLayers = tileLayers.filter((_, i) => !provider.isLayerHidden(i, filterHiddenLayers))
+
+    let selectedLayerIndex = shownTileLayers.findIndex(l => l.value === selectedLayerId)
     if (selectedLayerIndex === -1) {
       selectedLayerIndex = provider.defaultLayerIndex
     }
@@ -161,7 +159,7 @@ export default function UkCoverageMapPage(Provider: { new (): CoverageProvider<b
                 onChange={(value: string) => {
                   setSelectedLayerId(value)
                 }}
-                options={tileLayers}
+                options={shownTileLayers}
               />
             </div>
 
