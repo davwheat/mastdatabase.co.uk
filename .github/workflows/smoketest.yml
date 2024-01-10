@@ -19,7 +19,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Find existing build status comment
         continue-on-error: true
@@ -51,7 +51,7 @@ jobs:
             </table>
 
       - name: Use Node.js ${{ env.NODE_VERSION }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'yarn'
@@ -68,14 +68,27 @@ jobs:
         id: gatsbyCache
         with:
           path: ./.cache
-          key: ${{ runner.os }}-gatsby-cache-${{ secrets.CACHE_VERSION }}-${{ hashFiles('public') }}
+          key: ${{ runner.os }}-gatsby-cache-${{ hashFiles('public') }}
           restore-keys: |
-            ${{ runner.os }}-gatsby-cache-${{ secrets.CACHE_VERSION }}-
+            ${{ runner.os }}-gatsby-cache-
 
       - name: Build site
         run: yarn build:ci
         env:
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+
+      - name: Publish Sentry release
+        if: github.ref == 'refs/heads/deploy' && github.event_name == 'push'
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          SENTRY_ORG: davw-network
+          SENTRY_PROJECT: mastdatabase
+        run: |
+          VERSION=`yarn sentry-cli --url https://sentry.service.davw.network releases propose-version`
+
+          yarn sentry-cli --url https://sentry.service.davw.network releases new "$VERSION"
+          yarn sentry-cli --url https://sentry.service.davw.network releases set-commits "$VERSION" --auto
+          yarn sentry-cli --url https://sentry.service.davw.network releases finalize "$VERSION"
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1

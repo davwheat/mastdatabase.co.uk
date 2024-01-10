@@ -47,19 +47,6 @@ export const onCreateWebpackConfig: GatsbyNode['onCreateWebpackConfig'] = ({ sta
     })
   }
 
-  const SentryPlugin = require('@sentry/webpack-plugin')
-
-  if (process.env.NODE_ENV !== 'development' && process.env.SENTRY_AUTH_TOKEN) {
-    actions.setWebpackConfig({
-      plugins: [
-        new SentryPlugin({
-          include: 'public',
-          ignore: ['app-*', 'polyfill-*', 'framework-*', 'webpack-runtime-*'],
-        }),
-      ],
-    })
-  }
-
   actions.setWebpackConfig({
     module: {
       rules: [

@@ -77,6 +77,7 @@
     "uuid": "^9.0.1"
   },
   "devDependencies": {
+    "@sentry/cli": "^2.25.0",
     "@sentry/webpack-plugin": "^2.10.2",
     "@types/color": "^3.0.6",
     "@types/file-saver": "^2.0.7",
@@ -101,14 +102,15 @@
   "license": "MIT",
   "scripts": {
     "build": "cross-env NODE_ENV=production gatsby build",
-    "build:ci": "cross-env NODE_ENV=production GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES=true gatsby build --log-pages --verbose",
+    "build:ci": "cross-env NODE_ENV=production GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES=true gatsby build --log-pages --verbose && yarn run sentry:sourcemaps",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md,less,mdx}\"",
     "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,md,less,mdx}\"",
     "start": "yarn develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "lint": "eslint . --ext md,mdx"
+    "lint": "eslint . --ext md,mdx",
+    "sentry:sourcemaps": "sentry-cli sourcemaps inject --org davw-network --project mastdatabase ./public && sentry-cli --url https://sentry.service.davw.network sourcemaps upload --org davw-network --project mastdatabase ./public"
   },
   "packageManager": "yarn@4.0.2",
   "resolutions": {
