@@ -3524,7 +3524,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sentry/cli@npm:^2.22.3":
+"@sentry/cli@npm:^2.22.3, @sentry/cli@npm:^2.25.0":
   version: 2.25.0
   resolution: "@sentry/cli@npm:2.25.0"
   dependencies:
@@ -12555,6 +12555,7 @@ __metadata:
     "@material-ui/styles": "npm:^4.11.5"
     "@mdx-js/react": "npm:^2.3.0"
     "@reach/tabs": "npm:^0.18.0"
+    "@sentry/cli": "npm:^2.25.0"
     "@sentry/gatsby": "npm:^7.93.0"
     "@sentry/webpack-plugin": "npm:^2.10.2"
     "@slixites/gatsby-plugin-google-fonts": "npm:^1.1.1"
