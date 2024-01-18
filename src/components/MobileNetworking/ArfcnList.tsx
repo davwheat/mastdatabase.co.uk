@@ -420,7 +420,7 @@ function ArfcnListTable({ selectedRat, ratData }: ArfcnListTableProps) {
         </thead>
         <tbody>
           {filteredData?.map?.(earfcn => (
-            <tr key={earfcn.arfcn}>
+            <tr key={`${earfcn.arfcn}: ${earfcn.description}`}>
               <td>{earfcn.arfcn}</td>
               <td>{earfcn.bandwidth ? `${Array.isArray(earfcn.bandwidth) ? earfcn.bandwidth.join(', ') : earfcn.bandwidth} MHz` : 'Unknown'}</td>
               <td>
