@@ -3443,9 +3443,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sentry/bundler-plugin-core@npm:2.10.2":
-  version: 2.10.2
-  resolution: "@sentry/bundler-plugin-core@npm:2.10.2"
+"@sentry/bundler-plugin-core@npm:2.10.3":
+  version: 2.10.3
+  resolution: "@sentry/bundler-plugin-core@npm:2.10.3"
   dependencies:
     "@sentry/cli": "npm:^2.22.3"
     "@sentry/node": "npm:^7.60.0"
@@ -3455,7 +3455,7 @@ __metadata:
     glob: "npm:9.3.2"
     magic-string: "npm:0.27.0"
     unplugin: "npm:1.0.1"
-  checksum: ed50ed8e0246aa2e900dcf6f71b3451bdba546ed5ab2633022aa51bdd76ca94c46be92310fa74d29cd5b13e5b5bf763dcc6b464a20f8d025eb0c0f1e1f055ba0
+  checksum: 2da708f941977a87a8f20a50e6865f75b218ba87b7a0c26c82ff1a13ba36de3e58f114e349f8ae7defb6aa3628aad8c5db08d8a25e11b119a9330ea36589069f
   languageName: node
   linkType: hard
 
@@ -3652,16 +3652,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sentry/webpack-plugin@npm:^2.10.2":
-  version: 2.10.2
-  resolution: "@sentry/webpack-plugin@npm:2.10.2"
+"@sentry/webpack-plugin@npm:^2.10.3":
+  version: 2.10.3
+  resolution: "@sentry/webpack-plugin@npm:2.10.3"
   dependencies:
-    "@sentry/bundler-plugin-core": "npm:2.10.2"
+    "@sentry/bundler-plugin-core": "npm:2.10.3"
     unplugin: "npm:1.0.1"
     uuid: "npm:^9.0.0"
   peerDependencies:
     webpack: ">=4.40.0"
-  checksum: e188d1080e7251908adf09ab89ed036512e4388898dee57def2c34cb9cc6e00cf4aaf796f549876085f7ff4c5d0320486cdbfa559bb71ef11847a741008e857b
+  checksum: 692ba3795ee618ac656ff6f1f2d78b451db4bd9970a6c81d7f18652d36e86d8220de1b5d6a13049d0fc34ac5dc912fb12e33208b9557dae3086041ca28d903ac
   languageName: node
   linkType: hard
 
@@ -12557,7 +12557,7 @@ __metadata:
     "@reach/tabs": "npm:^0.18.0"
     "@sentry/cli": "npm:^2.25.0"
     "@sentry/gatsby": "npm:^7.93.0"
-    "@sentry/webpack-plugin": "npm:^2.10.2"
+    "@sentry/webpack-plugin": "npm:^2.10.3"
     "@slixites/gatsby-plugin-google-fonts": "npm:^1.1.1"
     "@types/color": "npm:^3.0.6"
     "@types/file-saver": "npm:^2.0.7"
