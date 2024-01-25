@@ -2,6 +2,7 @@ import React from 'react'
 
 import CoverageProvider, { ICoverageLayer, ICoverageLayerKey } from './CoverageProvider'
 import VodafoneLogo from '@assets/icons/brands/vodafone.inline.svg'
+import { TileLayer } from 'react-leaflet'
 
 export default class VodafoneCoverageMapProvider extends CoverageProvider<true> {
   providerName: string = 'Vodafone'
@@ -57,26 +58,48 @@ export default class VodafoneCoverageMapProvider extends CoverageProvider<true> 
       {
         key: genericKey,
       },
-      {
-        key: [{ color: '', label: 'Random colours for each area surrounding an impacted site' }],
-      },
-      {
-        key: genericKey,
-      },
-      {
-        key: genericKey,
-      },
-      {
-        key: genericKey,
-      },
-      {
-        key: genericKey,
-      },
+
+      ...(version <= '2024-01-09'
+        ? [
+            {
+              key: [{ color: '', label: 'Random colours for each area surrounding an impacted site' }],
+            },
+          ]
+        : []),
+
+      ...(version <= '2023-07-31'
+        ? [
+            {
+              key: genericKey,
+            },
+            {
+              key: genericKey,
+            },
+            {
+              key: genericKey,
+            },
+            {
+              key: genericKey,
+            },
+          ]
+        : []),
     ]
   }
 
   getPageMessages(): string[] {
-    return []
+    const messages: string[] = ["IoT coverage is only available on version 31 July 2023 and earlier. It's not available on later versions."]
+
+    if (this.version === '2024-01-09') {
+      messages.push('The impact footprint layer on this version is mangled, but still correct where visible.')
+    }
+
+    if (this.version === '2024-01-23') {
+      messages.push(
+        "The planned 5G layer on this version is buggy and often shows 4G coverage instead due to an error on Vodafone's coverage map server.",
+      )
+    }
+
+    return messages
   }
 
   protected _getLayers(version: string): ICoverageLayer[] {
@@ -109,31 +132,53 @@ export default class VodafoneCoverageMapProvider extends CoverageProvider<true> 
         label: '5G',
         url: this.makeLayerUri('5g'),
       },
-      {
-        label: '5G (planned)',
-        url: this.makeLayerUri('5g_planned'),
-      },
-      {
-        label: 'Impact footprint',
-        url: this.makeLayerUri('impact_footprint'),
-        hidden: true,
-      },
-      {
-        label: 'IoT outdoor',
-        url: this.makeLayerUri('iot_outdoor'),
-      },
-      {
-        label: 'IoT outdoor (planned)',
-        url: this.makeLayerUri('iot_outdoor_planned'),
-      },
-      {
-        label: 'IoT indoor',
-        url: this.makeLayerUri('iot_indoor'),
-      },
-      {
-        label: 'IoT indoor (planned)',
-        url: this.makeLayerUri('iot_indoor_planned'),
-      },
+      version === '2024-01-23'
+        ? {
+            label: '5G (planned)',
+            // Issue with map server during this download
+            layers: (
+              <TileLayer
+                maxNativeZoom={12}
+                key={this.makeLayerUri('5g_planned')}
+                opacity={0.5}
+                url={this.makeLayerUri('5g_planned')}
+                attribution={this.attributionTemplate('5G (planned)')}
+              />
+            ),
+          }
+        : {
+            label: '5G (planned)',
+            url: this.makeLayerUri('5g_planned'),
+          },
+      ...(version <= '2024-01-09'
+        ? [
+            {
+              label: 'Impact footprint',
+              url: this.makeLayerUri('impact_footprint'),
+              hidden: true,
+            } as ICoverageLayer,
+          ]
+        : []),
+      ...(version <= '2023-07-31'
+        ? [
+            {
+              label: 'IoT outdoor',
+              url: this.makeLayerUri('iot_outdoor'),
+            },
+            {
+              label: 'IoT outdoor (planned)',
+              url: this.makeLayerUri('iot_outdoor_planned'),
+            },
+            {
+              label: 'IoT indoor',
+              url: this.makeLayerUri('iot_indoor'),
+            },
+            {
+              label: 'IoT indoor (planned)',
+              url: this.makeLayerUri('iot_indoor_planned'),
+            },
+          ]
+        : []),
     ]
   }
 
