@@ -22,7 +22,7 @@
     "dayjs": "^1.11.10",
     "file-saver": "^2.0.5",
     "font-color-contrast": "^11.1.0",
-    "fuse.js": "^6.6.2",
+    "fuse.js": "^7.0.0",
     "gatsby": "^5.13.3",
     "gatsby-plugin-canonical-urls": "^5.13.1",
     "gatsby-plugin-csp": "^1.1.4",

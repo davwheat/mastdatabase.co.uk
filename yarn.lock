@@ -9217,10 +9217,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fuse.js@npm:^6.6.2":
-  version: 6.6.2
-  resolution: "fuse.js@npm:6.6.2"
-  checksum: 10/4768725963ee07dacfcb4abb001a12ea5e6e44c95d4e0918fcbfe0469107c5ad3ece2f1930396eb6c210383edf4c14ca083b91a2fc54950c5d021935a63d89de
+"fuse.js@npm:^7.0.0":
+  version: 7.0.0
+  resolution: "fuse.js@npm:7.0.0"
+  checksum: 10/d75d35f2d61afa85b8248f9cbfc7d4df29ae47ea574a15ad5c3c2a41930c5ed78668346295508b59ec4929fcb1a5cd6d9a8c649b5a3bc8b18e515f4e4cb9809d
   languageName: node
   linkType: hard
 
@@ -12753,7 +12753,7 @@ __metadata:
     eslint-plugin-mdx: "npm:^2.3.4"
     file-saver: "npm:^2.0.5"
     font-color-contrast: "npm:^11.1.0"
-    fuse.js: "npm:^6.6.2"
+    fuse.js: "npm:^7.0.0"
     gatsby: "npm:^5.13.3"
     gatsby-plugin-canonical-urls: "npm:^5.13.1"
     gatsby-plugin-csp: "npm:^1.1.4"
