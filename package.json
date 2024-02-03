@@ -14,7 +14,7 @@
     "@material-ui/styles": "^4.11.5",
     "@mdx-js/react": "^2.3.0",
     "@reach/tabs": "^0.18.0",
-    "@sentry/gatsby": "^7.98.0",
+    "@sentry/gatsby": "^7.99.0",
     "@slixites/gatsby-plugin-google-fonts": "^1.1.1",
     "active-resource": "^1.0.0-beta.7",
     "case-sensitive-paths-webpack-plugin": "^2.4.0",
@@ -54,7 +54,7 @@
     "leaflet.markercluster": "^1.5.3",
     "leaflet.sync": "^0.2.4",
     "mdi-react": "^9.4.0",
-    "mobile-spectrum-data": "^1.19.0",
+    "mobile-spectrum-data": "^1.20.0",
     "nanoid": "^4.0.2",
     "prop-types": "^15.8.1",
     "rbush": "^3.0.1",
@@ -77,15 +77,15 @@
     "uuid": "^9.0.1"
   },
   "devDependencies": {
-    "@sentry/cli": "^2.26.0",
-    "@sentry/webpack-plugin": "^2.10.3",
+    "@sentry/cli": "^2.27.0",
+    "@sentry/webpack-plugin": "^2.13.0",
     "@types/color": "^3.0.6",
     "@types/file-saver": "^2.0.7",
     "@types/leaflet": "^1.9.8",
     "@types/leaflet.markercluster": "^1.5.4",
     "@types/material-ui": "^0.21.16",
     "@types/rbush": "^3.0.3",
-    "@types/react": "^18.2.48",
+    "@types/react": "^18.2.51",
     "@types/throttle-debounce": "^5.0.2",
     "@types/uuid": "^9.0.8",
     "@welldone-software/why-did-you-render": "^7.0.1",
@@ -97,7 +97,7 @@
     "gatsby-plugin-webpack-bundle-analyser-v2": "^1.1.32",
     "prettier": "^3.2.4",
     "typescript": "^5.3.3",
-    "wrangler": "^3.25.0"
+    "wrangler": "^3.26.0"
   },
   "license": "MIT",
   "scripts": {
@@ -112,7 +112,7 @@
     "lint": "eslint . --ext md,mdx",
     "sentry:sourcemaps": "sentry-cli sourcemaps inject --org davw-network --project mastdatabase ./public && sentry-cli --url https://sentry.service.davw.network sourcemaps upload --org davw-network --project mastdatabase ./public"
   },
-  "packageManager": "yarn@4.0.2",
+  "packageManager": "yarn@4.1.0",
   "resolutions": {
     "underscore.inflection": "davwheat/underscore.inflection#master",
     "@types/react": "^18",
