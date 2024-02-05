@@ -30,6 +30,7 @@ import 'leaflet.sync'
 
 import type { PageProps } from 'gatsby'
 import useForceRender from '@hooks/useForceRerender'
+import PostcodeSearch from '../PostcodeSearch'
 
 const useStyles = makeStyles({
   loading: {
@@ -418,6 +419,8 @@ export default function UkCoverageMapSplitScreen() {
             </ul>
           </NoSsr>
         </Section>
+
+        {mapRefs.current && <PostcodeSearch map={mapRefs.current[allProviders[0].providerName].current} />}
 
         <Section width="full" className={classes.mapSection}>
           <NoSsr>
