@@ -17,6 +17,7 @@ import clsx from 'clsx'
 
 import type { PageProps } from 'gatsby'
 import LoadingSpinner from '@components/LoadingSpinner'
+import PostcodeSearch from '../PostcodeSearch'
 
 const useStyles = makeStyles({
   loading: {
@@ -60,6 +61,7 @@ export default function UkCoverageMapPage(Provider: { new (): CoverageProvider<b
       provider.getLayers().map(l => ({ label: l.label, value: l.label }))[provider.defaultLayerIndex].value,
     )
     const [selectedVersionId, setSelectedVersionId] = useState(provider.getCurrentVersion())
+    const [map, setMap] = useState<null | L.Map>(null)
 
     const tileVersions = useMemo(
       () =>
@@ -181,9 +183,11 @@ export default function UkCoverageMapPage(Provider: { new (): CoverageProvider<b
           </NoSsr>
         </Section>
 
+        <PostcodeSearch map={map} />
+
         <Section width="full" className={classes.mapSection}>
           <NoSsr>
-            <UkCoverageMap provider={provider} selectedLayerId={selectedLayerId} />
+            <UkCoverageMap provider={provider} selectedLayerId={selectedLayerId} ref={setMap} />
           </NoSsr>
         </Section>
       </Layout>

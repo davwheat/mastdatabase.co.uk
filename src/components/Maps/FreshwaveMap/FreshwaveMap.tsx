@@ -6,6 +6,7 @@ import MarkerClusterGroup from '@components/MarkerClusterGroup'
 import 'leaflet/dist/leaflet.css'
 
 import useFixLeafletAssets from '@hooks/useFixLeafletAssets'
+import { Map } from 'leaflet'
 
 export interface IFreshwaveSitePoint {
   locationId: number
@@ -19,7 +20,9 @@ export interface IFreshwaveMapProps {
   sites: React.ReactNode
 }
 
-export default function FreshwaveMap({ sites }: IFreshwaveMapProps) {
+export default React.forwardRef(FreshwaveMap)
+
+function FreshwaveMap({ sites }: IFreshwaveMapProps, ref: React.Ref<Map>) {
   useFixLeafletAssets()
 
   return (
@@ -31,6 +34,7 @@ export default function FreshwaveMap({ sites }: IFreshwaveMapProps) {
       zoom={5}
       minZoom={3}
       attributionControl={false}
+      ref={ref}
     >
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
