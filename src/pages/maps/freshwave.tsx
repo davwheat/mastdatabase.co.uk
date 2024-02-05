@@ -12,6 +12,8 @@ import { makeStyles, NoSsr } from '@material-ui/core'
 import { Marker, Popup } from 'react-leaflet'
 
 import type { PageProps } from 'gatsby'
+import PostcodeSearch from '@components/Maps/PostcodeSearch'
+import { Map } from 'leaflet'
 
 const useStyles = makeStyles({
   mapSection: {
@@ -31,11 +33,13 @@ export default function FreshwaveMapPage({ location }: PageProps) {
   const classes = useStyles()
 
   const [sites, setSites] = useState<null | React.ReactNode>(null)
+  const [map, setMap] = useState<Map | null>(null)
 
   useEffect(() => {
     // Already loaded
     if (sites !== null) return
 
+    // Data from: https://sites.freshwavegroup.com/sited/
     async function loadData() {
       const data = (await import('@data/maps/freshwaveSites.json')).default
 
@@ -93,11 +97,14 @@ export default function FreshwaveMapPage({ location }: PageProps) {
           of these locations have no mobile networking equipment present at all as no operator has chosen to rent access through
           Freshwave&nbsp;yet.
         </p>
+        <p className="text-speak">This map was last updated 5 February 2024.</p>
       </Section>
+
+      <PostcodeSearch map={map} />
 
       <Section width="full" className={classes.mapSection}>
         <NoSsr>
-          <FreshwaveMap sites={sites} />
+          <FreshwaveMap sites={sites} ref={setMap} />
         </NoSsr>
       </Section>
     </Layout>
