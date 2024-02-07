@@ -61,12 +61,14 @@ export default class EECoverageMapProvider extends CoverageProvider<true> {
               key={this.makeLayerUri('4g_2600')}
               url={this.makeLayerUri('4g_2600')}
               attribution={this.attributionTemplate('4G (2600 MHz only)')}
+              maxNativeZoom={this.maxZoom}
             />
             <TileLayer
               key={this.makeLayerUri('4g_2600') + '2'}
               opacity={0.5}
               url={this.makeLayerUri('4g_2600')}
               attribution={this.attributionTemplate('4G (2600 MHz only)')}
+              maxNativeZoom={this.maxZoom}
             />
           </>
         ),
@@ -95,6 +97,7 @@ export default class EECoverageMapProvider extends CoverageProvider<true> {
             url={this.makeLayerUri('5g_3400')}
             attribution={this.attributionTemplate('5G (n78 only)')}
             className="ee_5g_3400"
+            maxNativeZoom={this.maxZoom}
           />
         ),
       },
@@ -110,6 +113,7 @@ export default class EECoverageMapProvider extends CoverageProvider<true> {
                   url={this.makeLayerUri('5g_2100')}
                   attribution={this.attributionTemplate('5G (2100 MHz only)')}
                   className="ee_5g_2100"
+                  maxNativeZoom={this.maxZoom}
                 />
               ),
             },
