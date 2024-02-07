@@ -24,8 +24,9 @@ export default class VodafoneCoverageMapProvider extends CoverageProvider<true> 
     '2024-01-16': '16 January 2024',
     '2024-01-23': '23 January 2024',
     '2024-01-29': '29 January 2024',
+    '2024-02-05': '5 February 2024',
   }
-  protected _version = '2024-01-29'
+  protected _version = '2024-02-05'
 
   protected _getLayerKeys(version: string): ICoverageLayerKey[] {
     const genericKey = [
@@ -76,6 +77,16 @@ export default class VodafoneCoverageMapProvider extends CoverageProvider<true> 
             {
               key: genericKey,
             },
+            {
+              key: genericKey,
+            },
+            {
+              key: genericKey,
+            },
+          ]
+        : []),
+      ...(version >= '2024-02-05'
+        ? [
             {
               key: genericKey,
             },
@@ -151,6 +162,18 @@ export default class VodafoneCoverageMapProvider extends CoverageProvider<true> 
             label: '5G (planned)',
             url: this.makeLayerUri('5g_planned'),
           },
+      ...(version >= '2024-02-05'
+        ? [
+            {
+              label: '5G Ultra (SA)',
+              url: this.makeLayerUri('5g_sa'),
+            },
+            {
+              label: '5G Ultra (SA) (planned)',
+              url: this.makeLayerUri('5g_sa_planned'),
+            },
+          ]
+        : []),
       ...(version <= '2024-01-09'
         ? [
             {
