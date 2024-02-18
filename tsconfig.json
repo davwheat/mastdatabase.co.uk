@@ -23,8 +23,8 @@
       "@hooks/*": ["hooks/*"],
       "@leaflet/*": ["leaflet/*"],
       "@atoms": ["atoms"],
-      "@blog/*": ["components/BlogComponents/MdxComponents/*"],
-    },
+      "@blog/*": ["components/BlogComponents/MdxComponents/*"]
+    }
   },
-  "exclude": ["node_modules", "build", "scripts", "acceptance-tests", "webpack", "jest", "src/setupTests.ts"],
+  "exclude": ["node_modules", "build", "scripts", "acceptance-tests", "webpack", "jest", "src/setupTests.ts"]
 }

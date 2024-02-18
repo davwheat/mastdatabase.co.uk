@@ -83,7 +83,6 @@
 
     table {
       table-layout: fixed;
-      min-width: max-content;
       margin-bottom: 16px;
     }
 
@@ -150,26 +149,54 @@
       font-family: 'Consolas', 'Courier New', Courier, monospace;
     }
 
-    figure > figcaption {
-      text-align: center;
-      display: block;
-      padding: 0 32px;
+    em {
+      font-style: italic;
+    }
 
-      &:not(:first-child) {
-        margin-top: -0.5em;
-        margin-bottom: 0.5em;
+    figure {
+      > pre {
+        max-width: 100%;
+        overflow-x: auto;
+        display: block;
+
+        font-size: 0.8em;
+        line-height: 1.2;
+
+        padding-bottom: 8px;
+        margin-bottom: 16px;
+
+        .highlight {
+          background-color: rgba(240, 76, 99, 0.2);
+        }
+
+        code {
+          display: block;
+          width: max-content;
+          margin: auto;
+        }
       }
 
-      &:first-child {
-        margin-top: 0.5em;
-        margin-bottom: 0.5em;
-      }
+      > figcaption {
+        text-align: center;
+        display: block;
+        padding: 0 32px;
 
-      // .text-whisper-up
-      font-size: 15px;
-      font-weight: 400;
-      letter-spacing: 0.02em;
-      line-height: 20px;
+        &:not(:first-child) {
+          margin-top: -0.5em;
+          margin-bottom: 0.5em;
+        }
+
+        &:first-child {
+          margin-top: 0.5em;
+          margin-bottom: 0.5em;
+        }
+
+        // .text-whisper-up
+        font-size: 15px;
+        font-weight: 400;
+        letter-spacing: 0.02em;
+        line-height: 20px;
+      }
     }
   }
 }
