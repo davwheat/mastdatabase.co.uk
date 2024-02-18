@@ -9,6 +9,8 @@ import clsx from 'clsx'
 import { BlogHero } from '@components/BlogComponents/BlogHero'
 import Section from '@components/Design/Section'
 import Breadcrumbs from '@components/Design/Breadcrumbs'
+import MinorAlert from '@components/Design/MinorAlert'
+import Colors from '@data/colors.json'
 
 import Layout from '@components/Layout'
 import Link from '@components/Links/Link'
@@ -19,6 +21,8 @@ import { FactBox, MathBlock } from '@blog/index'
 import truncateString from '@functions/truncate'
 
 import TeX from '@matejmazur/react-katex'
+
+import SquiggleSvg from '@assets/images/squiggles/squiggle1.inline.svg'
 
 import 'katex/dist/katex.min.css'
 import '@styles/blog.less'
@@ -57,6 +61,13 @@ const useStyles = makeStyles({
   bottomNav: {
     marginTop: -16,
     marginBottom: 24,
+  },
+  squiggle: {
+    display: 'block',
+    color: Colors.primaryRed,
+    marginTop: '2em',
+    marginBottom: '2em',
+    height: '1.75em',
   },
 })
 
@@ -157,6 +168,26 @@ export default function BlogPageTemplate({ pageContext, location, data, children
                 </FactBox>
               )}
 
+              {context.frontmatter.author && (
+                <div>
+                  <FactBox title={null}>
+                    <p style={{ marginBottom: '0.25em' }}>
+                      This is a guest article written by{' '}
+                      {context.frontmatter.author_link ? (
+                        <Link target="_blank" href={context.frontmatter.author_link}>
+                          {context.frontmatter.author}
+                        </Link>
+                      ) : (
+                        <strong>{context.frontmatter.author}</strong>
+                      )}
+                      .
+                    </p>
+                  </FactBox>
+
+                  <SquiggleSvg className={classes.squiggle} role="presentation" />
+                </div>
+              )}
+
               <MDXProvider components={MdxShortcodes}>{children}</MDXProvider>
             </BlogErrorBoundary>
           </Section>
@@ -189,6 +220,8 @@ export const query = graphql`
         title
         description
         path
+        author
+        author_link
         redirect_from
         created_at(formatString: "LLL", locale: "en-GB")
         updated_at(formatString: "LLL", locale: "en-GB")

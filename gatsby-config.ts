@@ -183,6 +183,7 @@ const config: GatsbyConfig = {
                       title
                       description
                       path
+                      author
                       created_at
                     }
                     id
