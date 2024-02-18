@@ -4792,14 +4792,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@welldone-software/why-did-you-render@npm:^7.0.1":
-  version: 7.0.1
-  resolution: "@welldone-software/why-did-you-render@npm:7.0.1"
+"@welldone-software/why-did-you-render@npm:^8.0.1":
+  version: 8.0.1
+  resolution: "@welldone-software/why-did-you-render@npm:8.0.1"
   dependencies:
     lodash: "npm:^4"
   peerDependencies:
-    react: ^16 || ^17 || ^18
-  checksum: 10/e4824b23f03b0fcaeec29584cd4501b87d6841ebb4c61ba67352bd1d1cfcb8db8b64140f7926f625ba3ee2c1e71be881899081d66881d63c0e1e77d2ef10b365
+    react: ^18
+  checksum: 10/bfa9ad79bd61d6d003733f21842eb79eda33f19354aed85a6bec860ace51d7276aff52a0947a982c00e992baef94b8c4dc63545713d5df72a7d014adaa74cc99
   languageName: node
   linkType: hard
 
@@ -12742,7 +12742,7 @@ __metadata:
     "@types/react": "npm:^18.2.56"
     "@types/throttle-debounce": "npm:^5.0.2"
     "@types/uuid": "npm:^9.0.8"
-    "@welldone-software/why-did-you-render": "npm:^7.0.1"
+    "@welldone-software/why-did-you-render": "npm:^8.0.1"
     active-resource: "npm:^1.0.0-beta.7"
     babel-plugin-transform-remove-console: "npm:^6.9.4"
     case-sensitive-paths-webpack-plugin: "npm:^2.4.0"
