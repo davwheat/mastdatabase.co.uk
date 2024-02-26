@@ -1,16 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 264.58 34.95">
-  <title>Drawing of two tube stations (A, B) with tunnels between, showing leaky feeders starting at the middle of each station, spanning out the tunnels either end of each station before meeting in the middle with a small gap.</title>
-  <path fill="gray" d="M92.6 14.06h79.38v10.59H92.6zm132.3 0h39.68v10.59H224.9zM0 14.06h39.69v10.59H-.01z"/>
-  <path fill="#b3b3b3" d="M171.98 11.95h52.92v13.22h-52.92zm-132.3 0H92.6v13.22H39.7z"/>
-  <text xml:space="preserve" x="26.35" y="110.05" stroke-width=".79" font-family="Jost" font-size="7.06" text-anchor="middle" transform="translate(39.69 -105)"><tspan x="26.35" y="110.05">Station A</tspan></text>
-  <text xml:space="preserve" x="158.74" y="110.05" stroke-width=".79" font-family="Jost" font-size="7.06" text-anchor="middle" transform="translate(39.69 -105)"><tspan x="158.74" y="110.05">Station B</tspan></text>
-  <path stroke="#c55252" stroke-width=".94" d="M.65 27.77h131"/>
-  <path stroke="#c55252" stroke-width=".83" d="M66.15 7.45v20.02"/>
-  <path stroke="#55f" stroke-width=".94" d="M132.94 27.77h131"/>
-  <path stroke="#55f" stroke-width=".83" d="M198.44 7.45v20.02"/>
-  <g stroke-width=".79" font-family="Jost" text-anchor="middle">
-    <text xml:space="preserve" x="92.59" y="116.49" font-size="5.64" transform="translate(39.69 -105)"><tspan x="92.59" y="116.49">tunnel</tspan></text>
-    <text xml:space="preserve" x="26.44" y="139.16" font-size="4.94" transform="translate(39.69 -105)"><tspan x="26.44" y="139.16">Station A-fed leaky feeders</tspan></text>
-    <text xml:space="preserve" x="158.73" y="139.06" font-size="4.94" transform="translate(39.69 -105)"><tspan x="158.73" y="139.06">Station B-fed leaky feeders</tspan></text>
-  </g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 264.58 34.95"><title>Drawing of two tube stations (A, B) with tunnels between, showing leaky feeders starting at the middle of each station, spanning out the tunnels either end of each station before meeting in the middle with a small gap.</title><path fill="gray" d="M92.6 14.06h79.38v10.59H92.6zm132.3 0h39.68v10.59H224.9zM0 14.06h39.69v10.59H-.01z"/><path fill="#b3b3b3" d="M171.98 11.95h52.92v13.22h-52.92zm-132.3 0H92.6v13.22H39.7z"/><text x="26.35" y="110.05" stroke-width=".79" font-family="Jost" font-size="7.06" text-anchor="middle" transform="translate(39.69 -105)" xml:space="preserve"><tspan x="26.35" y="110.05">Station A</tspan></text><text x="158.74" y="110.05" stroke-width=".79" font-family="Jost" font-size="7.06" text-anchor="middle" transform="translate(39.69 -105)" xml:space="preserve"><tspan x="158.74" y="110.05">Station B</tspan></text><path stroke="#c55252" stroke-width=".94" d="M.65 27.77h131"/><path stroke="#c55252" stroke-width=".83" d="M66.15 7.45v20.02"/><path stroke="#55f" stroke-width=".94" d="M132.94 27.77h131"/><path stroke="#55f" stroke-width=".83" d="M198.44 7.45v20.02"/><g stroke-width=".79" font-family="Jost" text-anchor="middle"><text x="92.59" y="116.49" font-size="5.64" transform="translate(39.69 -105)" xml:space="preserve"><tspan x="92.59" y="116.49">tunnel</tspan></text><text x="26.44" y="139.16" font-size="4.94" transform="translate(39.69 -105)" xml:space="preserve"><tspan x="26.44" y="139.16">Station A-fed leaky feeders</tspan></text><text x="158.73" y="139.06" font-size="4.94" transform="translate(39.69 -105)" xml:space="preserve"><tspan x="158.73" y="139.06">Station B-fed leaky feeders</tspan></text></g></svg>
