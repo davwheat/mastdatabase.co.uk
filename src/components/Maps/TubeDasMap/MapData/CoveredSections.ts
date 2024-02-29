@@ -1291,7 +1291,7 @@ StationSegmentsWithCoverage.forEach(group => {
       section: segment.section,
       coverage: segment.services,
       state: group.state,
-      opens: group.opens,
+      opens: segment.opens ?? group.opens,
       lineFilter: segment.lineFilter,
       coverageNotes: segment.coverageNotes,
     })
