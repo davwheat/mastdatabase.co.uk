@@ -379,6 +379,42 @@ const StationSegmentsWithCoverage: CoverageGroup[] = [
         },
       },
       {
+        section: 'Queensway to Lancaster Gate',
+        startStationId: '940GZZLUQWY',
+        endStationId: '940GZZLULGT',
+        opens: 'February 2024',
+        services: {
+          EE: CoveragePresets.tunnels.EE.normal,
+          Three: CoveragePresets.tunnels.Three.normal,
+          O2: CoveragePresets.tunnels.O2.normal,
+          Vodafone: CoveragePresets.tunnels.Vodafone.normal,
+        },
+      },
+      {
+        section: 'Lancaster Gate to Marble Arch',
+        startStationId: '940GZZLULGT',
+        endStationId: '940GZZLUMBA',
+        opens: 'February 2024',
+        services: {
+          EE: CoveragePresets.tunnels.EE.normal,
+          Three: CoveragePresets.tunnels.Three.normal,
+          O2: CoveragePresets.tunnels.O2.normal,
+          Vodafone: CoveragePresets.tunnels.Vodafone.normal,
+        },
+      },
+      {
+        section: 'Marble Arch to Bond Street',
+        startStationId: '940GZZLUMBA',
+        endStationId: '940GZZLUBND',
+        opens: 'January 2024',
+        services: {
+          EE: CoveragePresets.tunnels.EE.normal,
+          Three: CoveragePresets.tunnels.Three.normal,
+          O2: CoveragePresets.tunnels.O2.normal,
+          Vodafone: CoveragePresets.tunnels.Vodafone.normal,
+        },
+      },
+      {
         section: 'Bond Street to Oxford Circus',
         startStationId: '940GZZLUBND',
         endStationId: '940GZZLUOXC',
@@ -419,6 +455,30 @@ const StationSegmentsWithCoverage: CoverageGroup[] = [
         startStationId: '940GZZLUHBN',
         endStationId: '940GZZLUCHL',
         opens: 'November 2023',
+        services: {
+          EE: CoveragePresets.tunnels.EE.normal,
+          Three: CoveragePresets.tunnels.Three.normal,
+          O2: CoveragePresets.tunnels.O2.normal,
+          Vodafone: CoveragePresets.tunnels.Vodafone.normal,
+        },
+      },
+      {
+        section: "Chancery Lane to St. Paul's",
+        startStationId: '940GZZLUCHL',
+        endStationId: '940GZZLUSPU',
+        opens: 'December 2023',
+        services: {
+          EE: CoveragePresets.tunnels.EE.normal,
+          Three: CoveragePresets.tunnels.Three.normal,
+          O2: CoveragePresets.tunnels.O2.normal,
+          Vodafone: CoveragePresets.tunnels.Vodafone.normal,
+        },
+      },
+      {
+        section: "St. Paul's to Bank",
+        startStationId: '940GZZLUSPU',
+        endStationId: '940GZZLUBNK',
+        opens: 'December 2023',
         services: {
           EE: CoveragePresets.tunnels.EE.normal,
           Three: CoveragePresets.tunnels.Three.normal,
@@ -534,6 +594,18 @@ const StationSegmentsWithCoverage: CoverageGroup[] = [
 
       // Charing X branch
       {
+        section: 'Leicester Square to Tottenham Court Road',
+        startStationId: '940GZZLULSQ',
+        endStationId: '940GZZLUTCR',
+        opens: 'February 2024',
+        services: {
+          EE: CoveragePresets.tunnels.EE.normal,
+          Three: CoveragePresets.tunnels.Three.normal,
+          O2: CoveragePresets.tunnels.O2.normal,
+          Vodafone: CoveragePresets.tunnels.Vodafone.normal,
+        },
+      },
+      {
         section: 'Tottenham Court Road to Goodge Street',
         startStationId: '940GZZLUTCR',
         endStationId: '940GZZLUGDG',
@@ -588,31 +660,6 @@ const StationSegmentsWithCoverage: CoverageGroup[] = [
         section: "Shepherd's Bush to Holland Park",
         startStationId: '940GZZLUSBC',
         endStationId: '940GZZLUHPK',
-      },
-      {
-        section: 'Queensway to Lancaster Gate',
-        startStationId: '940GZZLUQWY',
-        endStationId: '940GZZLULGT',
-      },
-      {
-        section: 'Lancaster Gate to Marble Arch',
-        startStationId: '940GZZLULGT',
-        endStationId: '940GZZLUMBA',
-      },
-      {
-        section: 'Marble Arch to Bond Street',
-        startStationId: '940GZZLUMBA',
-        endStationId: '940GZZLUBND',
-      },
-      {
-        section: 'Chancery Lane to St Pauls',
-        startStationId: '940GZZLUCHL',
-        endStationId: '940GZZLUSPU',
-      },
-      {
-        section: "St Paul's to Bank",
-        startStationId: '940GZZLUSPU',
-        endStationId: '940GZZLUBNK',
       },
     ],
   },
@@ -895,9 +942,14 @@ const StationCoverageInfo: Record<string, StationCoverageInfo> = {
   },
   // Hampstead
   '940GZZLUHTD': {
-    state: 'planned',
-    opens: 'by end of Spring 2024',
-    coverage: {},
+    state: 'live',
+    opens: 'February 2024',
+    coverage: {
+      EE: CoveragePresets.station.EE.with_5g,
+      Three: CoveragePresets.station.Three.with_5g,
+      Vodafone: CoveragePresets.station.Vodafone.with_5g,
+      O2: CoveragePresets.station.O2.with_5g,
+    },
   },
   // Golders Green
   '940GZZLUGGN': {
@@ -956,15 +1008,25 @@ const StationCoverageInfo: Record<string, StationCoverageInfo> = {
   },
   // Lancaster Gate
   '940GZZLULGT': {
-    state: 'planned',
-    opens: 'by end of Spring 2024',
-    coverage: {},
+    state: 'live',
+    opens: 'December 2023',
+    coverage: {
+      EE: CoveragePresets.station.EE.no_5g,
+      Three: CoveragePresets.station.Three.no_5g,
+      Vodafone: CoveragePresets.station.Vodafone.no_5g,
+      O2: CoveragePresets.station.O2.no_5g,
+    },
   },
   // Marble Arch
   '940GZZLUMBA': {
-    state: 'planned',
-    opens: 'by end of Spring 2024',
-    coverage: {},
+    state: 'live',
+    opens: 'December 2023',
+    coverage: {
+      EE: CoveragePresets.station.EE.no_5g,
+      Three: CoveragePresets.station.Three.no_5g,
+      Vodafone: CoveragePresets.station.Vodafone.no_5g,
+      O2: CoveragePresets.station.O2.no_5g,
+    },
   },
   // Bond Street
   '940GZZLUBND': {
@@ -1013,15 +1075,25 @@ const StationCoverageInfo: Record<string, StationCoverageInfo> = {
   },
   // St Pauls
   '940GZZLUSPU': {
-    state: 'planned',
-    opens: 'by end of Spring 2024',
-    coverage: {},
+    state: 'live',
+    opens: 'December 2023',
+    coverage: {
+      EE: CoveragePresets.station.EE.no_5g,
+      Three: CoveragePresets.station.Three.no_5g,
+      Vodafone: CoveragePresets.station.Vodafone.no_5g,
+      O2: CoveragePresets.station.O2.no_5g,
+    },
   },
   // Bank
   '940GZZLUBNK': {
-    state: 'planned',
-    opens: 'by end of Spring 2024',
-    coverage: {},
+    state: 'live',
+    opens: 'December 2023',
+    coverage: {
+      EE: CoveragePresets.station.EE.no_5g,
+      Three: CoveragePresets.station.Three.no_5g,
+      Vodafone: CoveragePresets.station.Vodafone.no_5g,
+      O2: CoveragePresets.station.O2.no_5g,
+    },
   },
   // #endregion
 
@@ -1291,7 +1363,7 @@ StationSegmentsWithCoverage.forEach(group => {
       section: segment.section,
       coverage: segment.services,
       state: group.state,
-      opens: group.opens,
+      opens: segment.opens ?? group.opens,
       lineFilter: segment.lineFilter,
       coverageNotes: segment.coverageNotes,
     })

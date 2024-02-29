@@ -84,7 +84,7 @@ export default function BlogArticleCarousel({ articles }: { articles: readonly A
       </Button>
       <ul className={classes.list} style={{ '--shown-item': shownIndex } as any}>
         {articles.map((article, i) => (
-          <BlogArticleCarouselItem article={article} shown={shownIndex === i} />
+          <BlogArticleCarouselItem key={article.id} article={article} shown={shownIndex === i} />
         ))}
       </ul>
       <Button className={classes.next} onClick={next} aria-label="See next">
