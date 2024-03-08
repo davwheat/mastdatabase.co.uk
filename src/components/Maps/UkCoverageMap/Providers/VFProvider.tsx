@@ -27,8 +27,9 @@ export default class VodafoneCoverageMapProvider extends CoverageProvider<true> 
     '2024-02-05': '5 February 2024',
     '2024-02-20': '20 February 2024',
     '2024-02-26': '26 February 2024',
+    '2024-03-04': '4 March 2024',
   }
-  protected _version = '2024-02-26'
+  protected _version = '2024-03-04'
 
   protected _getLayerKeys(version: string): ICoverageLayerKey[] {
     const genericKey = [
