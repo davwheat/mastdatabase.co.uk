@@ -102,7 +102,7 @@
   "license": "MIT",
   "scripts": {
     "build": "cross-env NODE_ENV=production gatsby build",
-    "build:ci": "cross-env NODE_ENV=production GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES=true gatsby build --log-pages --verbose && yarn run sentry:sourcemaps",
+    "build:ci": "cross-env NODE_ENV=production GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES=true gatsby build --log-pages --verbose && (yarn run sentry:sourcemaps || true)",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md,less,mdx}\"",
     "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,md,less,mdx}\"",
