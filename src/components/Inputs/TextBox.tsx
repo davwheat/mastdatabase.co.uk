@@ -4,11 +4,13 @@ import { makeStyles } from '@material-ui/styles'
 import clsx from 'clsx'
 import Colors from '@data/colors.json'
 
-export interface ITextBoxProps extends Omit<React.HTMLAttributes<HTMLInputElement>, 'onInput'> {
+type InputType = 'text' | 'email' | 'password' | 'search' | 'number'
+
+export interface ITextBoxProps<Type extends InputType> extends Omit<React.HTMLAttributes<HTMLInputElement>, 'onInput'> {
   /**
    * The type associated with the input element in the outputted HTML.
    */
-  type?: 'text' | 'email' | 'password' | 'search'
+  type?: Type
   /**
    * Class for the outer-most element of the component (`<label>`).
    */
@@ -55,6 +57,9 @@ export interface ITextBoxProps extends Omit<React.HTMLAttributes<HTMLInputElemen
   pattern?: string
   disabled?: boolean
   readOnly?: boolean
+  min?: Type extends 'number' ? number : never
+  max?: Type extends 'number' ? number : never
+  step?: Type extends 'number' ? number : never
 }
 
 const useStyles = makeStyles({
@@ -109,11 +114,11 @@ const useStyles = makeStyles({
   },
 })
 
-export default function TextBox({
+export default function TextBox<Type extends InputType = 'text'>({
   label,
   screenReaderLabel,
   onInput,
-  type = 'text',
+  type,
   className,
   value = '',
   placeholder,
@@ -122,8 +127,10 @@ export default function TextBox({
   endAdornment: endAppendix,
   disabled = false,
   ...attrs
-}: ITextBoxProps) {
+}: ITextBoxProps<Type>) {
   const classes = useStyles()
+
+  ;(type as any) ||= 'text'
 
   const id = useId()
   const helpTextId = useId()
