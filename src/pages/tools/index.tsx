@@ -60,6 +60,11 @@ export default function IndexPage({ location }: PageProps) {
             description="Calculate total radio transmit power, or use transmit power to calculate a multitude of other values."
             url="/tools/lte-total-tx-power-calculator"
           />
+          <CardLink
+            title="NR NCI to gNB/sector ID"
+            description="Convert an NR cell identity to a gNB ID and sector ID, or vice versa."
+            url="/tools/nr-nci-to-gnb-sector-id"
+          />
         </div>
       </Section>
     </Layout>

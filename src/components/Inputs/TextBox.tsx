@@ -59,6 +59,7 @@ export interface ITextBoxProps<Type extends InputType> extends Omit<React.HTMLAt
   readOnly?: boolean
   min?: Type extends 'number' ? number : never
   max?: Type extends 'number' ? number : never
+  step?: Type extends 'number' ? number : never
 }
 
 const useStyles = makeStyles({
