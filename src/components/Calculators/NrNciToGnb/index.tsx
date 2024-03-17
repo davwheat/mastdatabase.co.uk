@@ -70,12 +70,15 @@ export default function NrNciCalculator() {
       return { nci: (gnb << sectorBitLength) + sector, error }
     } else {
       const nci = parseInt(state.nci)
-
       const error = isNaN(nci)
 
-      const andMask = (1 << sectorBitLength) - 1
+      if (error) {
+        return { gnb: 0, sector: 0, error }
+      }
 
-      return { gnb: nci >> sectorBitLength, sector: nci & andMask, error }
+      const gnbMask = BigInt((Math.pow(2, bitLength) - 1) * Math.pow(2, sectorBitLength))
+
+      return { gnb: Number(gnbMask & BigInt(nci)) / (1 << sectorBitLength), sector: Number(~gnbMask & BigInt(nci)), error }
     }
   }
 
@@ -126,9 +129,6 @@ export default function NrNciCalculator() {
         />
       </div>
 
-      {console.log('state.gnbBitLengthError', state.gnbBitLengthError)}
-      {console.log('output.error', output.error)}
-
       <div className={classes.output}>
         {state.gnbBitLengthError || output.error ? (
           <p style={{ marginBottom: 0 }}>There is an error with your inputs. Please check them and try again.</p>
@@ -136,16 +136,16 @@ export default function NrNciCalculator() {
           <>
             {'nci' in output && (
               <p className="text-speak" style={{ marginBottom: 0 }}>
-                <strong>NR cell identity:</strong> {output.nci}
+                <strong>NR cell identity:</strong> {output.nci} (hex {output.nci.toString(16).toUpperCase()})
               </p>
             )}
             {'gnb' in output && (
               <>
                 <p className="text-speak">
-                  <strong>gNB ID:</strong> {output.gnb}
+                  <strong>gNB ID:</strong> {output.gnb} (hex {output.gnb.toString(16).toUpperCase()})
                 </p>
                 <p className="text-speak" style={{ marginBottom: 0 }}>
-                  <strong>Sector ID:</strong> {output.sector}
+                  <strong>Sector ID:</strong> {output.sector} (hex {output.sector.toString(16).toUpperCase()})
                 </p>
               </>
             )}
