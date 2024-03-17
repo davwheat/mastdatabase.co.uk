@@ -4,10 +4,6 @@ import Layout from '@components/Layout'
 import Hero from '@components/Design/Hero'
 import Breadcrumbs from '@components/Design/Breadcrumbs'
 import Section from '@components/Design/Section'
-import LteTotalRadioPowerCalculator from '@components/Calculators/TotalTxPower'
-import Link from '@components/Links/Link'
-
-import sib2 from '@components/Calculators/TotalTxPower/sib2.png'
 
 import Colors from '@data/colors.json'
 
