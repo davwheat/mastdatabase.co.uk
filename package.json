@@ -88,7 +88,7 @@
     "@types/react": "^18.2.56",
     "@types/throttle-debounce": "^5.0.2",
     "@types/uuid": "^9.0.8",
-    "@welldone-software/why-did-you-render": "^7.0.1",
+    "@welldone-software/why-did-you-render": "^8.0.1",
     "babel-plugin-transform-remove-console": "^6.9.4",
     "cross-env": "^7.0.3",
     "eslint": "^8.56.0",
