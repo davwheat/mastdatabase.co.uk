@@ -26,8 +26,9 @@ export default class EECoverageMapProvider extends CoverageProvider<true> {
     '2024-02-06': '6 February 2024',
     '2024-02-13': '13 February 2024',
     '2024-02-20': '20 February 2024',
+    '2024-03-24': '24 March 2024',
   }
-  protected _version = '2024-02-20'
+  protected _version = '2024-03-24'
 
   _getLayers(version: string): ICoverageLayer[] {
     return [
@@ -125,6 +126,26 @@ export default class EECoverageMapProvider extends CoverageProvider<true> {
         label: '5G (all)',
         url: this.makeLayerUri('5g'),
       },
+      ...(version >= '2024-03-24'
+        ? [
+            {
+              label: '2G (new)',
+              url: this.makeLayerUri('2g_new'),
+            },
+            {
+              label: '3G (new)',
+              url: this.makeLayerUri('3g_new'),
+            },
+            {
+              label: '4G (new)',
+              url: this.makeLayerUri('4g_new'),
+            },
+            {
+              label: '5G (new)',
+              url: this.makeLayerUri('5g_new'),
+            },
+          ]
+        : []),
     ]
   }
 
@@ -174,10 +195,26 @@ export default class EECoverageMapProvider extends CoverageProvider<true> {
       {
         key: [...this.layerKey('4g'), ...this.layerKey('5g')],
       },
+      ...(version >= '2024-03-24'
+        ? [
+            {
+              key: [...this.layerKey('new')],
+            },
+            {
+              key: [...this.layerKey('new')],
+            },
+            {
+              key: [...this.layerKey('new')],
+            },
+            {
+              key: [...this.layerKey('new')],
+            },
+          ]
+        : []),
     ]
   }
 
-  private layerKey(type: '2g' | '3g' | '4g' | '5g' | 'lteca' | '5g_modified') {
+  private layerKey(type: '2g' | '3g' | '4g' | '5g' | 'lteca' | '5g_modified' | 'new') {
     switch (type) {
       case '2g':
         return [
@@ -212,6 +249,12 @@ export default class EECoverageMapProvider extends CoverageProvider<true> {
 
       case 'lteca':
         return [{ color: '#f3666b', label: 'LTE CA available' }]
+
+      case 'new':
+        return [
+          { color: '#009ba5', label: 'Outdoors and indoors' },
+          { color: '#01232a', label: 'Outdoors' },
+        ]
     }
   }
 
