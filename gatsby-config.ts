@@ -39,6 +39,7 @@ const config: GatsbyConfig = {
   graphqlTypegen: true,
   plugins: [
     ...prodPlugins,
+    `gatsby-plugin-cloudflare-pages`,
     `gatsby-plugin-typescript`,
     {
       resolve: `gatsby-plugin-sitemap`,

@@ -21,6 +21,7 @@ export interface IUkCoverageMapProps {
   showFullscreenButton?: boolean
   showGeolocation?: boolean
   showZoomControl?: boolean
+  inertia?: boolean
   children?: React.ReactNode
 }
 
@@ -32,6 +33,7 @@ export default React.forwardRef<Map, IUkCoverageMapProps>(function UkCoverageMap
     showFullscreenButton = true,
     showGeolocation = true,
     showZoomControl = true,
+    inertia = true,
     children,
   }: IUkCoverageMapProps,
   ref: React.Ref<Map>,
@@ -51,6 +53,7 @@ export default React.forwardRef<Map, IUkCoverageMapProps>(function UkCoverageMap
       attributionControl={false}
       zoomControl={showZoomControl}
       ref={ref}
+      inertia={inertia}
     >
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
