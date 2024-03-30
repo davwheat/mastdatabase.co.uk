@@ -1,8 +1,11 @@
 import React, { useEffect } from 'react'
 
 import Section from '@components/Design/Section'
-import UkCoverageMap from '@components/Maps/UkCoverageMap'
 import Button from '@components/Inputs/Button'
+import Link from '@components/Links/Link'
+import UkCoverageMap from '@components/Maps/UkCoverageMap'
+import PostcodeSearch from '@components/Maps/PostcodeSearch'
+import SplitScreenSettings, { MAX_SPLIT_COVERAGE_LAYERS } from './SplitScreenSettings'
 
 import Colors from '@data/colors.json'
 import CoverageProvider from '../Providers/CoverageProvider'
@@ -11,16 +14,15 @@ import { makeStyles, NoSsr } from '@material-ui/core'
 import { FullScreen, useFullScreenHandle } from 'react-full-screen'
 import FullscreenIcon from 'mdi-react/FullscreenIcon'
 
+import useForceRender from '@hooks/useForceRerender'
 import Breakpoints from '@data/breakpoints'
+
+import { useRecoilValue } from 'recoil'
+import { SplitScreenCoverageMapAtom } from '@atoms'
 
 import 'leaflet.sync'
 
-import useForceRender from '@hooks/useForceRerender'
-import PostcodeSearch from '../../PostcodeSearch'
-import { useRecoilValue } from 'recoil'
-import { SplitScreenCoverageMapAtom } from '@atoms'
-import { Map } from 'leaflet'
-import SplitScreenSettings, { MAX_SPLIT_COVERAGE_LAYERS } from './SplitScreenSettings'
+import type { Map } from 'leaflet'
 
 const useStyles = makeStyles({
   loading: {
@@ -312,37 +314,59 @@ function _SplitMaps(_: any, ref: React.Ref<Map | undefined>) {
     }
   }
 
-  return (
-    <div className={classes.mapGrid} data-map-count={layers.length}>
-      {layers.map((layer, i) => {
-        return (
-          <UkCoverageMap
-            key={i}
-            provider={layer.provider}
-            selectedLayerId={layer.selectedLayer}
-            showAttribution={false}
-            showFullscreenButton={false}
-            showGeolocation={false}
-            showZoomControl={false}
-            inertia={false}
-            ref={that => {
-              if (i === 0) {
-                // set `ref` whether it is refobject or function
-                if (typeof ref === 'function') {
-                  ref(that)
-                } else {
-                  // @ts-expect-error
-                  ref!!.current = that
-                }
-              }
+  const defaultParams = new URLSearchParams()
+  defaultParams.append('layer', 'O2 UK;default;default')
+  defaultParams.append('layer', 'Vodafone;default;default')
+  defaultParams.append('layer', 'Three UK;default;default')
+  defaultParams.append('layer', 'EE;default;default')
 
-              mapRefs.current[i].current = that
-            }}
-          >
-            <div className={classes.mapProviderIcon}>{layer.provider.providerIcon}</div>
-          </UkCoverageMap>
-        )
-      })}
-    </div>
+  return (
+    <>
+      {layers.length === 0 && (
+        <Section style={{ margin: 'auto', maxWidth: 768, paddingLeft: 24, paddingRight: 24, marginTop: 36 }}>
+          <p className="text-speak-up">Get started by adding your first layer above.</p>
+
+          <p className="text-speak">
+            Or{' '}
+            <Link internal={false} href={`/gb/coverage/split-screen?${defaultParams}`}>
+              start from a comparison of all UK networks' 4G coverage
+            </Link>
+            .
+          </p>
+        </Section>
+      )}
+
+      <div className={classes.mapGrid} data-map-count={layers.length}>
+        {layers.map((layer, i) => {
+          return (
+            <UkCoverageMap
+              key={i}
+              provider={layer.provider}
+              selectedLayerId={layer.selectedLayer}
+              showAttribution={false}
+              showFullscreenButton={false}
+              showGeolocation={false}
+              showZoomControl={false}
+              inertia={false}
+              ref={that => {
+                if (i === 0) {
+                  // set `ref` whether it is refobject or function
+                  if (typeof ref === 'function') {
+                    ref(that)
+                  } else {
+                    // @ts-expect-error
+                    ref!!.current = that
+                  }
+                }
+
+                mapRefs.current[i].current = that
+              }}
+            >
+              <div className={classes.mapProviderIcon}>{layer.provider.providerIcon}</div>
+            </UkCoverageMap>
+          )
+        })}
+      </div>
+    </>
   )
 }
