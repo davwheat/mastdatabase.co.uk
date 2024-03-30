@@ -205,6 +205,7 @@ const config: GatsbyConfig = {
         ],
       },
     },
+    `gatsby-plugin-cloudflare-pages`,
     {
       resolve: '@sentry/gatsby',
     },
