@@ -132,11 +132,11 @@ function CoverageMapsPage({ location }: PageProps) {
               className={clsx(classes.cardLinkWithIcon, classes.fullWidthItem)}
               title={
                 <>
-                  <GridIcon className={classes.icon} /> &mdash; All networks (split view)
+                  <GridIcon className={classes.icon} /> &mdash; Customisable split-screen
                 </>
               }
-              url="/gb/coverage/all-networks"
-              description="View all networks on one map, split into 4 sections."
+              url="/gb/coverage/split-screen"
+              description="Compare any combination of networks, dates and layers you'd like side-by-side."
             />
           </div>
         </Section>

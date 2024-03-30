@@ -8,10 +8,9 @@ import Button from '@components/Inputs/Button'
 import type { Map } from 'leaflet'
 import MinorAlert from '@components/Design/MinorAlert'
 import { makeStyles } from '@material-ui/core'
-import useIsFirstRender from '@hooks/useIsFirstRender'
 
 export interface PostcodeSearchProps {
-  map: Map | null
+  map: Map | undefined
 }
 
 const useStyles = makeStyles({
