@@ -25,7 +25,7 @@
     "fuse.js": "^6.6.2",
     "gatsby": "^5.13.3",
     "gatsby-plugin-canonical-urls": "^5.13.1",
-    "gatsby-plugin-cloudflare-pages": "^1.0.2",
+    "gatsby-plugin-cloudflare-pages": "^1.0.3-beta.1",
     "gatsby-plugin-csp": "^1.1.4",
     "gatsby-plugin-feed": "^5.13.1",
     "gatsby-plugin-image": "^3.13.1",

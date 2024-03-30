@@ -78,7 +78,7 @@ export const onCreateWebpackConfig: GatsbyNode['onCreateWebpackConfig'] = ({ sta
 }
 
 export const createPages: GatsbyNode['createPages'] = async (...args) => {
-  await Promise.all([createBlogArticles(...args), createBlogListing(...args), createRedirects(...args)])
+  await Promise.all([createBlogArticles!!(...args), createBlogListing!!(...args), createRedirects!!(...args)])
 }
 
 export const onCreateNode: GatsbyNode<Queries.Mdx>['onCreateNode'] = ({ node, actions }) => {
@@ -130,7 +130,6 @@ const createBlogArticles: GatsbyNode['createPages'] = async ({ actions, graphql,
           createRedirect({
             fromPath: `/blog/${redirect}`,
             toPath: `/blog/${frontmatter.path}`,
-            redirectInBrowser: true,
             isPermanent: true,
           })
         })
@@ -196,8 +195,10 @@ const createBlogListing: GatsbyNode['createPages'] = async ({ actions, graphql, 
   })
 }
 
-async function createRedirects({ actions, graphql }: any) {
+const createRedirects: GatsbyNode['createPages'] = async ({ actions, graphql }) => {
   const { createRedirect } = actions
+
+  console.log('Creating redirects')
 
   createRedirect({
     fromPath: '/gb/coverage/all-networks',

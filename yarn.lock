@@ -1580,7 +1580,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.23.5":
+"@babel/runtime@npm:^7.24.1":
   version: 7.24.1
   resolution: "@babel/runtime@npm:7.24.1"
   dependencies:
@@ -9302,7 +9302,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-core-utils@npm:^4.12.1, gatsby-core-utils@npm:^4.13.1":
+"gatsby-core-utils@npm:^4.13.1":
   version: 4.13.1
   resolution: "gatsby-core-utils@npm:4.13.1"
   dependencies:
@@ -9417,19 +9417,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-plugin-cloudflare-pages@npm:^1.0.2":
-  version: 1.0.2
-  resolution: "gatsby-plugin-cloudflare-pages@npm:1.0.2"
+"gatsby-plugin-cloudflare-pages@npm:^1.0.3-beta.1":
+  version: 1.0.3-beta.1
+  resolution: "gatsby-plugin-cloudflare-pages@npm:1.0.3-beta.1"
   dependencies:
-    "@babel/runtime": "npm:^7.23.5"
+    "@babel/runtime": "npm:^7.24.1"
     fs-extra: "npm:^11.2.0"
-    gatsby-core-utils: "npm:^4.12.1"
+    gatsby-core-utils: "npm:^4.13.1"
     kebab-hash: "npm:^0.1.2"
     lodash.mergewith: "npm:^4.6.2"
-    webpack-assets-manifest: "npm:^5.1.0"
+    webpack-assets-manifest: "npm:^5.2.1"
   peerDependencies:
     gatsby: ^4.0.0 || ^5.0.0
-  checksum: 10/e44a465d3b55444b093db0c328c1983a4a5116ff4d4671f4db69d7085352df08e55c844d885dafec0afd7a1386363aa6473b773f3444b6310fb4b8a139c5080b
+  checksum: 10/d040a06c61819f8cdecb9dfe02190a9a6ebe12b887c7ddb87134e1a670be5b4207b80d79e6764367c5c528fb9996b6eb201fe75ead93afe270aae5f7651bb8a5
   languageName: node
   linkType: hard
 
@@ -12827,7 +12827,7 @@ __metadata:
     fuse.js: "npm:^6.6.2"
     gatsby: "npm:^5.13.3"
     gatsby-plugin-canonical-urls: "npm:^5.13.1"
-    gatsby-plugin-cloudflare-pages: "npm:^1.0.2"
+    gatsby-plugin-cloudflare-pages: "npm:^1.0.3-beta.1"
     gatsby-plugin-csp: "npm:^1.1.4"
     gatsby-plugin-feed: "npm:^5.13.1"
     gatsby-plugin-image: "npm:^3.13.1"
@@ -18928,7 +18928,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"webpack-assets-manifest@npm:^5.1.0":
+"webpack-assets-manifest@npm:^5.2.1":
   version: 5.2.1
   resolution: "webpack-assets-manifest@npm:5.2.1"
   dependencies:
