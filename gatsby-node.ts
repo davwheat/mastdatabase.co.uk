@@ -77,8 +77,8 @@ export const onCreateWebpackConfig: GatsbyNode['onCreateWebpackConfig'] = ({ sta
   })
 }
 
-export const createPages: GatsbyNode['createPages'] = async inp => {
-  await Promise.all([createBlogArticles(inp), createBlogListing(inp)])
+export const createPages: GatsbyNode['createPages'] = async (...args) => {
+  await Promise.all([createBlogArticles(...args), createBlogListing(...args), createRedirects(...args)])
 }
 
 export const onCreateNode: GatsbyNode<Queries.Mdx>['onCreateNode'] = ({ node, actions }) => {
@@ -173,7 +173,12 @@ const createBlogListing: GatsbyNode['createPages'] = async ({ actions, graphql, 
   createRedirect({
     fromPath: `/blog/1/`,
     toPath: `/blog`,
-    redirectInBrowser: true,
+    isPermanent: true,
+  })
+
+  createRedirect({
+    fromPath: `/blog/1`,
+    toPath: `/blog`,
     isPermanent: true,
   })
 
@@ -189,11 +194,15 @@ const createBlogListing: GatsbyNode['createPages'] = async ({ actions, graphql, 
       },
     })
   })
+}
+
+async function createRedirects({ actions, graphql }: any) {
+  const { createRedirect } = actions
 
   createRedirect({
-    fromPath: `/blog/1`,
-    toPath: `/blog`,
-    redirectInBrowser: true,
+    fromPath: '/gb/coverage/all-networks',
+    toPath:
+      '/gb/coverage/split-screen/?layer=O2+UK%3Bdefault%3Bdefault&layer=Vodafone%3Bdefault%3Bdefault&layer=Three+UK%3Bdefault%3Bdefault&layer=EE%3Bdefault%3Bdefault',
     isPermanent: true,
   })
 }
