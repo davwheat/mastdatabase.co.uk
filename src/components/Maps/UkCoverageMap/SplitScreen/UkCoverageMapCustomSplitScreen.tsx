@@ -81,9 +81,11 @@ const useStyles = makeStyles({
 
     '& > *': {
       height: '45vh !important',
+      ' height': '45dvh !important',
 
       '.fullscreen-enabled &': {
         height: '50vh !important',
+        ' height': '50dvh !important',
       },
 
       '&:nth-child(1)': {
@@ -121,6 +123,7 @@ const useStyles = makeStyles({
 
       '.fullscreen-enabled & > *': {
         height: '100vh !important',
+        ' height': '100dvh !important',
       },
     },
     '&[data-map-count="2"]': {
@@ -129,6 +132,7 @@ const useStyles = makeStyles({
 
       '.fullscreen-enabled & > *': {
         height: '100vh !important',
+        ' height': '100dvh !important',
       },
     },
     '&[data-map-count="3"]': {
@@ -137,10 +141,12 @@ const useStyles = makeStyles({
 
       '.fullscreen-enabled & > *': {
         height: '33.33333vh !important',
+        ' height': 'calc(100dvh / 3) !important',
       },
 
       '& > *': {
         height: '28vh !important',
+        ' height': '28dvh !important',
 
         '& $mapProviderIcon': {
           top: '50% !important',
@@ -161,6 +167,7 @@ const useStyles = makeStyles({
 
         '.fullscreen-enabled & > *': {
           height: '100vh !important',
+          ' height': '100dvh !important',
         },
       },
     },
@@ -204,6 +211,18 @@ export default function CoverageMapCustomSplitScreen({ availableProviders }: ICo
 
   return (
     <>
+      <Section>
+        <p className="text-speak">
+          With the split-screen coverage view, you can easily compare how different networks might perform across the UK. You can combine up to
+          four different maps, and select a different network, technology or date for each one. This might be useful if you want to see how
+          coverage has changed over time, or the difference between coverage on different networks.
+        </p>
+        <p className="text-speak">
+          If you are using a mobile device and wish to use the fullscreen option, it's recommended that you turn your phone landscape, otherwise
+          each map may actually show slightly different areas.
+        </p>
+      </Section>
+
       <SplitScreenSettings availableProviders={availableProviders} />
 
       <PostcodeSearch map={mainMapRef.current} />
