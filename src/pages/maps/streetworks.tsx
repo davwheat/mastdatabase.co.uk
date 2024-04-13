@@ -17,8 +17,6 @@ import { ErrorBoundaryContext } from 'react-use-error-boundary'
 import type { PageProps } from 'gatsby'
 import type { Map } from 'leaflet'
 import TextBox from '@components/Inputs/TextBox'
-import MinorAlert from '@components/Design/MinorAlert'
-import Link from '@components/Links/Link'
 
 const useStyles = makeStyles({
   mapSection: {
@@ -83,25 +81,14 @@ export default function StreetworksMapPage({ location }: PageProps) {
             On our site, most companies (known as streetworks promoters) have their own custom code (up to 4 letters), as well as an appropriate
             brand colour to match. If you spot one we haven't got, let us know on Twitter.
           </p>
-          <p className="text-speak" style={{ marginBottom: 24 }}>
+          <p className="text-speak">
             You can tap a map bubble to show detailed information about the works. Where possible, we try to provide descriptions of the work
             being done, but not all local authorities release this data to the public, unfortunately. You can also filter which promoters to show
             on the map from the settings dialog with the cog in the bottom-right of the&nbsp;map.
           </p>
-
-          <MinorAlert color="cautioningAmber" coloredBackground heading="Current issues (11 Apr 2024)">
-            <p className="text-speak">
-              We're aware that the streetworks map isn't currently showing any data. We're looking into this and hope to get this sorted as soon
-              as possible.
-            </p>
-            <p className="text-speak">
-              In the meantime, we recommend you try using <Link href="https://bidb.uk">bidb.uk</Link>, however you won't be able to view
-              information for Wales, or works descriptions.
-            </p>
-          </MinorAlert>
         </Section>
 
-        <PostcodeSearch map={map ?? undefined} />
+        <PostcodeSearch map={map} />
 
         <Section width="full" className={classes.mapSection}>
           <StreetworksMap ref={m => setMap(m)} />
