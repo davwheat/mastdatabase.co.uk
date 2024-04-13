@@ -402,7 +402,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'truespeed',
     name: 'Truespeed',
-    aliases: ['Truespeed Communications', 'Truespeed Communications Ltd'],
+    aliases: ['Truespeed', 'Truespeed Communications', 'Truespeed Communications Ltd'],
     category: 'Fixed broadband',
     icon: {
       text: 'TRUE',
