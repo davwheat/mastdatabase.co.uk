@@ -636,6 +636,27 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
     category: 'Fixed broadband',
     icon: { text: 'GRN', type: 'global-reach' },
   },
+  {
+    id: 'nexfibre',
+    name: 'Nexfibre',
+    aliases: ['Nexfibre'],
+    category: 'Fixed broadband',
+    icon: { text: 'NEX', type: 'nexfibre' },
+  },
+  {
+    id: 'nynet',
+    name: 'Nynet',
+    aliases: ['Nynet Ltd'],
+    category: 'Fixed broadband',
+    icon: { text: 'NY', type: 'nynet' },
+  },
+  {
+    id: 'voneus',
+    name: 'Voneus',
+    aliases: ['Voneus Broadband'],
+    category: 'Fixed broadband',
+    icon: { text: 'VONE', type: 'voneus' },
+  },
 
   // FWA
   {
