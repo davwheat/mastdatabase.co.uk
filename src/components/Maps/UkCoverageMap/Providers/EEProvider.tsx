@@ -37,10 +37,14 @@ export default class EECoverageMapProvider extends CoverageProvider<true> {
         label: '2G',
         url: this.makeLayerUri('2g'),
       },
-      {
-        label: '3G',
-        url: this.makeLayerUri('3g'),
-      },
+      ...(version < '2024-04-26'
+        ? [
+            {
+              label: '3G',
+              url: this.makeLayerUri('3g'),
+            },
+          ]
+        : []),
       {
         label: '4G (non-VoLTE)',
         url: this.makeLayerUri('4g'),
@@ -133,10 +137,14 @@ export default class EECoverageMapProvider extends CoverageProvider<true> {
               label: '2G (new)',
               url: this.makeLayerUri('2g_new'),
             },
-            {
-              label: '3G (new)',
-              url: this.makeLayerUri('3g_new'),
-            },
+            ...(version < '2024-04-26'
+              ? [
+                  {
+                    label: '3G (new)',
+                    url: this.makeLayerUri('3g_new'),
+                  },
+                ]
+              : []),
             {
               label: '4G (new)',
               url: this.makeLayerUri('4g_new'),
@@ -159,9 +167,13 @@ export default class EECoverageMapProvider extends CoverageProvider<true> {
       {
         key: [...this.layerKey('2g')],
       },
-      {
-        key: [...this.layerKey('3g')],
-      },
+      ...(version < '2024-04-26'
+        ? [
+            {
+              key: [...this.layerKey('3g')],
+            },
+          ]
+        : []),
       {
         key: [...this.layerKey('4g')],
       },
@@ -201,9 +213,13 @@ export default class EECoverageMapProvider extends CoverageProvider<true> {
             {
               key: [...this.layerKey('new')],
             },
-            {
-              key: [...this.layerKey('new')],
-            },
+            ...(version < '2024-04-26'
+              ? [
+                  {
+                    key: [...this.layerKey('new')],
+                  },
+                ]
+              : []),
             {
               key: [...this.layerKey('new')],
             },
