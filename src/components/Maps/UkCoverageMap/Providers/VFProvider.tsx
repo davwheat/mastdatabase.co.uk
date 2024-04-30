@@ -51,12 +51,16 @@ export default class VodafoneCoverageMapProvider extends CoverageProvider<true> 
       {
         key: genericKey,
       },
-      {
-        key: genericKey,
-      },
-      {
-        key: genericKey,
-      },
+      ...(version < '2024-04-26'
+        ? [
+            {
+              key: genericKey,
+            },
+            {
+              key: genericKey,
+            },
+          ]
+        : []),
       {
         key: genericKey,
       },
@@ -108,7 +112,7 @@ export default class VodafoneCoverageMapProvider extends CoverageProvider<true> 
   }
 
   getPageMessages(): string[] {
-    const messages: string[] = ["IoT coverage is only available on version 31 July 2023 and earlier. It's not available on later versions."]
+    const messages: string[] = []
 
     if (this.version === '2024-01-09') {
       messages.push('The impact footprint layer on this version is mangled, but still correct where visible.')
@@ -133,14 +137,18 @@ export default class VodafoneCoverageMapProvider extends CoverageProvider<true> 
         label: '2G (planned)',
         url: this.makeLayerUri('2g_planned'),
       },
-      {
-        label: '3G',
-        url: this.makeLayerUri('3g'),
-      },
-      {
-        label: '3G (planned)',
-        url: this.makeLayerUri('3g_planned'),
-      },
+      ...(version < '2024-04-26'
+        ? [
+            {
+              label: '3G',
+              url: this.makeLayerUri('3g'),
+            },
+            {
+              label: '3G (planned)',
+              url: this.makeLayerUri('3g_planned'),
+            },
+          ]
+        : []),
       {
         label: '4G',
         url: this.makeLayerUri('4g'),
