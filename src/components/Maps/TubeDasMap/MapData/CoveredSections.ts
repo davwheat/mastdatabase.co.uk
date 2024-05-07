@@ -762,17 +762,27 @@ const StationSegmentsWithCoverage: CoverageGroup[] = [
     groupName: 'Victoria Line',
     state: 'planned',
     opens: 'by end of Spring 2024',
+    segments: [],
+  },
+  {
+    groupName: 'Victoria Line',
+    state: 'live',
+    opens: 'by end of Spring 2024',
     segments: [
       {
         section: 'Oxford Circus to Warren Street',
         startStationId: '940GZZLUOXC',
         endStationId: '940GZZLUWRR',
+        opens: 'May 2024',
+        coverageNotes: ['Live testing started late April 2024'],
       },
       {
         section: 'Warren Street to Euston',
         lineFilter: ['Victoria'],
         startStationId: '940GZZLUWRR',
         endStationId: '940GZZLUEUS',
+        opens: 'May 2024',
+        coverageNotes: ['Live testing started late April 2024'],
       },
     ],
   },
