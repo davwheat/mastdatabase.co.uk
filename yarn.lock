@@ -12901,7 +12901,7 @@ __metadata:
     leaflet.markercluster: "npm:^1.5.3"
     leaflet.sync: "npm:^0.2.4"
     mdi-react: "npm:^9.4.0"
-    mobile-spectrum-data: "npm:^1.20.0"
+    mobile-spectrum-data: "npm:^1.22.0"
     nanoid: "npm:^4.0.2"
     prettier: "npm:^3.2.5"
     prop-types: "npm:^15.8.1"
@@ -14031,10 +14031,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mobile-spectrum-data@npm:^1.20.0":
-  version: 1.20.0
-  resolution: "mobile-spectrum-data@npm:1.20.0"
-  checksum: 10/b705604d1a1065e904dec4552a67c288470a4170fc96a3444fc63ae2ca2cadc0f4bafec54b71fa88af1e8b59efe779e4e9b833da9bd768dccf46e3483922a994
+"mobile-spectrum-data@npm:^1.22.0":
+  version: 1.22.0
+  resolution: "mobile-spectrum-data@npm:1.22.0"
+  checksum: 10/3f88a76ef3f18cff343e61058764d4aab1a12a0f9cbe6f99e9ad84bdb9e3eebb2ac8fc24f4343984132b2e6551e3f335385d3928afa5bdc561d45d7939be8e55
   languageName: node
   linkType: hard
 
