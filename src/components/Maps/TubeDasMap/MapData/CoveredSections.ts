@@ -649,7 +649,7 @@ const StationSegmentsWithCoverage: CoverageGroup[] = [
   {
     groupName: 'Central Line',
     state: 'planned',
-    opens: 'by end of Spring 2024',
+    opens: 'by end of Summer 2024',
     segments: [
       {
         section: "White City to Shepherd's Bush",
@@ -666,10 +666,25 @@ const StationSegmentsWithCoverage: CoverageGroup[] = [
   {
     groupName: 'Northern Line',
     state: 'planned',
-    opens: 'by end of Spring 2024',
+    opens: 'by end of Summer 2024',
     segments: [
       // Charing Cross branch
-      // ...
+      {
+        section: 'Tottenham Court Road to Leicester Square',
+        startStationId: '940GZZLUTCR',
+        endStationId: '940GZZLULSQ',
+      },
+      {
+        section: 'Leicester Square to Charing Cross',
+        startStationId: '940GZZLULSQ',
+        endStationId: '940GZZLUCHX',
+      },
+      {
+        section: 'Charing Cross to Embankment',
+        startStationId: '940GZZLUCHX',
+        endStationId: '940GZZLUEMB',
+        lineFilter: ['Northern'],
+      },
 
       // Bank branch
       // ...
@@ -697,12 +712,59 @@ const StationSegmentsWithCoverage: CoverageGroup[] = [
         startStationId: '940GZZLUHGT',
         endStationId: '940GZZLUEFY',
       },
+
+      // Morden
+      {
+        section: 'Stockwell to Clapham North',
+        startStationId: '940GZZLUSKW',
+        endStationId: '940GZZLUCPN',
+      },
+      {
+        section: 'Clapham North to Clapham Common',
+        startStationId: '940GZZLUCPN',
+        endStationId: '940GZZLUCPC',
+      },
+      {
+        section: 'Clapham Common to Clapham South',
+        startStationId: '940GZZLUCPC',
+        endStationId: '940GZZLUCPS',
+      },
+      {
+        section: 'Clapham South to Balham',
+        startStationId: '940GZZLUCPS',
+        endStationId: '940GZZLUBLM',
+      },
+      {
+        section: 'Balham to Tooting Bec',
+        startStationId: '940GZZLUBLM',
+        endStationId: '940GZZLUTBC',
+      },
+      {
+        section: 'Tooting Bec to Tooting Broadway',
+        startStationId: '940GZZLUTBC',
+        endStationId: '940GZZLUTBY',
+      },
+      {
+        section: 'Tooting Broadway to Colliers Wood',
+        startStationId: '940GZZLUTBY',
+        endStationId: '940GZZLUCSD',
+      },
+      {
+        section: 'Colliers Wood to South Wimbledon',
+        startStationId: '940GZZLUCSD',
+        endStationId: '940GZZLUSWN',
+      },
+      {
+        section: 'South Wimbledon to Morden',
+        startStationId: '940GZZLUSWN',
+        endStationId: '940GZZLUMDN',
+      },
     ],
   },
   {
     groupName: 'Elizabeth line',
     state: 'planned',
-    opens: 'by end of Spring 2024',
+    opens: 'by end of Summer 2024',
     segments: [
       // #region Core
       {
@@ -761,13 +823,25 @@ const StationSegmentsWithCoverage: CoverageGroup[] = [
   {
     groupName: 'Victoria Line',
     state: 'planned',
-    opens: 'by end of Spring 2024',
-    segments: [],
+    opens: 'by end of Summer 2024',
+    segments: [
+      {
+        section: 'Green Park to Oxford Circus',
+        startStationId: '940GZZLUGPK',
+        endStationId: '940GZZLUOXC',
+      },
+
+      {
+        section: 'Brixton to Stockwell',
+        startStationId: '940GZZLUBXN',
+        endStationId: '940GZZLUSKW',
+      },
+    ],
   },
   {
     groupName: 'Victoria Line',
     state: 'live',
-    opens: 'by end of Spring 2024',
+    opens: 'by end of Summer 2024',
     segments: [
       {
         section: 'Oxford Circus to Warren Street',
@@ -789,7 +863,7 @@ const StationSegmentsWithCoverage: CoverageGroup[] = [
   {
     groupName: 'Piccadilly Line',
     state: 'planned',
-    opens: 'by end of Spring 2024',
+    opens: 'by end of Summer 2024',
     segments: [
       {
         section: 'Russell Square to Holborn',
@@ -800,6 +874,49 @@ const StationSegmentsWithCoverage: CoverageGroup[] = [
         section: 'Holborn to Covent Garden',
         startStationId: '940GZZLUHBN',
         endStationId: '940GZZLUCGN',
+      },
+      {
+        section: 'Covent Garden to Leicester Square',
+        startStationId: '940GZZLUCGN',
+        endStationId: '940GZZLULSQ',
+      },
+      {
+        section: 'Leicester Square to Piccadilly Circus',
+        startStationId: '940GZZLULSQ',
+        endStationId: '940GZZLUPCC',
+      },
+      {
+        section: 'Piccadilly Circus to Green Park',
+        startStationId: '940GZZLUPCC',
+        endStationId: '940GZZLUGPK',
+      },
+      {
+        section: 'Green Park to Hyde Park Corner',
+        startStationId: '940GZZLUGPK',
+        endStationId: '940GZZLUHPC',
+      },
+    ],
+  },
+  {
+    groupName: 'Bakerloo Line',
+    state: 'planned',
+    opens: 'by end of Summer 2024',
+    segments: [
+      {
+        section: 'Oxford Circus to Piccadilly Circus',
+        startStationId: '940GZZLUOXC',
+        endStationId: '940GZZLUPCC',
+      },
+      {
+        section: 'Piccadilly Circus to Charing Cross',
+        startStationId: '940GZZLUPCC',
+        endStationId: '940GZZLUCHX',
+      },
+      {
+        section: 'Charing Cross to Embankment',
+        startStationId: '940GZZLUCHX',
+        endStationId: '940GZZLUEMB',
+        lineFilter: ['Bakerloo'],
       },
     ],
   },
@@ -844,13 +961,13 @@ const StationCoverageInfo: Record<string, StationCoverageInfo> = {
   // Highgate
   '940GZZLUHGT': {
     state: 'planned',
-    opens: 'by end of Spring 2024',
+    opens: 'by end of Summer 2024',
     coverage: {},
   },
   // East Finchley
   '940GZZLUEFY': {
     state: 'planned',
-    opens: 'by end of Spring 2024',
+    opens: 'by end of Summer 2024',
     coverage: {},
   },
   // #endregion
@@ -925,6 +1042,19 @@ const StationCoverageInfo: Record<string, StationCoverageInfo> = {
       O2: CoveragePresets.station.O2.with_5g,
     },
   },
+  // Leicester Square included through Piccadilly Line
+  // Charing Cross
+  '940GZZLUCHX': {
+    state: 'planned',
+    opens: 'by end of Summer 2024',
+    coverage: {},
+  },
+  // Embankment
+  '940GZZLUEMB': {
+    state: 'planned',
+    opens: 'by end of Summer 2024',
+    coverage: {},
+  },
   // #endregion
 
   // #region Northern Line, Edgware branch
@@ -964,23 +1094,83 @@ const StationCoverageInfo: Record<string, StationCoverageInfo> = {
   // Golders Green
   '940GZZLUGGN': {
     state: 'planned',
-    opens: 'by end of Spring 2024',
+    opens: 'by end of Summer 2024',
     coverage: {},
   },
   // #endregion
+
+  // #region Northern Line, Morden branch
+  // Stockwell included through Victoria Line
+  // Clapham North
+  '940GZZLUCPN': {
+    state: 'planned',
+    opens: 'by end of Summer 2024',
+    coverage: {},
+  },
+  // Clapham Common
+  '940GZZLUCPC': {
+    state: 'planned',
+    opens: 'by end of Summer 2024',
+    coverage: {},
+  },
+  // Clapham South
+  '940GZZLUCPS': {
+    state: 'planned',
+    opens: 'by end of Summer 2024',
+    coverage: {},
+  },
+  // Balham
+  '940GZZLUBLM': {
+    state: 'planned',
+    opens: 'by end of Summer 2024',
+    coverage: {},
+  },
+  // Tooting Bec
+  '940GZZLUTBC': {
+    state: 'planned',
+    opens: 'by end of Summer 2024',
+    coverage: {},
+  },
+  // Tooting Broadway
+  '940GZZLUTBY': {
+    state: 'planned',
+    opens: 'by end of Summer 2024',
+    coverage: {},
+  },
+  // Colliers Wood
+  '940GZZLUCSD': {
+    state: 'planned',
+    opens: 'by end of Summer 2024',
+    coverage: {},
+  },
+  // South Wimbledon
+  '940GZZLUSWN': {
+    state: 'planned',
+    opens: 'by end of Summer 2024',
+    coverage: {},
+  },
+  // Morden
+  '940GZZLUMDN': {
+    state: 'planned',
+    opens: 'by end of Summer 2024',
+    coverage: {},
+  },
+
+  // #endregion
+
   // #endregion
 
   // #region Central Line
   // White City
   '940GZZLUWCY': {
     state: 'planned',
-    opens: 'by end of Spring 2024',
+    opens: 'by end of Summer 2024',
     coverage: {},
   },
   // Shepherd's Bush
   '940GZZLUSBC': {
     state: 'planned',
-    opens: 'by end of Spring 2024',
+    opens: 'by end of Summer 2024',
     coverage: {},
   },
   // Holland Park
@@ -1204,8 +1394,8 @@ const StationCoverageInfo: Record<string, StationCoverageInfo> = {
   // #region Elizabeth Line core
   // Paddington
   '910GPADTLL': {
-    state: 'planned',
-    opens: 'by end of Spring 2024',
+    state: 'live',
+    opens: '14 May 2024',
     coverage: {
       EE: CoveragePresets.station.EE.no_5g,
       Three: CoveragePresets.station.Three.no_5g,
@@ -1259,8 +1449,8 @@ const StationCoverageInfo: Record<string, StationCoverageInfo> = {
   },
   // Whitechapel
   '910GWCHAPEL': {
-    state: 'planned',
-    opens: 'by end of Spring 2024',
+    state: 'live',
+    opens: '14 May 2024',
     coverage: {
       EE: CoveragePresets.station.EE.no_5g,
       Three: CoveragePresets.station.Three.no_5g,
@@ -1270,36 +1460,10 @@ const StationCoverageInfo: Record<string, StationCoverageInfo> = {
   },
   // #endregion
 
-  // #region Elizabeth Line - Shenfield Branch
-  // Stratford
-  '910GSTFD': {
-    state: 'planned',
-    opens: 'by end of Spring 2024',
-    coverage: {
-      EE: CoveragePresets.station.EE.no_5g,
-      Three: CoveragePresets.station.Three.no_5g,
-      O2: CoveragePresets.station.O2.no_5g,
-      Vodafone: CoveragePresets.station.Vodafone.no_5g,
-    },
-  },
-  // #endregion
-
-  // #region Elizabeth Line - Abbey Wood Branch
-  // Canary Wharf
+  // #region Elizabeth Line, Abbey Wood branch
   '910G950': {
-    state: 'planned',
-    opens: 'by end of Spring 2024',
-    coverage: {
-      EE: CoveragePresets.station.EE.no_5g,
-      Three: CoveragePresets.station.Three.no_5g,
-      O2: CoveragePresets.station.O2.no_5g,
-      Vodafone: CoveragePresets.station.Vodafone.no_5g,
-    },
-  },
-  // Custom House
-  '910GCUSTMHS': {
-    state: 'planned',
-    opens: 'by end of Spring 2024',
+    state: 'live',
+    opens: '14 May 2024',
     coverage: {
       EE: CoveragePresets.station.EE.no_5g,
       Three: CoveragePresets.station.Three.no_5g,
@@ -1309,8 +1473,8 @@ const StationCoverageInfo: Record<string, StationCoverageInfo> = {
   },
   // Woolwich
   '910GWOLWXR': {
-    state: 'planned',
-    opens: 'by end of Spring 2024',
+    state: 'live',
+    opens: '14 May 2024',
     coverage: {
       EE: CoveragePresets.station.EE.no_5g,
       Three: CoveragePresets.station.Three.no_5g,
@@ -1319,27 +1483,85 @@ const StationCoverageInfo: Record<string, StationCoverageInfo> = {
     },
   },
   // #endregion
+  // #endregion
 
   // #region Victoria Line
+  // Green Park included through Piccadilly Line
   // Oxford Circus included through Central Line
   // Warren Street included through Northern Line
   // Euston included through Northern Line
+
+  // Stockwell
+  '940GZZLUSKW': {
+    state: 'planned',
+    opens: 'by end of Summer 2024',
+    coverage: {
+      EE: CoveragePresets.station.EE.with_5g,
+      Three: CoveragePresets.station.Three.with_5g,
+      O2: CoveragePresets.station.O2.with_5g,
+      Vodafone: CoveragePresets.station.Vodafone.with_5g,
+    },
+  },
+
+  // Brixton
+  '940GZZLUBXN': {
+    state: 'planned',
+    opens: 'by end of Summer 2024',
+    coverage: {
+      EE: CoveragePresets.station.EE.with_5g,
+      Three: CoveragePresets.station.Three.with_5g,
+      O2: CoveragePresets.station.O2.with_5g,
+      Vodafone: CoveragePresets.station.Vodafone.with_5g,
+    },
+  },
+
   // #endregion
 
   // #region Piccadilly Line
   // Russell Square
   '940GZZLURSQ': {
     state: 'planned',
-    opens: 'by end of Spring 2024',
+    opens: 'by end of Summer 2024',
     coverage: {},
   },
   // Holborn included through Central Line
   // Covent Garden
   '940GZZLUCGN': {
     state: 'planned',
-    opens: 'by end of Spring 2024',
+    opens: 'by end of Summer 2024',
     coverage: {},
   },
+  // Leicester Square
+  '940GZZLULSQ': {
+    state: 'planned',
+    opens: 'by end of Summer 2024',
+    coverage: {},
+  },
+  // Piccadilly Circus
+  '940GZZLUPCC': {
+    state: 'planned',
+    opens: 'by end of Summer 2024',
+    coverage: {},
+  },
+  // Green Park
+  '940GZZLUGPK': {
+    state: 'planned',
+    opens: 'by end of Summer 2024',
+    coverage: {},
+  },
+  // Hyde Park Corner
+  '940GZZLUHPC': {
+    state: 'planned',
+    opens: 'by end of Summer 2024',
+    coverage: {},
+  },
+  // #endregion
+
+  // #region Bakerloo Line
+  // Oxford Circus included through Central Line
+  // Piccadilly Circus included through Piccadilly Line
+  // Charing Cross included through Northern Line
+  // Embankment included through Northern Line
   // #endregion
 }
 
