@@ -1527,9 +1527,14 @@ const StationCoverageInfo: Record<string, StationCoverageInfo> = {
   // Holborn included through Central Line
   // Covent Garden
   '940GZZLUCGN': {
-    state: 'planned',
-    opens: 'by end of Summer 2024',
-    coverage: {},
+    state: 'live',
+    opens: '14 May 2024',
+    coverage: {
+      EE: CoveragePresets.station.EE.with_5g,
+      Three: CoveragePresets.station.Three.with_5g,
+      O2: CoveragePresets.station.O2.with_5g,
+      Vodafone: CoveragePresets.station.Vodafone.with_5g,
+    },
   },
   // Leicester Square
   '940GZZLULSQ': {
