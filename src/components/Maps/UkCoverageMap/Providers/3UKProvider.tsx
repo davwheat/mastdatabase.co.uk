@@ -4,7 +4,7 @@ import CoverageProvider, { ICoverageLayer, ICoverageLayerKey } from './CoverageP
 import ThreeLogo from '@assets/icons/brands/three.inline.svg'
 
 export default class ThreeUkCoverageMapProvider extends CoverageProvider<true> {
-  protected _version: string = '2024-04-30'
+  protected _version: string = '2024-05-15'
 
   providerName: string = 'Three UK'
   defaultLayerIndex: number = this.getLayers().findIndex(layer => layer.label === '4G VoLTE')
@@ -28,6 +28,7 @@ export default class ThreeUkCoverageMapProvider extends CoverageProvider<true> {
     '2024-03-26': '26 March 2024',
     '2024-04-26': '26 April 2024',
     '2024-04-30': '30 April 2024',
+    '2024-05-15': '15 May 2024',
   }
 
   protected getTileUrl(layer: string, version: string = this._version): string {
