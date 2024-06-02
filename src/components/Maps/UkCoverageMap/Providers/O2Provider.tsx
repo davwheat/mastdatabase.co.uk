@@ -3,7 +3,7 @@ import CoverageProvider, { ICoverageLayer, ICoverageLayerKey } from './CoverageP
 import O2Logo from '@assets/icons/brands/o2.inline.svg'
 
 export default class O2CoverageMapProvider extends CoverageProvider<true> {
-  protected _version = 'v190'
+  protected _version = 'v192'
 
   providerName: string = 'O2 UK'
   defaultLayerIndex: number = this._getLayers(this.version).findIndex(layer => layer.label === '4G LTE')
@@ -21,6 +21,7 @@ export default class O2CoverageMapProvider extends CoverageProvider<true> {
     v188: '1 August 2023',
     v189: '30 August 2023',
     v190: '14 November 2023',
+    v192: '6 February 2024',
   }
 
   protected _getLayers(version: string): ICoverageLayer[] {
