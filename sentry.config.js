@@ -8,11 +8,11 @@ Sentry.init({
   release: process.env.RELEASE,
 
   integrations: [
-    new Sentry.Replay({
+    Sentry.replayIntegration({
       maskAllText: false,
       blockAllMedia: false,
     }),
-    new Sentry.BrowserTracing({
+    Sentry.browserTracingIntegration({
       // Set 'tracePropagationTargets' to control for which URLs distributed tracing should be enabled
       tracePropagationTargets: ['localhost', /^https:\/\/yourserver\.io\/api/],
     }),
