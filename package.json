@@ -14,7 +14,7 @@
     "@material-ui/styles": "^4.11.5",
     "@mdx-js/react": "^2.3.0",
     "@reach/tabs": "^0.18.0",
-    "@sentry/gatsby": "^8.11.0",
+    "@sentry/gatsby": "^8.13.0",
     "@slixites/gatsby-plugin-google-fonts": "^1.1.1",
     "active-resource": "^1.0.0-beta.7",
     "case-sensitive-paths-webpack-plugin": "^2.4.0",
@@ -55,7 +55,7 @@
     "leaflet.markercluster": "^1.5.3",
     "leaflet.sync": "^0.2.4",
     "mdi-react": "^9.4.0",
-    "mobile-spectrum-data": "^1.23.1",
+    "mobile-spectrum-data": "^1.23.2",
     "nanoid": "^4.0.2",
     "prop-types": "^15.8.1",
     "rbush": "^3.0.1",
@@ -73,13 +73,13 @@
     "remark-math": "^3.0.1",
     "remark-twemoji": "^0.1.1",
     "screenfull": "^6.0.2",
-    "throttle-debounce": "^5.0.0",
+    "throttle-debounce": "^5.0.2",
     "twemoji": "^14.0.2",
     "uuid": "^9.0.1"
   },
   "devDependencies": {
     "@sentry/cli": "^2.32.1",
-    "@sentry/webpack-plugin": "^2.19.0",
+    "@sentry/webpack-plugin": "^2.20.1",
     "@types/color": "^3.0.6",
     "@types/file-saver": "^2.0.7",
     "@types/leaflet": "^1.9.12",
@@ -98,7 +98,7 @@
     "gatsby-plugin-webpack-bundle-analyser-v2": "^1.1.32",
     "prettier": "^3.3.2",
     "typescript": "^5.5.2",
-    "wrangler": "^3.61.0"
+    "wrangler": "^3.62.0"
   },
   "license": "MIT",
   "scripts": {
