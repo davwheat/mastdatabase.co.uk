@@ -119,6 +119,6 @@ export default class O2CoverageMapProvider extends CoverageProvider<true> {
   }
 
   getPageMessages(): string[] {
-    return ['A 5G n78 only layer is available on version October 2022 only.']
+    return ['A 5G n78 only layer is available on version November 2022 only.']
   }
 }
