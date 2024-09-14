@@ -30,7 +30,7 @@ interface IMapCustomButtonProps extends Record<string, unknown> {
 export default function MapCustomButton({ showWhen, className, children, 'aria-label': ariaLabel, onClick, ...props }: IMapCustomButtonProps) {
   const classes = useStyles()
 
-  const show = typeof showWhen === 'function' ? showWhen() : showWhen ?? true
+  const show = typeof showWhen === 'function' ? showWhen() : (showWhen ?? true)
 
   return (
     <Zoom in={show}>
