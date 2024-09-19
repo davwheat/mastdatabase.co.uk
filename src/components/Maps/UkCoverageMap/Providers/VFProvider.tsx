@@ -77,7 +77,7 @@ export default class VodafoneCoverageMapProvider extends CoverageProvider<true> 
         key: genericKey,
       },
 
-      ...(version <= '2024-01-09' || version >= '2024-09-18'
+      ...(version <= '2024-01-09'
         ? [
             {
               key: [{ color: '', label: 'Random colours for each area surrounding an impacted site' }],
@@ -111,6 +111,13 @@ export default class VodafoneCoverageMapProvider extends CoverageProvider<true> 
             },
           ]
         : []),
+        ...(version >= '2024-09-18'
+          ? [
+              {
+                key: [{ color: '', label: 'Random colours for each area surrounding an impacted site' }],
+              },
+            ]
+          : []),
     ]
   }
 
