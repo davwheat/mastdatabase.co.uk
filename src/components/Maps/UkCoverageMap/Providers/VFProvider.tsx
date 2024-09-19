@@ -36,8 +36,9 @@ export default class VodafoneCoverageMapProvider extends CoverageProvider<true> 
     '2024-04-26': '26 April 2024',
     '2024-06-10': '10 June 2024',
     '2024-07-11': '11 July 2024',
+    '2024-09-18': '18 September 2024',
   }
-  protected _version = '2024-07-11'
+  protected _version = '2024-09-18'
 
   protected _getLayerKeys(version: string): ICoverageLayerKey[] {
     const genericKey = [
@@ -76,7 +77,7 @@ export default class VodafoneCoverageMapProvider extends CoverageProvider<true> 
         key: genericKey,
       },
 
-      ...(version <= '2024-01-09'
+      ...(version <= '2024-01-09' || version >= '2024-09-18'
         ? [
             {
               key: [{ color: '', label: 'Random colours for each area surrounding an impacted site' }],
@@ -193,7 +194,7 @@ export default class VodafoneCoverageMapProvider extends CoverageProvider<true> 
             },
           ]
         : []),
-      ...(version <= '2024-01-09'
+      ...(version <= '2024-01-09' || version >= '2024-09-18'
         ? [
             {
               label: 'Impact footprint',
