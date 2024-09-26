@@ -30,8 +30,9 @@ export default class EECoverageMapProvider extends CoverageProvider<true> {
     '2024-04-26': '26 April 2024',
     '2024-07-11': '11 July 2024',
     '2024-07-23': '23 July 2024',
+    '2024-09-25': '25 September 2024',
   }
-  protected _version = '2024-07-23'
+  protected _version = '2024-09-25'
 
   _getLayers(version: string): ICoverageLayer[] {
     return [
