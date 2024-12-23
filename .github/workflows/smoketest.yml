@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 env:
-  NODE_VERSION: 18.x
+  NODE_VERSION: 22.x
   CF_PAGES_PROJECT_NAME: mastdatabase-co-uk
 
 jobs:

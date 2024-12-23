@@ -113,7 +113,7 @@
     "lint": "eslint . --ext md,mdx",
     "sentry:sourcemaps": "sentry-cli sourcemaps inject --org davw-network --project mastdatabase ./public && sentry-cli --url https://sentry.service.davw.network sourcemaps upload --org davw-network --project mastdatabase ./public"
   },
-  "packageManager": "yarn@4.4.1",
+  "packageManager": "yarn@4.5.3",
   "resolutions": {
     "underscore.inflection": "davwheat/underscore.inflection#master",
     "@types/react": "^18",
