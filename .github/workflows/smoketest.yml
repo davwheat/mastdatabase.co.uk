@@ -25,7 +25,7 @@ jobs:
 
       - name: Find existing build status comment
         continue-on-error: true
-        uses: peter-evans/find-comment@v2
+        uses: peter-evans/find-comment@v3
         if: github.event_name == 'pull_request'
         id: find_status_comment
         with:
@@ -35,7 +35,7 @@ jobs:
 
       - name: Create or update comment
         continue-on-error: true
-        uses: peter-evans/create-or-update-comment@v3
+        uses: peter-evans/create-or-update-comment@v4
         if: github.event_name == 'pull_request'
         with:
           issue-number: ${{ github.event.pull_request.number }}
@@ -66,7 +66,7 @@ jobs:
         run: yarn format:check
 
       - name: Restore Gatsby cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         id: gatsbyCache
         with:
           path: ./.cache
@@ -94,7 +94,7 @@ jobs:
           yarn sentry-cli --url https://sentry.service.davw.network releases finalize "$VERSION"
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-pages-artifact@v3
         with:
           path: ./public
 
@@ -113,7 +113,7 @@ jobs:
 
       - name: Find existing build status comment
         continue-on-error: true
-        uses: peter-evans/find-comment@v2
+        uses: peter-evans/find-comment@v3
         if: github.event_name == 'pull_request'
         id: find_current_status_comment
         with:
@@ -124,7 +124,7 @@ jobs:
       - name: Update comment
         continue-on-error: true
         if: github.event_name == 'pull_request' && steps.find_current_status_comment.outputs.comment-id != ''
-        uses: peter-evans/create-or-update-comment@v3
+        uses: peter-evans/create-or-update-comment@v4
         with:
           comment-id: ${{ steps.find_current_status_comment.outputs.comment-id }}
           edit-mode: replace
