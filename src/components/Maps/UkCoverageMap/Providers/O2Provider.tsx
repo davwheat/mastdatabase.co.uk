@@ -24,6 +24,7 @@ export default class O2CoverageMapProvider extends CoverageProvider<true> {
     v192: '6 February 2024',
     v193: '3 June 2024',
     v194: '20 December 2024',
+    v195: '2 April 2025',
   }
 
   protected _getLayers(version: string): ICoverageLayer[] {
