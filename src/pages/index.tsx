@@ -102,6 +102,7 @@ const Countries: ICountryItem[] = [
   { code: 'lv', name: 'Latvia', nativeName: 'Latvija' },
   { code: 'tt', name: 'Trinidad and Tobago', nativeName: 'Trinidad and Tobago' },
   { code: 'au', name: 'Australia', nativeName: 'Australia' },
+  { code: 'pl', name: 'Poland', nativeName: 'Polska' },
 ]
 
 export default function IndexPage({ location }: PageProps) {
