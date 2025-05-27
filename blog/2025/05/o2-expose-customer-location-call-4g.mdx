@@ -169,8 +169,9 @@ using my phone.
 
 Any O2 customer can be trivially located by an attacker with even a basic understanding of mobile networking.
 
-There is also **no way to prevent this attack** as an O2 customer. Disabling 4G Calling does _not_ prevent these headers from being revealed, and
-if your device is ever unreachable these internal headers will still reveal the last cell you were connected to and how long ago this was.
+Disabling 4G Calling **and** WiFi Calling **would** effectively prevent the location disclosure portion of this attack, as the
+"Cellular-Network-Info" header is only sent when the recipient device responds. The disclosure of IMEI and IMSI **still occurs** irrespective of
+IMS registration status, meaning disabling 4G Calling and WiFi calling has no effect on this data exposure.
 
 Attempts were made to reach out to O2 via email (to both Lutz Schüler, CEO and securityincidents@virginmediao2.co.uk) on the 26 and 27 March 2025
 reporting this behaviour and privacy risk, but I have yet to get any response or see any change in the behaviour.
@@ -187,3 +188,8 @@ Article edited by David Wheatley.
 
 **Edit (18 May 2025, 23:40 UTC):** A previous version of this article stated the contacted email was securityincidents@virginmedia.co.uk. This
 was incorrect, and the actual email contacted was securityincidents@virginmediao2.co.uk.
+
+**Edit (27 May 2025, 22:21 UTC):** Originally, I stated that there was no way to mitigate the location disclosure part of this attack. With
+further learning into the intricacies of IMS signalling, and the way in which devices send headers, I now believe that disabling both 4G Calling
+and WiFi Calling **would** have mitigated this attack. I believe what I originally saw may have been due to rapid testing, and confusion between
+different logged events. IMEI and IMSI disclosure was still present, even when the recipient device was unreachable.
