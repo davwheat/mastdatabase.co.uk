@@ -162,7 +162,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'ofnl',
     name: 'Open Fibre Networks Limited',
-    aliases: ['Open Fibre Networks Limited', 'Open Fibre Networks', 'Independent Fibre Networks'],
+    aliases: ['Open Fibre Networks Limited', 'Open Fibre Networks', 'Independent Fibre Networks', 'Open Fibre Networks Ltd'],
     category: 'Fixed broadband',
     icon: {
       text: 'OFNL',
@@ -412,7 +412,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'truespeed',
     name: 'Truespeed',
-    aliases: ['Truespeed', 'Truespeed Communications', 'Truespeed Communications Ltd'],
+    aliases: ['Truespeed', 'Truespeed Communications', 'Truespeed Communications Ltd', 'County Broadband LTD'],
     category: 'Fixed broadband',
     icon: {
       text: 'TRUE',
