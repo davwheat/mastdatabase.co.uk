@@ -290,6 +290,16 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
     },
   },
   {
+    id: 'lightspeed',
+    name: 'LightSpeed Broadband',
+    aliases: ['LIGHTSPEED NETWORKS LTD'],
+    category: 'Fixed broadband',
+    icon: {
+      text: 'LS',
+      type: 'lightspeed',
+    },
+  },
+  {
     id: 'fullfibre',
     name: 'Full Fibre',
     aliases: ['Full Fibre', 'Full Fibre Limited'],
