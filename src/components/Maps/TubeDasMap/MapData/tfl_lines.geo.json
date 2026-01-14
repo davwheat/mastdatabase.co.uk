@@ -25643,12 +25643,14 @@
     {
       "type": "Feature",
       "properties": {
-        "id": "BatterseaExtension",
+        "id": "BatterseaExtensionNineElms",
         "lines": [
           {
             "name": "Northern",
             "nightopened": 2022,
-            "opened": 2022
+            "opened": 2022,
+            "start_sid": "940GZZBPSUST",
+            "end_sid": "940GZZNEUGST"
           }
         ]
       },
@@ -25665,6 +25667,28 @@
           [-0.132737159729004, 51.4810488156077],
           [-0.131599903106689, 51.480875092784032],
           [-0.130441188812256, 51.480541008570889],
+          [-0.128617275486981, 51.480153464563209]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "BatterseaExtensionKennington",
+        "lines": [
+          {
+            "name": "Northern",
+            "nightopened": 2022,
+            "opened": 2022,
+            "start_sid": "940GZZNEUGST",
+            "end_sid": "940GZZLUKNG"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-0.128617275486981, 51.480153464563209],
           [-0.128617286682129, 51.480153467817658],
           [-0.127243995666504, 51.479872832802705],
           [-0.125699043273926, 51.479685741833421],
