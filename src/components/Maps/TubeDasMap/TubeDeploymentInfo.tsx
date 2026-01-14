@@ -89,8 +89,7 @@ export function TubeDeploymentInfo() {
       </p>
 
       <p className="text-speak">
-        The major point to note is the lack of 3G at newly deployed stations for all networks except Vodafone. It is likely Vodafone's 3G will be
-        switched off by the end of 2023 as part of their{' '}
+        3G was initially only deployed at new stations on Vodafone, but this was switched off by February 2024 as part of their{' '}
         <Link href="https://www.vodafone.co.uk/help-and-information/3g-switch-off">nationwide 3G switch-off programme</Link>.
       </p>
 

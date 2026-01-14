@@ -36,6 +36,7 @@ const useStyles = makeStyles({
     },
   },
   mapOptions: {
+    marginTop: 24,
     padding: '16px 24px',
     backgroundColor: Colors.lightGrey,
   },
@@ -116,6 +117,8 @@ export default function TubeConnectivityMap({ location }: PageProps) {
         />
 
         <Section>
+          <p className="text-whisper-up">This page was updated January 2026.</p>
+
           <h2 className="text-louder">Mobile connectivity on the Tube</h2>
           <p className="text-speak">
             Mobile connectivity on the London Underground is provided by a combination of leaky feeders in tunnels and DAS units in stations. The
@@ -126,9 +129,9 @@ export default function TubeConnectivityMap({ location }: PageProps) {
             .
           </p>
           <p className="text-speak">
-            The programme entails full mobile connectivity throughout the London Underground by the end of 2024, including 5G connectivity at
-            select stations. As of yet, the rollout is not complete, hence a map of deployments and other information is useful for those
-            interested in tracking the rollout over&nbsp;time.
+            The programme entails full mobile connectivity throughout the London Underground by the end of 2024 (which has inevitably been
+            delayed), including 5G coverage. As of yet, the rollout is not complete, hence a map of deployments and other information is useful
+            for those interested in tracking the rollout over&nbsp;time.
           </p>
         </Section>
 
