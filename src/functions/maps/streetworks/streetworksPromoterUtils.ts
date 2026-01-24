@@ -112,7 +112,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'or',
     name: 'Openreach',
-    aliases: ['Openreach'],
+    aliases: ['Openreach', 'OPENREACH LIMITED'],
     category: 'Fixed broadband',
     icon: {
       text: 'OR',
