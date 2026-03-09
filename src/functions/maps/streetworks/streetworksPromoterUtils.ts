@@ -192,7 +192,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'netomnia',
     name: 'Netomnia',
-    aliases: ['Netomnia'],
+    aliases: ['NETOMNIA LIMITED'],
     category: 'Fixed broadband',
     icon: {
       text: 'NOMN',
