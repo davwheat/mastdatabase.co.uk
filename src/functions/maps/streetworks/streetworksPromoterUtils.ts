@@ -19,12 +19,12 @@ export interface IOneNetworkStreetworksPromoter {
    * Promoter category (what infrastructure they are responsible for)
    */
   category:
-  | 'Mobile network'
-  | 'Fixed broadband'
-  | 'Fixed wireless access'
-  | 'Business broadband'
-  | 'Street furniture'
-  | 'Telecoms infrastructure'
+    | 'Mobile network'
+    | 'Fixed broadband'
+    | 'Fixed wireless access'
+    | 'Business broadband'
+    | 'Street furniture'
+    | 'Telecoms infrastructure'
   /**
    * Information for map marker icons
    */
@@ -112,7 +112,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'or',
     name: 'Openreach',
-    aliases: ['Openreach',],
+    aliases: ['Openreach'],
     category: 'Fixed broadband',
     icon: {
       text: 'OR',
@@ -162,7 +162,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'ofnl',
     name: 'Open Fibre Networks',
-    aliases: ['Open Fibre Networks', 'Independent Fibre Networks',],
+    aliases: ['Open Fibre Networks', 'Independent Fibre Networks'],
     category: 'Fixed broadband',
     icon: {
       text: 'OFNL',
@@ -672,14 +672,14 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
     name: 'Wessex Internet',
     aliases: [],
     category: 'Fixed broadband',
-    icon: { text: "WESX", type: 'wessex' },
+    icon: { text: 'WESX', type: 'wessex' },
   },
   {
     id: 'runfibre',
     name: 'Runfibre',
     aliases: [],
     category: 'Fixed broadband',
-    icon: { text: 'RUN', type: 'runfibre' }
+    icon: { text: 'RUN', type: 'runfibre' },
   },
 
   // FWA
@@ -922,8 +922,8 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
     category: 'Telecoms infrastructure',
     icon: {
       text: 'FRSH',
-      type: 'freshwave'
-    }
+      type: 'freshwave',
+    },
   },
 
   // Business broadband solutions
@@ -1049,10 +1049,7 @@ export let promoterIcons: Record<string, L.DivIcon> = {}
 const promoterLookup = new Map<string, string>()
 let cachedPromoterStates: Record<string, boolean> | null = null
 
-const BUSINESS_SUFFIXES = [
-  'ltd', 'limited', 'plc', 'public limited company', 'llp',
-  'uk', '(uk)'
-];
+const BUSINESS_SUFFIXES = ['ltd', 'limited', 'plc', 'public limited company', 'llp', 'uk', '(uk)']
 
 function indexAlias(raw: string, promoterId: string): void {
   const key = raw.trim().toLowerCase()
@@ -1080,6 +1077,9 @@ for (const promoter of AllStreetworksPromoters) {
 
 Object.freeze(promoterLookup)
 
+for (const promoter of promoterLookup) {
+  console.log(promoter)
+}
 
 function createPromoterIcon(
   iconText: IOneNetworkStreetworksPromoter['icon']['text'],
@@ -1109,14 +1109,11 @@ function getUnknownIcon(): L.DivIcon {
 function ensureIconsInitialised(): void {
   if (Object.keys(promoterIcons).length > 0) return
 
-  promoterIcons = AllStreetworksPromoters.reduce<Record<string, L.DivIcon>>(
-    (acc, promoter) => {
-      const icon = createPromoterIcon(promoter.icon.text, promoter.icon.type, promoter.name)
-      if (icon) acc[promoter.id] = icon
-      return acc
-    },
-    {},
-  )
+  promoterIcons = AllStreetworksPromoters.reduce<Record<string, L.DivIcon>>((acc, promoter) => {
+    const icon = createPromoterIcon(promoter.icon.text, promoter.icon.type, promoter.name)
+    if (icon) acc[promoter.id] = icon
+    return acc
+  }, {})
 }
 
 export function getPromoterId(dataPoint: StreetworksDataPoint): string | undefined {
@@ -1131,9 +1128,16 @@ export function getPromoterId(dataPoint: StreetworksDataPoint): string | undefin
   // O(1) - Check stripped name of unseen suffix not pre indexed
   for (const suffix of BUSINESS_SUFFIXES) {
     if (key.endsWith(suffix)) {
+      console.log(key)
+      console.log(suffix)
       const baseName = key.slice(0, -suffix.length).trim()
       const id = promoterLookup.get(baseName)
-      if (id !== undefined) return id
+      console.log(id)
+      if (id !== undefined) {
+        promoterLookup.set(key, id)
+        return id
+      }
+      console.log('no match')
     }
   }
 
@@ -1143,7 +1147,7 @@ export function getPromoterId(dataPoint: StreetworksDataPoint): string | undefin
 export function getPromoterIcon(dataPoint: StreetworksDataPoint) {
   ensureIconsInitialised()
   const id = getPromoterId(dataPoint)
-  return (id && promoterIcons[id]) ? promoterIcons[id] : getUnknownIcon()
+  return id && promoterIcons[id] ? promoterIcons[id] : getUnknownIcon()
 }
 
 export function getPromoterName(dataPoint: StreetworksDataPoint) {
@@ -1189,7 +1193,6 @@ export function getPromoterStates(): Record<string, boolean> {
   }, {})
 
   return cachedPromoterStates
-
 }
 
 export function setPromoterState(promoterId: string, state: boolean) {
@@ -1197,28 +1200,23 @@ export function setPromoterState(promoterId: string, state: boolean) {
 
   states[promoterId] = state
 
-  const disabledIds = new Set(
-    Object.keys(states).filter(id => !states[id]),
-  )
+  const disabledIds = new Set(Object.keys(states).filter(id => !states[id]))
   _persistDisabledIds(disabledIds)
 }
 
 export function setAllPromotersState(state: boolean) {
   const disabledIds = state
-    ? new Set<string>()        // enable all = nothing disabled
+    ? new Set<string>() // enable all = nothing disabled
     : new Set<string>(promoterIds) // disable all = everything disabled
 
   _persistDisabledIds(disabledIds)
 
   // Invalidate cache
-  cachedPromoterStates = null;
+  cachedPromoterStates = null
 }
 
 function _persistDisabledIds(disabledIds: Set<string>): void {
-  if (typeof window === 'undefined') return;
+  if (typeof window === 'undefined') return
 
-  window.localStorage.setItem(
-    DISABLED_PROMOTERS_LS_KEY,
-    JSON.stringify([...disabledIds]),
-  );
+  window.localStorage.setItem(DISABLED_PROMOTERS_LS_KEY, JSON.stringify([...disabledIds]))
 }
