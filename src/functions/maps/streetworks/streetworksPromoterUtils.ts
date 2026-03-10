@@ -220,7 +220,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
     },
   },
   {
-    id: 'g-network', // todo: probably reundant now
+    id: 'g-network', // todo: probably redundant now
     name: 'G. Network',
     aliases: ['g. network communications', 'G.NETWORK COMMUNICATIONS'],
     category: 'Fixed broadband',
@@ -1075,12 +1075,6 @@ for (const promoter of AllStreetworksPromoters) {
   }
 }
 
-Object.freeze(promoterLookup)
-
-for (const promoter of promoterLookup) {
-  console.log(promoter)
-}
-
 function createPromoterIcon(
   iconText: IOneNetworkStreetworksPromoter['icon']['text'],
   type: IOneNetworkStreetworksPromoter['icon']['type'],
@@ -1128,16 +1122,12 @@ export function getPromoterId(dataPoint: StreetworksDataPoint): string | undefin
   // O(1) - Check stripped name of unseen suffix not pre indexed
   for (const suffix of BUSINESS_SUFFIXES) {
     if (key.endsWith(suffix)) {
-      console.log(key)
-      console.log(suffix)
       const baseName = key.slice(0, -suffix.length).trim()
       const id = promoterLookup.get(baseName)
-      console.log(id)
       if (id !== undefined) {
         promoterLookup.set(key, id)
         return id
       }
-      console.log('no match')
     }
   }
 
