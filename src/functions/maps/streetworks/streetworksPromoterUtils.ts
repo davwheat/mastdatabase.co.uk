@@ -40,7 +40,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'o2',
     name: 'O2',
-    aliases: ['O2 (UK) Limited'],
+    aliases: ['O2 (UK)'],
     category: 'Mobile network',
     icon: {
       text: 'O2',
@@ -60,7 +60,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'three',
     name: 'Three',
-    aliases: ['Three UK', 'Hutchison 3G Ltd', 'Hutchinson Microtel'],
+    aliases: ['Three UK', 'Hutchison 3G', 'Hutchinson Microtel'],
     category: 'Mobile network',
     icon: {
       text: '3',
@@ -80,7 +80,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'mbnl',
     name: 'EE (Everything Everywhere)',
-    aliases: ['MBNL', 'Orange PCS LTD', 'T-Mobile (UK) Limited'],
+    aliases: ['MBNL', 'Orange PCS', 'T-Mobile (UK)'],
     category: 'Mobile network',
     icon: {
       text: 'EE',
@@ -90,7 +90,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'ctil',
     name: 'CTIL (O2/VF)',
-    aliases: ['CTIL', 'Cornerstone Telecommunications Infrastructure Limited', 'Cornerstone Telecommunications Infrastru'],
+    aliases: ['CTIL', 'Cornerstone Telecommunications Infrastructure', 'Cornerstone Telecommunications Infrastru'],
     category: 'Mobile network',
     icon: {
       text: 'CTIL',
@@ -102,7 +102,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'bt',
     name: 'BT',
-    aliases: ['BT', 'British Telecom'],
+    aliases: ['BT', 'British Telecom', 'British Telecommunications'],
     category: 'Fixed broadband',
     icon: {
       text: 'BT',
@@ -112,7 +112,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'or',
     name: 'Openreach',
-    aliases: ['Openreach', 'OPENREACH LIMITED'],
+    aliases: ['Openreach'],
     category: 'Fixed broadband',
     icon: {
       text: 'OR',
@@ -122,7 +122,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'virgin',
     name: 'Virgin Media',
-    aliases: ['Virgin Media', 'Virgin Media.__149', 'VIRGIN MEDIA LIMITED'],
+    aliases: ['Virgin Media', 'Virgin Media.__149'],
     category: 'Fixed broadband',
     icon: {
       text: 'VMED',
@@ -132,7 +132,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'cf',
     name: 'CityFibre',
-    aliases: ['CityFibre', 'CityFibre Metro Networks Limited', 'CityFibre Metro Networks Ltd', 'CITYFIBRE HOLDINGS LIMITED'],
+    aliases: ['CityFibre', 'CityFibre Metro Networks', 'Cityfibre Holdings'],
     category: 'Fixed broadband',
     icon: {
       text: 'CTYF',
@@ -152,7 +152,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'grain',
     name: 'Grain',
-    aliases: ['Grain', 'Grain Connect', 'Grain Communications Ltd', 'Grain Communications Ltd__1822', 'GRAIN CONNECT LIMITED'],
+    aliases: ['Grain', 'Grain Connect', 'Grain Communications', 'Grain Communications Ltd__1822'],
     category: 'Fixed broadband',
     icon: {
       text: 'GRAI',
@@ -161,8 +161,8 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   },
   {
     id: 'ofnl',
-    name: 'Open Fibre Networks Limited',
-    aliases: ['Open Fibre Networks Limited', 'Open Fibre Networks', 'Independent Fibre Networks', 'Open Fibre Networks Ltd'],
+    name: 'Open Fibre Networks',
+    aliases: ['Open Fibre Networks', 'Independent Fibre Networks'],
     category: 'Fixed broadband',
     icon: {
       text: 'OFNL',
@@ -172,7 +172,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'toob',
     name: 'TOOB',
-    aliases: ['TOOB', 'TOOB Limited'],
+    aliases: ['TOOB'],
     category: 'Fixed broadband',
     icon: {
       text: 'TOOB',
@@ -182,7 +182,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'zzoomm',
     name: 'Zzoomm',
-    aliases: ['Zzoomm', 'Zzoomm PLC'],
+    aliases: ['Zzoomm'],
     category: 'Fixed broadband',
     icon: {
       text: 'ZOOM',
@@ -202,7 +202,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'fibrus',
     name: 'Fibrus Networks',
-    aliases: ['Fibrus Networks', 'Fibrus Networks Limited'],
+    aliases: ['Fibrus Networks'],
     category: 'Fixed broadband',
     icon: {
       text: 'FIB',
@@ -212,7 +212,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'hyperoptic',
     name: 'Hyperoptic',
-    aliases: ['Hyperoptic', 'Hyperoptic Ltd'],
+    aliases: ['Hyperoptic'],
     category: 'Fixed broadband',
     icon: {
       text: 'HYPO',
@@ -220,9 +220,9 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
     },
   },
   {
-    id: 'g-network',
+    id: 'g-network', // todo: probably redundant now
     name: 'G. Network',
-    aliases: ['g. network communications', 'g. network communications ltd'],
+    aliases: ['g. network communications', 'G.NETWORK COMMUNICATIONS'],
     category: 'Fixed broadband',
     icon: {
       text: 'G.N',
@@ -232,7 +232,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'community-fibre',
     name: 'Community Fibre',
-    aliases: ['community fibre', 'community fibre limited'],
+    aliases: ['community fibre'],
     category: 'Fixed broadband',
     icon: {
       text: 'ComF',
@@ -242,7 +242,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'fibre-and-wireless',
     name: 'Fibre & Wireless',
-    aliases: ['f&w networks', 'f & w networks ltd'],
+    aliases: ['f&w networks', 'f & w networks'],
     category: 'Fixed broadband',
     icon: {
       text: 'F&W',
@@ -252,7 +252,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'swish',
     name: 'Swish Fibre',
-    aliases: ['swish fibre ltd', 'swish fibre', "people's fibre limited"],
+    aliases: ['swish fibre', "people's fibre"],
     category: 'Fixed broadband',
     icon: {
       text: 'SWSH',
@@ -272,7 +272,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'box',
     name: 'Box Broadband',
-    aliases: ['Box Broadband', 'Box Broadband Ltd', 'BOX BROADBAND LIMITED'],
+    aliases: ['Box Broadband'],
     category: 'Fixed broadband',
     icon: {
       text: 'BOX',
@@ -292,7 +292,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'lightspeed',
     name: 'LightSpeed Broadband',
-    aliases: ['LIGHTSPEED NETWORKS LTD'],
+    aliases: ['LIGHTSPEED NETWORKS'],
     category: 'Fixed broadband',
     icon: {
       text: 'LS',
@@ -302,7 +302,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'fullfibre',
     name: 'Full Fibre',
-    aliases: ['Full Fibre', 'Full Fibre Limited'],
+    aliases: ['Full Fibre'],
     category: 'Fixed broadband',
     icon: {
       text: 'FF',
@@ -322,7 +322,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'vx-fiber',
     name: 'VX Fiber',
-    aliases: ['VX Fiber', 'VX Fiber Limited'],
+    aliases: ['VX Fiber'],
     category: 'Fixed broadband',
     icon: {
       text: 'VX',
@@ -342,7 +342,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'hampstead-fibre',
     name: 'Hampstead Fibre',
-    aliases: ['Hampstead Fibre', 'Hampstead Fibre Limited'],
+    aliases: ['Hampstead Fibre'],
     category: 'Fixed broadband',
     icon: {
       text: 'HAMP',
@@ -382,7 +382,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'lit',
     name: 'Lit Fibre',
-    aliases: ['Broadreach Networks', 'Broadreach Networks Limited', 'Lit Fibre Group Ltd', 'Lit Fibre'],
+    aliases: ['Broadreach Networks', 'Lit Fibre Group', 'Lit Fibre'],
     category: 'Fixed broadband',
     icon: {
       text: 'LIT',
@@ -392,7 +392,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'gofibre',
     name: 'GoFibre',
-    aliases: ['Borderlink Broadband', 'Borderlink Broadband Limited'],
+    aliases: ['Borderlink Broadband'],
     category: 'Fixed broadband',
     icon: {
       text: 'GOFB',
@@ -412,7 +412,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'truespeed',
     name: 'Truespeed',
-    aliases: ['Truespeed', 'Truespeed Communications', 'Truespeed Communications Ltd', 'County Broadband LTD'],
+    aliases: ['Truespeed', 'Truespeed Communications', 'County Broadband'],
     category: 'Fixed broadband',
     icon: {
       text: 'TRUE',
@@ -422,7 +422,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'ntl',
     name: 'NTL National Networks',
-    aliases: ['Ntl National Networks', 'Ntl National Networks Ltd'],
+    aliases: ['Ntl National Networks'],
     category: 'Fixed broadband',
     icon: {
       text: 'NTL',
@@ -432,7 +432,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'allpoints',
     name: 'Allpoints Fibre',
-    aliases: ['Allpoints Fibre', 'Allpoints Fibre Limited'],
+    aliases: ['Allpoints Fibre'],
     category: 'Fixed broadband',
     icon: {
       text: 'ALLP',
@@ -442,7 +442,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'fibrespeed',
     name: 'Fibrespeed',
-    aliases: ['Fibrespeed', 'Fibrespeed Ltd'],
+    aliases: ['Fibrespeed'],
     category: 'Fixed broadband',
     icon: {
       text: 'FSPD',
@@ -452,7 +452,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'tiger',
     name: 'Tiger Fibre',
-    aliases: ['Tiger Fibre', 'Tiger Fibre Limited'],
+    aliases: ['Tiger Fibre'],
     category: 'Fixed broadband',
     icon: {
       text: 'TIGR',
@@ -462,7 +462,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'general-telecoms',
     name: 'General Telecommunications Ltd',
-    aliases: ['General Telecommunications', 'General Telecommunications Ltd'],
+    aliases: ['General Telecommunications'],
     category: 'Fixed broadband',
     icon: {
       text: 'GENT',
@@ -472,7 +472,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'fibrewave',
     name: 'Fibrewave Networks',
-    aliases: ['Fibrewave Networks', 'Fibrewave Networks Ltd', 'Fibre Wave Installations'],
+    aliases: ['Fibrewave Networks', 'Fibre Wave Installations'],
     category: 'Fixed broadband',
     icon: {
       text: 'FWAV',
@@ -492,17 +492,17 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'kingston-comms',
     name: 'KCOM',
-    aliases: ['KCOM', 'Kingston Comms (Hull)'],
+    aliases: ['KCOM', 'Kingston Comms (Hull)', 'KCOM Group'],
     category: 'Fixed broadband',
     icon: {
       text: 'KCOM',
-      type: 'kingston-comms',
+      type: 'kcom',
     },
   },
   {
     id: 'jurassic',
     name: 'Jurassic Fibre',
-    aliases: ['Jurassic Fibre', 'Jurassic Fibre Limited'],
+    aliases: ['Jurassic Fibre'],
     category: 'Fixed broadband',
     icon: {
       text: 'JSSC',
@@ -512,7 +512,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'yesfibre',
     name: 'Yesfibre',
-    aliases: ['Yesfibre', 'Yesfibre Ltd'],
+    aliases: ['Yesfibre'],
     category: 'Fixed broadband',
     icon: {
       text: 'YES',
@@ -522,7 +522,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'freedom-fibre',
     name: 'Freedom Fibre',
-    aliases: ['Freedom Fibre', 'Freedom Fibre Limited'],
+    aliases: ['Freedom Fibre'],
     category: 'Fixed broadband',
     icon: {
       text: 'FREE',
@@ -542,7 +542,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'ix-wireless',
     name: 'IX Wireless',
-    aliases: ['IX Wireless', 'IX Wireless Limited'],
+    aliases: ['IX Wireless'],
     category: 'Fixed broadband',
     icon: {
       text: 'IX W',
@@ -552,7 +552,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'brsk',
     name: 'BRSK Limited',
-    aliases: ['BRSK', 'BRSK LIMITED'],
+    aliases: ['BRSK'],
     category: 'Fixed broadband',
     icon: {
       text: 'BRSK',
@@ -572,7 +572,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'ogi',
     name: 'Ogi',
-    aliases: ['Ogi', 'Ogi Limited'],
+    aliases: ['Ogi'],
     category: 'Fixed broadband',
     icon: {
       text: 'OGI',
@@ -602,7 +602,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'quickline',
     name: 'Quickline Communications',
-    aliases: ['Quickline Communications Ltd'],
+    aliases: ['Quickline Communications'],
     category: 'Fixed broadband',
     icon: {
       text: 'QLNE',
@@ -612,7 +612,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'ms3',
     name: 'MS3 Networks',
-    aliases: ['MS3 NETWORKS LIMITED'],
+    aliases: ['MS3 NETWORKS'],
     category: 'Fixed broadband',
     icon: {
       text: 'MS3',
@@ -622,7 +622,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'connexin',
     name: 'Connexin',
-    aliases: ['Connexin Ltd'],
+    aliases: ['Connexin'],
     category: 'Fixed broadband',
     icon: {
       text: 'CNXN',
@@ -632,7 +632,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'fibre-me',
     name: 'Upp (Fibre Me)',
-    aliases: ['FIBRE ME LIMITED'],
+    aliases: ['FIBRE ME'],
     category: 'Fixed broadband',
     icon: {
       text: 'UPP',
@@ -642,21 +642,21 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'global-reach',
     name: 'Global Reach Networks',
-    aliases: ['Global Reach Networks Limited'],
+    aliases: ['Global Reach Networks'],
     category: 'Fixed broadband',
     icon: { text: 'GRN', type: 'global-reach' },
   },
   {
     id: 'nexfibre',
     name: 'Nexfibre',
-    aliases: ['Nexfibre'],
+    aliases: ['Nexfibre', 'Nexfibre Networks'],
     category: 'Fixed broadband',
     icon: { text: 'NEX', type: 'nexfibre' },
   },
   {
     id: 'nynet',
     name: 'Nynet',
-    aliases: ['Nynet Ltd'],
+    aliases: ['Nynet'],
     category: 'Fixed broadband',
     icon: { text: 'NY', type: 'nynet' },
   },
@@ -667,12 +667,26 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
     category: 'Fixed broadband',
     icon: { text: 'VONE', type: 'voneus' },
   },
+  {
+    id: 'wessex',
+    name: 'Wessex Internet',
+    aliases: [],
+    category: 'Fixed broadband',
+    icon: { text: 'WESX', type: 'wessex' },
+  },
+  {
+    id: 'runfibre',
+    name: 'Runfibre',
+    aliases: [],
+    category: 'Fixed broadband',
+    icon: { text: 'RUN', type: 'runfibre' },
+  },
 
   // FWA
   {
     id: 'airband',
     name: 'Airband Community Internet',
-    aliases: ['Airband Community Internet', 'Airband Community Internet Ltd'],
+    aliases: ['Airband Community Internet'],
     category: 'Fixed wireless access',
     icon: {
       text: 'AIRB',
@@ -682,7 +696,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'stix',
     name: 'Stix Internet',
-    aliases: ['Stix Internet', 'Stix Internet Limited'],
+    aliases: ['Stix Internet'],
     category: 'Fixed wireless access',
     icon: {
       text: 'STIX',
@@ -694,7 +708,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'arqiva',
     name: 'Arqiva',
-    aliases: ['Arqiva', 'National Transcommunications', 'National Transcommunications Ltd'],
+    aliases: ['Arqiva', 'National Transcommunications'],
     category: 'Telecoms infrastructure',
     icon: {
       text: 'ARQ',
@@ -704,7 +718,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'cellnex',
     name: 'Cellnex',
-    aliases: ['Cellnex', 'Cellnex (On Tower Uk Ltd)', 'Cellnex', 'Cellnex UK Limited'],
+    aliases: ['Cellnex', 'Cellnex (On Tower Uk Ltd)', 'Cellnex UK'],
     category: 'Telecoms infrastructure',
     icon: {
       text: 'CLNX',
@@ -724,7 +738,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'eircom',
     name: 'Eircom (UK)',
-    aliases: ['Eircom (UK)', 'Eircom (UK) Ltd'],
+    aliases: ['Eircom (UK)'],
     category: 'Telecoms infrastructure',
     icon: {
       text: 'EIR',
@@ -734,7 +748,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'my-fibre',
     name: 'My Fibre',
-    aliases: ['My Fibre', 'My Fibre Limited'],
+    aliases: ['My Fibre'],
     category: 'Telecoms infrastructure',
     icon: {
       text: 'MY',
@@ -744,7 +758,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'gtt',
     name: 'GTT Communications',
-    aliases: ['Hibernia Networks', 'I-21 Holdings Ltd'],
+    aliases: ['GTT', 'Hibernia Networks', 'I-21 Holdings'],
     category: 'Telecoms infrastructure',
     icon: {
       text: 'GTT',
@@ -754,7 +768,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'thales',
     name: 'Thales Group',
-    aliases: ['Thales Group'],
+    aliases: ['Thales Group', 'Thales'],
     category: 'Telecoms infrastructure',
     icon: {
       text: 'THLS',
@@ -764,7 +778,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'openinfra',
     name: 'Open Infra',
-    aliases: ['Open Infra', 'Open Infra Ltd'],
+    aliases: ['Open Infra'],
     category: 'Telecoms infrastructure',
     icon: {
       text: 'OINF',
@@ -774,7 +788,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'telcom',
     name: 'Telcom Infrastructure',
-    aliases: ['Telcom Infrastructure', 'Telcom Infrastructure Limited', 'Telcom Infrastructure Ltd'],
+    aliases: ['Telcom Infrastructure'],
     category: 'Telecoms infrastructure',
     icon: {
       text: 'TLCM',
@@ -784,7 +798,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'optical-fibre-infra',
     name: 'Optical Fibre Infrastructure',
-    aliases: ['Optical Fibre Infrastructure', 'Optical Fibre Infrastructure Limited'],
+    aliases: ['Optical Fibre Infrastructure'],
     category: 'Telecoms infrastructure',
     icon: {
       text: 'OFI',
@@ -804,7 +818,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'fibre-guys',
     name: 'The Fibre Guys',
-    aliases: ['The Fibre Guys', 'The Fibre Guys Ltd'],
+    aliases: ['The Fibre Guys'],
     category: 'Telecoms infrastructure',
     icon: {
       text: 'FGUY',
@@ -814,7 +828,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'omne',
     name: 'Virgin Media (Omne Telecommunications)',
-    aliases: ['Omne Telecommunications', 'Omne Telecommunications Ltd'],
+    aliases: ['Omne Telecommunications'],
     category: 'Telecoms infrastructure',
     icon: {
       text: 'OMNE',
@@ -824,7 +838,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'spring',
     name: 'Spring Fibre',
-    aliases: ['Spring Fibre', 'Spring Fibre Limited'],
+    aliases: ['Spring Fibre'],
     category: 'Telecoms infrastructure',
     icon: {
       text: 'SPRN',
@@ -844,13 +858,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'tata',
     name: 'Tata Communications',
-    aliases: [
-      'VSNL Telecommunications (UK)',
-      'VSNL Telecommunications (UK) Ltd',
-      'Tata Communications (UK)',
-      'Tata Communications (UK) Ltd',
-      'Tata Communications (UK) Limited',
-    ],
+    aliases: ['VSNL Telecommunications (UK)', 'Tata Communications (UK)'],
     category: 'Telecoms infrastructure',
     icon: {
       text: 'TATA',
@@ -859,8 +867,8 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   },
   {
     id: 'next-gen-access',
-    name: 'Next Gen Access Ltd',
-    aliases: ['Next Gen Access', 'Next Gen Access Ltd'],
+    name: 'Next Gen Access',
+    aliases: ['Next Gen Access'],
     category: 'Telecoms infrastructure',
     icon: {
       text: 'NGA',
@@ -870,7 +878,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'lumen-technologies',
     name: 'Lumen Technologies',
-    aliases: ['Global Crossing (UK) Telecommunications'],
+    aliases: ['Global Crossing (UK) Telecommunications', 'Global Crossing'],
     category: 'Telecoms infrastructure',
     icon: {
       text: 'LUMN',
@@ -880,7 +888,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'bai-comms',
     name: 'BAI Communications Limited',
-    aliases: ['Bai Communications', 'Bai Communications Limited'],
+    aliases: ['Bai Communications'],
     category: 'Telecoms infrastructure',
     icon: {
       text: 'BAI',
@@ -900,11 +908,21 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'railsite',
     name: 'Railsite Telecom',
-    aliases: ['Railsite Telecom', 'Railsite Telecom Ltd', 'Railsite Telecom Limited'],
+    aliases: ['Railsite Telecom'],
     category: 'Telecoms infrastructure',
     icon: {
       text: 'RAIL',
       type: 'railsite',
+    },
+  },
+  {
+    id: 'freshwave',
+    name: 'Freshwave',
+    aliases: ['Freshwave Facilities', 'Freshwave Services'],
+    category: 'Telecoms infrastructure',
+    icon: {
+      text: 'FRSH',
+      type: 'freshwave',
     },
   },
 
@@ -912,7 +930,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'vorboss',
     name: 'Vorboss',
-    aliases: ['vorboss', 'vorboss ltd'],
+    aliases: ['vorboss'],
     category: 'Business broadband',
     icon: {
       text: 'VORB',
@@ -922,7 +940,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'colt',
     name: 'CoL Telecomms',
-    aliases: ['city of london telecomms'],
+    aliases: ['city of london telecomms', 'colt'],
     category: 'Business broadband',
     icon: {
       text: 'COLT',
@@ -932,7 +950,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'exponential-e',
     name: 'Exponential-E',
-    aliases: ['exponential-e', 'exponential-e limited'],
+    aliases: ['exponential-e'],
     category: 'Business broadband',
     icon: {
       text: 'EXPE',
@@ -942,7 +960,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'neos',
     name: 'Neos Networks',
-    aliases: ['neoscorp', 'neoscorp ltd'],
+    aliases: ['neoscorp'],
     category: 'Business broadband',
     icon: {
       text: 'NEOS',
@@ -952,7 +970,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'zayo',
     name: 'Zayo/Abovenet',
-    aliases: ['abovenet communications uk', 'abovenet communications uk ltd'],
+    aliases: ['abovenet communications uk'],
     category: 'Business broadband',
     icon: {
       text: 'ZAYO',
@@ -972,7 +990,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'glide',
     name: 'Glide',
-    aliases: ['Glide', 'Concept Solutions People', 'Concept Solutions People Ltd'],
+    aliases: ['Glide', 'Concept Solutions People', 'Glide Business'],
     category: 'Business broadband',
     icon: {
       text: 'GLID',
@@ -994,7 +1012,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'new-world-payphones',
     name: 'New World Payphones',
-    aliases: ['new world payphones', 'new world payphones ltd'],
+    aliases: ['new world payphones'],
     category: 'Street furniture',
     icon: {
       text: 'NWP',
@@ -1004,7 +1022,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'infolines',
     name: 'Infolines Public Networks Limited',
-    aliases: ['Infolines Public Networks', 'Infolines Public Networks Limited'],
+    aliases: ['Infolines Public Networks'],
     category: 'Street furniture',
     icon: {
       text: 'INFO',
@@ -1013,25 +1031,49 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   },
 ]
 
-export const promoterIds: string[] = AllStreetworksPromoters.map(x => x.id)
-
-export const promoterAliases: Record<string, string[]> = AllStreetworksPromoters.reduce(
-  (acc, promoter) => {
-    acc[promoter.id] = promoter.aliases
+export const promoterIds: readonly string[] = AllStreetworksPromoters.map(p => p.id)
+export const promoterAliases: Readonly<Record<string, string[]>> = Object.freeze(
+  AllStreetworksPromoters.reduce<Record<string, string[]>>((acc, p) => {
+    acc[p.id] = p.aliases
     return acc
-  },
-  {} as Record<string, string[]>,
+  }, {}),
 )
-
+export const promoterNames: Readonly<Record<string, string>> = Object.freeze(
+  AllStreetworksPromoters.reduce<Record<string, string>>((acc, p) => {
+    acc[p.id] = p.name
+    return acc
+  }, {}),
+)
 export let promoterIcons: Record<string, L.DivIcon> = {}
 
-export const promoterNames: Record<string, string> = AllStreetworksPromoters.reduce(
-  (acc, promoter) => {
-    acc[promoter.id] = promoter.name
-    return acc
-  },
-  {} as Record<string, string>,
-)
+const promoterLookup = new Map<string, string>()
+let cachedPromoterStates: Record<string, boolean> | null = null
+
+const BUSINESS_SUFFIXES = ['ltd', 'limited', 'plc', 'public limited company', 'llp', 'uk', '(uk)']
+
+function indexAlias(raw: string, promoterId: string): void {
+  const key = raw.trim().toLowerCase()
+
+  if (!promoterLookup.has(key)) {
+    promoterLookup.set(key, promoterId)
+  }
+
+  for (const suffix of BUSINESS_SUFFIXES) {
+    if (key.endsWith(suffix)) {
+      const stripped = key.slice(0, -suffix.length).trimEnd()
+      if (stripped.length > 0 && !promoterLookup.has(stripped)) {
+        promoterLookup.set(stripped, promoterId)
+      }
+    }
+  }
+}
+
+for (const promoter of AllStreetworksPromoters) {
+  indexAlias(promoter.name, promoter.id)
+  for (const alias of promoter.aliases) {
+    indexAlias(alias, promoter.id)
+  }
+}
 
 function createPromoterIcon(
   iconText: IOneNetworkStreetworksPromoter['icon']['text'],
@@ -1052,73 +1094,95 @@ function createPromoterIcon(
   })
 }
 
-function getPromoterId(dataPoint: StreetworksDataPoint): string | undefined {
-  const name = dataPoint.promoter.toLowerCase()
+let unknownIcon: L.DivIcon | null = null
+function getUnknownIcon(): L.DivIcon {
+  unknownIcon ??= createPromoterIcon('??', 'unknown', 'Unknown')
+  return unknownIcon!
+}
 
-  return Object.keys(promoterAliases).find(key => {
-    const aliases = promoterAliases[key]
-    return aliases.some((x: string) => name === x.toLowerCase())
-  })
+function ensureIconsInitialised(): void {
+  if (Object.keys(promoterIcons).length > 0) return
+
+  promoterIcons = AllStreetworksPromoters.reduce<Record<string, L.DivIcon>>((acc, promoter) => {
+    const icon = createPromoterIcon(promoter.icon.text, promoter.icon.type, promoter.name)
+    if (icon) acc[promoter.id] = icon
+    return acc
+  }, {})
+}
+
+export function getPromoterId(dataPoint: StreetworksDataPoint): string | undefined {
+  if (!dataPoint?.promoter) return undefined
+
+  const key = dataPoint.promoter.trim().toLowerCase()
+
+  // Exact match
+  const exact = promoterLookup.get(key)
+  if (exact !== undefined) return exact
+
+  // O(1) - Check stripped name of unseen suffix not pre indexed
+  for (const suffix of BUSINESS_SUFFIXES) {
+    if (key.endsWith(suffix)) {
+      const baseName = key.slice(0, -suffix.length).trim()
+      const id = promoterLookup.get(baseName)
+      if (id !== undefined) {
+        promoterLookup.set(key, id)
+        return id
+      }
+    }
+  }
+
+  return undefined
 }
 
 export function getPromoterIcon(dataPoint: StreetworksDataPoint) {
-  return promoterIcons[getPromoterId(dataPoint)!] ?? createPromoterIcon('??', 'unknown', 'Unknown')!
+  ensureIconsInitialised()
+  const id = getPromoterId(dataPoint)
+  return id && promoterIcons[id] ? promoterIcons[id] : getUnknownIcon()
 }
 
 export function getPromoterName(dataPoint: StreetworksDataPoint) {
-  return promoterNames[getPromoterId(dataPoint)!] ?? dataPoint.promoter ?? 'Unknown'
+  const id = getPromoterId(dataPoint)
+  return id ? promoterNames[id] : (dataPoint.promoter ?? 'Unknown')
 }
 
 export function isPromoterDataPoint(dataPoint: StreetworksDataPoint) {
   const id = getPromoterId(dataPoint)
-
   if (!id) return true
 
   const states = getPromoterStates()
-  if (id in states && !states[id]) return false
 
-  return true
+  return states[id] !== false
 }
 
 export function getPromoterStates(): Record<string, boolean> {
-  const promoterIdsByCategory: Record<string, string[]> = {}
+  // Return early using cached map
+  if (cachedPromoterStates !== null) return cachedPromoterStates
 
-  if (Object.keys(promoterIcons).length === 0) {
-    promoterIcons = AllStreetworksPromoters.reduce(
-      (acc, promoter) => {
-        acc[promoter.id] = createPromoterIcon(promoter.icon.text, promoter.icon.type, promoter.name)!
-        return acc
-      },
-      {} as Record<string, L.DivIcon>,
-    )
-  }
+  ensureIconsInitialised()
 
-  AllStreetworksPromoters.forEach(promoter => {
-    promoterIdsByCategory[promoter.category] ||= []
-    promoterIdsByCategory[promoter.category].push(promoter.id)
-  })
-
-  const strSetting = localStorage.getItem(DISABLED_PROMOTERS_LS_KEY)
-  let arr: any[]
+  let disabledIds: Set<string> | null = null
 
   try {
-    arr = JSON.parse(strSetting ?? 'null')
+    const raw = typeof window !== 'undefined' ? localStorage.getItem(DISABLED_PROMOTERS_LS_KEY) : null
+    const parsed = JSON.parse(raw ?? 'null')
 
-    if (!Array.isArray(arr)) {
-      throw new Error('Invalid disabled promoters value. Resetting...')
+    if (!Array.isArray(parsed)) {
+      throw new TypeError('expected json in localstorage')
     }
+
+    disabledIds = new Set<string>(parsed)
   } catch {
-    arr = []
-    localStorage.setItem(DISABLED_PROMOTERS_LS_KEY, '[]')
+    disabledIds = new Set<string>()
+    _persistDisabledIds(disabledIds)
   }
 
-  return promoterIds.reduce(
-    (acc, curr) => {
-      acc[curr] = !arr.includes(curr)
-      return acc
-    },
-    {} as Record<string, boolean>,
-  )
+  // build cache
+  cachedPromoterStates = promoterIds.reduce<Record<string, boolean>>((acc, id) => {
+    acc[id] = !disabledIds?.has(id)
+    return acc
+  }, {})
+
+  return cachedPromoterStates
 }
 
 export function setPromoterState(promoterId: string, state: boolean) {
@@ -1126,22 +1190,23 @@ export function setPromoterState(promoterId: string, state: boolean) {
 
   states[promoterId] = state
 
-  const disabledIds = Object.entries(states)
-    .map(([id, enabled]) => {
-      if (!enabled) return id
-      return null
-    })
-    .filter(x => x !== null)
-
-  localStorage.setItem(DISABLED_PROMOTERS_LS_KEY, JSON.stringify(disabledIds))
+  const disabledIds = new Set(Object.keys(states).filter(id => !states[id]))
+  _persistDisabledIds(disabledIds)
 }
 
 export function setAllPromotersState(state: boolean) {
-  if (state) {
-    // Enable all
-    localStorage.setItem(DISABLED_PROMOTERS_LS_KEY, '[]')
-  } else {
-    // Disable all
-    localStorage.setItem(DISABLED_PROMOTERS_LS_KEY, JSON.stringify(promoterIds))
-  }
+  const disabledIds = state
+    ? new Set<string>() // enable all = nothing disabled
+    : new Set<string>(promoterIds) // disable all = everything disabled
+
+  _persistDisabledIds(disabledIds)
+
+  // Invalidate cache
+  cachedPromoterStates = null
+}
+
+function _persistDisabledIds(disabledIds: Set<string>): void {
+  if (typeof window === 'undefined') return
+
+  window.localStorage.setItem(DISABLED_PROMOTERS_LS_KEY, JSON.stringify([...disabledIds]))
 }
