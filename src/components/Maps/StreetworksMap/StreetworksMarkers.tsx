@@ -208,8 +208,18 @@ async function loadPoints(
                 if (data) {
                   const info = data.swdata[field]
 
-                  if (dateFields.includes(field) && info) {
-                    el.innerText = dayjs.tz(info, 'Europe/London').format('DD MMM YYYY HH:mm:ss')
+                  if (dateFields.includes(field)) {
+                    if (info) {
+                      el.innerText = dayjs.tz(info, 'Europe/London').format('DD MMM YYYY HH:mm:ss')
+                    } else {
+                      el.innerText = 'Unknown'
+                      el.classList.add('unknown')
+                    }
+                  } else {
+                    el.innerText = (info ?? 'Unknown') as string
+                    if (info == null) {
+                      el.classList.add('unknown')
+                    }
                   }
                 } else {
                   el.innerText = 'Unavailable'
