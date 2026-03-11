@@ -252,7 +252,7 @@ export const AllStreetworksPromoters: IOneNetworkStreetworksPromoter[] = [
   {
     id: 'swish',
     name: 'Swish Fibre',
-    aliases: ['swish fibre', 'swish fibre', "people's fibre"],
+    aliases: ['swish fibre', "people's fibre"],
     category: 'Fixed broadband',
     icon: {
       text: 'SWSH',
