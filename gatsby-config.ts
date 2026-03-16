@@ -39,7 +39,14 @@ const config: GatsbyConfig = {
   graphqlTypegen: true,
   plugins: [
     ...prodPlugins,
-    `gatsby-plugin-cloudflare-pages`,
+    {
+      resolve: `gatsby-plugin-cloudflare-pages`,
+      options: {
+        headers: {
+          '/*': ['Referrer-Policy: strict-origin-when-cross-origin'],
+        },
+      },
+    },
     `gatsby-plugin-typescript`,
     {
       resolve: `gatsby-plugin-sitemap`,
