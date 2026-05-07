@@ -69,7 +69,7 @@ const StreetworksMap = React.forwardRef<Map>(function StreetworksMap(props, ref)
           height: 'var(--map-height)',
         } as any
       }
-      center={[51.505, -0.09]}
+      center={[51.519, -0.63]}
       zoom={13}
       attributionControl={false}
       ref={ref}
