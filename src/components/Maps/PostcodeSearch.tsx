@@ -10,7 +10,8 @@ import MinorAlert from '@components/Design/MinorAlert'
 import { makeStyles } from '@material-ui/core'
 
 export interface PostcodeSearchProps {
-  map: Map | undefined
+  map?: Map
+  onLocation?: (lat: number, lng: number) => void
 }
 
 const useStyles = makeStyles({
@@ -26,7 +27,7 @@ const useStyles = makeStyles({
   },
 })
 
-export default function PostcodeSearch({ map }: PostcodeSearchProps) {
+export default function PostcodeSearch({ map, onLocation }: PostcodeSearchProps) {
   const classes = useStyles()
   const [postcodeInput, setPostcodeInput] = useState('')
   const [loading, setLoading] = useState(false)
@@ -57,10 +58,10 @@ export default function PostcodeSearch({ map }: PostcodeSearchProps) {
 
         setPostcodeInput(json.result.postcode)
 
-        if (map) {
-          map.setView([json.result.latitude, json.result.longitude], 15, {
-            animate: true,
-          })
+        if (onLocation) {
+          onLocation(json.result.latitude, json.result.longitude)
+        } else if (map) {
+          map.setView([json.result.latitude, json.result.longitude], 15, { animate: true })
         } else {
           setError('An error occurred while looking up this postcode: invalid map instance.')
         }

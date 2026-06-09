@@ -60,6 +60,11 @@ export default function MapsPage({ location }: PageProps) {
             url="/maps/streetworks"
           />
           <CardLink
+            title="UK Wireless Telegraphy Register Map"
+            url="/maps/wtr"
+            description="An interactive map of UK Wireless Telegraphy Register."
+          />
+          <CardLink
             title="UK network coverage"
             description="View interactive coverage maps for major UK networks, using their official data."
             url="/gb/coverage"
