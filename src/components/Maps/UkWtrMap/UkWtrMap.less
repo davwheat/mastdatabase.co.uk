@@ -1,0 +1,334 @@
+// UkWtrMap.less — MapLibre GL JS version
+
+// Map wrapper
+.wtr-map-container {
+  position: relative;
+  height: var(--map-height, 75vh);
+  width: 100%;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.wtr-map-canvas {
+  width: 100%;
+  height: 100%;
+  font-family: inherit;
+}
+
+// MapLibre popup — applied inside the default .maplibregl-popup-content container
+.wtr-popup {
+  min-width: 200px;
+  max-width: 280px;
+  font-size: 13px;
+  line-height: 1.4;
+
+  &__licensee {
+    font-weight: 600;
+    font-size: 14px;
+    margin: 0 0 8px;
+    color: #1a1a1a;
+
+    em {
+      font-weight: 400;
+      color: #666;
+    }
+  }
+
+  &__details {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 3px 10px;
+    margin: 0 0 10px;
+  }
+
+  &__label {
+    color: #666;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+    align-self: start;
+  }
+
+  &__value {
+    color: #1a1a1a;
+    word-break: break-word;
+
+    &--mono {
+      font-family: 'Courier New', monospace;
+      font-size: 12px;
+    }
+  }
+
+  &__wtr-link {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 12px;
+    color: #0066cc;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__badge {
+    display: inline-block;
+    margin-top: 2px;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+
+    &--link {
+      background: rgba(224, 92, 0, 0.1);
+      color: #c24a00;
+      border: 1px solid rgba(224, 92, 0, 0.25);
+    }
+  }
+
+  &__jump-buttons {
+    display: flex;
+    gap: 6px;
+    margin-top: 8px;
+  }
+
+  &__jump-btn {
+    flex: 1;
+    padding: 5px 8px;
+    border: 1px solid #bbb;
+    border-radius: 3px;
+    background: #fff;
+    color: #1a1a1a;
+    cursor: pointer;
+    font: inherit;
+    font-size: 12px;
+
+    &:hover {
+      background: #f2f2f2;
+    }
+  }
+
+  &__licence-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    max-height: 360px;
+    overflow-y: auto;
+  }
+
+  &__licence-choice {
+    display: block;
+    width: 100%;
+    padding: 7px 8px;
+    border: 1px solid #d4d4d4;
+    border-radius: 4px;
+    background: #fff;
+    color: #1a1a1a;
+    cursor: pointer;
+    font: inherit;
+    text-align: left;
+
+    &:hover {
+      border-color: #888;
+      background: #f7f7f7;
+    }
+  }
+
+  &__choice-main,
+  &__choice-sub {
+    display: block;
+  }
+
+  &__choice-main {
+    font-weight: 600;
+  }
+
+  &__choice-sub {
+    margin-top: 2px;
+    color: #666;
+    font-size: 12px;
+  }
+}
+
+// Status bar — overlaid in the bottom-left corner above the attribution
+.wtr-status-bar {
+  position: absolute;
+  bottom: 30px;
+  left: 10px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  pointer-events: none;
+
+  &__message {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+    backdrop-filter: blur(4px);
+
+    &--warn {
+      background: rgba(255, 248, 220, 0.92);
+      color: #7a5a00;
+      border: 1px solid rgba(255, 200, 0, 0.4);
+    }
+
+    &--loading {
+      background: rgba(255, 255, 255, 0.92);
+      color: #333;
+      border: 1px solid rgba(0, 0, 0, 0.12);
+    }
+  }
+
+  &__spinner {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border: 2px solid #ccc;
+    border-top-color: #555;
+    border-radius: 50%;
+    animation: wtr-spin 0.7s linear infinite;
+  }
+
+  &__version {
+    font-size: 11px;
+    color: rgba(0, 0, 0, 0.5);
+    padding: 2px 6px;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 3px;
+    backdrop-filter: blur(4px);
+  }
+}
+
+@keyframes wtr-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// Filter panel — overlaid in the bottom-right corner
+.wtr-filter-panel {
+  position: absolute;
+  bottom: 32px;
+  right: 76px;
+  z-index: 1001;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 12px 14px;
+  width: min(300px, calc(100vw - 104px));
+  max-height: min(620px, calc(100% - 56px));
+  overflow: auto;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  font-size: 13px;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+
+  &__title {
+    font-weight: 600;
+    color: #1a1a1a;
+  }
+
+  &__close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #666;
+    font-size: 14px;
+    padding: 0 2px;
+    line-height: 1;
+
+    &:hover {
+      color: #1a1a1a;
+    }
+  }
+
+  &__label {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #666;
+    margin: 10px 0 4px;
+  }
+
+  &__input {
+    display: block;
+    width: 100%;
+    padding: 6px 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 13px;
+    box-sizing: border-box;
+    font-family: inherit;
+
+    &:focus {
+      outline: none;
+      border-color: #0066cc;
+    }
+  }
+
+  &__hint {
+    font-size: 11px;
+    color: #888;
+    margin: 4px 0 0;
+  }
+
+  &__clear {
+    margin-top: 12px;
+    background: none;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    padding: 4px 10px;
+    font-size: 12px;
+    cursor: pointer;
+    color: #333;
+
+    &:hover {
+      background: #f5f5f5;
+    }
+  }
+}
+
+// Custom toolbar buttons — positioned in the top-right, below MapLibre's nav controls
+.wtr-controls {
+  position: absolute;
+  top: 110px;
+  right: 10px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.wtr-control-btn {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  cursor: pointer;
+  color: #555;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+
+  &:hover {
+    background: #f0f0f0;
+    color: #333;
+  }
+}
