@@ -1,0 +1,11 @@
+{
+  "csvSourceUrl": "https://static.ofcom.org.uk/static/radiolicensing/html/register/WTR.csv",
+  "dataVersion": "2026-07-13T13:53:05Z",
+  "lastLinkCount": 16104,
+  "lastRecordCount": 200079,
+  "lastUpdated": "2026-07-13T13:53:05Z",
+  "linkCount": 16162,
+  "linkDelta": 58,
+  "recordCount": 200734,
+  "recordDelta": 655
+}

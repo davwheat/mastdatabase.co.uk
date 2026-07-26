@@ -4,6 +4,7 @@ import { Protocol } from 'pmtiles'
 import type { Map as MapLibreMap } from 'maplibre-gl'
 import 'maplibre-gl/dist/maplibre-gl.css'
 import './UkWtrMap.less'
+import wtrMeta from "./wtr-meta.json"
 import type { WtrFilters, FilterOptions, WtrMeta } from './types'
 import {
   licencePopupHTML,
@@ -49,7 +50,6 @@ const WtrMap = forwardRef<MapLibreMap>(function WtrMap(_, fwdRef) {
   const [filterOpen, setFilterOpen] = useState(false)
   const [loading, setLoading] = useState(true)
   const [mapLoaded, setMapLoaded] = useState(false)
-  const [wtrMeta, setWtrMeta] = useState<WtrMeta | null>(null)
   const [tooZoomedOut, setTooZoomedOut] = useState(false)
 
   useEffect(() => {
@@ -353,11 +353,6 @@ const WtrMap = forwardRef<MapLibreMap>(function WtrMap(_, fwdRef) {
     map.on('mouseleave', 'wtr-links', () => {
       map.getCanvas().style.cursor = ''
     })
-
-    fetch('/wtr-meta.json')
-      .then(r => r.json())
-      .then((d: WtrMeta) => setWtrMeta(d))
-      .catch(() => {})
 
     return () => {
       container.removeEventListener('click', onPopupClick)
