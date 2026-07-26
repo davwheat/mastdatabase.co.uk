@@ -19,12 +19,7 @@ export interface IOneNetworkStreetworksPromoter {
    * Promoter category (what infrastructure they are responsible for)
    */
   category:
-    | 'Mobile network'
-    | 'Fixed broadband'
-    | 'Fixed wireless access'
-    | 'Business broadband'
-    | 'Street furniture'
-    | 'Telecoms infrastructure'
+    'Mobile network' | 'Fixed broadband' | 'Fixed wireless access' | 'Business broadband' | 'Street furniture' | 'Telecoms infrastructure'
   /**
    * Information for map marker icons
    */
