@@ -4,7 +4,7 @@ import { Protocol } from 'pmtiles'
 import type { Map as MapLibreMap } from 'maplibre-gl'
 import 'maplibre-gl/dist/maplibre-gl.css'
 import './UkWtrMap.less'
-import wtrMeta from "./wtr-meta.json"
+import wtrMeta from './wtr-meta.json'
 import type { WtrFilters, FilterOptions, WtrMeta } from './types'
 import {
   licencePopupHTML,
