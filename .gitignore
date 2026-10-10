@@ -77,4 +77,6 @@ yarn-error.log
 
 gatsby-types.d.ts
 
+.wrangler/
+
 .idea/

@@ -10,7 +10,6 @@ on:
 
 env:
   NODE_VERSION: 22.x
-  CF_PAGES_PROJECT_NAME: mastdatabase-co-uk
 
 jobs:
   smoketest:
@@ -99,17 +98,14 @@ jobs:
           path: ./public
 
       - name: Publish to Cloudflare Pages
-        uses: cloudflare/pages-action@1
+        uses: cloudflare/wrangler-action@v3
         id: cf-pages-upload
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: ${{ env.CF_PAGES_PROJECT_NAME }}
-          directory: public # e.g. 'dist'
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
-          wranglerVersion: '3'
           # Use PR head branch if available, otherwise use the current branch
-          branch: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || github.ref_name }}
+          command: pages deploy --branch=${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || github.ref_name }}
 
       - name: Find existing build status comment
         continue-on-error: true
@@ -138,9 +134,9 @@ jobs:
             &nbsp;✅&nbsp; Deploy successful!
             </td></tr>
             <tr><td><strong>Preview URL:</strong></td><td>
-            <a href='${{ steps.cf-pages-upload.outputs.url }}'>${{ steps.cf-pages-upload.outputs.url }}</a>
+            <a href='${{ steps.cf-pages-upload.outputs.deployment-url }}'>${{ steps.cf-pages-upload.outputs.deployment-url }}</a>
             </td></tr>
             <tr><td><strong>Branch Preview URL:</strong></td><td>
-            <a href='${{ steps.cf-pages-upload.outputs.alias }}'>${{ steps.cf-pages-upload.outputs.alias }}</a>
+            <a href='${{ steps.cf-pages-upload.outputs.pages-deployment-alias-url }}'>${{ steps.cf-pages-upload.outputs.pages-deployment-alias-url }}</a>
             </td></tr>
             </table>
